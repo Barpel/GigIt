@@ -15,11 +15,13 @@
 <script>
 // @ is an alias to /src
 import gigCategories from '@/components/gigCategories.cmp.vue'
+import gigDetails from '@/components/gigDetails.cmp.vue'
 import homeFooter from '@/components/homeFooter.cmp.vue'
 export default {
   name: 'home',
   components: {
     gigCategories,
+    gigDetails,
     homeFooter,
 }
 }

@@ -5,11 +5,11 @@ var items = [{
 
 
 function query() {
-    if (items) return items
+    if (items) return items;
 }
 
 function getById(itemId = 1) {
     let currItem = items.find(item => item.id === itemId)
-    console.log(currItem)
+    return currItem;
 }
 
