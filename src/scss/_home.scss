@@ -11,9 +11,22 @@
     background-position: top;
     grid-row: 1;
     width: 100%;
-    min-height: 45vh;
+    height: fit-content;
+    max-height: 40vh;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
+  }
+
+  .cover-container h1 {
+    font-size: 4rem;
+    text-align: left;
+    font-family: condiment;
+    color: white;
+    padding: 0 10px;
+    letter-spacing: 1.5px;
+      span {
+        color: #97a5a7;
+      }
   }
   
   .search-container {
@@ -34,7 +47,7 @@
   }
   
   .search-container button {
-    height: 100%;
+    height: 51px;
     font-size: 1rem;
     background-color: #2ca2afd0;
     border: none;
@@ -42,3 +55,5 @@
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
   }
+
+ 

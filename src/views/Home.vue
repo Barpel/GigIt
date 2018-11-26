@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="cover-container">
-      <!-- <img alt="Vue logo" src="../assets/home-cover.jpg"> -->
+      <h1>Gig<span>It</span></h1>
       <div class="search-container">
         <input type="text" placeholder="Find your type of Gig...">
         <button>Search</button>
