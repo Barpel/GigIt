@@ -11,7 +11,7 @@ function query() {
 
 function getById(itemId = 1) {
     let currItem = items.find(item => item.id === itemId)
-    console.log(currItem)
+    return currItem
 }
 function getGigs ()  {
     // return JSON.parse([
