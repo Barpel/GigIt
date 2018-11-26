@@ -1,7 +1,7 @@
 <template>
 <section>
     <gig-toolbar></gig-toolbar>
-    <gig-list :gigs="gigs"></gig-list>
+    <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
 </section>
 </template>
 
@@ -13,6 +13,11 @@ export default {
 computed: {
     gigs() {
         return this.$store.getters.gigs
+    }
+},
+methods: {
+    gigClicked(gigId) {
+        this.$router.push(`gig/${gigId}`)
     }
 },
 created() {
