@@ -7,17 +7,20 @@
         <button>Search</button>
       </div>
     </div>
-    <gig-categories></gig-categories>
+    <gig-categories />
+    <home-footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import gigCategories from '@/components/gigCategories.cmp.vue'
+import homeFooter from '@/components/homeFooter.cmp.vue'
 export default {
   name: 'home',
   components: {
     gigCategories,
+    homeFooter,
 }
 }
 </script>
