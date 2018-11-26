@@ -41,6 +41,7 @@
   color: #2c3e50;
   background-color: #2f2f2f;
   min-height: 100vh;
+  min-width: 100%;
 }
 #nav {
   max-height: 100px;
