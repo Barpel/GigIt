@@ -3,6 +3,7 @@
     grid-template-columns: repeat(5, 2fr);
     text-align: center;
     li {
+        cursor: pointer;
         margin: 10px;
         img {
             max-width: 200px;

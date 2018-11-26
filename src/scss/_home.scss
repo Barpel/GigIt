@@ -8,16 +8,17 @@
     background-size: 100%;
     background-position-y: bottom;
     background-repeat: no-repeat;
+    background-position: top;
     grid-row: 1;
     width: 100%;
-    min-height: 400px;
+    min-height: 45vh;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
   }
   
   .search-container {
     z-index: 1;
-    grid-row: 4;
+    grid-row: 3;
     max-height: 55px;
     display: flex;
     justify-content: center;
@@ -26,7 +27,7 @@
   }
   
   .search-container input {
-    width: 400px;
+    width: 80%;
     font-size: 1.5rem;
     padding: 10px;
     height: 100%;
