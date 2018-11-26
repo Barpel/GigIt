@@ -1,17 +1,9 @@
+@import './_root.scss';
 @import './helpers.scss';
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import './fonts.scss';
 @import './gig-toolbar.scss';
 @import './gig-list.scss';
-@import './fonts.scss';
 
-* {
-    box-sizing: border-box;
-    // border: 1px solid red;
-}
 
-body, html {
-    margin: 0;
-}
-h1, h2, h3, h4, h5, h6{
-    margin: 0;
-}
+

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home.vue'
-import gigs from './views/gigs.vue'
+import gig from './views/gig.vue'
 // import gigDetails from '@/components/gigDetails.cmp.vue'
 
 Vue.use(Router)
@@ -16,12 +16,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/gigs',
+      path: '/gig',
       name: 'gigs',
-      component: gigs
+      component: gig
     },
     {
-      path: '/gigs/8',
+      path: '/gig/8',
       name: 'gigDetails',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
