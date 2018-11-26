@@ -1,6 +1,6 @@
 <template>
         <ul class="gig-list grid">
-            <gig-prev v-for="gig in gigs" :key="gig.id" :gig="gig"></gig-prev>
+            <gig-prev @click.native="$emit('gigClicked', gig.id)" v-for="gig in gigs" :key="gig.id" :gig="gig"></gig-prev>
         </ul>
 </template>
 
