@@ -15,7 +15,7 @@
           About
         </h1>
       </router-link>
-      <router-link to="/gigs">
+      <router-link to="/gig">
         <h1>
           <i class="fas fa-th-large"></i>
           Gigs
