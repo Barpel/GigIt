@@ -12,3 +12,4 @@ function getById(itemId = 1) {
     let currItem = items.find(item => item.id === itemId)
     console.log(currItem)
 }
+
