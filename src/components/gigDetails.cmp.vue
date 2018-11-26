@@ -1,6 +1,8 @@
+
+
 <template>
   <section>
-    <h2>{{this.gig.details.title}}</h2>
+    <h2 class="gig-">{{this.gig.details.title}}</h2>
     <div class="mid-details-container">
       <div class="gig-desc">
         <p>{{this.gig.details.desc}}</p>
@@ -24,6 +26,8 @@
 </template>
 
 <script>
+// make it smart(page) 
+//use dispatch to get By id 
 export default {
  
     name:'gigDetails',
