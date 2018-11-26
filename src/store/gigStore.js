@@ -2,7 +2,10 @@
 import gigService from '../service/gigDemoService.js'
 export default {
     state: {
-        gigs: []
+        gigs: [],
+        currGig:{
+            
+        }
     },
     getters: {
         gigs(state) {
