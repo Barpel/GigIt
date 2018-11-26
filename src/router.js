@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home.vue'
 import gigs from './views/gigs.vue'
+// import gigDetails from '@/components/gigDetails.cmp.vue'
 
 Vue.use(Router)
 
