@@ -1,10 +1,10 @@
 import userService from '../service/userService.js'
 export default {
     state: {
-        currUser: {},
+        currUser: null,
     },
     getters: {
-        user(state) {
+        user(state) {        
             return state.currUser
         }
     },
@@ -20,7 +20,7 @@ export default {
         },
         getUserById({ commit }, { userId }) {
             userService.getUserById(userId)
-                .then(user => {
+                .then(user => {  
                     commit({ type: 'setCurrUser', user })
                     return user
                 })

@@ -52,6 +52,7 @@ var demoUsers = [
             "first": "tester",
             "last": "testerovich"
         },
+        "aboutMe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum nam aliquam optio nulla fugit quasi alias architecto culpa dolorem deserunt nobis voluptatibus, accusantium, facere in perspiciatis quo aperiam ad?",
         "username": "testerMan123",
         "password": "053",
         "email": "testerMan@gmail.com",
@@ -75,6 +76,14 @@ var demoUsers = [
                     "reliable": 3,
                     "overall": 5
                 }
+            },{
+                "gigId": "2",
+                "title": "what it was",
+                "review": {
+                    "payment": 4,
+                    "reliable": 3,
+                    "overall": 5
+                }
             }],
             "completed": [{
                 "gigId": "4",
@@ -86,6 +95,6 @@ var demoUsers = [
                 }
             }]
         },
-        "img": "https://www.google.co.il/search?q=handsome+guy+img&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjZ6b6LpvTeAhXByaQKHf_MDNgQ_AUIDigB&biw=1455&bih=689#imgrc=Ep7eppzfMe5gCM:"
+        "img": "https://img.buzzfeed.com/buzzfeed-static/static/2015-03/27/12/campaign_images/webdr14/woof-and-woof-2-6572-1427473305-24_dblbig.jpg"
     }
 ]
