@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home.vue'
 import gig from './views/gig.vue'
+import gigEdit from './views/gigEdit.vue'
 import gigDetails from './views/gigDetails.vue'
 
 Vue.use(Router)
@@ -19,6 +20,11 @@ export default new Router({
       path: '/gig',
       name: 'gigs',
       component: gig
+    },
+    {
+      path: '/gig/edit/:gigId?',
+      name: 'gigEdit',
+      component: gigEdit
     },
     {
       path: '/gig/8',
