@@ -4,7 +4,8 @@
                 {{header}}
             </div>
             <div slot="collapse-body">
-                <button>Hello</button>
+                <button>Hello
+                </button>
             </div>
         </collapse>
 </template>
