@@ -72,6 +72,8 @@ var demoUsers = [
             "published": [{
                 "gigId": "2",
                 "title": "what it was",
+                "givenBy": "that i used to know",
+                "createdAt": "timestamp",
                 "review": {
                     "text": "was not nice",
                     "payment": 4,
@@ -84,6 +86,8 @@ var demoUsers = [
             "completed": [{
                 "gigId": "4",
                 "title": "was it what",
+                "givenBy": "somebody",
+                "createdAt": "timestamp",
                 "review": {
                     "text": "was awesome",
                     "work": 5,
