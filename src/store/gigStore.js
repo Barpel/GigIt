@@ -27,6 +27,10 @@ export default {
             console.log(context)
             gigService.getById()
                 .then(res => console.log(res))
+        },
+        getGigsByFilter(context,{category}){
+            console.log(category)
+
         }
     },
 }

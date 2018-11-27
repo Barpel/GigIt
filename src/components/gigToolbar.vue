@@ -14,13 +14,10 @@
 <script>
 export default {
     created(){
-        console.log('ToolBar')
     },
     methods:{
         showCategory(ev){
-            this.$emit('showCategory')
-            console.log(ev.target.innerHTML)
-
+            this.$emit('showCategory',ev.target.innerHTML)
         }
     }
 
