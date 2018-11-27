@@ -4,7 +4,7 @@
         <button>Moving</button>
         <button>House Work</button>
         <button>Technical</button>
-        <button>Queue Holders</button>
+        <button>Line-Queue</button>
         <button>Pets Help</button>
         <button>Others</button>
     </div>
