@@ -24,6 +24,10 @@ export default {
         },
         getGigById(context){
             return gigService.getById()
+        },
+        getGigsByFilter(context,{category}){
+            console.log(category)
+
         }
     },
 }
