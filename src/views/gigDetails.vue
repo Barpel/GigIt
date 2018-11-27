@@ -22,7 +22,7 @@
     <div class="mid-details-container">
       <div class="gigit-detail-container">
         <p>Earn {{this.gig.details.price}} for this Gig</p>
-        <button class="gigit-btn">
+        <button @click="requestGig" class="gigit-btn">
           <h1>
             <span>
               Gig
@@ -74,18 +74,30 @@ export default {
       gig: null
     };
   },
+  methods:{
+    goBack(){
+      this.$router.push('/gig')
+    },
+    requestGig() {
+      var currUser = this.$store.getters.user
+      this.gig.isRead = false
+      this.gig.pendingUsers.push({
+        name: currUser.name,
+        id: currUser.id,
+        img: currUser.img
+      }),
+      this.$store.dispatch({type:'updateGig', gig:this.gig})
+    }
+  },
   created() {
     var gigId = this.$route.params.gigId;
     this.$store
       .dispatch({ type: "getGigById", gigId })
-        .then(gig => (this.gig = gig));
+        .then(gig => {
+          (this.gig = gig)
+          console.log(this.gig)
+        });
   },
-  methods:{
-    goBack(){
-      this.$router.push('/gig')
-    }
-
-  }
 };
 </script>
 

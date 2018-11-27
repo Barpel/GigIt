@@ -2,10 +2,8 @@
 import gigService from '../service/gigDemoService.js'
 export default {
     state: {
-        gigs: [],
-        currGig: {
-
-        }
+        gigs: null,
+        currGig: null
     },
     getters: {
         gigs(state) {
@@ -25,5 +23,8 @@ export default {
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
         },
+        updateGig(context, payload) {
+            console.log(payload.gig)
+        }
     },
 }
