@@ -5,7 +5,13 @@ export default {
     getById
 }
 
-function query() {
+function query(category) {
+    if (category) {
+        var filteredGigs = items.filter(item => {
+          return  item.category === category
+        })
+        return Promise.resolve(filteredGigs)
+    }
     return Promise.resolve(items)
 }
 

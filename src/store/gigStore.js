@@ -18,16 +18,12 @@ export default {
         }
     },
     actions: {
-        getGigs(context) {
-            gigService.query()
-                .then(gigs => context.commit({ type: 'setGigs', gigs }))
+        getGigs(context,{category}) {
+            gigService.query(category)
+                .then(gigs => context.commit({type: 'setGigs', gigs}))
         },
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
         },
-        getGigsByFilter(context, { category }) {
-            console.log(category)
-
-        }
     },
 }
