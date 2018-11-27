@@ -1,6 +1,6 @@
 <template>
 <section>
-    <gig-toolbar></gig-toolbar>
+    <gig-toolbar @showCategory="gigsFilterBy"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
 </section>
 </template>
@@ -12,12 +12,16 @@ export default {
 
 computed: {
     gigs() {
+        console.log('whatsAP')
         return this.$store.getters.gigs
     }
 },
 methods: {
     gigClicked(gigId) {
         this.$router.push(`gig/${gigId}`)
+    },
+    gigsFilterBy(){
+        this.$store.dispatch({type:'getGigsByFilter'})
     }
 },
 created() {
