@@ -1,5 +1,11 @@
 <template>
-  <section v-if="user">{{user.gigsIds}}</section>
+  <section v-if="user">
+    <h1>{{user.gigsIds}}</h1>
+    <h2>Pending Gigs:</h2>
+    <ul class="completed-gigs">
+      <li v-for="pendingGig in gigs.pendingGigs" :key="pendingGig.id">{{pendingGig}}</li>
+    </ul>
+  </section>
 </template>
 
 <script>
@@ -32,6 +38,13 @@ export default {
             var pendingGigIds = userGigIds.pending
             var publishedGigIds = userGigIds.published
 
+            completedGigIds.forEach(completedGigId => {
+                this.$store.dispatch({type: 'getGigById', gigId: `${completedGigId}`})
+                .then(gig => {
+                    this.gigs.completedGigs.push(gig)
+                })
+            })
+
             pendingGigIds.forEach(pendingGigId => {
                 this.$store.dispatch({type: 'getGigById', gigId: `${pendingGigId}`})
                 .then(gig => {
@@ -45,6 +58,8 @@ export default {
                     this.gigs.publishedGigs.push(gig)
                 })
             })
+
+            console.log('gigs', this.gigs)
             
             }
         }
