@@ -103,7 +103,7 @@ function getGigs ()  {
         {
             "id": "4",
             "publisherId": "ade",
-            "category": "queue-keeping",
+            "category": "line-queue",
             "createdAt": 1543241371536,
             "isActive": true,
             "details": {
