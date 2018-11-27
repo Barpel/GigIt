@@ -1,6 +1,6 @@
 
-import axios from 'axios'
-// import { promises } from 'fs'
+import axios from 'axios';
+// import { promises } from 'fs';
 
 const BASE_URL = 'http://localhost:3000';
 

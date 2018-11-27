@@ -7,9 +7,9 @@
 <script>
 // import gigSesrvice
 export default {
-    data() {
-        return {
-            
+    computed: {
+        user() {
+            return this.$store.getters.user
         }
     },
     methods: {
@@ -22,7 +22,6 @@ export default {
         var gigId = this.$route.params.gigId
         console.log(gigId)
         this.$store.dispatch({type:'getCurrUser'})
-            // .then(user => this.user = user)
     }
 }
 </script>
