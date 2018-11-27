@@ -75,10 +75,11 @@ export default {
     };
   },
   created() {
-        var gigId = this.$route.params.gigId
-        this.$store.dispatch({ type: 'getGigById', gigId })
-            .then(gig => this.gig = gig )
-      }
+    var gigId = this.$route.params.gigId;
+    this.$store
+      .dispatch({ type: "getGigById", gigId })
+        .then(gig => (this.gig = gig));
+  }
 };
 </script>
 

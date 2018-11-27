@@ -9,7 +9,7 @@ function query() {
     return Promise.resolve(items)
 }
 
-function getById(gigId = 1) {
+function getById(gigId) {
     var gig = items.find(gig => gig.id === (gigId+''))
     return Promise.resolve(gig)
 }
