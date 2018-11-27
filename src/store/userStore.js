@@ -17,6 +17,14 @@ export default {
         getCurrUser(context) {
             return userService.getCurrUser()
                 .then(user => context.commit({ type: 'setCurrUser', user }))
+        },
+        getUserById({ commit }, { userId }) {
+            console.log('user id', userId)
+            userService.getUserById(userId)
+                .then(user => {
+                    commit({ type: 'setCurrUser', user })
+                    return user
+                })
         }
     },
 }
