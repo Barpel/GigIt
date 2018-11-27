@@ -1,11 +1,18 @@
 import userService from '../service/userService.js'
 export default {
     state: {
-        currUser: {},
+        currUser: {
+            name:'demo',
+            id:'1'
+        },
+        isLoggedin: true
     },
     getters: {
         user(state) {
             return state.currUser
+        },
+        isLoggedin(state) {
+            return state.isLoggedin
         }
     },
     mutations: {
