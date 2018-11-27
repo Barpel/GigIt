@@ -9,7 +9,10 @@
           Back
         </h6>
         <br>
-        <h5 class="gig-">{{this.gig.details.title}}</h5>
+        <h5>{{this.gig.details.title}}</h5>
+        <p>{{this.gig.details.desc}}</p>
+        <p>location: Tel-Aviv</p>
+        <p>Time: 18:00 </p>
       </div>
       <div class="avatar-img-container">
         <img src="../img/racheli.png" alt>
@@ -17,8 +20,16 @@
       </div>
     </div>
     <div class="mid-details-container">
-      <div class="gig-desc">
-        <p>{{this.gig.details.desc}}</p>
+      <div class="gigit-detail-container">
+        <p>Earn {{this.gig.details.price}} for this Gig</p>
+        <button class="gigit-btn">
+          <h1>
+            <span>
+              Gig
+              <span>It</span>
+            </span>
+          </h1>
+        </button>
       </div>
       <div class="category-img-container">
         <h5>{{this.gig.category}}</h5>
@@ -27,22 +38,6 @@
     </div>
     <div>
       <div class="details-container-nav">
-        <div class="map-img-container">
-          <img src="../img/mapDemo.png" alt>
-        </div>
-        <div class="gigit-detail-container">
-          <div class="payment-price-container">
-            <p>Earn {{this.gig.details.price}} for this Gig</p>
-          </div>
-          <button class="gigit-btn">
-            <h1>
-              <span>
-                Gig
-                <span>It</span>
-              </span>
-            </h1>
-          </button>
-        </div>
       </div>
       <div class="review-details-container">
         <ul>User Score
@@ -58,11 +53,15 @@
             Overall
             <span>⭐⭐⭐⭐✰</span>
           </li>
+          <h4>
+            More
+            Reviews...
+          </h4>
         </ul>
-        <div>
-          <h4>More Reviews...</h4>
-        </div>
       </div>
+    </div>
+    <div class="map-img-container">
+      <img src="../img/mapDemo.png" alt>
     </div>
   </section>
 </template>
@@ -113,7 +112,6 @@ export default {
 
 section{
     display: grid;
-
 }
 .top-detail-container{
     display: grid;
@@ -121,11 +119,20 @@ section{
     padding: 10px;
     .h6 {
         padding: 10px;
+       
     }
     .top-detail-title{
         text-align: left;
-        // width: 75px;
-        font-size: 0.7rem;
+        font-size: 0.72rem;
+        h6{
+         font-size: 0.9rem;
+        }
+        h5{
+            padding: 5px;
+        }
+        p{
+            padding: 5px;
+        }
     }
     .avatar-img-container{
     width: 60px;
@@ -141,9 +148,9 @@ section{
 }
 }
 .mid-details-container{
-    padding: 5px;
     display: flex;
     justify-content: space-around;
+    max-height: 137px;
 }
 .gig-desc{
     border:1px solid white;
@@ -158,14 +165,15 @@ section{
 }
 .map-img-container{
     img{
-    margin: 10px;    
-    width: 160px;
-    height: 120px;
+    margin: 10px;
+    width: 225px;
+    height: 140px;
     }
 } 
 .gigit-detail-container{
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
 
     .payment-price-container{
         width: 70px;
@@ -174,9 +182,20 @@ section{
     
 }
 .review-details-container{
-    display: flex;
-    justify-content: space-around;
-}
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.9rem;
+    }
+    ul{
+        margin: 0;
+    }
+    li{
+        padding:2px
+    }
+    h4{
+        padding:5px;
+        justify-self: center;
+    }
+
 .category-img-container > img {
     width: 130px;
     height: 130px;
