@@ -3,7 +3,7 @@ import gigService from '../service/gigDemoService.js'
 export default {
     state: {
         gigs: [],
-        currGig:{
+        currGig: {
 
         }
     },
@@ -13,19 +13,19 @@ export default {
         }
     },
     mutations: {
-        setGigs(state, {gigs}) {
+        setGigs(state, { gigs }) {
             state.gigs = gigs
         }
     },
     actions: {
         getGigs(context) {
             gigService.query()
-                .then(gigs => context.commit({type: 'setGigs', gigs}))
+                .then(gigs => context.commit({ type: 'setGigs', gigs }))
         },
-        getGigById(context, {gigId}){
+        getGigById(context, { gigId }) {
             return gigService.getById(gigId)
         },
-        getGigsByFilter(context,{category}){
+        getGigsByFilter(context, { category }) {
             console.log(category)
 
         }

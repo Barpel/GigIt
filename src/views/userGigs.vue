@@ -4,13 +4,21 @@
 
 <script>
 export default {
+    data() {
+        return {
+            gigs: {
+                completedGigs: [],
+                pendingGigs: [],
+                publishedGigs: [],
+            }
+        }
+    },
     computed: {
         user() {
             return this.$store.getters.user
         }
     },
     created() {
-        console.log('user gigs')
         var userId = this.$route.params.userId
         this.$store.dispatch({type: 'getUserById', userId})
         .then(() => {
@@ -19,10 +27,28 @@ export default {
     },
     methods: {
         getUserGigs() {
-            var userGigIds = this.user.gigsIds;
-            console.log('userGigIds', userGigIds)
+            var userGigIds = {...this.user.gigsIds}
+            var completedGigIds = userGigIds.completed
+            var pendingGigIds = userGigIds.pending
+            var publishedGigIds = userGigIds.published
+
+            pendingGigIds.forEach(pendingGigId => {
+                this.$store.dispatch({type: 'getGigById', gigId: `${pendingGigId}`})
+                .then(gig => {
+                    this.gigs.pendingGigs.push(gig)
+                })
+            })
+            
+            publishedGigIds.forEach(publishedGigId => {
+                this.$store.dispatch({type: 'getGigById', gigId: `${publishedGigId}`})
+                .then(gig => {
+                    this.gigs.publishedGigs.push(gig)
+                })
+            })
+            
+            }
         }
-    }
+    
 
 }
 </script>
