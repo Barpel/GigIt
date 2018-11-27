@@ -1,8 +1,8 @@
 <template>
-<section>
-    <gig-toolbar></gig-toolbar>
+  <section>
+    <gig-toolbar @showCategory="gigsFilterBy"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
-</section>
+  </section>
 </template>
 
 <script>
@@ -18,6 +18,9 @@ computed: {
 methods: {
     gigClicked(gigId) {
         this.$router.push(`gig/${gigId}`)
+    },
+    gigsFilterBy(category){
+        this.$store.dispatch({type:'getGigsByFilter',category})
     }
 },
 created() {
