@@ -1,7 +1,7 @@
 
 
 <template>
-  <section>
+  <section v-if="gig">
     <div class="top-detail-container">
       <div class="top-detail-title">
         <h6>
@@ -12,7 +12,7 @@
         <h5>{{this.gig.details.title}}</h5>
         <p>{{this.gig.details.desc}}</p>
         <p>location: Tel-Aviv</p>
-        <p>Time: 18:00 </p>
+        <p>Time: 21:00</p>
       </div>
       <div class="avatar-img-container">
         <img src="../img/racheli.png" alt>
@@ -37,8 +37,7 @@
       </div>
     </div>
     <div>
-      <div class="details-container-nav">
-      </div>
+      <div class="details-container-nav"></div>
       <div class="review-details-container">
         <ul>User Score
           <li>
@@ -66,181 +65,156 @@
   </section>
 </template>
 <script>
-// make it smart(page)V 
-//use dispatch to get By id 
+// make it smart(page)V
+//use dispatch to get By id
 export default {
-    name:'gigDetails',
-    data(){
-        return  {
-       gig:{ id: 8,
-        publisherId: 'bce',
-        category: 'moving',
-        createdAt: 1543242149936,
-        isActive: true,
-        details: {
-            title: 'Get my old couch out of my house',
-            desc: 'I want to throw away my old couch, living on first floor no stairs',
-            price: '50 NIS',
-            pos: {
-                lat: 32.087098,
-                lng: 34.802301
-            },
-            gigTime: {
-                from: 1543238948388,
-                to: 1543239948388
-            },
-            imgs: []
-        }
-       },
-        created(){
-            console.log('got here!!!')
-           let id = this.$route.params.gigId
-           console.log(id)
-            this.$store.dispatch({type:getGigById, gigId})
-        }
-    }
-    }
-
-}
+  name: "gigDetails",
+  data() {
+    return {
+      gig: null
+    };
+  },
+  created() {
+        var gigId = this.$route.params.gigId
+        this.$store.dispatch({ type: 'getGigById', gigId })
+            .then(gig => this.gig = gig )
+      }
+};
 </script>
 
 <style  lang="scss">
-
-*{
-    color:azure;
+* {
+  color: azure;
 }
 
-section{
-    display: grid;
+section {
+  display: grid;
 }
-.top-detail-container{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+.top-detail-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 10px;
+  .h6 {
     padding: 10px;
-    .h6 {
-        padding: 10px;
-       
+  }
+  .top-detail-title {
+    text-align: left;
+    font-size: 0.72rem;
+    h6 {
+      font-size: 0.9rem;
     }
-    .top-detail-title{
-        text-align: left;
-        font-size: 0.72rem;
-        h6{
-         font-size: 0.9rem;
-        }
-        h5{
-            padding: 5px;
-        }
-        p{
-            padding: 5px;
-        }
+    h5 {
+      padding: 5px;
     }
-    .avatar-img-container{
+    p {
+      padding: 5px;
+    }
+  }
+  .avatar-img-container {
     width: 60px;
     grid-row: 1 / 2;
     grid-column: 2;
     h5 {
-        margin: 0 auto;
-        width: 100%;
+      margin: 0 auto;
+      width: 100%;
     }
-    img{
-        width: 75px;
+    img {
+      width: 75px;
     }
+  }
 }
+.mid-details-container {
+  display: flex;
+  justify-content: space-around;
+  max-height: 137px;
 }
-.mid-details-container{
-    display: flex;
-    justify-content: space-around;
-    max-height: 137px;
-}
-.gig-desc{
-    border:1px solid white;
-    border-radius: 10px;
-    padding: 5px;
-    width: 130px;
+.gig-desc {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 5px;
+  width: 130px;
 }
 
-.details-container-nav{
-    display: flex;
-    justify-content: space-around;
+.details-container-nav {
+  display: flex;
+  justify-content: space-around;
 }
-.map-img-container{
-    img{
+.map-img-container {
+  img {
     margin: 10px;
     width: 225px;
     height: 140px;
-    }
-} 
-.gigit-detail-container{
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
-
-    .payment-price-container{
-        width: 70px;
-        margin: 5px
-    }
-    
+  }
 }
-.review-details-container{
-    grid-template-columns: 1fr 1fr;
-    font-size: 0.9rem;
-    }
-    ul{
-        margin: 0;
-    }
-    li{
-        padding:2px
-    }
-    h4{
-        padding:5px;
-        justify-self: center;
-    }
+.gigit-detail-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+
+  .payment-price-container {
+    width: 70px;
+    margin: 5px;
+  }
+}
+.review-details-container {
+  grid-template-columns: 1fr 1fr;
+  font-size: 0.9rem;
+}
+ul {
+  margin: 0;
+}
+li {
+  padding: 2px;
+}
+h4 {
+  padding: 5px;
+  justify-self: center;
+}
 
 .category-img-container > img {
-    width: 130px;
-    height: 130px;
+  width: 130px;
+  height: 130px;
 }
-.category-img-container>h6{
-    margin: 0
+.category-img-container > h6 {
+  margin: 0;
 }
-.gigit-btn{
-    height: 50px;
-	box-shadow:inset 0px 1px 0px 0px #2ca2af;
-	background-color:#2ca2af;
-	border:1px solid #2ca2af;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
+.gigit-btn {
+  height: 50px;
+  box-shadow: inset 0px 1px 0px 0px #2ca2af;
+  background-color: #2ca2af;
+  border: 1px solid #2ca2af;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 12px;
 }
- h1 {
-      margin: 0;
-      height: 100%;
-      font-size: 1.5rem;
-      }
+h1 {
+  margin: 0;
+  height: 100%;
+  font-size: 1.5rem;
+}
 
-.gigit-btn:hover{
-	background-color:#2a8691;
+.gigit-btn:hover {
+  background-color: #2a8691;
 }
-.gigit-btn:active{
-    position:relative;
-	top:1px;
+.gigit-btn:active {
+  position: relative;
+  top: 1px;
 }
- h1 {
-      margin: 0;
-      height: 100%;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      font-size: 1.5rem;
-      span {
-        font-family: condiment;
-        span {
-          color: #97a5a7;
-        }
-      }
+h1 {
+  margin: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  font-size: 1.5rem;
+  span {
+    font-family: condiment;
+    span {
+      color: #97a5a7;
     }
-
+  }
+}
 </style>

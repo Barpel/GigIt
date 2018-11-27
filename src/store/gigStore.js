@@ -23,10 +23,7 @@ export default {
                 .then(gigs => context.commit({type: 'setGigs', gigs}))
         },
         getGigById(context){
-            console.log('got to store')
-            console.log(context)
-            gigService.getById()
-                .then(res => console.log(res))
+            return gigService.getById()
         }
     },
 }

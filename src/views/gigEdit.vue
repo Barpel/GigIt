@@ -1,6 +1,8 @@
 <template>
     <section>
-        <form @submit.prevent="updateGig"></form>
+        <form @submit.prevent="updateGig">
+            
+        </form>
     </section>
 </template>
 
