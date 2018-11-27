@@ -23,7 +23,7 @@
     {
         "id": "2",
         "publisherId": "abd",
-        "category": "technical",
+        "category": "other",
         "createdAt": 1543239603758,
         "isActive": true,
         "details": {
@@ -107,7 +107,7 @@
     {
         "id": "5",
         "publisherId": "adf",
-        "category": "technical",
+        "category": "other",
         "createdAt": 1543241496924,
         "isActive": true,
         "details": {
