@@ -2,11 +2,11 @@
   <section class="gig-toolbar-container">
     <div class="gig-toolbar">
       <button @click="showCategory">Moving</button>
-      <button @click="showCategory">House Work</button>
+      <button @click="showCategory">House-Work</button>
       <button @click="showCategory">Technical</button>
       <button @click="showCategory">Line-Queue</button>
-      <button @click="showCategory">Pets Help</button>
-      <button @click="showCategory">Others</button>
+      <button @click="showCategory">Pet-Care</button>
+      <button @click="showCategory">Other</button>
     </div>
   </section>
 </template>
@@ -17,7 +17,8 @@ export default {
     },
     methods:{
         showCategory(ev){
-            this.$emit('showCategory',ev.target.innerHTML)
+            var category = ev.target.innerHTML.toLowerCase()
+            this.$emit('showCategory',category)
         }
     }
 

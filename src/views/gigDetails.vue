@@ -4,18 +4,18 @@
   <section v-if="gig">
     <div class="top-detail-container">
       <div class="top-detail-title">
-        <h6>
+        <h6 @click="goBack">
           <i class="fas fa-arrow-left"></i>
           Back
         </h6>
         <br>
-        <h5>{{this.gig.details.title}}</h5>
-        <p>{{this.gig.details.desc}}</p>
-        <p>location: Tel-Aviv</p>
-        <p>Time: 21:00</p>
+        <h5>{{gig.details.title}}</h5>
+        <p>{{gig.details.desc}}</p>
+        <p>location: {{gig.details.pos.dist}}</p>
+        <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
       <div class="avatar-img-container">
-        <img src="../img/racheli.png" alt>
+        <img src="../assets/racheli.png" alt>
         <h5>Rachel Bahabua</h5>
       </div>
     </div>
@@ -33,7 +33,7 @@
       </div>
       <div class="category-img-container">
         <h5>{{this.gig.category}}</h5>
-        <img src="../img/moving.png" alt>
+        <img :src="`@/assets/${this.gig.category}.png`" alt>
       </div>
     </div>
     <div>
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="map-img-container">
-      <img src="../img/mapDemo.png" alt>
+      <img src="../assets/mapDemo.png" alt>
     </div>
   </section>
 </template>
@@ -79,6 +79,12 @@ export default {
     this.$store
       .dispatch({ type: "getGigById", gigId })
         .then(gig => (this.gig = gig));
+  },
+  methods:{
+    goBack(){
+      this.$router.push('/gig')
+    }
+
   }
 };
 </script>

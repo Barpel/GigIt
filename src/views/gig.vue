@@ -20,7 +20,7 @@ methods: {
         this.$router.push(`gig/${gigId}`)
     },
     gigsFilterBy(category){
-        this.$store.dispatch({type:'getGigsByFilter',category})
+        this.$store.dispatch({type:'getGigs',category})
     }
 },
 created() {
