@@ -26,7 +26,8 @@ function getGigs() {
             "publisherId": "abc",
             "category": "delivery",
             "createdAt": 1543238938388,
-            "pendingUsers": [], "isActive": true,
+            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], 
+            "isActive": true,
             "details": {
                 "title": "Get this package to Ramat Gan",
                 "desc": "It's a small package, but expensive, i need to get it to The Bursa in Ramat Gan",
@@ -47,7 +48,7 @@ function getGigs() {
             "publisherId": "abd",
             "category": "other",
             "createdAt": 1543239603758,
-            "pendingUsers": [], "isActive": true,
+            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], "isActive": true,
             "details": {
                 "title": "Opening a facebook account",
                 "desc": "I would love to have a facebook but don't know how to open one",
@@ -68,7 +69,7 @@ function getGigs() {
             "publisherId": "acd",
             "category": "house-work",
             "createdAt": 1543239733239,
-            "pendingUsers": [], "isActive": true,
+            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], "isActive": true,
             "details": {
                 "title": "Putting on a shelf",
                 "desc": "I need to put on two shelves in my kitchen, i have the tools",

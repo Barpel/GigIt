@@ -1,14 +1,30 @@
 <template>
-  <section v-if="user">
-    <h1>{{user.gigsIds}}</h1>
+  <section v-if="user" class="user-gigs-container">
+    <!-- <h1>{{user.gigsIds}}</h1> -->
     <h2>Pending Gigs:</h2>
-    <ul class="completed-gigs">
-      <li v-for="pendingGig in gigs.pendingGigs" :key="pendingGig.id">{{pendingGig}}</li>
+    <ul class="published-gigs">
+      <div v-for="publishedGig in gigs.publishedGigs" :key="publishedGig.id">
+        <accordion
+          :header="publishedGig.details.title"
+          :gigsters="publishedGig.pendingUsers"
+          v-if="gigs.publishedGigs.length"
+        ></accordion>
+      </div>
+    </ul>
+    <ul class="pending-gigs">
+      <div v-for="pendingGig in gigs.pendingGigs" :key="pendingGig.id">
+        <accordion
+          :header="pendingGig.details.title"
+          :gigsters="pendingGig.pendingUsers"
+          v-if="gigs.pendingGigs.length"
+        ></accordion>
+      </div>
     </ul>
   </section>
 </template>
 
 <script>
+import accordion from '../components/utils/accordion.cmp'
 export default {
     data() {
         return {
@@ -22,6 +38,15 @@ export default {
     computed: {
         user() {
             return this.$store.getters.user
+        },
+        publishedGigsGigsters(gigIdx) {
+            var gigsters = [];
+            this.gigs.publishedGigs.forEach((publishedGig, idx) => {
+                console.log('publishedGig', publishedGig)
+                gigsters = (publishedGig.pendindUsers)
+            })
+            console.log('gigsters', gigsters)
+            return gigsters
         }
     },
     created() {
@@ -29,6 +54,7 @@ export default {
         this.$store.dispatch({type: 'getUserById', userId})
         .then(() => {
             this.getUserGigs()
+            console.log(this.gigs)
         })
     },
     methods: {
@@ -62,12 +88,23 @@ export default {
             console.log('gigs', this.gigs)
             
             }
+        },
+        components: {
+            accordion,
         }
     
 
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    .user-gigs-container {
+        max-width: 500px;
+        margin: 0 auto;
+        ul.published-gigs {
+            div {
+                max-height: fit-content;
+            }
+        }
+    }
 </style>
