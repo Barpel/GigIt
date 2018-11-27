@@ -11,7 +11,8 @@
       </div>
     </div>
     <gig-categories/>
-    <gig-list :gigs="gigs"/>
+    <hr>
+    <gig-list :gigs="gigs" @gigClicked="gigClicked"/>
     <home-footer/>
   </div>
 </template>
@@ -25,20 +26,31 @@ export default {
   name: 'home',
   computed:{
     gigs() {
-      var gigs= this.$store.getters.gigs;
+      var gigs= JSON.parse(JSON.stringify(this.$store.getters.gigs))
       return gigs.splice(1, gigs.length -4);
     }
+  },
+  methods: {
+    gigClicked(gigId) {
+        this.$router.push(`gig/${gigId}`)
+},
   },
   components: {
     gigCategories,
     homeFooter,
     gigList
+},
+created() {
+  this.$store.dispatch({type:'getGigs'})
 }
 }
 </script>
 
 <style lang="scss" scoped>
-
+  hr {
+    width: 90%;
+    border: 1px solid #363636;
+  }
 </style>
 
 
