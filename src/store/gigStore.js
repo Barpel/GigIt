@@ -18,8 +18,8 @@ export default {
         }
     },
     actions: {
-        getGigs(context) {
-            gigService.query()
+        getGigs(context,{category}) {
+            gigService.query(category)
                 .then(gigs => context.commit({type: 'setGigs', gigs}))
         },
         getGigById(context){
@@ -27,10 +27,6 @@ export default {
             console.log(context)
             gigService.getById()
                 .then(res => console.log(res))
-        },
-        getGigsByFilter(context,{category}){
-            console.log(category)
-
         }
     },
 }
