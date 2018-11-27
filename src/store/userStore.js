@@ -1,10 +1,10 @@
 import userService from '../service/userService.js'
 export default {
     state: {
-        user: {},
+        currUser: {},
     },
     getters: {
-        users(state) {
+        user(state) {
             return state.currUser
         }
     },
