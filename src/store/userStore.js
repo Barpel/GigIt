@@ -1,18 +1,22 @@
 import userService from '../service/userService.js'
 export default {
     state: {
+        user: {},
     },
     getters: {
+        users(state) {
+            return state.currUser
+        }
     },
     mutations: {
-        setUsers(state, {users}) {
-            state.users = users
+        setCurrUser(state, { user }) {
+            state.currUser = user
         }
     },
     actions: {
-        getUsers(context) {
-            userService.getUsers()
-                .then(users => context.commit({type: 'setUsers', users}))
+        getCurrUser(context) {
+            return userService.getCurrUser()
+                .then(user => context.commit({ type: 'setCurrUser', user }))
         }
     },
 }
