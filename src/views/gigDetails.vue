@@ -9,10 +9,10 @@
           Back
         </h6>
         <br>
-        <h5>{{this.gig.details.title}}</h5>
-        <p>{{this.gig.details.desc}}</p>
-        <p>location: Tel-Aviv</p>
-        <p>Time: 21:00</p>
+        <h5>{{gig.details.title}}</h5>
+        <p>{{gig.details.desc}}</p>
+        <p>location: {{gig.details.pos.dist}}</p>
+        <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
       <div class="avatar-img-container">
         <img src="../img/racheli.png" alt>
