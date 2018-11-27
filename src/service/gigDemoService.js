@@ -15,19 +15,18 @@ function query(category) {
     return Promise.resolve(items)
 }
 
-function getById(itemId = 1) {
-    let currItem = items.find(item => item.id === itemId)
-    return currItem
+function getById(gigId) {
+    var gig = items.find(gig => gig.id === (gigId+''))
+    return Promise.resolve(gig)
 }
 function getGigs() {
-    // return JSON.parse([
     return [
         {
             "id": "1",
             "publisherId": "abc",
             "category": "delivery",
             "createdAt": 1543238938388,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Get this package to Ramat Gan",
                 "desc": "It's a small package, but expensive, i need to get it to The Bursa in Ramat Gan",
@@ -48,7 +47,7 @@ function getGigs() {
             "publisherId": "abd",
             "category": "other",
             "createdAt": 1543239603758,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Opening a facebook account",
                 "desc": "I would love to have a facebook but don't know how to open one",
@@ -67,9 +66,9 @@ function getGigs() {
         {
             "id": "3",
             "publisherId": "acd",
-            "category": "house work",
+            "category": "house-work",
             "createdAt": 1543239733239,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Putting on a shelf",
                 "desc": "I need to put on two shelves in my kitchen, i have the tools",
@@ -88,9 +87,9 @@ function getGigs() {
         {
             "id": "9",
             "publisherId": "ace",
-            "category": "house work",
+            "category": "house-work",
             "createdAt": 1543240939430,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "clean my garden",
                 "desc": "My garden needs some sweeping",
@@ -111,7 +110,7 @@ function getGigs() {
             "publisherId": "ade",
             "category": "line-queue",
             "createdAt": 1543241371536,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "My spot in the Post Office",
                 "desc": "I need someone to hold my spot around 4 ocklock and call me when my turn comes",
@@ -132,7 +131,7 @@ function getGigs() {
             "publisherId": "adf",
             "category": "other",
             "createdAt": 1543241496924,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "putting Anti-virus on my computer",
                 "desc": "I need some one who knows his way in computers to help me install a good anti-virus",
@@ -153,7 +152,7 @@ function getGigs() {
             "publisherId": "aef",
             "category": "delivery",
             "createdAt": 1543241902574,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Pick up my groceries",
                 "desc": "I need someone to pickup the groceries from my local store and put it near my door before it closes",
@@ -174,7 +173,7 @@ function getGigs() {
             "publisherId": "bcd",
             "category": "moving",
             "createdAt": 1543242079143,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Get my old stuff to my apartmant",
                 "desc": "My apartment in the third floor, i have some stuff to move up there, not too heavy",
@@ -195,7 +194,7 @@ function getGigs() {
             "publisherId": "bce",
             "category": "moving",
             "createdAt": 1543242149936,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "Get my old couch out of my house",
                 "desc": "I want to throw away my old couch, living on first floor no stairs",
@@ -214,9 +213,9 @@ function getGigs() {
         {
             "id": "10",
             "publisherId": "bse",
-            "category": "pets care",
+            "category": "pet-care",
             "createdAt": 1543257014565,
-            "isActive": true,
+            "pendingUsers": [], "isActive": true,
             "details": {
                 "title": "walk my dog",
                 "desc": "I need someone to walk my dog for me this afternoon",
@@ -233,5 +232,4 @@ function getGigs() {
             }
         },
     ]
-    // )
 }

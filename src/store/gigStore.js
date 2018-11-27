@@ -22,11 +22,8 @@ export default {
             gigService.query(category)
                 .then(gigs => context.commit({type: 'setGigs', gigs}))
         },
-        getGigById(context){
-            console.log('got to store')
-            console.log(context)
-            gigService.getById()
-                .then(res => console.log(res))
-        }
+        getGigById(context, {gigId}){
+            return gigService.getById(gigId)
+        },
     },
 }
