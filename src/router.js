@@ -4,6 +4,7 @@ import Home from './views/home.vue'
 import gig from './views/gig.vue'
 import gigEdit from './views/gigEdit.vue'
 import gigDetails from './views/gigDetails.vue'
+import userGigs from './views/userGigs.vue'
 
 Vue.use(Router)
 
@@ -38,6 +39,12 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/about.vue')
-    }
+    },
+    {
+      path: '/user/:userId/published',
+      name: 'publishedGigs',
+      component: userGigs,
+    },
+    
   ]
 })

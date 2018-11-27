@@ -30,7 +30,9 @@ function saveUser(user) {
 }
 
 function getUserById(userId) {
-    return axios.get(`${BASE_URL}/${userId}`).then(res => res.data)
+    var user = demoUsers.find(user => user.id === userId)
+    return Promise.resolve(user)
+    // return axios.get(`${BASE_URL}/${userId}`).then(res => res.data)
 }
 
 function deleteUser(userId) {
@@ -38,14 +40,14 @@ function deleteUser(userId) {
 }
 
 function loginUser(userCreds) {
-    return axios.get(`${BASE_URL}/login`, userCreds ).then(res => res.data)
+    return axios.get(`${BASE_URL}/login`, userCreds).then(res => res.data)
 }
 
 
 
 var demoUsers = [
     {
-        "id": "abc",
+        "id": "1",
         "name": {
             "first": "tester",
             "last": "testerovich"
@@ -61,7 +63,8 @@ var demoUsers = [
         "age": 24,
         "gigsIds": {
             "published": ["1", "2", "3"],
-            "completed": ["4", "5", "6"]
+            "pending": ["4", "5", "6"],
+            "completed": []
         },
         "reviews": {
             "published": [{
