@@ -2,8 +2,7 @@
   <div class="home">
     <div class="cover-container">
       <h1>
-        Gig
-        <span>It</span>
+        Gig<span>It</span>
       </h1>
       <div class="search-container">
         <input type="text" placeholder="Find your type of Gig...">
