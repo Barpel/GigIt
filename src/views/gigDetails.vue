@@ -95,7 +95,6 @@ export default {
       .dispatch({ type: "getGigById", gigId })
         .then(gig => {
           (this.gig = gig)
-          console.log(this.gig)
         });
   },
 };

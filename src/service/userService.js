@@ -67,22 +67,29 @@ var demoUsers = [
             "completed": []
         },
         "reviews": {
+            "totalAverage" : 0,
+            "publishedAverage": 0,
             "published": [{
                 "gigId": "2",
                 "title": "what it was",
                 "review": {
+                    "text": "was not nice",
                     "payment": 4,
                     "reliable": 3,
-                    "overall": 5
+                    "overall": 5,
+                    "average": 4
                 }
             }],
+            "completedAverage": 0,
             "completed": [{
                 "gigId": "4",
                 "title": "was it what",
                 "review": {
+                    "text": "was awesome",
                     "work": 5,
                     "reliable": 2,
-                    "overall": 4
+                    "overall": 4,
+                    "average": 3.6
                 }
             }]
         },
