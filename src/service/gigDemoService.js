@@ -26,7 +26,7 @@ function getGigs() {
             "publisherId": "abc",
             "category": "delivery",
             "createdAt": 1543238938388,
-            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], 
+            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"},{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], 
             "isActive": true,
             "details": {
                 "title": "Get this package to Ramat Gan",

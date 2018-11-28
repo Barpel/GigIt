@@ -31,6 +31,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 10px;
+    margin: 10px 0;
     h2 {
         font-size: 1.1rem;
     }
@@ -46,20 +47,25 @@ export default {
         grid-template-columns: 1fr 1fr;
         grid-gap: 0 10px;
         button {
-            height: 70%;
+            height: 42px;
             width: 80%;
             justify-self: center;
-            font-size: 1.5rem;     
+            font-size: 1.3rem;     
             cursor: pointer;
             border: none;
             border-radius: 5px;
             padding: 5px;
+            letter-spacing: 1.5px;
         }
         .later {
             background-color: red;
         }
         .gigit {
             background-color: #2ca2af;
+            font-family: condiment;
+            span {
+                color: #97a5a7;
+            }
         }
     }
 }
