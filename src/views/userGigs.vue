@@ -11,14 +11,8 @@
       </div>
     </ul>
     <ul class="pending-gigs">
-      <h2>Pending Gigs:</h2>
-      <div
-        v-for="pendingGig in gigs.pendingGigs"
-        :key="pendingGig.id"
-        v-if="pendingGig.pendingUsers.length"
-      >
-        <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion>
-      </div>
+      <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
+      <!-- <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion> -->
     </ul>
     <ul class="completed-gigs">
       <h2>Completed Gigs:</h2>
@@ -34,8 +28,8 @@
 </template>
 
 <script>
-// import accordion from '../components/utils/accordion.cmp'
 import gigAccordion from '../components/utils/gigAccordion.cmp'
+import pendingGig from '../components/utils/pendingGig.cmp'
 export default {
     data() {
         return {
@@ -85,12 +79,12 @@ export default {
                     this.gigs.publishedGigs.push(gig)
                 })
             })
-            
+            console.log('pending gigs:', this.gigs.pendingGigs)
             }
         },
         components: {
-            // accordion,
             gigAccordion,
+            pendingGig
         }
     
 
@@ -101,10 +95,12 @@ export default {
     .user-gigs-container {
         max-width: 500px;
         margin: 0 auto;
-        ul.published-gigs {
-            div {
-                max-height: fit-content;
-            }
+        ul {
+            margin: 20px 0;  
+        }
+        .published-gigs {
+            box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.66);
+            padding: 10px;
         }
     }
 </style>

@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .gigs-container {
-    border: 1px solid white;
+    box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.66);
     margin: 20px 0;
     .gig-header {
         background-color: #2ca2af;
@@ -82,7 +82,7 @@ export default {
         margin: 0 auto;
         img {
             cursor: pointer;
-            max-width: 150px;
+            max-width: 100px;
             grid-column: 1;
             grid-row: 1/ span 2;
             border-radius: 50%;
@@ -94,8 +94,8 @@ export default {
             display: grid;
             grid-template-columns: 1fr 1fr;
             button {
-                width: 90%;
-                height: 50px;
+                width: 70%;
+                height: 40px;
                 justify-self: center;
                 cursor: pointer;
                 font-size: 1.4rem;
