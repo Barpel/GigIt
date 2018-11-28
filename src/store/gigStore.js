@@ -9,11 +9,14 @@ export default {
         gigs(state) {
             if(!state.gigs) return []
             return state.gigs
-        }
+        },
     },
     mutations: {
         setGigs(state, { gigs }) {
             state.gigs = gigs
+        },
+        filterByKey(state, {key}){
+            
         }
     },
     actions: {
@@ -26,6 +29,7 @@ export default {
         },
         updateGig(context, payload) {
             console.log(payload.gig)
-        }
+        },
+  
     },
 }

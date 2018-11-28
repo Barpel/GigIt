@@ -77,7 +77,9 @@ export default {
     goBack(){
       this.$router.push('/gig')
     },
-    requestGig() {
+    requestGig(ev) {
+      if(ev.target.innerHTML==='Pendding') return
+      ev.target.innerHTML = 'Pendding'
       var currUser = this.$store.getters.user
       this.gig.isRead = false
       this.gig.pendingUsers.push({
