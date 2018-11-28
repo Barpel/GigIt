@@ -15,14 +15,9 @@ export default {
         setGigs(state, { gigs }) {
             state.gigs = gigs
         },
-<<<<<<< HEAD
-        filterByKey(state, {key}){
-            
-=======
         updateGig(state, {gig}) {
             var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
             state.gigs.splice(gigIdx,1, gig)
->>>>>>> 9610a0547d7b9ff2a9f7b2389d7dacf4943737fd
         }
     },
     actions: {
@@ -34,15 +29,9 @@ export default {
             return gigService.getById(gigId)
         },
         updateGig(context, payload) {
-<<<<<<< HEAD
-            console.log(payload.gig)
-        },
-  
-=======
             return gigService.updateGig(payload.gig)
             // .then(gig => context.commit({type: 'updateGig'}, gig))
             .then(gig => context.dispatch({type: 'getGigs'}, gig))
         }
->>>>>>> 9610a0547d7b9ff2a9f7b2389d7dacf4943737fd
     },
 }
