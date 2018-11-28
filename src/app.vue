@@ -11,6 +11,9 @@ export default {
   components: {
     homeNav
   },
+  created() {
+    this.$store.dispatch({type:'getCurrUser'})
+  }
 }
 </script>
 
