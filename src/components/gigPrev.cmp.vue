@@ -50,10 +50,6 @@ export default {
             }
         }
     },
-    mounted() {
-        // console.log(this.gig)
-    }
-
 }
 </script>
 
