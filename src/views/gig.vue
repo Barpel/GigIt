@@ -1,5 +1,6 @@
 <template>
   <section>
+    
     <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>
@@ -8,6 +9,8 @@
 <script>
 import gigToolbar from '../components/gigToolbar'
 import gigList from '../components/gigList'
+
+
 export default {
 
 computed: {
@@ -15,6 +18,7 @@ computed: {
         return this.$store.getters.gigs
     }
 },
+
 methods: {
     gigClicked(gigId) {
         this.$router.push(`/gig/${gigId}`)
@@ -33,10 +37,11 @@ created() {
         this.$store.dispatch({type:'getGigs', category })
     }
    else this.$store.dispatch({type:'getGigs',})
+
 },
 components: {
     gigList,
-    gigToolbar
+    gigToolbar,
 }
 }
 </script>

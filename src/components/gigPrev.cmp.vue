@@ -51,7 +51,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.gig)
+        // console.log(this.gig)
     }
 
 }
