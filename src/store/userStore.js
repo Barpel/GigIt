@@ -5,7 +5,7 @@ export default {
         isLoggedin: true
     },
     getters: {
-        user(state) {
+        user(state) {        
             return state.currUser
         },
         isLoggedin(state) {
@@ -29,7 +29,7 @@ export default {
         },
         getUserById({ commit }, { userId }) {
             userService.getUserById(userId)
-                .then(user => {
+                .then(user => {  
                     commit({ type: 'setCurrUser', user })
                     return user
                 })

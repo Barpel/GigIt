@@ -65,8 +65,7 @@
   </section>
 </template>
 <script>
-// make it smart(page)V
-//use dispatch to get By id
+
 export default {
   name: "gigDetails",
   data() {
