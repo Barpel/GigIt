@@ -15,9 +15,9 @@ export default {
     mutations: {
         setLoggedUser(state, { user }) {
             state.loggedUser = user
-            state.isLoggedin = true
+            if(user) state.isLoggedin = true
+            else state.isLoggedin = false
         },
-        
     },
     actions: {
         checkLoggedUser(context) {
@@ -38,6 +38,15 @@ export default {
         onLogin(context, {userCreds}) {
             return userService.loginUser(userCreds)
                 .then(user => context.commit({type:'setLoggedUser', user}))
+        },
+        isOwner(context, {userId}) {
+            var loggedUser = userService.getLoggedUser()
+            if(loggedUser.id === userId) return true
+            else return false
+        },
+        doLogout({commit}) {
+            return userService.logout()
+                .then(()=> commit({type:'setLoggedUser', user: null}))
         }
     },
 }

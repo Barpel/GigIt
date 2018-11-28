@@ -1,19 +1,37 @@
 .user-profile-container{
-    
+    & > * {
+       border-radius: 5px; 
+    }
+    color: white;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 100px repeat(4, 1fr);
-    margin: 0 10px;
+    // grid-template-rows: 300px 100px repeat(4, 1fr);
+    padding: 1rem 1rem 100px;
     grid-gap: 10px;
     .user-avatar-card{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        border-radius: 5px;
         border: 1px solid #545454;
         padding:10px;
+        position: relative;
         img{
             max-width: 150px;
+        }
+        .profile-logout-btn{
+            position: absolute;
+            font-size: 1.2rem;
+            left: 1rem;
+            top:1rem;
+            background-color: rgb(68, 68, 68);
+            margin: 0 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            color: lightgray;
+            font-family: roboto;
+            font-weight: bold;
+            padding: 6px 15px;
         }
         .user-profile-contact-btn {
             background-color: #00b22d;
@@ -28,6 +46,21 @@
             box-sizing: border-box;
             -webkit-transition: color .2s,background-color .2s,box-shadow .2s,border .2s;
             transition: color .2s,background-color .2s,box-shadow .2s,border .2s;
+        }
+        .profile-btns-wrapper{
+            margin-top: 10px;
+            button {
+                background-color: #2ca2af;
+                margin: 0 10px;
+                border: 1px solid white;
+                border-radius: 5px;
+                cursor: pointer;
+                color: #ffffff;
+                font-family: roboto;
+                font-size: 1.5rem;
+                font-weight: bold;
+                padding: 6px 15px;
+            }
         }
     }
     .user-profile-lastest-gigs{
@@ -45,7 +78,7 @@
         }
     }
     
-    .user-profile-details{
+    .user-profile-desc{
         margin-top:10px;
         border: 1px solid #545454;
         grid-row: 3;
@@ -66,29 +99,45 @@
         }
        
     }
-    .user-profile-user-review{
+    .profile-review{
         display: flex;
-        max-height: 80px;
+        padding: 4px;
         border: 1px solid #545454; 
         margin-bottom: 10px;
         
-        img{
-            max-width: 50px;
-            max-height: 50px;
-            border-radius: 50%;
-            align-self: center;
-            margin-left: 10px;
+        .profile-review-giver {
+            width: 6.25rem;
+            display: flex;
+            flex-direction: column;
+            img{
+                max-width: 50px;
+                max-height: 50px;
+                border-radius: 50%;
+                // align-self: center;
+                margin-left: 10px;
+            }
         }
-        p{
-            padding: 10px 20px 10px  53px;
+        .profile-review-stars {
+            min-width: 8rem;
+            display: flex;
+            flex-direction: column;
         }
-        span{
-            align-self: center;
-            margin-left: 10px;
+        .profile-review-details-container {
+            flex-grow: 1;
+            p{
+                &.profile-review-title {
+                    color: rgba(255, 255, 255, 0.664);
+                    font-size: .9rem;
+                }
+                font-size: 1.3rem;
+                margin: 0;
+            }
         }
         
-
     }
-    
-
+    .profile-reviews {
+        & > li {
+            border-radius: 5px;
+        }
+    }
 }
