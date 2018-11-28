@@ -5,8 +5,8 @@ export default {
         isLoggedin: false
     },
     getters: {
-        user(state) {        
-            return state.currUser
+        user(state) {
+            return state.loggedUser
         },
         isLoggedin(state) {
             return state.isLoggedin
@@ -27,13 +27,13 @@ export default {
         getUserById({ commit }, { userId }) {
             userService.getUserById(userId)
                 .then(user => {  
-                    commit({ type: 'setloggedUser', user })
+                    commit({ type: 'setLoggedUser', user })
                     return user
                 })
         },
         updateUser(context, {user}) {
             userService.updateUser(user)
-                .then(context.commit({type:'setloggedUser', user}))
+                .then(context.commit({type:'setLoggedUser', user}))
         },
         onLogin(context, {userCreds}) {
             return userService.loginUser(userCreds)
