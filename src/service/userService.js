@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:3000';
 export default {
     getDemoUser,
     saveUser,
+    updateUser,
     getUserById,
     deleteUser,
     loginUser,
@@ -41,6 +42,12 @@ function loginUser(userCreds) {
     return axios.get(`${BASE_URL}/login`, userCreds).then(res => res.data)
 }
 
+function updateUser(user) {
+    // return axios.put...
+    var userIdx = demoUsers.findIndex(currUser => user.id === currUser.id)
+    demoUsers.splice(userIdx, 1, user)
+    return Promise.resolve(user)    
+}
 
 
 var demoUsers = [

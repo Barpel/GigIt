@@ -14,6 +14,10 @@ export default {
     mutations: {
         setGigs(state, { gigs }) {
             state.gigs = gigs
+        },
+        updateGig(state, {gig}) {
+            var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
+            state.gigs.splice(gigIdx,1, gig)
         }
     },
     actions: {
@@ -25,7 +29,9 @@ export default {
             return gigService.getById(gigId)
         },
         updateGig(context, payload) {
-            console.log(payload.gig)
+            return gigService.updateGig(payload.gig)
+            // .then(gig => context.commit({type: 'updateGig'}, gig))
+            .then(gig => context.dispatch({type: 'getGigs'}, gig))
         }
     },
 }

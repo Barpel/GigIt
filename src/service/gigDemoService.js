@@ -1,8 +1,9 @@
-var items = getGigs()
+
 
 export default {
     query,
-    getById
+    getById,
+    updateGig
 }
 
 function query(category) {
@@ -19,8 +20,13 @@ function getById(gigId) {
     var gig = items.find(gig => gig.id === (gigId+''))
     return Promise.resolve(gig)
 }
-function getGigs() {
-    return [
+
+function updateGig(gig) {
+    var gigIdx = items.findIndex(currGig => currGig.id === gig.id)
+    items.splice(gigIdx, 1, gig)
+    return Promise.resolve(gig)
+}
+var items = [
         {
             "id": "1",
             "publisherId": "abc",
@@ -233,4 +239,3 @@ function getGigs() {
             }
         },
     ]
-}
