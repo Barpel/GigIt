@@ -169,7 +169,7 @@ var demoUsers = [
         "age": 24,
         "gigsIds": {
             "published": ["9"],
-            "pending": ["1","2","3","4"],
+            "pending": ["1","3","4"],
             "completed": []
         },
         "reviews": {
