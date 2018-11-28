@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  name: "honeNav",
+  name: "homeNav",
   data() {
     return {
       isUserDropdown: false
@@ -73,7 +73,8 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.user;
+      if(this.$store.getters.user) return this.$store.getters.user
+      else return {}
     },
     isLoggedin() {
       return this.$store.getters.isLoggedin;
