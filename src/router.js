@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home.vue'
+import login from './views/login.vue'
 import gig from './views/gig.vue'
 import gigEdit from './views/gigEdit.vue'
 import gigDetails from './views/gigDetails.vue'
@@ -34,14 +35,6 @@ export default new Router({
       component: gigDetails
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/about.vue')
-    },
-    {
       path: '/user/:userId/gigs',
       name: 'publishedGigs',
       component: userGigs,
@@ -50,6 +43,19 @@ export default new Router({
       path: '/user/:userId',
       name: 'userProfile',
       component: userProfile,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login,
+    },
+    {
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/about.vue')
     },
     
   ]

@@ -1,4 +1,4 @@
-
+import storageService from './storageService.js'
 import axios from 'axios';
 // import { promises } from 'fs';
 
@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:3000';
 
 
 export default {
-    getDemoUser,
+    getLoggedUser,
     saveUser,
     updateUser,
     getUserById,
@@ -14,8 +14,9 @@ export default {
     loginUser,
 }
 
-function getDemoUser() {
-    return Promise.resolve(demoUsers[0])
+function getLoggedUser() {
+    var user = storageService._fromStorage('loggedUser')
+    if(user) return user
 }
 
 function saveUser(user) {
@@ -39,7 +40,15 @@ function deleteUser(userId) {
 }
 
 function loginUser(userCreds) {
-    return axios.get(`${BASE_URL}/login`, userCreds).then(res => res.data)
+    // return axios.get(`${BASE_URL}/login`, userCreds).then(res => res.data)
+        // .then(user => {
+        //     storageService._toStorage('loggedUser', user)
+        //     return user
+        // })
+    var user = demoUsers.find(user => (user.username === userCreds.username && user.password === userCreds.password))
+    storageService._toStorage('loggedUser', user)
+    if(!user) return Promise.reject()
+    return Promise.resolve(user)
 }
 
 function updateUser(user) {
@@ -58,7 +67,7 @@ var demoUsers = [
             "last": "testerovich"
         },
         "aboutMe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum nam aliquam optio nulla fugit quasi alias architecto culpa dolorem deserunt nobis voluptatibus, accusantium, facere in perspiciatis quo aperiam ad?",
-        "username": "testerMan123",
+        "username": "testerMan",
         "password": "053",
         "email": "testerMan@gmail.com",
         "mainArea": {
