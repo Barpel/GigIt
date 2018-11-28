@@ -25,6 +25,11 @@ export default new Router({
       component: gig
     },
     {
+      path: '/gig/category/:type',
+      name: 'gigsCategories',
+      component: gig
+    },
+    {
       path: '/gig/edit/:gigId?',
       name: 'gigEdit',
       component: gigEdit
