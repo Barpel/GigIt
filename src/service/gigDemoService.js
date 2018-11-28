@@ -1,8 +1,9 @@
-var items = getGigs()
+
 
 export default {
     query,
-    getById
+    getById,
+    updateGig
 }
 
 function query(category) {
@@ -19,14 +20,19 @@ function getById(gigId) {
     var gig = items.find(gig => gig.id === (gigId+''))
     return Promise.resolve(gig)
 }
-function getGigs() {
-    return [
+
+function updateGig(gig) {
+    var gigIdx = items.findIndex(currGig => currGig.id === gig.id)
+    items.splice(gigIdx, 1, gig)
+    return Promise.resolve(gig)
+}
+var items = [
         {
             "id": "1",
             "publisherId": "abc",
             "category": "delivery",
             "createdAt": 1543238938388,
-            "pendingUsers": [{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"},{"name":"Jonas", "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], 
+            "pendingUsers": [{"name":{"first": "Jonas", "last": "Mamasita"}, "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"},{"name":{"first":"Yehud","last":"Hagever"}, "id": "2", "img":"https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg"}], 
             "isActive": true,
             "details": {
                 "title": "Get this package to Ramat Gan",
@@ -233,4 +239,3 @@ function getGigs() {
             }
         },
     ]
-}

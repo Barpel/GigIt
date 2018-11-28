@@ -1,38 +1,43 @@
 import userService from '../service/userService.js'
 export default {
     state: {
-        currUser: null,
-        isLoggedin: true
+        loggedUser: null,
+        isLoggedin: false
     },
     getters: {
-        user(state) {        
-            return state.currUser
+        user(state) {
+            return state.loggedUser
         },
         isLoggedin(state) {
             return state.isLoggedin
         }
     },
     mutations: {
-        setCurrUser(state, { user }) {
-            localStorage.setItem('user', JSON.stringify(user))
-            state.currUser = user
-        }
+        setLoggedUser(state, { user }) {
+            state.loggedUser = user
+            state.isLoggedin = true
+        },
+        
     },
     actions: {
-        getDemoUser(context) {
-            return userService.getDemoUser()
-                .then(user => context.commit({ type: 'setCurrUser', user }))
-        },
-        checkIsLogged(context) {
-            var user = JSON.parse(localStorage.getItem('user'))
-            if(user) context.commit({type:'setCurrUser', user})
+        checkLoggedUser(context) {
+                var user = userService.getLoggedUser()
+                if (user) context.commit({type: 'setLoggedUser', user})
         },
         getUserById({ commit }, { userId }) {
             userService.getUserById(userId)
                 .then(user => {  
-                    commit({ type: 'setCurrUser', user })
+                    commit({ type: 'setLoggedUser', user })
                     return user
                 })
+        },
+        updateUser(context, {user}) {
+            userService.updateUser(user)
+                .then(context.commit({type:'setLoggedUser', user}))
+        },
+        onLogin(context, {userCreds}) {
+            return userService.loginUser(userCreds)
+                .then(user => context.commit({type:'setLoggedUser', user}))
         }
     },
 }
