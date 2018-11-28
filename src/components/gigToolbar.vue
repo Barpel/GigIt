@@ -8,6 +8,9 @@
       <button @click="showCategory">Pet-Care</button>
       <button @click="showCategory">Other</button>
     </div>
+    <div>
+      <input type="text" @input="searchGig" >
+    </div>
   </section>
 </template>
 
@@ -19,6 +22,10 @@ export default {
         showCategory(ev){
             var category = ev.target.innerHTML.toLowerCase()
             this.$emit('showCategory',category)
+        },
+        searchGig(ev){
+          var keyForFilter = ev.target.value
+          this.$emit('searchGig', keyForFilter)
         }
     }
 

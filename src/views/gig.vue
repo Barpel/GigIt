@@ -1,6 +1,6 @@
 <template>
   <section>
-    <gig-toolbar @showCategory="gigsFilterBy"></gig-toolbar>
+    <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>
 </template>
@@ -17,14 +17,22 @@ computed: {
 },
 methods: {
     gigClicked(gigId) {
-        this.$router.push(`gig/${gigId}`)
+        this.$router.push(`/gig/${gigId}`)
     },
     gigsFilterBy(category){
         this.$store.dispatch({type:'getGigs',category})
+        this.$router.push(`/gig/category/${category}`)
+    },
+    searchGigByKey(key){
+        this.$store.commit({type:'filterByKey',key})
     }
 },
 created() {
-    this.$store.dispatch({type:'getGigs'})
+    if(this.$route.params.category){
+       var category = this.$route.params.category
+        this.$store.dispatch({type:'getGigs', category })
+    }
+   else this.$store.dispatch({type:'getGigs',})
 },
 components: {
     gigList,

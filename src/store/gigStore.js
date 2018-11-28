@@ -9,7 +9,7 @@ export default {
         gigs(state) {
             if(!state.gigs) return []
             return state.gigs
-        }
+        },
     },
     mutations: {
         setGigs(state, { gigs }) {
