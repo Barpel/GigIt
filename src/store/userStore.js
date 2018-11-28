@@ -6,7 +6,6 @@ export default {
     },
     getters: {
         user(state) {
-            console.log('getter',state.loggedUser)
             return state.loggedUser
         },
         isLoggedin(state) {
@@ -15,7 +14,6 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
-            console.log('mutation',user)
             state.loggedUser = user
             if(user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -25,7 +23,6 @@ export default {
         checkLoggedUser(context) {
             return userService.getLoggedUser()
                 .then(user => {
-                    console.log('user action is:',user)
                     if (user) context.commit({type: 'setLoggedUser', user})
                 })    
         },
@@ -51,10 +48,12 @@ export default {
                     else return false
                 })
         },
-        isOwner(context, {userId}) {
-            var loggedUser = userService.getLoggedUser()
-            if(loggedUser.id === userId) return true
-            else return false
+        checkIsProfileOwner(context, {userId}) {
+            return userService.getLoggedUser()
+                .then(loggedUser => {
+                    if(loggedUser.id === userId) return true
+                    else return false
+                })
         },
         doLogout({commit}) {
             return userService.logout()

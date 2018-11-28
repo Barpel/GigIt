@@ -36,7 +36,7 @@
       <img src="@/assets/delivery.png" alt>
       <img src="@/assets/pet-care.png" alt>
     </div>
-    <div v-if="user" class="user-profile-desc">
+    <div class="user-profile-desc">
       <p>{{user.aboutMe}}</p>
       <div class="user-profile-skills">
         <h6 v-for="skill in user.skills" :key="skill">{{skill}}</h6>
@@ -78,7 +78,6 @@ export default {
   },
   computed: {
     user() {
-      console.log(this.$store.getters.user)
       return this.$store.getters.user;
     },
     totalAverageStars() {
@@ -95,7 +94,11 @@ export default {
     console.log('created')
     var userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId });
-    this.isOwnProfile = this.$store.dispatch({type:'isOwner', userId})
+    this.$store.dispatch({type:'checkIsProfileOwner', userId})
+      .then(isOwner => {
+        console.log('lets see mate:',isOwner)
+        this.isOwnProfile = isOwner
+      })
   },
   watch: {
   route: function(){
