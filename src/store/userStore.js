@@ -2,10 +2,6 @@ import userService from '../service/userService.js'
 export default {
     state: {
         currUser: null,
-        currUser: {
-            name:'demo',
-            id:'1'
-        },
         isLoggedin: true
     },
     getters: {
@@ -18,13 +14,18 @@ export default {
     },
     mutations: {
         setCurrUser(state, { user }) {
+            localStorage.setItem('user', JSON.stringify(user))
             state.currUser = user
         }
     },
     actions: {
-        getCurrUser(context) {
-            return userService.getCurrUser()
+        getDemoUser(context) {
+            return userService.getDemoUser()
                 .then(user => context.commit({ type: 'setCurrUser', user }))
+        },
+        checkIsLogged(context) {
+            var user = JSON.parse(localStorage.getItem('user'))
+            if(user) context.commit({type:'setCurrUser', user})
         },
         getUserById({ commit }, { userId }) {
             userService.getUserById(userId)

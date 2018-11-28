@@ -7,6 +7,7 @@ export default {
     },
     getters: {
         gigs(state) {
+            if(!state.gigs) return []
             return state.gigs
         }
     },
