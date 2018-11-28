@@ -7,10 +7,9 @@
 </template>
 
 <script>
-import homeNav from './components/homeNav.cmp'
-import bus, {USR_MSG_DISPLAY} from './eventBus.js'
-import userMsg from './components/user-msgs.vue'
-
+import homeNav from "./components/homeNav.cmp";
+import bus, { USR_MSG_DISPLAY } from "./eventBus.js";
+import userMsg from "./components/user-msgs.vue";
 
 export default {
   components: {
@@ -18,31 +17,30 @@ export default {
     userMsg
   },
   created() {
-    this.$store.dispatch({type:'checkLoggedUser'})
-       bus.$on(USR_MSG_DISPLAY, msg=>{
-            this.msg = msg;
-            this.showMsg = true
-            var delay = 3000;
-            setTimeout(()=>{
-                this.msg = null;
-                this.showMsg = false
-
-            }, delay)
-        })
+    this.$store.dispatch({ type: "checkLoggedUser" });
+    bus.$on(USR_MSG_DISPLAY, msg => {
+      this.msg = msg;
+      this.showMsg = true;
+      var delay = 3000;
+      setTimeout(() => {
+        this.msg = null;
+        this.showMsg = false;
+      }, delay);
+    });
   },
   data() {
     return {
-        msg: '',
-        showMsg: false
-    }
-},
-}
+      msg: "",
+      showMsg: false
+    };
+  }
+};
 </script>
 
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
