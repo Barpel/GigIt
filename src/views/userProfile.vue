@@ -24,6 +24,15 @@
               <h6 v-for="skill in user.skills" :key="skill">{{skill}}</h6> 
         </div>
     </div>
+    <div>
+        <ul>
+            {{user.reviews.completed}}
+            <li v-for="review in user.reviews.completed" :key="review.gigId" class="user-profile-user-review">
+                <img :src="review.givenBy" alt="">
+                <span>Rate: {{review.review.average}}⭐</span>
+                <p><br>{{review.review.text}}</p> </li>
+        </ul>   
+    </div>
   </section>
 </template>
 
@@ -35,14 +44,11 @@ export default {
             currUser: {
                 reviews:[]
             },
-
         }
     },
     created(){
         var userId =  this.$route.params.userId
         this.$store.dispatch({type:'getUserById', userId})
-       
-
     },
     computed:{
         user(){

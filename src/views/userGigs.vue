@@ -1,30 +1,41 @@
 <template>
   <section v-if="user" class="user-gigs-container">
-    <!-- <h1>{{user.gigsIds}}</h1> -->
-    <h2>Pending Gigs:</h2>
-    <ul class="published-gigs">
-      <div v-for="publishedGig in gigs.publishedGigs" :key="publishedGig.id">
-        <accordion
-          :header="publishedGig.details.title"
-          :gigsters="publishedGig.pendingUsers"
-          v-if="gigs.publishedGigs.length"
-        ></accordion>
+    <ul class="published-gigs" v-if="gigs.publishedGigs.length">
+      <h2>Published Gigs:</h2>
+      <div
+        v-for="publishedGig in gigs.publishedGigs"
+        :key="publishedGig.id"
+        v-if="publishedGig.pendingUsers.length"
+      >
+        <gig-accordion :gigsters="publishedGig.pendingUsers" :header="publishedGig.details.title"></gig-accordion>
       </div>
     </ul>
     <ul class="pending-gigs">
-      <div v-for="pendingGig in gigs.pendingGigs" :key="pendingGig.id">
-        <accordion
-          :header="pendingGig.details.title"
-          :gigsters="pendingGig.pendingUsers"
-          v-if="gigs.pendingGigs.length"
-        ></accordion>
+      <h2>Pending Gigs:</h2>
+      <div
+        v-for="pendingGig in gigs.pendingGigs"
+        :key="pendingGig.id"
+        v-if="pendingGig.pendingUsers.length"
+      >
+        <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion>
+      </div>
+    </ul>
+    <ul class="completed-gigs">
+      <h2>Completed Gigs:</h2>
+      <div
+        v-for="completedGig in gigs.completedGigs"
+        :key="completedGig.id"
+        v-if="completedGig.pendingUsers.length"
+      >
+        <gig-accordion :gigsters="completedGig.pendingUsers" :header="completedGig.details.title"></gig-accordion>
       </div>
     </ul>
   </section>
 </template>
 
 <script>
-import accordion from '../components/utils/accordion.cmp'
+// import accordion from '../components/utils/accordion.cmp'
+import gigAccordion from '../components/utils/gigAccordion.cmp'
 export default {
     data() {
         return {
@@ -39,22 +50,12 @@ export default {
         user() {
             return this.$store.getters.user
         },
-        publishedGigsGigsters(gigIdx) {
-            var gigsters = [];
-            this.gigs.publishedGigs.forEach((publishedGig, idx) => {
-                console.log('publishedGig', publishedGig)
-                gigsters = (publishedGig.pendindUsers)
-            })
-            console.log('gigsters', gigsters)
-            return gigsters
-        }
     },
     created() {
         var userId = this.$route.params.userId
         this.$store.dispatch({type: 'getUserById', userId})
         .then(() => {
             this.getUserGigs()
-            console.log(this.gigs)
         })
     },
     methods: {
@@ -84,13 +85,12 @@ export default {
                     this.gigs.publishedGigs.push(gig)
                 })
             })
-
-            console.log('gigs', this.gigs)
             
             }
         },
         components: {
-            accordion,
+            // accordion,
+            gigAccordion,
         }
     
 
