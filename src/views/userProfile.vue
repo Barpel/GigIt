@@ -70,16 +70,16 @@
 export default {
   data() {
     return {
-      currUser: {
+      user: {
         reviews: []
       },
       isOwnProfile: false
     };
   },
   computed: {
-    user() {
-      return this.$store.getters.user;
-    },
+    // user() {
+    //   return this.$store.getters.user;
+    // },
     totalAverageStars() {
       return Math.floor(this.user.reviews.totalAverage);
     }
@@ -93,7 +93,8 @@ export default {
   created() {
     console.log('created')
     var userId = this.$route.params.userId;
-    this.$store.dispatch({ type: "getUserById", userId });
+    this.$store.dispatch({ type: "getUserById", userId })
+      .then(user => this.user = user)
     this.$store.dispatch({type:'checkIsProfileOwner', userId})
       .then(isOwner => {
         console.log('lets see mate:',isOwner)

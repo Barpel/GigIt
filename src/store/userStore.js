@@ -27,9 +27,8 @@ export default {
                 })    
         },
         getUserById({ commit }, { userId }) {
-            userService.getUserById(userId)
+            return userService.getUserById(userId)
                 .then(user => {  
-                    commit({ type: 'setLoggedUser', user })
                     return user
                 })
         },
