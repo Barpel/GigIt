@@ -14,7 +14,7 @@
         <p>location: {{gig.details.pos.dist}}</p>
         <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
-      <div class="avatar-img-container">    
+      <div class="avatar-img-container">
         <img src="../assets/racheli.png" alt @click="goToProfile(gig.publisherId)">
         <h5>Rachel Bahabua</h5>
       </div>
@@ -22,7 +22,7 @@
     <div class="mid-details-container">
       <div class="gigit-detail-container">
         <p>Earn {{this.gig.details.price}} for this Gig</p>
-        <button @click="requestGig" class="gigit-btn">
+        <button  @click="requestGig" class="gigit-btn">
           <h1>
             <span>
               Gig
@@ -64,13 +64,16 @@
     </div>
   </section>
 </template>
+
 <script>
+import bus, {USR_MSG_DISPLAY} from '../eventBus.js'
 
 export default {
   name: "gigDetails",
   data() {
     return {
-      gig: null
+      gig: null,
+      isPending:false,
     };
   },
   computed: {
@@ -83,18 +86,22 @@ export default {
       this.$router.push('/gig')
     },
     requestGig(ev) {
-      if(ev.target.innerHTML==='Pendding') return
-      ev.target.innerHTML = 'Pendding'
-      var currUser = this.$store.getters.user
-      this.gig.isRead = false
-      this.gig.pendingUsers.push({
-        name: currUser.name,
-        id: currUser.id,
-        img: currUser.img
+      if(ev.target.innerHTML==='Pending') return
+      console.log(ev)
+      setTimeout(() => { this.$router.push('/gig') }, 650);
+        bus.$emit(USR_MSG_DISPLAY, {type: 'success', txt: 'Gig Signed'});
+       ev.target.innerHTML = 'Pending'
+       var currUser = this.$store.getters.user
+       this.gig.isRead = false
+       this.gig.pendingUsers.push({
+         name: currUser.name,
+         id: currUser.id,
+         img: currUser.img
       }),
       this.user.gigsIds.pending.push(this.gig.id)
       this.$store.dispatch({type:'updateUser', user:this.user})
       this.$store.dispatch({type:'updateGig', gig:this.gig})
+      
     },
     goToProfile(publisherId){
       this.$router.push(`/user/${publisherId}`)

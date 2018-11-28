@@ -12,13 +12,17 @@ export default {
     getUserById,
     deleteUser,
     loginUser,
+    logout
 }
 
 function getLoggedUser() {
     var user = storageService._fromStorage('loggedUser')
     if(user) return user
 }
-
+function logout() {
+    storageService._toStorage('loggedUser', null)
+    return Promise.resolve()
+}
 function saveUser(user) {
     return Promise.resolve(demoUsers.push(user))
     // if (user._id) {
@@ -86,7 +90,7 @@ var demoUsers = [
             "publishedAverage": 4.6,
             "published": [
                 {
-                "gigId": "2",
+                "gigId": "20",
                 "title": "please help me with my homework",
                 "givenBy": {
                     "name": "bill cosby",
@@ -101,7 +105,7 @@ var demoUsers = [
                     "average": 4
                 }},
                 {
-                "gigId": "2",
+                "gigId": "21",
                 "title": "please take my dog for a walk",
                 "givenBy": {
                     "name": "adam sandler",
@@ -116,7 +120,7 @@ var demoUsers = [
                     "average": 5
                 }},
                 {
-                "gigId": "2",
+                "gigId": "22",
                 "title": "Help me cook a good meal for nana",
                 "givenBy": {
                     "name": "Omer Adam",
@@ -133,7 +137,7 @@ var demoUsers = [
             ],
             "completedAverage": 3,
             "completed": [{
-                "gigId": "4",
+                "gigId": "23",
                 "title": "picking up oranges",
                 "givenBy": {
                     "name": "Amy Whinehous",
@@ -177,7 +181,7 @@ var demoUsers = [
             "publishedAverage": 4,
             "published": [
                 {
-                    "gigId": "2",
+                    "gigId": "25",
                     "title": "Need help watering my garden",
                     "givenBy": {
                         "name": "Marty McFly",
@@ -195,7 +199,7 @@ var demoUsers = [
             "completedAverage": 4,
             "completed": [
                 {
-                "gigId": "4",
+                "gigId": "27",
                 "title": "Help cleaning my house",
                 "givenBy": {
                     "name": "Shoshi gordo",
@@ -210,7 +214,7 @@ var demoUsers = [
                     "average": 4
                 }},
                 {
-                "gigId": "4",
+                "gigId": "28",
                 "title": "pick up my groceries",
                 "givenBy": {
                     "name": "Reuven Bonsonti",
@@ -225,7 +229,7 @@ var demoUsers = [
                     "average": 3
                 }},
                 {
-                    "gigId": "4",
+                    "gigId": "29",
                     "title": "come and pet my dog",
                     "givenBy": {
                         "name": "Barack obama",
