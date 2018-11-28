@@ -1,6 +1,6 @@
 <template>
   <section>
-    <gig-toolbar @showCategory="gigsFilterBy"></gig-toolbar>
+    <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>
 </template>
@@ -21,6 +21,9 @@ methods: {
     },
     gigsFilterBy(category){
         this.$store.dispatch({type:'getGigs',category})
+    },
+    searchGigByKey(key){
+        this.$store.commit({type:'filterByKey',key})
     }
 },
 created() {
