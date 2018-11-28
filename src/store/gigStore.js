@@ -1,4 +1,4 @@
-// import gigService from '../service/gigService.js'
+import gigService1 from '../service/gigService.js'
 import gigService from '../service/gigDemoService.js'
 export default {
     state: {
