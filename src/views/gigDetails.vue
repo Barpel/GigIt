@@ -9,10 +9,10 @@
           Back
         </h6>
         <br>
-        <h5>{{this.gig.details.title}}</h5>
-        <p>{{this.gig.details.desc}}</p>
-        <p>location: Tel-Aviv</p>
-        <p>Time: 21:00</p>
+        <h5>{{gig.details.title}}</h5>
+        <p>{{gig.details.desc}}</p>
+        <p>location: {{gig.details.pos.dist}}</p>
+        <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
       <div class="avatar-img-container">
         <img src="../assets/racheli.png" alt>
@@ -22,7 +22,7 @@
     <div class="mid-details-container">
       <div class="gigit-detail-container">
         <p>Earn {{this.gig.details.price}} for this Gig</p>
-        <button class="gigit-btn">
+        <button @click="requestGig" class="gigit-btn">
           <h1>
             <span>
               Gig
@@ -73,18 +73,29 @@ export default {
       gig: null
     };
   },
+  methods:{
+    goBack(){
+      this.$router.push('/gig')
+    },
+    requestGig() {
+      var currUser = this.$store.getters.user
+      this.gig.isRead = false
+      this.gig.pendingUsers.push({
+        name: currUser.name,
+        id: currUser.id,
+        img: currUser.img
+      }),
+      this.$store.dispatch({type:'updateGig', gig:this.gig})
+    }
+  },
   created() {
     var gigId = this.$route.params.gigId;
     this.$store
       .dispatch({ type: "getGigById", gigId })
-        .then(gig => (this.gig = gig));
+        .then(gig => {
+          (this.gig = gig)
+        });
   },
-  methods:{
-    goBack(){
-      this.$router.push('/gig')
-    }
-
-  }
 };
 </script>
 
