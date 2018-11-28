@@ -6,17 +6,15 @@ const BASE_URL = 'http://localhost:3000';
 
 
 export default {
-    getCurrUser,
+    getDemoUser,
     saveUser,
     getUserById,
     deleteUser,
     loginUser,
 }
 
-function getCurrUser() {
+function getDemoUser() {
     return Promise.resolve(demoUsers[0])
-    return axios.get(BASE_URL)
-        .then(res => res.data)
 }
 
 function saveUser(user) {

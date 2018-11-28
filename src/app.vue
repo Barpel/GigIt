@@ -11,6 +11,10 @@ export default {
   components: {
     homeNav
   },
+  created() {
+    this.$store.dispatch({type:'getDemoUser'}) //to delete when db is ready
+    this.$store.dispatch({type:'checkIsLogged'})
+  }
 }
 </script>
 
