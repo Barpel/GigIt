@@ -33,6 +33,10 @@ export default {
                     commit({ type: 'setCurrUser', user })
                     return user
                 })
+        },
+        updateUser(context, {user}) {
+            userService.updateUser(user)
+                .then(context.commit({type:'setCurrUser', user}))
         }
     },
 }

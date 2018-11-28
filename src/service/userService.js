@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:3000';
 export default {
     getDemoUser,
     saveUser,
+    updateUser,
     getUserById,
     deleteUser,
     loginUser,
@@ -41,6 +42,12 @@ function loginUser(userCreds) {
     return axios.get(`${BASE_URL}/login`, userCreds).then(res => res.data)
 }
 
+function updateUser(user) {
+    // return axios.put...
+    var userIdx = demoUsers.findIndex(currUser => user.id === currUser.id)
+    demoUsers.splice(userIdx, 1, user)
+    return Promise.resolve(user)    
+}
 
 
 var demoUsers = [
@@ -92,6 +99,18 @@ var demoUsers = [
             "completedAverage": 0,
             "completed": [{
                 "gigId": "4",
+                "title": "was it what",
+                "givenBy": "https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg",
+                "createdAt": "timestamp",
+                "review": {
+                    "text": "was awesome",
+                    "work": 5,
+                    "reliable": 2,
+                    "overall": 4,
+                    "average": 3.6
+                }
+            },{
+                "gigId": "3",
                 "title": "was it what",
                 "givenBy": "somebody",
                 "createdAt": "timestamp",
