@@ -61,7 +61,7 @@ function updateUser(user) {
 
 var demoUsers = [
     {
-        "id": "1",
+        "id": "abc",
         "name": {
             "first": "tester",
             "last": "testerovich"
@@ -77,67 +77,84 @@ var demoUsers = [
         "skills": ["testing", "trying", "QAing"],
         "age": 24,
         "gigsIds": {
-            "published": ["1", "2", "3"],
-            "pending": ["4", "5", "6"],
+            "published": ["1", "2", "3", "6"],
+            "pending": [],
             "completed": []
         },
         "reviews": {
-            "totalAverage" : 0,
-            "publishedAverage": 0,
-            "published": [{
+            "totalAverage" : 3.7,
+            "publishedAverage": 4.6,
+            "published": [
+                {
                 "gigId": "2",
-                "title": "what it was",
-                "givenBy": "that i used to know",
-                "createdAt": "timestamp",
+                "title": "please help me with my homework",
+                "givenBy": {
+                    "name": "bill cosby",
+                    "img": "https://pmcvariety.files.wordpress.com/2018/04/bill-cosby-retrial3.jpg?w=1000"
+                },
+                "createdAt": 1543412028131,
                 "review": {
-                    "text": "was not nice",
+                    "text": "He was a great guy and payed well",
                     "payment": 4,
                     "reliable": 3,
                     "overall": 5,
                     "average": 4
-                }
-            },{
+                }},
+                {
                 "gigId": "2",
-                "title": "what it was",
+                "title": "please take my dog for a walk",
+                "givenBy": {
+                    "name": "adam sandler",
+                    "img": "https://cdn.empireonline.com/jpg/70/0/0/640/480/aspectfit/0/0/0/0/0/0/c/articles/5ac3b81d402d8da418e964da/adam-sandler.jpg"
+                },
+                "createdAt": 1543412028131,
                 "review": {
+                    "text": "Easy task and good money, lovely dog",
+                    "payment": 5,
+                    "reliable": 5,
+                    "overall": 5,
+                    "average": 5
+                }},
+                {
+                "gigId": "2",
+                "title": "Help me cook a good meal for nana",
+                "givenBy": {
+                    "name": "Omer Adam",
+                    "img": "https://media.reshet.tv/image/upload/t_main_image_article,f_auto,q_auto/v1521451776/omer-adam_lc7lds.jpg"
+                },
+                "createdAt": 1543412028131,
+                "review": {
+                    "text": "We had a lovely time",
                     "payment": 4,
-                    "reliable": 3,
-                    "overall": 5
-                }
-            }],
-            "completedAverage": 0,
+                    "reliable": 4,
+                    "overall": 4,
+                    "average": 4
+                }},
+            ],
+            "completedAverage": 3,
             "completed": [{
                 "gigId": "4",
-                "title": "was it what",
-                "givenBy": "https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg",
-                "createdAt": "timestamp",
+                "title": "picking up oranges",
+                "givenBy": {
+                    "name": "Amy Whinehous",
+                    "img" : "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/05/16/18/3-Amy-Winehouse-AP.jpg?w968h681"
+                },
+                "createdAt": 1543412028131,
                 "review": {
-                    "text": "was awesome",
-                    "work": 5,
-                    "reliable": 2,
-                    "overall": 4,
-                    "average": 3.6
-                }
-            },{
-                "gigId": "3",
-                "title": "was it what",
-                "givenBy": "somebody",
-                "createdAt": "timestamp",
-                "review": {
-                    "text": "was awesome",
-                    "work": 5,
-                    "reliable": 2,
-                    "overall": 4,
-                    "average": 3.6
+                    "text": "He was ok i guess",
+                    "work": 3,
+                    "reliable": 3,
+                    "overall": 3,
+                    "average": 3
                 }
             }]
         },
-        "img": "https://img.buzzfeed.com/buzzfeed-static/static/2015-03/27/12/campaign_images/webdr14/woof-and-woof-2-6572-1427473305-24_dblbig.jpg"
+        "img": "http://nextdivas.com/wp-content/uploads/2017/09/1505157617_the-generic-white-woman-of-stock-photography-needs-to-go"
     },
     {
-        "id": "2",
+        "id": "ade",
         "name": {
-            "first": "gigrer",
+            "first": "giger",
             "last": "gigMan"
         },
         "aboutMe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum nam aliquam optio nulla fugit quasi alias architecto culpa dolorem deserunt nobis voluptatibus, accusantium, facere in perspiciatis quo aperiam ad?",
@@ -148,64 +165,82 @@ var demoUsers = [
             "lat": 32.023914,
             "lng": 34.760210
         },
-        "skills": ["testing", "trying", "QAing"],
+        "skills": ["doing gigs", "helping out", "being awesome"],
         "age": 24,
         "gigsIds": {
-            "published": ["1", "2", "3"],
-            "pending": ["4", "5", "6"],
+            "published": ["9"],
+            "pending": ["1","2","3","4"],
             "completed": []
         },
         "reviews": {
-            "totalAverage" : 0,
-            "publishedAverage": 0,
-            "published": [{
-                "gigId": "2",
-                "title": "what it was",
-                "givenBy": "that i used to know",
-                "createdAt": "timestamp",
-                "review": {
-                    "text": "was not nice",
-                    "payment": 4,
-                    "reliable": 3,
-                    "overall": 5,
-                    "average": 4
-                }
-            },{
-                "gigId": "2",
-                "title": "what it was",
-                "review": {
-                    "payment": 4,
-                    "reliable": 3,
-                    "overall": 5
-                }
-            }],
-            "completedAverage": 0,
-            "completed": [{
+            "totalAverage" : 4,
+            "publishedAverage": 4,
+            "published": [
+                {
+                    "gigId": "2",
+                    "title": "Need help watering my garden",
+                    "givenBy": {
+                        "name": "Marty McFly",
+                        "img": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Michael_J._Fox_as_Marty_McFly_in_Back_to_the_Future%2C_1985.jpg/220px-Michael_J._Fox_as_Marty_McFly_in_Back_to_the_Future%2C_1985.jpg"
+                    },
+                    "createdAt": 1543413057239,
+                    "review": {
+                        "text": "Was nice, beutiful garden",
+                        "payment": 3,
+                        "reliable": 4,
+                        "overall": 5,
+                        "average": 4
+                    }},
+            ],
+            "completedAverage": 4,
+            "completed": [
+                {
                 "gigId": "4",
-                "title": "was it what",
-                "givenBy": "https://bloximages.chicago2.vip.townnews.com/nwitimes.com/content/tncms/assets/v3/editorial/0/d9/0d98cbc7-0408-518e-a67d-50ba01ca1bfa/5a7e4016d73b4.image.jpg",
-                "createdAt": "timestamp",
+                "title": "Help cleaning my house",
+                "givenBy": {
+                    "name": "Shoshi gordo",
+                    "img" : "https://i.ytimg.com/vi/bSm2_4kS2fg/hqdefault.jpg"
+                },
+                "createdAt": 1543413342417,
                 "review": {
-                    "text": "was awesome",
-                    "work": 5,
-                    "reliable": 2,
+                    "text": "He was very neat and helpful",
+                    "work": 4,
+                    "reliable": 4,
                     "overall": 4,
-                    "average": 3.6
-                }
-            },{
-                "gigId": "3",
-                "title": "was it what",
-                "givenBy": "somebody",
-                "createdAt": "timestamp",
+                    "average": 4
+                }},
+                {
+                "gigId": "4",
+                "title": "pick up my groceries",
+                "givenBy": {
+                    "name": "Reuven Bonsonti",
+                    "img" : "https://cdn.shopify.com/s/files/1/0715/6823/files/hats_d3d6ca76-3891-4bde-83b7-5ac87c4e6934_580x.jpg?v=1520488004"
+                },
+                "createdAt": 1543413454131,
                 "review": {
-                    "text": "was awesome",
-                    "work": 5,
-                    "reliable": 2,
-                    "overall": 4,
-                    "average": 3.6
-                }
-            }]
+                    "text": "The tomatoes were missing, but everything else was fine",
+                    "work": 3,
+                    "reliable": 3,
+                    "overall": 3,
+                    "average": 3
+                }},
+                {
+                    "gigId": "4",
+                    "title": "come and pet my dog",
+                    "givenBy": {
+                        "name": "Barack obama",
+                        "img" : "https://www.biography.com/.image/t_share/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg"
+                    },
+                    "createdAt": 1543412028131,
+                    "review": {
+                        "text": "Did uuuhhh... a great job, my dog enjoyed very much",
+                        "work": 5,
+                        "reliable": 5,
+                        "overall": 5,
+                        "average": 5
+                    }},
+            ]
         },
-        "img": "https://img.buzzfeed.com/buzzfeed-static/static/2015-03/27/12/campaign_images/webdr14/woof-and-woof-2-6572-1427473305-24_dblbig.jpg"
+        "img": "https://i.pinimg.com/236x/20/8e/2b/208e2bbf01979334eba2513631c96764--tattoo-ink-beard-tattoo.jpg"
     },
 ]
