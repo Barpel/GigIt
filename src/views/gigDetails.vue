@@ -14,11 +14,9 @@
         <p>location: {{gig.details.pos.dist}}</p>
         <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
-      <div class="avatar-img-container">
-         <router-link to="/user/2">
-        <img src="../assets/racheli.png" alt @click="goToProfile()">
+      <div class="avatar-img-container">    
+        <img src="../assets/racheli.png" alt @click="goToProfile(gig.publisherId)">
         <h5>Rachel Bahabua</h5>
-        </router-link>
       </div>
     </div>
     <div class="mid-details-container">
@@ -98,12 +96,11 @@ export default {
       this.$store.dispatch({type:'updateUser', user:this.user})
       this.$store.dispatch({type:'updateGig', gig:this.gig})
     },
-    goToProfile(){
-      
+    goToProfile(publisherId){
+      this.$router.push(`/user/${publisherId}`)
     }
   },
   created() {
-    console.log('im created')
     var gigId = this.$route.params.gigId;
     this.$store
       .dispatch({ type: "getGigById", gigId })

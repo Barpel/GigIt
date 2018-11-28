@@ -28,8 +28,8 @@ methods: {
     }
 },
 created() {
-    if(this.$route.params.category){
-       var category = this.$route.params.category
+    if(this.$route.params.type){
+       var category = this.$route.params.type
         this.$store.dispatch({type:'getGigs', category })
     }
    else this.$store.dispatch({type:'getGigs',})
