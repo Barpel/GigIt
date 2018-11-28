@@ -5,7 +5,7 @@
     text-align: center;
     padding-bottom: 60px;
     max-width: 80%;
-    padding: 0;
+    padding: 0 0 15%;
     margin: 0 auto;
     li {
         box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.66);
@@ -13,53 +13,112 @@
         cursor: pointer;
         margin: 10px;
         background-color: #3f3f3f;
-        padding: 10px;
         border-radius: 5px;
-        max-height: 220px;
+        display: grid;
         .gig-image{
-            width: 80%;
-            min-height: 100px;
-            margin: 0 auto;
-            background-size: contain;
+            width: 100%;
+            height: 130px;
+            background-size: 100%;
             background-repeat: no-repeat;
             background-position: center;
         }
         .gig-image.moving {
-            background-image: url('../assets/moving.png');
+            background-image: url('../assets/moving.jpg');
         }
         .gig-image.other {
-            background-image: url('../assets/other.png');
+            background-image: url('../assets/other.jpg');
         }
         .gig-image.pet-care {
-            background-image: url('../assets/pet-care.png');
+            background-image: url('../assets/pet-care.jpg');
         }
         .gig-image.house-work {
-            background-image: url('../assets/house-work.png');
+            background-image: url('../assets/house-work.jpg');
         }
         .gig-image.line-queue {
-            background-image: url('../assets/line-queue.png');
+            background-image: url('../assets/line-queue.jpg');
             
         }
         .gig-image.delivery {
-            background-image: url('../assets/delivery.png');
+            background-image: url('../assets/delivery.jpg');
         }
-        
-        img {
-            border-radius: 5px;
-            margin-top: 10px;
-            max-width: 100%;
-            object-fit: contain;
+        .publisher-container{
+            display:grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: 1fr;
+            margin: 10px 0;
+            img {
+                border-radius: 5px;
+                height: 100%;
+                max-width: 100%;
+                border-radius: 50%;
+                object-fit: contain;
+                grid-row: 1 /span  2;
+                align-self: start;
+                justify-self: end;
+            }
+            .publisher-info {
+                text-align: left;
+                padding-left: 15px;
+                height: 100%;
+                width: 100%;
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                grid-template-columns: 1fr;
+                justify-content: start;
+                align-items: center;
+                h3 {
+                    text-transform: capitalize;
+                    max-width: 100%;
+                    font-size: 1.2rem;
+                    text-align: left;
+                    display: flex;
+                    align-items: inherit;
+                    i {
+                        color: gold;
+                        font-size: 1rem;
+                    }
+                }
+            }
         }
-        h3 {
-            text-transform: capitalize;
-            margin: 10px auto 0;
-            max-width: 100%;
-            font-size: 1.5rem;
+        .gig-details {
+            max-width: 245px;
+            text-align: left;
+            min-height: 120px;
+            padding: 10px;
+            p{
+                margin: 10px 0;
+                color: #c9c8c9;
+                font-style: italic;
+                font-size: 1rem;
+            }
         }
-        p{
-            color: #c9c8c9;
-            font-style: italic;
-            font-size: 1.2rem;
+        .lower-bar-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid white;
+            p {
+                justify-self: start;
+            }
+            button {
+                cursor: pointer;
+                height: 70%;
+                font-family: condiment;
+                font-size: 1.4rem;
+                text-align: center;
+                padding-top: 5px;
+                padding-right: 10px;
+                letter-spacing: 1px;
+                border-radius: 5px;
+                background-color: #2ca2af;
+                border: none;
+                color: white;
+                span {
+                    font-family: condiment;
+                    color: #97a5a7;
+                }
+            }
         }
     }
 }
