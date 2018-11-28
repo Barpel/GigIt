@@ -68,7 +68,7 @@ var demoUsers = [
         },
         "aboutMe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum nam aliquam optio nulla fugit quasi alias architecto culpa dolorem deserunt nobis voluptatibus, accusantium, facere in perspiciatis quo aperiam ad?",
         "username": "maister",
-        "password": "0000",
+        "password": "0",
         "email": "testerMan@gmail.com",
         "mainArea": {
             "lat": 32.023914,
@@ -142,7 +142,7 @@ var demoUsers = [
         },
         "aboutMe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet laborum nam aliquam optio nulla fugit quasi alias architecto culpa dolorem deserunt nobis voluptatibus, accusantium, facere in perspiciatis quo aperiam ad?",
         "username": "giger",
-        "password": "1111",
+        "password": "1",
         "email": "gigerMan@gmail.com",
         "mainArea": {
             "lat": 32.023914,
