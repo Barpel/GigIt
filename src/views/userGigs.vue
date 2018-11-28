@@ -95,12 +95,15 @@ export default {
     .user-gigs-container {
         max-width: 500px;
         margin: 0 auto;
+        padding: 30px 0 0;
         ul {
-            margin: 20px 0;  
+            margin:0 0 20px; 
+            color: white; 
         }
         .published-gigs {
             box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.66);
             padding: 10px;
         }
+        
     }
 </style>

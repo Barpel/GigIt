@@ -101,6 +101,7 @@ export default {
                 font-size: 1.4rem;
                 border: none;
                 border-radius: 5px;
+                color: white;
             }
             .later {
             background-color: red;

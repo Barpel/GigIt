@@ -79,16 +79,18 @@ export default {
             opacity: 0.6;
             }
         button {
-            justify-self: center;
+            justify-self: end;
             cursor: pointer;
             width: 70%;
             height: 80%;
             border: none;
             background-color: red;
+            color: white;
             font-size: 1rem;
             text-align: center;
             border-radius: 5px;
             padding-top: 5px;
+            margin: 0 10px 10px;
             span {
                 font-family: condiment;
                 font-size: 1.2rem;
