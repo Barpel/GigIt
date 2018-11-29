@@ -15,7 +15,10 @@ export default {
 
 function query(filter = {}) {
     return axios.get(BASE_URL)
-        .then(res => res.data)
+        .then(res => {
+            console.log(res)
+            return res.data
+        })
     // console.log('im herr!')
     // var queryParams = new URLSearchParams();
     // for (let key in filter) {
