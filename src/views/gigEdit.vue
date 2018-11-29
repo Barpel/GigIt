@@ -1,21 +1,39 @@
 <template>
   <section class="gig-edit">
-    <h1>{{isAdd}} Gig</h1>
+    <h1>
+      {{isAdd}}
+      <span>Gig</span>
+    </h1>
     <div class="gig-edit-container">
       <form @submit.prevent="save" class="gig-edit-form">
-        <el-input placeholder="Gig Title" v-model="gig.details.title" clearable></el-input>
+        <div class="form-wrapper-1">
+          <div class="gig-title-container">
+            <el-input
+              placeholder="Gig Title"
+              v-model="gig.details.title"
+              clearable
+              class="gig-title-input"
+            ></el-input>
+          </div>
+          <div class="gig-category-container">
+            <el-select v-model="gig.category" placeholder="Category" class="gig-category-input">
+              <el-option
+                v-for="category in categoryOpts"
+                :key="category.value"
+                :label="category.label"
+                :value="category.value"
+              ></el-option>
+            </el-select>
+          </div>
+        </div>
         <el-input
           type="textarea"
           :autosize="{ minRows: 3, maxRows: 3}"
           placeholder="Describe your gig..."
           v-model="gig.details.desc"
         ></el-input>
-        <label>
-          <h2>Price:</h2>
-          <el-input-number v-model="gig.details.price" :step="10" size="small"></el-input-number>
-        </label>
+
         <div class="block">
-          <span class="demonstration">Start date time 12:00:00, end date time 08:00:00</span>
           <el-date-picker
             v-model="gig.details.gigTime"
             type="datetimerange"
@@ -25,15 +43,24 @@
             :default-time="['12:00:00', '08:00:00']"
           ></el-date-picker>
         </div>
-        <el-select v-model="gig.category.value" placeholder="Category">
-          <el-option
-            v-for="category in gig.category.options"
-            :key="category.value"
-            :label="category.label"
-            :value="category.value"
-          ></el-option>
-        </el-select>
-        <button class="gig-edit-submit" type="submit">Add Gig</button>
+        <label class="gig-price-container">
+          <h4
+            class="pro-tip"
+            v-if="isShowingTip"
+          >PRO-TIP: Set a fair price to get the Gig done quickly!</h4>
+          <h2>Price:</h2>
+          <el-input-number
+            v-model="gig.details.price"
+            :step="10"
+            size="small"
+            @focus="toggleTip"
+            @blur="toggleTip"
+          ></el-input-number>
+        </label>
+        <button class="gig-submit-btn" type="submit">
+          {{isAdd}}
+          <span>Gig</span>
+        </button>
       </form>
     </div>
   </section>
@@ -46,8 +73,26 @@ export default {
         return {
             gig: {
                 publisherId: '',
-                category: {
-                    options: [{
+                category: '',
+                createdAt: 0,
+                pendingUsers: [],
+                isActive: true,
+                details: {
+                    title:'',
+                    desc: '',
+                    price: 0,
+                    pos: {
+                        dist: this.getRandomDist(),
+                        lat: 32.068424,
+                        lng: 34.824783,
+                    },
+                    gigTime: '',
+                    imgs: []
+
+                }
+            },
+            isShowingTip: false,
+            categoryOpts: [{
           value: 'delivery',
           label: 'Delivery'
         }, {
@@ -66,36 +111,18 @@ export default {
         {
           value: 'moving',
           label: 'Moving'
-        },
-        ],
-        value: '',
-                },
-                createdAt: 0,
-                pendingUsers: [],
-                isActive: true,
-                details: {
-                    title:'',
-                    desc: '',
-                    price: 0,
-                    pos: {
-                        dist: this.getRandomDist(),
-                        lat: 32.068424,
-                        lng: 34.824783,
-                    },
-                    gigTime: '',
-                    imgs: []
-
-                }
-            },
+        }],
+        
         }
+        
     },
     computed: {
         user() {
             return this.$store.getters.user
         },
         isAdd() {
-            if(this.gig.id) return 'Edit Your'
-            else return 'Add New'
+            if(this.gig.id) return 'Edit'
+            else return 'Add'
         },
         currTime() {
             var time = new Date()
@@ -107,6 +134,9 @@ export default {
             var randomNum = Math.random() * 3
             if (randomNum < 0.1) randomNum = randomNum + 0.3;
             return randomNum.toFixed(1) + 'KM Away'
+        },
+        toggleTip() {
+            this.isShowingTip = !this.isShowingTip
         },
         save() {
             console.log(this.gig)
