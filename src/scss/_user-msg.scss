@@ -1,19 +1,31 @@
 .user-msg {
-    background-color: lightgray;
+    display: grid;
+    justify-content: center;
+    align-items: center;
     width: 200px;
-    height: 100px;
+    height: 70px;
     padding: 10px;;
     position: fixed;
     font-family: roboto;
     font-size: 1.6rem;
     top:0;
-    right:0;
+    right: -100vw;
+    transition: all .7s;
+    animation-name: slide-right;
+    animation-duration: 0.7s;
+    border: 1px solid white;
+    color: white;
+    border-bottom-left-radius: 5px;
 }
 
 .user-msg.success {
+    right:0;
+    outline: 2px solid #2ca2af;
     background-color: #2ca2af;
 }
 
 .user-msg.error {
+    right:0;
+    outline: 2px solid lightcoral;
     background-color: lightcoral;
 }
