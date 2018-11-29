@@ -3,12 +3,13 @@
 <template>
   <section v-if="user" class="user-profile-container grid">
     <div class="user-avatar-card">
-      <button v-if="isOwnProfile" @click="doLogout" class="profile-logout-btn"><i class="fas fa-power-off"></i> Logout</button>
+      <button v-if="isOwnProfile" @click="doLogout" class="profile-logout-btn">
+        <i class="fas fa-power-off"></i> Logout
+      </button>
       <img :src="user.img" alt>
       <h5>{{user.name.first}} {{user.name.last}}</h5>
       <div>
-        <!-- <span v-for="(num,idx) in totalAverageStars" :key="idx">⭐</span> -->
-        <!-- <span v-for="(num,idx) in (5-totalAverageStars)" :key="idx">✰</span> -->
+        <span>{{totalAverageStars}}</span>
       </div>
       <ul>
         <li>
@@ -21,31 +22,27 @@
         </li>
       </ul>
       <div class="profile-btns-wrapper" v-if="isOwnProfile">
-        <button >My Gigs</button>
+        <router-link tag="button" :to="myGigsLink">My Gigs</router-link>
         <button id="disabled-thing-stuff">My Inbox</button>
       </div>
       <div v-else>
         <button class="user-profile-contact-btn">Contact Me</button>
       </div>
     </div>
-    <div class="user-profile-lastest-gigs">
-      <div>
-        <span>latest Gigs</span>
-      </div>
-      <img src="@/assets/moving.png" alt>
-      <img src="@/assets/delivery.png" alt>
-      <img src="@/assets/pet-care.png" alt>
-    </div>
     <div class="user-profile-desc">
+      <h3>About Me</h3>
       <p>{{user.aboutMe}}</p>
-      <div class="user-profile-skills">
-        <h6 v-for="skill in user.skills" :key="skill">{{skill}}</h6>
-      </div>
     </div>
+    <div class="user-profile-skills">
+      <div>
+        <span>Skills</span>
+      </div>
+      <h4 v-for="skill in user.skills" :key="skill">{{skill}}</h4>
+    </div>
+
     <div>
       <ul class="profile-reviews">
-        <li v-for="review in user.reviews.completed"
-          :key="review.gigId" class="profile-review">
+        <li v-for="review in user.reviews.completed" :key="review.gigId" class="profile-review">
           <div class="profile-review-giver">
             <img :src="review.givenBy.img">
             {{review.givenBy.name}}
@@ -63,50 +60,54 @@
         </li>
       </ul>
     </div>
-        {{user.reviews.completed}}
+    <!-- {{user.reviews.completed}} -->
   </section>
 </template>
 <script>
 export default {
   data() {
     return {
-      user: {
-        reviews: []
-      },
+      user: null,
       isOwnProfile: false
     };
   },
   computed: {
-    // user() {
-    //   return this.$store.getters.user;
-    // },
     totalAverageStars() {
-      return Math.floor(this.user.reviews.totalAverage);
+      var stars = "";
+      var positive = Math.floor(this.user.reviews.totalAverage);
+      for (let i = 0; i < positive; i++) {
+        stars += "⭐";
+      }
+      for (let i = 0; i < 5 - positive; i++) {
+        stars += "✰";
+      }
+      return stars;
+    },
+    myGigsLink() {
+      return `/user/${this.$store.getters.user.id}/gigs`;
     }
   },
   methods: {
-      doLogout() {
-          this.$router.push('/')
-          this.$store.dispatch({type:'doLogout'})
-      }
+    doLogout() {
+      this.$router.push("/");
+      this.$store.dispatch({ type: "doLogout" });
+    },
+    loadUser() {
+      var userId = this.$route.params.userId;
+      this.$store.dispatch({ type: "getUserById", userId })
+        .then(user => (this.user = user));
+      this.$store.dispatch({ type: "checkIsProfileOwner", userId })
+        .then(isOwner => this.isOwnProfile = isOwner);
+    }
   },
   created() {
-    console.log('created')
-    var userId = this.$route.params.userId;
-    this.$store.dispatch({ type: "getUserById", userId })
-      .then(user => this.user = user)
-    this.$store.dispatch({type:'checkIsProfileOwner', userId})
-      .then(isOwner => {
-        console.log('lets see mate:',isOwner)
-        this.isOwnProfile = isOwner
-      })
+    this.loadUser()
   },
   watch: {
-  route: function(){
-    console.log('hosdalksnaflaskn')
-    alert('heyyy')
+    "$route.params.userId": function() {
+      this.loadUser()
+    }
   }
-}
 };
 </script>
 

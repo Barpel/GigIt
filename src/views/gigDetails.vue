@@ -93,7 +93,7 @@ export default {
     },
     requestGig(ev) {
       if(ev.target.innerHTML==='Pending') return
-      console.log(ev)
+      // console.log(ev)
       setTimeout(() => { this.$router.push('/gig') }, 650);
         bus.$emit(USR_MSG_DISPLAY, {type: 'success', txt: 'Gig Signed'});
        ev.target.innerHTML = 'Pending'

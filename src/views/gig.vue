@@ -1,6 +1,5 @@
 <template>
   <section>
-    
     <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>

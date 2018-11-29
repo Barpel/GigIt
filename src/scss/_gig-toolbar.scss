@@ -1,16 +1,24 @@
 .gig-toolbar {
     width: 100%;
-    min-height: 80px;
-    max-height: 80px;
+    min-height: 60px;
+    max-height: 60px;
     border-bottom: 1px solid #363636;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    background-color: #6d6b6bd0;
+    box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.4);
     button {
-        min-height: 80px;
-        background-color: rgba(255, 255, 255, 0.178);
+        color: white;
+        min-height: 60px;
+        background-color:transparent;
         border: none;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         padding: 10px;
         cursor: pointer;
+        font-weight: 600;
+    }
+    button:not(:last-child) {
+        // border-right: 1px solid rgba(255, 255, 255, 0.137);
+
     }
 }

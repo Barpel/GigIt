@@ -23,18 +23,18 @@
         </h1>
       </router-link>
       <a @click="onUserClicked" class="home-nav-user">
-        <h1>
-          <i class="fas fa-user"></i>
+        <h1 class="profile-info-container">
+          <i class="fas fa-user">
+            <div class="notification-circle" v-if="isLoggedin"></div>
+          </i>
           {{isLogin}}
         </h1>
       </a>
     </div>
     <div class="user-dropdown" :class="dropdownClass">
-      <router-link @click.native="closeDropdown" :to="publishedGigsLink">
+      <router-link @click.native="closeDropdown" :to="myGigsLink">
         <h1>
-          <span>
-            Gigs
-          </span>
+          <span>Gigs</span>
           My Gigs
         </h1>
       </router-link>
@@ -87,7 +87,7 @@ export default {
     profileLink() {
       return `/user/${this.user.id}`;
     },
-    publishedGigsLink() {
+    myGigsLink() {
       return `/user/${this.user.id}/gigs`;
     },
     completedGigsLink() {

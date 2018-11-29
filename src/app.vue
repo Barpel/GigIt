@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <user-msg v-if="showMsg" :msg="msg"></user-msg>
+    <user-msg :msg="msg"></user-msg>
     <home-nav></home-nav>
     <router-view/>
   </div>

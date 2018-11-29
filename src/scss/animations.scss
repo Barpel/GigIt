@@ -1,0 +1,9 @@
+@keyframes blink {
+    from {opacity: 0; transform: scale(0)}
+    to {opacity: 1; transform: scale(1);}
+}
+
+@keyframes slide-right {
+    from {right: -100vw; opacity: 0;}
+    to {right: 0; opacity: 1;}
+}
