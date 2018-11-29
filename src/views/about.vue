@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <h1>This is an about page</h1>
+    <h1>Gig<span>It</span>
+    </h1>
   </div>
 </template>
 
@@ -18,7 +18,19 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style lang="scss" scoped>
+  .about {
+    background-color: black;
+    padding: 10px;
+    h1 {
+      font-size: 10rem;
+      color: white;
+      font-family: condiment;
+      span {
+        font-family: condiment;
+        color: #97a5a7;
+      }
+    }
+  }
 </style>
+
