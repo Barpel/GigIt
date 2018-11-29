@@ -40,6 +40,11 @@ export default new Router({
       component: gigDetails
     },
     {
+      path: '/user/login',
+      name: 'login',
+      component: login,
+    },
+    {
       path: '/user/:userId/gigs',
       name: 'publishedGigs',
       component: userGigs,
@@ -49,11 +54,7 @@ export default new Router({
       name: 'userProfile',
       component: userProfile,
     },
-    {
-      path: '/user/login',
-      name: 'login',
-      component: login,
-    },
+    
     {
       path: '/about',
       name: 'about',
