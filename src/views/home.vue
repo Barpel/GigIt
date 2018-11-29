@@ -48,7 +48,7 @@ created() {
 <style lang="scss" scoped>
   hr {
     width: 90%;
-    border: 1px solid #363636;
+    background-color: rgba(199, 199, 199, 0.356);
   }
 </style>
 
