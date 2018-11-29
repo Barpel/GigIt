@@ -1,22 +1,22 @@
 .gig-edit {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    // align-items: center;
+    display: grid;
     h1 {
         margin: 0 auto;
         color: azure;
     }
 }
 .gig-edit-container {
-    color: blue
+    color: white;
 }
 .gig-edit-form {
-    margin-top: 0.7rem;
-    * {
-        margin-bottom: 0.7rem;
+    display: grid;
+    grid-gap: 10px;
+    max-width: 70vw;
+    margin: 0 auto;
+    textarea {
+        resize: none;
     }
-    flex-direction: column;
+    
 }
 
 .gig-edit-submit{
