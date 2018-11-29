@@ -9,7 +9,7 @@
       <button @click="showCategory">Other</button>
     </div>
     <div>
-      <input type="text" @input="searchGig" >
+      <!-- <input type="text" @input="searchGig" > -->
     </div>
   </section>
 </template>
@@ -23,10 +23,10 @@ export default {
             var category = ev.target.innerHTML.toLowerCase()
             this.$emit('showCategory',category)
         },
-        searchGig(ev){
-          var keyForFilter = ev.target.value
-          this.$emit('searchGig', keyForFilter)
-        }
+        // searchGig(ev){
+        //   var keyForFilter = ev.target.value
+        //   this.$emit('searchGig', keyForFilter)
+        // }
     }
 
 }
