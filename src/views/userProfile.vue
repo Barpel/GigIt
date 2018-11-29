@@ -1,14 +1,14 @@
 
 
 <template>
-  <section class="user-profile-container grid">
-    <div v-if="user" class="user-avatar-card">
-      <button v-if="isOwnProfile" @click="doLogout" class="profile-logout-btn"><i class="fas fa-power-off"></i> Logout</button @click="doLogout">
+  <section v-if="user" class="user-profile-container grid">
+    <div class="user-avatar-card">
+      <button v-if="isOwnProfile" @click="doLogout" class="profile-logout-btn"><i class="fas fa-power-off"></i> Logout</button>
       <img :src="user.img" alt>
       <h5>{{user.name.first}} {{user.name.last}}</h5>
       <div>
-        <span v-for="(num,idx) in totalAverageStars" :key="idx">⭐</span>
-        <span v-for="(num,idx) in (5-totalAverageStars)" :key="idx">✰</span>
+        <!-- <span v-for="(num,idx) in totalAverageStars" :key="idx">⭐</span> -->
+        <!-- <span v-for="(num,idx) in (5-totalAverageStars)" :key="idx">✰</span> -->
       </div>
       <ul>
         <li>
@@ -36,7 +36,7 @@
       <img src="@/assets/delivery.png" alt>
       <img src="@/assets/pet-care.png" alt>
     </div>
-    <div v-if="user" class="user-profile-desc">
+    <div class="user-profile-desc">
       <p>{{user.aboutMe}}</p>
       <div class="user-profile-skills">
         <h6 v-for="skill in user.skills" :key="skill">{{skill}}</h6>
@@ -54,9 +54,6 @@
             <span>Work: {{review.review.work}}⭐</span>
             <span>Reliable: {{review.review.reliable}}⭐</span>
             <span>Overall: {{review.review.overall}}⭐</span>
-            <!-- <span> <span>Work</span> <span> {{review.review.work}}⭐</span></span>
-            <span> <span>Reliable</span> <span> {{review.review.reliable}}⭐</span></span>
-            <span> <span>Overall</span> <span> {{review.review.overall}}⭐</span></span> -->
           </div>
           <div class="profile-review-details-container">
             <p class="profile-review-title">(for: "{{review.title}}")</p>
@@ -73,16 +70,16 @@
 export default {
   data() {
     return {
-      currUser: {
+      user: {
         reviews: []
       },
       isOwnProfile: false
     };
   },
   computed: {
-    user() {
-      return this.$store.getters.user;
-    },
+    // user() {
+    //   return this.$store.getters.user;
+    // },
     totalAverageStars() {
       return Math.floor(this.user.reviews.totalAverage);
     }
@@ -94,12 +91,19 @@ export default {
       }
   },
   created() {
+    console.log('created')
     var userId = this.$route.params.userId;
-    this.$store.dispatch({ type: "getUserById", userId });
-    this.isOwnProfile = this.$store.dispatch({type:'isOwner', userId})
+    this.$store.dispatch({ type: "getUserById", userId })
+      .then(user => this.user = user)
+    this.$store.dispatch({type:'checkIsProfileOwner', userId})
+      .then(isOwner => {
+        console.log('lets see mate:',isOwner)
+        this.isOwnProfile = isOwner
+      })
   },
   watch: {
   route: function(){
+    console.log('hosdalksnaflaskn')
     alert('heyyy')
   }
 }

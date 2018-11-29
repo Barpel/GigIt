@@ -17,12 +17,17 @@
       <div class="avatar-img-container">
         <img src="../assets/racheli.png" alt @click="goToProfile(gig.publisherId)">
         <h5>Rachel Bahabua</h5>
+      <button v-if="isGigOwner" @click="editGig" class="gigit-btn">
+          <h1>
+            Edit
+          </h1>
+        </button>
       </div>
     </div>
     <div class="mid-details-container">
       <div class="gigit-detail-container">
         <p>Earn {{this.gig.details.price}} for this Gig</p>
-        <button  @click="requestGig" class="gigit-btn">
+        <button v-if="!isGigOwner" @click="requestGig" class="gigit-btn">
           <h1>
             <span>
               Gig
@@ -74,12 +79,13 @@ export default {
     return {
       gig: null,
       isPending:false,
+      isGigOwner: true,
     };
   },
   computed: {
     user() {
       return this.$store.getters.user
-    }
+    },
   },
   methods:{
     goBack(){
@@ -101,7 +107,9 @@ export default {
       this.user.gigsIds.pending.push(this.gig.id)
       this.$store.dispatch({type:'updateUser', user:this.user})
       this.$store.dispatch({type:'updateGig', gig:this.gig})
-      
+    },
+    editGig() {
+      console.log('edit')
     },
     goToProfile(publisherId){
       this.$router.push(`/user/${publisherId}`)
@@ -109,10 +117,11 @@ export default {
   },
   created() {
     var gigId = this.$route.params.gigId;
-    this.$store
-      .dispatch({ type: "getGigById", gigId })
+    this.$store.dispatch({ type: "getGigById", gigId })
         .then(gig => {
           (this.gig = gig)
+          this.$store.dispatch({type:'isGigOwner', publisherId: gig.publisherId})
+            .then(isOwner => this.isGigOwner = isOwner)
         });
   },
 };

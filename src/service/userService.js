@@ -17,7 +17,8 @@ export default {
 
 function getLoggedUser() {
     var user = storageService._fromStorage('loggedUser')
-    if(user) return user
+    if(user) return Promise.resolve(user)
+    else return Promise.resolve(null)
 }
 function logout() {
     storageService._toStorage('loggedUser', null)

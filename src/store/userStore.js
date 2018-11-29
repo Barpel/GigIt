@@ -21,13 +21,14 @@ export default {
     },
     actions: {
         checkLoggedUser(context) {
-                var user = userService.getLoggedUser()
-                if (user) context.commit({type: 'setLoggedUser', user})
+            return userService.getLoggedUser()
+                .then(user => {
+                    if (user) context.commit({type: 'setLoggedUser', user})
+                })    
         },
         getUserById({ commit }, { userId }) {
-            userService.getUserById(userId)
+            return userService.getUserById(userId)
                 .then(user => {  
-                    commit({ type: 'setLoggedUser', user })
                     return user
                 })
         },
@@ -39,10 +40,19 @@ export default {
             return userService.loginUser(userCreds)
                 .then(user => context.commit({type:'setLoggedUser', user}))
         },
-        isOwner(context, {userId}) {
-            var loggedUser = userService.getLoggedUser()
-            if(loggedUser.id === userId) return true
-            else return false
+        isGigOwner(context, {publisherId}) {
+            return userService.getLoggedUser()
+                .then(loggedUser => {
+                    if(loggedUser.id === publisherId) return true
+                    else return false
+                })
+        },
+        checkIsProfileOwner(context, {userId}) {
+            return userService.getLoggedUser()
+                .then(loggedUser => {
+                    if(loggedUser.id === userId) return true
+                    else return false
+                })
         },
         doLogout({commit}) {
             return userService.logout()

@@ -1,9 +1,13 @@
 <template>
   <section>
     <h1>Login</h1>
+    <form @submit.prevent="login">
     <input type="text" v-model="creds.username">
+    <br>
     <input type="text" v-model="creds.password">
-    <button @click="login">Login</button>
+    <br>
+    <button type="submit" >Login</button>
+    </form>
   </section>
 </template>
 
