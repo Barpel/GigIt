@@ -12,7 +12,7 @@
       </div>
       <li v-for="(gigster, index) in gigsters" :key="index" class="gigster-container" v-if="isOpen">
         <img :src="gigster.img" @click="goToProfile(gigster.id)">
-        <h2>{{gigster.name.first}} {{gigster.name.last}} wants to be your Gigster!</h2>
+        <h2>{{gigster.name}}  wants to be your Gigster!</h2>
         <div class="gigster-btn-container">
           <button class="gigit">
             Gig
