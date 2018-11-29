@@ -17,10 +17,8 @@
       <div class="avatar-img-container">
         <img src="../assets/racheli.png" alt @click="goToProfile(gig.publisherId)">
         <h5>Rachel Bahabua</h5>
-      <button v-if="isGigOwner" @click="editGig" class="gigit-btn">
-          <h1>
-            Edit
-          </h1>
+        <button v-if="isGigOwner" @click="editGig" class="gigit-btn">
+          <h1>Edit</h1>
         </button>
       </div>
     </div>
@@ -29,10 +27,8 @@
         <p>Earn {{this.gig.details.price}} for this Gig</p>
         <button v-if="!isGigOwner" @click="requestGig" class="gigit-btn">
           <h1>
-            <span>
-              Gig
-              <span>It</span>
-            </span>
+            <span v-if="!isAlreadyPending">Gig<span>It</span></span>
+            <span v-else>Pending</span>
           </h1>
         </button>
       </div>
@@ -71,58 +67,67 @@
 </template>
 
 <script>
-import bus, {USR_MSG_DISPLAY} from '../eventBus.js'
+import bus, { USR_MSG_DISPLAY } from "../eventBus.js";
 
 export default {
   name: "gigDetails",
   data() {
     return {
       gig: null,
-      isPending:false,
       isGigOwner: true,
+      isAlreadyPending: false,
     };
   },
   computed: {
     user() {
-      return this.$store.getters.user
+      return this.$store.getters.user;
     },
+    isLoggedin() {
+      return this.$store.getters.isLoggedin;
+    }
   },
-  methods:{
-    goBack(){
-      this.$router.push('/gig')
+  methods: {
+    goBack() {
+      this.$router.push("/gig");
     },
     requestGig(ev) {
-      if(ev.target.innerHTML==='Pending') return
-      // console.log(ev)
-      setTimeout(() => { this.$router.push('/gig') }, 650);
-        bus.$emit(USR_MSG_DISPLAY, {type: 'success', txt: 'Gig Signed'});
-       ev.target.innerHTML = 'Pending'
-       var currUser = this.$store.getters.user
-       this.gig.isRead = false
-       this.gig.pendingUsers.push({
-         name: currUser.name,
-         id: currUser.id,
-         img: currUser.img
+      if (this.isAlreadyPending) return;
+      setTimeout(() => {
+        this.$router.push("/gig");
+      }, 20);
+      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
+      var currUser = this.user
+      this.gig.isRead = false;
+      this.gig.pendingUsers.push({
+        name: currUser.name.first,
+        id: currUser.id,
+        img: currUser.img,
+        completedReviewsAverage: currUser.reviews.completedAverage
       }),
-      this.user.gigsIds.pending.push(this.gig.id)
-      this.$store.dispatch({type:'updateUser', user:this.user})
-      this.$store.dispatch({type:'updateGig', gig:this.gig})
+        this.user.gigsIds.pending.push(this.gig.id);
+      this.$store.dispatch({ type: "updateUser", user: this.user });
+      this.$store.dispatch({ type: "updateGig", gig: this.gig });
     },
     editGig() {
-      console.log('edit')
+      console.log("edit");
     },
-    goToProfile(publisherId){
-      this.$router.push(`/user/${publisherId}`)
+    goToProfile(publisherId) {
+      this.$router.push(`/user/${publisherId}`);
     }
   },
   created() {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId })
-        .then(gig => {
-          (this.gig = gig)
-          this.$store.dispatch({type:'isGigOwner', publisherId: gig.publisherId})
-            .then(isOwner => this.isGigOwner = isOwner)
-        });
-  },
+      .then(gig => {
+          this.gig = gig;
+          this.$store.dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
+            .then(isOwner => (this.isGigOwner = isOwner));
+          if(this.isLoggedin) {
+            var matchingGig = this.user.gigsIds.pending.find(gigId => gigId === gig.id)
+            if(matchingGig) this.isAlreadyPending = true;
+          }
+      });
+    
+  }
 };
 </script>
