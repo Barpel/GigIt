@@ -30,7 +30,7 @@
       </a>
     </div>
     <div class="user-dropdown" :class="dropdownClass">
-      <router-link @click.native="closeDropdown" :to="publishedGigsLink">
+      <router-link @click.native="closeDropdown" :to="myGigsLink">
         <h1>
           <span>
             Gigs
@@ -87,7 +87,7 @@ export default {
     profileLink() {
       return `/user/${this.user.id}`;
     },
-    publishedGigsLink() {
+    myGigsLink() {
       return `/user/${this.user.id}/gigs`;
     },
     completedGigsLink() {
