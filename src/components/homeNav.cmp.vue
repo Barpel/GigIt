@@ -107,7 +107,7 @@ export default {
     onUserClicked() {
       if (this.isLoggedin) {
         this.isUserDropdown = !this.isUserDropdown;
-      } else this.$router.push("/login");
+      } else this.$router.push('/user/login');
     }
   }
 };

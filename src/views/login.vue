@@ -27,6 +27,10 @@ export default {
             .then(() =>this.$router.push('/'))
             .catch(() => alert('wrong username or password'))
       }
+  },
+  created() {
+        this.$store.dispatch({ type: "checkLoggedUser" });
+
   }
 };
 </script>
