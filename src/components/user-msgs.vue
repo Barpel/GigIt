@@ -6,7 +6,7 @@
 
 <script>
 export default {
- props: ['msg']
+ props: ['msg'],
 }
 </script>
 
