@@ -7,7 +7,7 @@
         :key="publishedGig.id"
         v-if="publishedGig.pendingUsers.length"
       >
-        <gig-accordion :gigsters="publishedGig.pendingUsers" :header="publishedGig.details.title"></gig-accordion>
+        <gig-accordion @gigAccepted="pickGiger" :gigsters="publishedGig.pendingUsers" :header="publishedGig.details.title"></gig-accordion>
       </div>
     </ul>
     <ul class="pending-gigs">
@@ -37,13 +37,24 @@ export default {
                 completedGigs: [],
                 pendingGigs: [],
                 publishedGigs: [],
-            }
+            },
+            pickGigster:{
+                isPicked:false,
+                gigster:[]
+            },
         }
     },
     computed: {
         user() {
             return this.$store.getters.user
         },
+        PublishGigs(){
+            if(pickGigster.isPicked){
+                console.log('hey')
+                return pickGigster
+            }
+            return publishedGigs
+        }
     },
     created() {
         var userId = this.$route.params.userId
@@ -53,6 +64,12 @@ export default {
         })
     },
     methods: {
+        pickGiger(index){
+            this.isPicked = !this.isPicked;
+            this.pickGigster.gigster.push(gigster)
+            // this.gig.pendingGigs.splice
+            console.log(index)
+        },
         getUserGigs() {
             var userGigIds = {...this.user.gigsIds}
             var completedGigIds = userGigIds.completed
@@ -82,6 +99,7 @@ export default {
             console.log('pending gigs:', this.gigs.pendingGigs)
             }
         },
+        
         components: {
             gigAccordion,
             pendingGig
