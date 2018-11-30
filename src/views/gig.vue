@@ -1,6 +1,9 @@
 <template>
-  <section>
+  <section class="gig-container">
     <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
+      <h1>Gig<span>It</span></h1>
+      <h2>Looking for something specific? Find your own Gig using the filtering options</h2>
+      <hr>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>
 </template>
@@ -45,6 +48,7 @@ components: {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
+

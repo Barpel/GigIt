@@ -1,11 +1,16 @@
+$category-base: #4b052e;
+$gray1: #dddddd;
+$gray2: #cccccc;
+$gray3: #bbbbbb;
+$gray4: #aaaaaa;
+$background-color: $gray1;
+
+
 * {
     box-sizing: border-box;
     font-family: roboto;
 }
 
-html {
-    
-}
 ul {
     list-style-type: none;
     padding: 0;
@@ -19,3 +24,15 @@ body, html {
 h1, h2, h3 ,h4, h5, h6 {
     margin: 0;
 }
+
+button {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+#app {
+    text-align: center;
+    background-color: $background-color;
+    min-height: 100vh;
+    margin: 0;
+  }

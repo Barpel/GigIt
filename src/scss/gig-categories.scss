@@ -2,7 +2,7 @@
     z-index: 1;
     left: 0;
     width: 100%;
-    padding: 30px 30px;
+    padding: 30px 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -10,21 +10,30 @@
     grid-gap: 10px;
     max-width: 1000px;
     margin: 0 auto;
+    max-width: 80%;
   }
   input{
       color: black;
   }
   
 .category {
+    animation-name: slide-right;
+    animation-duration: 0.5s;
     display: flex;
     justify-content: center;
-    justify-self: center;
-    align-self: center;
     align-items: center;
+    justify-self: center;
     box-shadow:0px 0px 17px -1px rgba(0,0,0,0.67);
-    min-width: 100%;
-    min-height: 150px;
+    width: 100%;
     border-radius: 3px;
+    padding: 15px;
+    transition: all .3s;
+}
+
+.category:hover  {
+    transform: scale(0.98);
+    box-shadow: inset 0px 0px 18px 9px rgba(0,0,0,0.26);
+    opacity: 0.9;
 }
 
 .category a{
@@ -45,29 +54,29 @@
     font-size: 1.5rem;
 }
 .category.moving {
-    background-color: #006bae;
+    background-color: $category-base;
 
 }
 
 .category.house-work{
-    background-color: #00aea9;
+    background-color: #61073b;
 }
 
 .category.delivery {
-    background-color: #00ae38;
+    background-color: #740947;
 }
 
 .category.pet-care {
-    background-color: #92ae00;
+    background-color: #81094f;
 }
 
 .category.line-queue{
-    background-color: #e09401;
+    background-color: #61073b;
 
 }
 
 .category.other {
-    background-color: #cf6b04;
+    background-color: #4b052e;
 }
 
 

@@ -1,4 +1,8 @@
+$border-color: #4b052e69;
+$card-bg: #646262;
 .user-profile-container{
+    animation-name: slide-right;
+    animation-duration: .5s;
     & > * {
        border-radius: 5px; 
     }
@@ -11,10 +15,13 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid #545454;
+        border: 1px solid $border-color;
         padding:10px;
         position: relative;
+        background-color: $card-bg;
+        box-shadow:  0px 0px 18px 9px $gray4;
         img{
+            box-shadow:  0px 0px 18px 4px black;
             max-width: 150px;
         }
         .profile-logout-btn{
@@ -31,6 +38,10 @@
             font-family: roboto;
             font-weight: bold;
             padding: 6px 15px;
+        }
+        .profile-logout-btn:hover {
+            background-color: brown;
+            transform: scale(0.98);
         }
         .user-profile-contact-btn {
             background-color: #00b22d;
@@ -49,9 +60,9 @@
         .profile-btns-wrapper{
             margin-top: 10px;
             button {
-                background-color: #2ca2af;
+                background-color: $category-base;
                 margin: 0 10px;
-                border: 1px solid white;
+                border: none;
                 border-radius: 5px;
                 cursor: pointer;
                 color: #ffffff;
@@ -59,38 +70,49 @@
                 font-size: 1.5rem;
                 font-weight: bold;
                 padding: 6px 15px;
+                transition: all .3s;
+            }
+            button:hover {
+                color: rgb(165, 164, 164);
+                transform: scale(0.98);
             }
         }
     }
     .user-profile-desc{
         padding: 7px;
         margin-top:10px;
-        border: 1px solid #545454;
+        border: 1px solid $border-color;
         font-size: 1.3rem;
         grid-row: 2;
+        background-color: $card-bg;
+        box-shadow:  0px 0px 18px 9px $gray4;
         p{
             padding: 5px;
         }
     }
     .user-profile-skills{
         margin-top:10px;
-        border: 1px solid #545454;
+        border: 1px solid $border-color;
         grid-row: 3;
         padding: 5px;
+        background-color: $card-bg;
+        box-shadow:  0px 0px 18px 9px $gray4;
         h4{
             border: 1px solid #545454; 
             border-radius: 3px;
-            padding: 5px;
+            padding: 10px;
             display:inline-block;
             margin:5px;
+            text-transform: capitalize;
         }
     }
     .profile-review{
         display: flex;
         padding: 4px;
-        border: 1px solid #545454; 
+        border: 1px solid $border-color; 
         margin-bottom: 10px;
-        
+        background-color: $card-bg;
+        box-shadow:  0px 0px 18px 9px $gray4;
         .profile-review-giver {
             width: 6.25rem;
             display: flex;

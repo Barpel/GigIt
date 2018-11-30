@@ -4,7 +4,7 @@
       <h2>Published Gigs:</h2>
       <div
         v-for="publishedGig in gigs.publishedGigs"
-        :key="publishedGig.id"
+        :key="publishedGig._id"
         v-if="publishedGig.pendingUsers.length"
       >
         <gig-accordion @gigAccepted="pickGiger" :gigsters="publishedGig.pendingUsers" :header="publishedGig.details.title"></gig-accordion>
@@ -18,7 +18,7 @@
       <h2>Completed Gigs:</h2>
       <div
         v-for="completedGig in gigs.completedGigs"
-        :key="completedGig.id"
+        :key="completedGig._id"
         v-if="completedGig.pendingUsers.length"
       >
         <gig-accordion :gigsters="completedGig.pendingUsers" :header="completedGig.details.title"></gig-accordion>
