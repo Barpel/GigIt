@@ -10,14 +10,13 @@ export default {
     query,
     getById,
     remove,
-    save
+    update
 }
 
 function query(filter = {}) {
     console.log('hererer')
     return axios.get(BASE_URL)
         .then(res => {
-            console.log(res)
             return res.data
         })
     // console.log('im herr!')
@@ -38,7 +37,7 @@ function remove(gigId) {
     return axios.delete(`${BASE_URL}/${gigId}`)
 }
 
-function save(gig) {
+function update(gig) {
     if (gig._id) {
         return axios.put(`${BASE_URL}/${gig._id}`, user).then(res => res.data)
     }

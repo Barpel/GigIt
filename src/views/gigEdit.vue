@@ -76,6 +76,7 @@ export default {
                 category: '',
                 createdAt: 0,
                 pendingUsers: [],
+                isRead: true,
                 isActive: true,
                 details: {
                     title:'',
@@ -139,7 +140,10 @@ export default {
             this.isShowingTip = !this.isShowingTip
         },
         save() {
-            console.log(this.gig)
+          var gig = this.gig
+          gig.createdAt = Date.now()
+          gig.publisherId = this.user.id
+          this.$store.dispatch({type:'updateGig', gig})
         }
     },
     created() {

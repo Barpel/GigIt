@@ -7,6 +7,7 @@
       <div class="search-container">
         <input type="text" placeholder="Find your type of Gig...">
         <button>Search</button>
+        <button @click="$router.push('/gig/edit')">Add Gig</button>
       </div>
     </div>
     <gig-categories/>

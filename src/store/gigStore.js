@@ -18,6 +18,10 @@ export default {
         updateGig(state, {gig}) {
             var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
             state.gigs.splice(gigIdx,1, gig)
+        },
+        updateUserGigs(state, {gig}) {
+            console.log('mutations gig', gig)
+            console.log('mutations state', state)
         }
     },
     actions: {
@@ -28,10 +32,14 @@ export default {
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
         },
-        updateGig(context, payload) {
-            return gigService.updateGig(payload.gig)
-            // .then(gig => context.commit({type: 'updateGig'}, gig))
-            .then(gig => context.dispatch({type: 'getGigs'}, gig))
+        updateGig(context, {gig}) {
+            console.log('action:', gig)
+            return gigService.update(gig)
+            .then(gig => {
+                console.log('returned data from server:', gig)
+                context.commit({type: 'updateUserGigs'}, gig)
+            })
+            // .then(gig => context.dispatch({type: 'getGigs'}, gig))
         }
     },
 }
