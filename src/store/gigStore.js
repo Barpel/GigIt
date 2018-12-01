@@ -23,11 +23,6 @@ export default {
             var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
             state.gigs.splice(gigIdx,1, gig)
         },
-        updateUserGigs(state, {gig}) {
-            console.log('mutations gig', gig)
-            console.log('mutations state', state)
-            state.gigs.splice(gigIdx, 1, gig)
-        },
         toggleLoading(state, payload) {
             state.isLoading = !state.isLoading
         }
@@ -50,17 +45,15 @@ export default {
                 })
         },
         updateGig(context, {gig}) {
-            console.log('action:', gig)
-            // .then(gig => context.dispatch({type: 'getGigs'}, gig))
             // context.commit({ type: 'toggleLoading' })
             return gigService.update(gig)
             // .then(gig => context.commit({type: 'updateGig'}, gig))
-            .then(gig => {
-                // context.commit({ type: 'toggleLoading' })
-                console.log('returned data from server:', gig)
-                context.commit({type: 'updateUserGigs'}, gig)
-                return context.dispatch({ type: 'getGigs' }, gig)
-            })
+                .then(gig => {
+                    // context.commit({ type: 'toggleLoading' })
+                    console.log('returned data from server:', gig)
+                    context.commit({type: 'updateUserGigs'}, gig)
+                    return context.dispatch({type: 'getGigs'}, gig)
+                })
         }
     },
 }

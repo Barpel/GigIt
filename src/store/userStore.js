@@ -18,6 +18,11 @@ export default {
             if(user) state.isLoggedin = true
             else state.isLoggedin = false
         },
+        updateUserGigs(state, {gig}) {
+            console.log('mutations gig', gig._id)
+            console.log('user published gigs', state.loggedUser.gigsIds.published)
+            state.loggedUser.gigsIds.published.push(gig._id)
+        },
     },
     actions: {
         checkLoggedUser(context) {
