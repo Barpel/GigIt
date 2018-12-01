@@ -2,7 +2,8 @@
   <div id="app">
     <user-msg :msg="msg"></user-msg>
     <home-nav></home-nav>
-    <router-view/>
+    <div class="loader" v-if="isLoading"></div>
+    <router-view v-else/>
   </div>
 </template>
 
@@ -31,22 +32,19 @@ export default {
   data() {
     return {
       msg: "",
-      showMsg: false
-    };
+      showMsg: false,
+      // isLoading: true
+    }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.getters.isLoading
+    }
   }
 };
 </script>
 
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: #2f2f2f;
-  min-height: 100vh;
-  min-width: 100%;
-}
+
 </style>

@@ -5,7 +5,10 @@
         Gig<span>It</span>
       </h1>
       <div class="search-container">
-        <input type="text" placeholder="Find your type of Gig...">
+        <router-link to="/gig/edit" tag="button">
+          <i class="fas fa-plus"></i><span>Gig</span>
+        </router-link>
+        <input type="text" placeholder="Find your type of Gig">
         <button>Search</button>
         <button @click="$router.push('/gig/edit')">Add Gig</button>
       </div>
@@ -19,38 +22,38 @@
 
 <script>
 // @ is an alias to /src
-import gigCategories from '@/components/gigCategories.cmp.vue'
-import homeFooter from '@/components/homeFooter.cmp.vue'
-import gigList from '@/components/gigList.vue'
+import gigCategories from "@/components/gigCategories.cmp.vue";
+import homeFooter from "@/components/homeFooter.cmp.vue";
+import gigList from "@/components/gigList.vue";
 export default {
-  name: 'home',
-  computed:{
+  name: "home",
+  computed: {
     gigs() {
-      var gigs= JSON.parse(JSON.stringify(this.$store.getters.gigs))
-      return gigs.splice(1, gigs.length -4);
+      var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
+      return gigs;
     }
   },
   methods: {
     gigClicked(gigId) {
-        this.$router.push(`gig/${gigId}`)
-},
+      this.$router.push(`gig/${gigId}`);
+    }
   },
   components: {
     gigCategories,
     homeFooter,
     gigList
-},
-created() {
-  this.$store.dispatch({type:'getGigs'})
-}
-}
+  },
+  created() {
+    this.$store.dispatch({ type: "getGigs" });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  hr {
-    width: 90%;
-    background-color: rgba(199, 199, 199, 0.356);
-  }
+hr {
+  width: 90%;
+  background-color: rgba(199, 199, 199, 0.356);
+}
 </style>
 
 

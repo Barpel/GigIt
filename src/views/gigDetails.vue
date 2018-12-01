@@ -34,7 +34,7 @@
       </div>
       <div class="category-img-container">
         <h5>{{this.gig.category}}</h5>
-        <img :src="`@/assets/${this.gig.category}.png`" alt>
+        <img :src="`@/assets/${this.gig.category}.jpg`" alt>
       </div>
     </div>
     <div>

@@ -23,12 +23,12 @@
         .notification-circle {
           width: 15px;
           height: 15px;
-          background-color: #2ca2af;
+          background-color: #8b0d57;
           position: absolute;
           top: -45%;
           right: 37%;
           border-radius: 50%;
-          box-shadow: 0px 0px 17px 2px #2ca2af59;
+          box-shadow: 0px 0px 17px 2px #63073c;
           animation-name: blink;
           animation-duration: 1.3s;
           animation-iteration-count: 1;
@@ -50,7 +50,7 @@
       }
     }
     &.router-link-exact-active {
-      color: #2ca2af;
+      color: #8b0d57;
     }
   }
   .dropdown-btn-cls {
