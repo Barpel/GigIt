@@ -12,6 +12,7 @@
     </ul>
     <ul class="pending-gigs">
       <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
+         <!-- <giger-review @reviewSumbitted="sumbitReview"></giger-review> -->
       <!-- <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion> -->
     </ul>
     <ul class="completed-gigs">
@@ -22,6 +23,7 @@
         v-if="completedGig.pendingUsers.length"
       >
         <gig-accordion :gigsters="completedGig.pendingUsers" :header="completedGig.details.title"></gig-accordion>
+     
       </div>
     </ul>
   </section>
@@ -30,6 +32,7 @@
 <script>
 import gigAccordion from '../components/utils/gigAccordion.cmp'
 import pendingGig from '../components/utils/pendingGig.cmp'
+import gigerReview from '../components/gigerReview.cmp'
 export default {
     data() {
         return {
@@ -97,12 +100,17 @@ export default {
                 })
             })
             console.log('pending gigs:', this.gigs.pendingGigs)
+            },
+            sumbitReview(review){
+                console.log('weiowqjeowiq')
+                console.log(review)
             }
         },
         
         components: {
             gigAccordion,
-            pendingGig
+            pendingGig,
+            gigerReview
         }
     
 
