@@ -79,7 +79,43 @@ export default {
           pending: [],
           completed: []
         },
-        reviews: [],
+        reviews: {
+          totalAverage: 5,
+          publishedAverage: 5,
+          published: [{
+                gigId: '0',
+                title: 'New User',
+                givenBy: {
+                    name: 'GigIt Team',
+                    img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
+                },
+                createdAt: 1543412028131,
+                review: {
+                    text: 'A newly added Gigster, be the first to review him!',
+                    payment: 5,
+                    reliable: 5,
+                    overall: 5,
+                    average: 5
+                }
+            }],
+          completedAverage: 5,
+          completed:[{
+                gigId: '0',
+                title: 'New User',
+                givenBy: {
+                    name: 'GigIt Team',
+                    img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
+                },
+                createdAt: 1543412028131,
+                review: {
+                    text: 'A newly added Gigster, be the first to review him!',
+                    work: 5,
+                    reliable: 5,
+                    overall: 5,
+                    average: 5
+                }
+            }]
+        },
         chatIds:[]
       },
       skillopts: [

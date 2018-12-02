@@ -37,9 +37,10 @@ function remove(gigId) {
 }
 
 function update(gig) {
+    console.log('updating gig:', gig.pendingUsers)
     if (gig._id) {
         console.log('gigService is updating:',gig)
-        return axios.put(`${BASE_URL}/${gig._id}`, user).then(res => res.data)
+        return axios.put(`${BASE_URL}/${gig._id}`, gig).then(res => res.data)
     }
     else {
         return axios.post(`${BASE_URL}`, gig).then(res => res.data)
