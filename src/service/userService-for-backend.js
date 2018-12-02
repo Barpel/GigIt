@@ -6,23 +6,24 @@ const BASE_URL = 'http://localhost:3001/api';
 
 export default {
     query,
-    getUserById,
+    getById,
     getLoggedUser,
     loginUser,
     logout,
-    saveUser,
-    deleteUser
+    update,
+    remove,
+    update
 }
 
 function query() {
     return axios.get(`${BASE_URL}/user`).then(res => res.data)
 }
 
-function getUserById(userId) {
+function getById(userId) {
     return axios.get(`${BASE_URL}/user/${userId}`).then(res => res.data)
 }
 
-function saveUser(user) {
+function update(user) {
     if (user._id) {
         return axios.put(`${BASE_URL}/user/${user._id}`, user).then(res => res.data)
     }
@@ -36,12 +37,16 @@ function getLoggedUser() {
     else return Promise.resolve(null)
 }
 
-function deleteUser(userId) {
+function remove(userId) {
     return axios.delete(`${BASE_URL}/user/${userId}`).then(res => res.data)
 }
 function loginUser(userCreds) {
     return axios.post(`${BASE_URL}/user/login`, userCreds)
-        .then(res => res.data)
+        .then(res => {
+            var user = res.data
+            console.log(user)
+            storageService._toStorage('loggedUser', user)
+        })
 }
 
 function logout() {

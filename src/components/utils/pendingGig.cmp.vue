@@ -10,7 +10,7 @@
       <h1>Pending Gigs:</h1>
     </div>
     <div class="pending-gigs" v-for="(gig, idx) in gigs" :key="idx" v-if="isOpen">
-      <h2 @click="goToGig(gig.id)">{{gig.details.title}}</h2>
+      <h2 @click="goToGig(gig._id)">{{gig.details.title}}</h2>
       <button>
         Cancel
         <span>Gig</span>

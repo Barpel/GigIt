@@ -36,7 +36,7 @@ function saveUser(user) {
 }
 
 function getUserById(userId) {
-    var user = demoUsers.find(user => user.id === userId)
+    var user = demoUsers.find(user => user._id === userId)
     return Promise.resolve(user)
     // return axios.get(`${BASE_URL}/${userId}`).then(res => res.data)
 }
@@ -52,14 +52,14 @@ function loginUser(userCreds) {
         //     return user
         // })
     var user = demoUsers.find(user => (user.username === userCreds.username && user.password === userCreds.password))
-    storageService._toStorage('loggedUser', user)
+    
     if(!user) return Promise.reject()
     return Promise.resolve(user)
 }
 
 function updateUser(user) {
     // return axios.put...
-    var userIdx = demoUsers.findIndex(currUser => user.id === currUser.id)
+    var userIdx = demoUsers.findIndex(currUser => user._id === currUser._id)
     demoUsers.splice(userIdx, 1, user)
     return Promise.resolve(user)    
 }
