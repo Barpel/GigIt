@@ -1,4 +1,5 @@
-import userService from '../service/userService.js'
+// import userService from '../service/userService.js'
+import userService from '../service/userService-for-backend.js'
 export default {
     state: {
         loggedUser: null,
@@ -31,14 +32,19 @@ export default {
                     if (user) context.commit({type: 'setLoggedUser', user})
                 })    
         },
+        getAllUsers(context) {
+            return userService.query()
+                .then((users) => console.log(users))
+        },
         getUserById({ commit }, { userId }) {
-            return userService.getUserById(userId)
+            return userService.getById(userId)
                 .then(user => {  
                     return user
                 })
         },
         updateUser(context, {user}) {
-            userService.updateUser(user)
+            console.log('user store got this user:', user)
+            userService.update(user)
                 .then(context.commit({type:'setLoggedUser', user}))
         },
         onLogin(context, {userCreds}) {
@@ -48,14 +54,14 @@ export default {
         isGigOwner(context, {publisherId}) {
             return userService.getLoggedUser()
                 .then(loggedUser => {
-                    if(loggedUser.id === publisherId) return true
+                    if(loggedUser._id === publisherId) return true
                     else return false
                 })
         },
         checkIsProfileOwner(context, {userId}) {
             return userService.getLoggedUser()
                 .then(loggedUser => {
-                    if(loggedUser.id === userId) return true
+                    if(loggedUser._id === userId) return true
                     else return false
                 })
         },

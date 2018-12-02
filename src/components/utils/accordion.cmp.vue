@@ -2,7 +2,7 @@
   <collapse :selected="false">
     <div slot="collapse-header" class="collapse-head">{{header}}</div>
     <div slot="collapse-body">
-      <div v-for="gigster in gigsters" :key="gigster.id" class="gigster-container">
+      <div v-for="gigster in gigsters" :key="gigster._id" class="gigster-container">
         <img :src="gigster.img">
         <h2>{{gigster.name}} wants to be your Gigster!</h2>
         <div>

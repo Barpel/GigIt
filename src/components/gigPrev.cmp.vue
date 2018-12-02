@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li v-if="gig.details">
     <div :class="classByCategory" class="gig-image"></div>
     <div>
       <div class="publisher-container">

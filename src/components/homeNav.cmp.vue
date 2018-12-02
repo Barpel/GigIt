@@ -85,16 +85,16 @@ export default {
       else return "Login";
     },
     profileLink() {
-      return `/user/${this.user.id}`;
+      return `/user/${this.user._id}`;
     },
     myGigsLink() {
-      return `/user/${this.user.id}/gigs`;
+      return `/user/${this.user._id}/gigs`;
     },
     completedGigsLink() {
-      return `/user/${this.user.id}/completed`;
+      return `/user/${this.user._id}/completed`;
     },
     inboxLink() {
-      return `/user/${this.user.id}/inbox`;
+      return `/user/${this.user._id}/inbox`;
     },
     dropdownClass() {
         if(this.isUserDropdown) return 'open'

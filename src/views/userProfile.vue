@@ -84,7 +84,7 @@ export default {
       return stars;
     },
     myGigsLink() {
-      return `/user/${this.$store.getters.user.id}/gigs`;
+      return `/user/${this.$store.getters.user._id}/gigs`;
     }
   },
   methods: {

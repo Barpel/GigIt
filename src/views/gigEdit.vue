@@ -122,7 +122,7 @@ export default {
             return this.$store.getters.user
         },
         isAdd() {
-            if(this.gig.id) return 'Edit'
+            if(this.gig._id) return 'Edit'
             else return 'Add'
         },
         currTime() {
@@ -142,8 +142,10 @@ export default {
         save() {
           var gig = this.gig
           gig.createdAt = Date.now()
-          gig.publisherId = this.user.id
-          this.$store.dispatch({type:'updateGig', gig})
+          gig.publisherId = this.user._id
+          var userGigsListToUpdate = (gig._id)? null : this.user.gigsIds.published 
+          this.$store.dispatch({type:'updateGig', gig, userGigsListToUpdate})
+          this.$router.push('/')
         }
     },
     created() {
@@ -154,8 +156,6 @@ export default {
                     if(gig) this.gig = gig
                 })
         }
-        // console.log(gigId)
-        
     }
 }
 </script>

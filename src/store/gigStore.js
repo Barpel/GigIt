@@ -13,6 +13,9 @@ export default {
         },
         isLoading(state) {
             return state.isLoading
+        },
+        loggedUser(state, getters) {
+            return getters.user
         }
     },
     mutations: {
@@ -20,7 +23,7 @@ export default {
             state.gigs = gigs
         },
         updateGig(state, { gig }) {
-            var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
+            var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
             state.gigs.splice(gigIdx,1, gig)
         },
         toggleLoading(state, payload) {
@@ -44,14 +47,19 @@ export default {
                     return gig
                 })
         },
-        updateGig(context, {gig}) {
+        removeGig(context, {gigId}) {
+            return gigService.remove(gigId)
+        },
+        updateGig(context, {gig, userGigsListToUpdate}) {
             // context.commit({ type: 'toggleLoading' })
             return gigService.update(gig)
             // .then(gig => context.commit({type: 'updateGig'}, gig))
                 .then(gig => {
                     // context.commit({ type: 'toggleLoading' })
-                    console.log('returned data from server:', gig)
-                    context.commit({type: 'updateUserGigs'}, gig)
+                    console.log('returned data from server:', gig, 'update:', userGigsListToUpdate)
+                    userGigsListToUpdate.push(gig._id)
+                    console.log('this user is logged',context.getters.loggedUser)
+                    context.dispatch({type: 'updateUser', user: context.getters.loggedUser},)
                     return context.dispatch({type: 'getGigs'}, gig)
                 })
         }

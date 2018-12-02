@@ -11,7 +11,7 @@
         <h1>{{header}}</h1>
       </div>
       <li v-for="(gigster, index) in gigsters" :key="index" class="gigster-container" v-if="isOpen">
-        <img :src="gigster.img" @click="goToProfile(gigster.id)">
+        <img :src="gigster.img" @click="goToProfile(gigster._id)">
         <h2>{{gigster.name}} wants to be your Gigster!</h2>
         <h3 class="pending-user-rating-container">
           <span>Rating:</span>
