@@ -38,6 +38,7 @@ export default {
                 })
         },
         updateUser(context, {user}) {
+            console.log('user store got this user:', user)
             userService.updateUser(user)
                 .then(context.commit({type:'setLoggedUser', user}))
         },

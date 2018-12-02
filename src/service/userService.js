@@ -83,7 +83,7 @@ var demoUsers = [
         "skills": ["testing", "trying", "QAing"],
         "age": 24,
         "gigsIds": {
-            "published": ["1", "2", "3", "6"],
+            "published": [],
             "pending": [],
             "completed": []
         },
