@@ -100,11 +100,11 @@ export default {
       this.gig.isRead = false;
       this.gig.pendingUsers.push({
         name: currUser.name.first,
-        id: currUser.id,
+        id: currUser._id,
         img: currUser.img,
         completedReviewsAverage: currUser.reviews.completedAverage
       }),
-        this.user.gigsIds.pending.push(this.gig.id);
+        this.user.gigsIds.pending.push(this.gig._id);
       this.$store.dispatch({ type: "updateUser", user: this.user });
       this.$store.dispatch({ type: "updateGig", gig: this.gig });
     },
@@ -123,7 +123,7 @@ export default {
           this.$store.dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
             .then(isOwner => (this.isGigOwner = isOwner));
           if(this.isLoggedin) {
-            var matchingGig = this.user.gigsIds.pending.find(gigId => gigId === gig.id)
+            var matchingGig = this.user.gigsIds.pending.find(gigId => gigId === gig._id)
             if(matchingGig) this.isAlreadyPending = true;
           }
       });

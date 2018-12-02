@@ -19,6 +19,7 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "checkLoggedUser" });
+    this.$store.dispatch({type:'getAllUsers'})
     bus.$on(USR_MSG_DISPLAY, msg => {
       this.msg = msg;
       this.showMsg = true;
@@ -40,7 +41,7 @@ export default {
     isLoading() {
       return this.$store.getters.isLoading
     }
-  }
+  },
 };
 </script>
 

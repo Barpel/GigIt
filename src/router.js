@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home.vue'
 import login from './views/login.vue'
+import register from './views/register.vue'
 import gig from './views/gig.vue'
 import gigEdit from './views/gigEdit.vue'
 import gigDetails from './views/gigDetails.vue'
@@ -43,6 +44,11 @@ export default new Router({
       path: '/user/login',
       name: 'login',
       component: login,
+    },
+    {
+      path: '/user/register',
+      name: 'register',
+      component: register,
     },
     {
       path: '/user/:userId/gigs',

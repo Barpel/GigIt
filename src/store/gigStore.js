@@ -23,7 +23,7 @@ export default {
             state.gigs = gigs
         },
         updateGig(state, { gig }) {
-            var gigIdx = state.gigs.findIndex(currGig => currGig.id === gig.id)
+            var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
             state.gigs.splice(gigIdx,1, gig)
         },
         toggleLoading(state, payload) {
