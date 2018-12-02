@@ -2,13 +2,14 @@
 
 <template>
   <section class="gig-details" v-if="gig && publisher">
+    <div class="top-nav">
+      <h6 @click="goBack">
+        <i class="fas fa-arrow-left"></i>
+        Back
+      </h6>
+    </div>
     <div class="top-detail-container">
       <div class="top-detail-title">
-        <h6 @click="goBack">
-          <i class="fas fa-arrow-left"></i>
-          Back
-        </h6>
-        <br>
         <h5>{{gig.details.title}}</h5>
         <p>{{gig.details.desc}}</p>
         <p>location: {{gig.details.pos.dist}}</p>
@@ -16,26 +17,29 @@
       </div>
       <div class="avatar-img-container">
         <img :src="publisher.img" alt @click="goToProfile(gig.publisherId)">
-        <h5> {{publisher.name.first + ' ' + publisher.name.last}} </h5>
+        <h5>{{publisher.name.first + ' ' + publisher.name.last}}</h5>
         <button v-if="isGigOwner" @click="editGig" class="gigit-btn">
           <h1>Edit</h1>
         </button>
       </div>
-    </div>
-    <div class="mid-details-container">
+      <div class="category-img-container">
+        <h5>{{this.gig.category}}</h5>
+      </div>
       <div class="gigit-detail-container">
-        <p>Earn {{this.gig.details.price}} for this Gig</p>
+        <p>Earn {{this.gig.details.price}}₪ for this Gig</p>
         <button v-if="!isGigOwner" @click="requestGig" class="gigit-btn">
           <h1>
-            <span v-if="!isAlreadyPending">Gig<span>It</span></span>
+            <span v-if="!isAlreadyPending">
+              Gig
+              <span>It</span>
+            </span>
             <span v-else>Pending</span>
           </h1>
         </button>
       </div>
-      <div class="category-img-container">
-        <h5>{{this.gig.category}}</h5>
-        <img :src="`@/assets/${this.gig.category}.jpg`" alt>
-      </div>
+    </div>
+    <div class="mid-details-container">
+      
     </div>
     <div>
       <div class="details-container-nav"></div>
@@ -97,19 +101,23 @@ export default {
         this.$router.push("/gig");
       }, 20);
       bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
-      var currUser = this.user
+      var currUser = this.user;
       this.gig.isRead = false;
       this.gig.pendingUsers.push({
         name: currUser.name.first,
         id: currUser._id,
         img: currUser.img,
         completedReviewsAverage: currUser.reviews.completedAverage
-      })
-      var userGigsListToUpdate = this.user.gigsIds.pending
+      });
+      var userGigsListToUpdate = this.user.gigsIds.pending;
 
-        // this.user.gigsIds.pending.push(this.gig._id);
+      // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store.dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate });
+      this.$store.dispatch({
+        type: "updateGig",
+        gig: this.gig,
+        userGigsListToUpdate
+      });
     },
     editGig() {
       console.log("edit");
@@ -120,19 +128,24 @@ export default {
   },
   created() {
     var gigId = this.$route.params.gigId;
-    this.$store.dispatch({ type: "getGigById", gigId })
-      .then(gig => {
-          this.gig = gig;
-          this.$store.dispatch({type: 'getUserById',userId: gig.publisherId}) //DELETE WHEN AGGREGATION WORKS
-              .then(publisher => this.publisher = publisher) //DELETE WHEN AGGREGATION WORKS
-          this.$store.dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
-            .then(isOwner => (this.isGigOwner = isOwner));
-          if(this.isLoggedin) {
-            var matchingGig = this.user.gigsIds.pending.find(gigId => gigId === gig._id)
-            if(matchingGig) this.isAlreadyPending = true;
-          }
-      });
-    
+    this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
+      this.gig = gig;
+      this.$store
+        .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
+        .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
+      this.$store
+        .dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
+        .then(isOwner => (this.isGigOwner = isOwner));
+      if (this.isLoggedin) {
+        var matchingGig = this.user.gigsIds.pending.find(
+          gigId => gigId === gig._id
+        );
+        if (matchingGig) this.isAlreadyPending = true;
+      }
+    });
+  },
+  mounted() {
+    console.log(this.gig);  
   }
 };
 </script>
