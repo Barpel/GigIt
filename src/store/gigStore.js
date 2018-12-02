@@ -35,6 +35,7 @@ export default {
             // context.commit({ type: 'toggleLoading' })
             gigService.query(category)
                 .then(gigs => {
+                    // console.log('those are all the gigs:', gigs)
                     context.commit({ type: 'setGigs', gigs })
                     // context.commit({ type: 'toggleLoading' })
                 })
@@ -55,6 +56,7 @@ export default {
             return gigService.update(gig)
             // .then(gig => context.commit({type: 'updateGig'}, gig))
                 .then(gig => {
+                    console.log('im in update gig')
                     // context.commit({ type: 'toggleLoading' })
                     console.log('returned data from server:', gig, 'update:', userGigsListToUpdate)
                     userGigsListToUpdate.push(gig._id)

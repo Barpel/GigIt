@@ -50,8 +50,8 @@ function loginUser(userCreds) {
 }
 
 function logout() {
-    // storageService._toStorage('loggedUser', null)
-    // return Promise.resolve()
+    storageService._toStorage('loggedUser', null)
+    return Promise.resolve()
     //TODO: backend and front end logout
 }
 

@@ -54,6 +54,9 @@ export default {
         isGigOwner(context, {publisherId}) {
             return userService.getLoggedUser()
                 .then(loggedUser => {
+                    console.log('publisher:',publisherId)
+                    console.log('logged:',loggedUser._id)
+
                     if(loggedUser._id === publisherId) return true
                     else return false
                 })
