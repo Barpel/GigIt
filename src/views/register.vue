@@ -161,7 +161,11 @@ export default {
           return
         }
         this.$store.dispatch({type:'register', user:this.user})
-        this.$router.push('/')
+          .then(() =>this.$router.push('/'))
+          .catch(err => {
+            if(err.response.status === 401) this.$message.error('Username taken!');
+          })
+        
       }
   }
 };
