@@ -52,6 +52,7 @@
           <el-input-number
             v-model="gig.details.price"
             :step="10"
+            :min="0"
             size="small"
             @focus="toggleTip"
             @blur="toggleTip"
@@ -141,6 +142,11 @@ export default {
         },
         save() {
           var gig = this.gig
+          var details = gig.details
+          if(!gig.category || !details.title || !details.price || !details.desc) {
+            alert('please fill out all fields')
+            return
+          }
           gig.createdAt = Date.now()
           gig.publisherId = this.user._id
           var userGigsListToUpdate = (gig._id)? null : this.user.gigsIds.published 

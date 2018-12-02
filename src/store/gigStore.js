@@ -40,6 +40,12 @@ export default {
                     // context.commit({ type: 'toggleLoading' })
                 })
         },
+        filterByKey(context, { filter }){
+            gigService.query(filter)
+            .then(gigs => {
+                context.commit({type:'setGigs', gigs})
+            })
+        },
         getGigById(context, { gigId }) {
             // context.commit({ type: 'toggleLoading' })
             return gigService.getById(gigId)
