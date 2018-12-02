@@ -158,6 +158,7 @@ export default {
         }
     },
     created() {
+      console.log('herehere!')
         var gigId = this.$route.params.gigId
         if(gigId) {
             this.$store.dispatch({type:'getGigById', gigId})
