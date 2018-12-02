@@ -27,7 +27,7 @@ export default new Router({
       component: gig
     },
     {
-      path: '/gig/category/:type',
+      path: '/gig/:type',
       name: 'gigsCategories',
       component: gig
     },

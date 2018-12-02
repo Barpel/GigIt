@@ -1,35 +1,35 @@
 <template>
   <section class="gig-categories-container">
     <div class="category moving">
-      <router-link to="/gig/category/moving">
+      <router-link to="/gig/moving">
         <i class="fas fa-people-carry"></i>
         <h1>Moving</h1>
       </router-link>
     </div>
 
     <div class="category house-work">
-      <router-link to="/gig/category/house-work">
+      <router-link to="/gig/house-work">
         <i class="fas fa-hammer"></i>
         <h1>House-Work</h1>
       </router-link>
     </div>
 
     <div class="category delivery">
-      <router-link @click="searchGig('delivery')" to="/gig">
+      <router-link  to="/gig/delivery">
         <i class="fas fa-parachute-box"></i>
         <h1>Delivery</h1>
       </router-link>
     </div>
 
     <div class="category pet-care">
-      <router-link @click="searchGig('pet-care')" to="/gig">
+      <router-link to="/gig/pet-care">
         <i class="fas fa-dog"></i>
         <h1>Pet-Care</h1>
       </router-link>
     </div>
 
     <div class="category line-queue">
-      <router-link  to="/gig/category/line-queue">
+      <router-link  to="/gig/line-queue">
         <i class="fas fa-male"></i>
         <i class="fas fa-female"></i>
         <i class="fas fa-male"></i>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="category other">
-      <router-link to="/gig/category/other">
+      <router-link to="/gig/other">
         <i class="fas fa-ellipsis-h"></i>
         <h1>Other</h1>
       </router-link>
@@ -53,14 +53,6 @@ created() {
 
 },
 methods:{
-          searchGig(delivery){
-          var category = ev.target.innerHTML.toLowerCase()
-          this.filter.byCategory = category
-          this.$emit('searchGig',  delivery)
-        },
-        searchByTitle(){
-          this.$emit('searchGig', this.filter)
-        }
 }
 
 }
