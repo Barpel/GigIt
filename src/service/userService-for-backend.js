@@ -10,15 +10,8 @@ export default {
     getLoggedUser,
     loginUser,
     logout,
-<<<<<<< HEAD
-    saveUser,
-    deleteUser,
-    getLoggedUser
-=======
-    update,
     remove,
     update
->>>>>>> 7e25392da4694ce91669536c7e1028db38c1f90d
 }
 
 function query() {
@@ -30,20 +23,7 @@ function getById(userId) {
     return axios.get(`${BASE_URL}/user/${userId}`).then(res => res.data)
 }
 
-<<<<<<< HEAD
-function getLoggedUser() {
-    // var user = axios.get(`${BASE_URL}/`)
-    //     .then(res => ({
-            
-    //     }))
-    //     if (user) return Promise.resolve(user)
-    //     else return Promise.resolve(null)
-    }
-
-function saveUser(user) {
-=======
 function update(user) {
->>>>>>> 7e25392da4694ce91669536c7e1028db38c1f90d
     if (user._id) {
         return axios.put(`${BASE_URL}/user/${user._id}`, user).then(res => res.data)
     }
