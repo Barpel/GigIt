@@ -1,12 +1,13 @@
 <template>
   <div class="home">
     <div class="cover-container">
-      <h1>
-        Gig<span>It</span>
+      <h1>Gig
+        <span>It</span>
       </h1>
       <div class="search-container">
         <router-link to="/gig/edit" tag="button">
-          <i class="fas fa-plus"></i><span>Gig</span>
+          <i class="fas fa-plus"></i>
+          <span>Gig</span>
         </router-link>
         <input type="text" placeholder="Find your type of Gig">
         <button>Search</button>
@@ -26,10 +27,18 @@ import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
 export default {
   name: "home",
+  data() {
+    return {
+      coverCounter: 0
+    };
+  },
   computed: {
     gigs() {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
+    },
+    counter() {
+      return this.coverCounter
     }
   },
   methods: {
@@ -44,6 +53,12 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "getGigs" });
+  },
+  mounted() {
+  //   setInterval(() => {
+  //     this.coverCounter === 5 ? (this.coverCounter = 0) : this.coverCounter++
+  //     // console.log("interval");
+  //   }, 5000);
   }
 };
 </script>
