@@ -8,6 +8,7 @@ import gigEdit from './views/gigEdit.vue'
 import gigDetails from './views/gigDetails.vue'
 import userGigs from './views/userGigs.vue'
 import userProfile from './views/userProfile.vue'
+import inbox from './views/inbox.vue'
 
 Vue.use(Router)
 
@@ -60,7 +61,11 @@ export default new Router({
       name: 'userProfile',
       component: userProfile,
     },
-    
+    {
+      path: '/user/:userId/inbox',
+      name: 'inbox',
+      component: inbox,
+    },
     {
       path: '/about',
       name: 'about',

@@ -5,13 +5,11 @@
       <div
         v-for="publishedGig in gigs.publishedGigs"
         :key="publishedGig._id"
-        v-if="publishedGig.pendingUsers.length"
-      >
+        v-if="publishedGig.pendingUsers">
         <gig-accordion
           @gigAccepted="pickGiger"
           :gigsters="publishedGig.pendingUsers"
-          :header="publishedGig.details.title"
-        ></gig-accordion>
+          :header="publishedGig.details.title"></gig-accordion>
       </div>
     </ul>
     <ul class="pending-gigs">
@@ -56,7 +54,6 @@ export default {
     },
     PublishGigs() {
       if (pickGigster.isPicked) {
-        console.log("hey");
         return pickGigster;
       }
       return publishedGigs;
@@ -68,7 +65,7 @@ export default {
       this.isPicked = !this.isPicked;
       this.pickGigster.gigster.push(gigster);
       // this.gig.pendingGigs.splice
-      console.log(index);
+      // console.log(index);
     },
     getUserGigs() {
       var userGigIds = { ...this.user.gigsIds };
@@ -100,8 +97,7 @@ export default {
       });
     },
     sumbitReview(review) {
-      console.log("weiowqjeowiq");
-      console.log(review);
+      // console.log(review);
     }
   },
   created() {

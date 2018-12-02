@@ -35,7 +35,6 @@ export default {
     },
     methods:{
         sumbitReview(){
-            console.log('sdsd')
             this.$emit('reviewSumbitted' ,this.review)
         }
     }

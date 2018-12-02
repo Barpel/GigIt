@@ -11,7 +11,7 @@
       <div>
         <span>{{totalAverageStars}}</span>
       </div>
-      <ul>
+      <ul v-if="user.reviews.completed || user.reviews.published">
         <li>
           <span>Gigs Completed:</span>
           {{user.reviews.completed.length}}

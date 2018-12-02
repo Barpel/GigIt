@@ -12,7 +12,6 @@ export default {
     }
   },
   created() {
-    console.log('about is up')
   },
   components: {
   }

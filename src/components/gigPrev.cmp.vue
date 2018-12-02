@@ -1,11 +1,11 @@
 <template>
-  <li v-if="gig.details">
+  <li v-if="gig.details && publisher">
     <div :class="classByCategory" class="gig-image"></div>
     <div>
       <div class="publisher-container">
-        <img src="http://www.dalton-winery.com/wp-content/uploads/2017/03/GUY.jpg">
+        <img :src="publisher.img">
         <div class="publisher-info">
-          <h3>Jacob Ben-Lulu</h3>
+          <h3> {{publisher.name.first + ' ' + publisher.name.last}} </h3>
           <h3>
             <i class="fas fa-star"></i>
             &nbsp;
@@ -36,7 +36,12 @@
 export default {
     props: {
         gig: Object,
-        publisher: Object,
+        // publisher: Object,
+    },
+    data() {
+      return {
+        publisher: null
+      }
     },
     computed: {
         classByCategory() {
@@ -50,6 +55,10 @@ export default {
             }
         }
     },
+    created() {
+      this.$store.dispatch({type: 'getUserById',userId: this.gig.publisherId})
+        .then(publisher => this.publisher = publisher)
+    }
 }
 </script>
 

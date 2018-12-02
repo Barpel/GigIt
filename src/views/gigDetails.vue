@@ -1,7 +1,7 @@
 
 
 <template>
-  <section class="gig-details" v-if="gig">
+  <section class="gig-details" v-if="gig && publisher">
     <div class="top-detail-container">
       <div class="top-detail-title">
         <h6 @click="goBack">
@@ -15,8 +15,8 @@
         <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
       </div>
       <div class="avatar-img-container">
-        <img src="../assets/racheli.png" alt @click="goToProfile(gig.publisherId)">
-        <h5>Rachel Bahabua</h5>
+        <img :src="publisher.img" alt @click="goToProfile(gig.publisherId)">
+        <h5> {{publisher.name.first + ' ' + publisher.name.last}} </h5>
         <button v-if="isGigOwner" @click="editGig" class="gigit-btn">
           <h1>Edit</h1>
         </button>
@@ -76,6 +76,7 @@ export default {
       gig: null,
       isGigOwner: true,
       isAlreadyPending: false,
+      publisher: null
     };
   },
   computed: {
@@ -103,10 +104,12 @@ export default {
         id: currUser._id,
         img: currUser.img,
         completedReviewsAverage: currUser.reviews.completedAverage
-      }),
-        this.user.gigsIds.pending.push(this.gig._id);
-      this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store.dispatch({ type: "updateGig", gig: this.gig });
+      })
+      var userGigsListToUpdate = this.user.gigsIds.pending
+
+        // this.user.gigsIds.pending.push(this.gig._id);
+      // this.$store.dispatch({ type: "updateUser", user: this.user });
+      this.$store.dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate });
     },
     editGig() {
       console.log("edit");
@@ -120,6 +123,8 @@ export default {
     this.$store.dispatch({ type: "getGigById", gigId })
       .then(gig => {
           this.gig = gig;
+          this.$store.dispatch({type: 'getUserById',userId: gig.publisherId}) //DELETE WHEN AGGREGATION WORKS
+              .then(publisher => this.publisher = publisher) //DELETE WHEN AGGREGATION WORKS
           this.$store.dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
             .then(isOwner => (this.isGigOwner = isOwner));
           if(this.isLoggedin) {

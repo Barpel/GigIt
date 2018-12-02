@@ -75,6 +75,7 @@ export default {
     justify-content: flex-start;
     cursor: pointer;
     h1 {
+      text-transform: capitalize;
       display: initial;
       padding: 10px 15px;
       text-align: left;
