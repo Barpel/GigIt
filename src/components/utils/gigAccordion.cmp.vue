@@ -26,7 +26,7 @@
           <button class="later">Later</button>
         </div>
         <div v-else class="gigster-btn-container-after">
-          <button  class="gigit">
+          <button class="gigit">
             Contact
           </button>
           <button @click="gigCancel" class="later">Cancel</button>

@@ -15,21 +15,21 @@
     </div>
 
     <div class="category delivery">
-      <router-link to="/gig/category/delivery">
+      <router-link @click="searchGig('delivery')" to="/gig">
         <i class="fas fa-parachute-box"></i>
         <h1>Delivery</h1>
       </router-link>
     </div>
 
     <div class="category pet-care">
-      <router-link to="/gig/category/pet-care">
+      <router-link @click="searchGig('pet-care')" to="/gig">
         <i class="fas fa-dog"></i>
         <h1>Pet-Care</h1>
       </router-link>
     </div>
 
     <div class="category line-queue">
-      <router-link to="/gig/category/line-queue">
+      <router-link  to="/gig/category/line-queue">
         <i class="fas fa-male"></i>
         <i class="fas fa-female"></i>
         <i class="fas fa-male"></i>
@@ -51,7 +51,18 @@ export default {
 name: 'gigCategories',
 created() {
 
+},
+methods:{
+          searchGig(delivery){
+          var category = ev.target.innerHTML.toLowerCase()
+          this.filter.byCategory = category
+          this.$emit('searchGig',  delivery)
+        },
+        searchByTitle(){
+          this.$emit('searchGig', this.filter)
+        }
 }
+
 }
 </script>
 <style lang="scss" scoped>
