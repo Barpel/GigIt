@@ -69,7 +69,6 @@ export default {
         register(context, {user}) {
             return userService.add(user)
                 .then(user => {
-                    console.log(user)
                     context.commit({type:'setLoggedUser', user})
                 })
         }

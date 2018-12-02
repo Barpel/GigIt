@@ -27,14 +27,14 @@ export default new Router({
       component: gig
     },
     {
-      path: '/gig/:type',
-      name: 'gigsCategories',
-      component: gig
-    },
-    {
       path: '/gig/edit/:gigId?',
       name: 'gigEdit',
       component: gigEdit
+    },
+    {
+      path: '/gig/category/:type',
+      name: 'gigsCategories',
+      component: gig
     },
     {
       path: '/gig/:gigId',
@@ -57,15 +57,16 @@ export default new Router({
       component: userGigs,
     },
     {
-      path: '/user/:userId',
-      name: 'userProfile',
-      component: userProfile,
-    },
-    {
       path: '/user/:userId/inbox',
       name: 'inbox',
       component: inbox,
     },
+    {
+      path: '/user/:userId',
+      name: 'userProfile',
+      component: userProfile,
+    },
+    
     {
       path: '/about',
       name: 'about',

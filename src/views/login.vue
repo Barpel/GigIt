@@ -26,7 +26,9 @@ export default {
       login() {
           this.$store.dispatch({type: 'onLogin', userCreds: this.creds})
             .then(() =>this.$router.push('/'))
-            .catch(() => alert('wrong username or password'))
+            .catch((err) => {
+              if(err.response.status === 400) this.$message.error('Wrong username or password');
+            })
       }
   },
   created() {
