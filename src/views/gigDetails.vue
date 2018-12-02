@@ -103,10 +103,12 @@ export default {
         id: currUser._id,
         img: currUser.img,
         completedReviewsAverage: currUser.reviews.completedAverage
-      }),
-        this.user.gigsIds.pending.push(this.gig._id);
-      this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store.dispatch({ type: "updateGig", gig: this.gig });
+      })
+      var userGigsListToUpdate = this.user.gigsIds.pending
+
+        // this.user.gigsIds.pending.push(this.gig._id);
+      // this.$store.dispatch({ type: "updateUser", user: this.user });
+      this.$store.dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate });
     },
     editGig() {
       console.log("edit");

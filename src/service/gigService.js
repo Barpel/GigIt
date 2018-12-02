@@ -38,6 +38,7 @@ function remove(gigId) {
 
 function update(gig) {
     if (gig._id) {
+        console.log('gigService is updating:',gig)
         return axios.put(`${BASE_URL}/${gig._id}`, user).then(res => res.data)
     }
     else {

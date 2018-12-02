@@ -79,7 +79,8 @@ export default {
           pending: [],
           completed: []
         },
-        reviews: []
+        reviews: [],
+        chatIds:[]
       },
       skillopts: [
         {
@@ -115,7 +116,7 @@ export default {
   },
   methods: {
       register() {
-          console.log(this.user)
+        this.$store.dispatch({type:'register', user:this.user})
       }
   }
 };

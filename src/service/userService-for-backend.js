@@ -12,11 +12,19 @@ export default {
     logout,
     update,
     remove,
-    update
+    update,
+    add
 }
 
 function query() {
     return axios.get(`${BASE_URL}/user`).then(res => res.data)
+}
+function add(user) {
+    return axios.post(`${BASE_URL}/user`, user).then(res => {
+        var user = res.data
+        storageService._toStorage('loggedUser', user)
+        return user
+    })
 }
 
 function getById(userId) {
@@ -44,8 +52,8 @@ function loginUser(userCreds) {
     return axios.post(`${BASE_URL}/user/login`, userCreds)
         .then(res => {
             var user = res.data
-            console.log(user)
             storageService._toStorage('loggedUser', user)
+            return user
         })
 }
 

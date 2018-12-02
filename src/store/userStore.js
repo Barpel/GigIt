@@ -20,8 +20,6 @@ export default {
             else state.isLoggedin = false
         },
         updateUserGigs(state, {gig}) {
-            console.log('mutations gig', gig._id)
-            console.log('user published gigs', state.loggedUser.gigsIds.published)
             state.loggedUser.gigsIds.published.push(gig._id)
         },
     },
@@ -34,7 +32,7 @@ export default {
         },
         getAllUsers(context) {
             return userService.query()
-                .then((users) => console.log(users))
+                .then((users) => console.log('those are all the users:',users))
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
@@ -43,7 +41,6 @@ export default {
                 })
         },
         updateUser(context, {user}) {
-            console.log('user store got this user:', user)
             userService.update(user)
                 .then(context.commit({type:'setLoggedUser', user}))
         },
@@ -54,9 +51,6 @@ export default {
         isGigOwner(context, {publisherId}) {
             return userService.getLoggedUser()
                 .then(loggedUser => {
-                    console.log('publisher:',publisherId)
-                    console.log('logged:',loggedUser._id)
-
                     if(loggedUser._id === publisherId) return true
                     else return false
                 })
@@ -71,6 +65,13 @@ export default {
         doLogout({commit}) {
             return userService.logout()
                 .then(()=> commit({type:'setLoggedUser', user: null}))
+        },
+        register(context, {user}) {
+            return userService.add(user)
+                .then(user => {
+                    console.log(user)
+                    context.commit({type:'setLoggedUser', user})
+                })
         }
     },
 }
