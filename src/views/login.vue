@@ -8,6 +8,7 @@
     <br>
     <button type="submit" >Login</button>
     </form>
+    <h1>Not a Gigster yet? <router-link to="/user/register">Register</router-link></h1>
   </section>
 </template>
 
