@@ -143,7 +143,9 @@ export default {
           var gig = this.gig
           gig.createdAt = Date.now()
           gig.publisherId = this.user.id
-          this.$store.dispatch({type:'updateGig', gig})
+          var userGigsListToUpdate = (gig.id)? null : this.user.gigsIds.published 
+          this.$store.dispatch({type:'updateGig', gig, userGigsListToUpdate})
+          this.$router.push('/')
         }
     },
     created() {
@@ -154,8 +156,6 @@ export default {
                     if(gig) this.gig = gig
                 })
         }
-        // console.log(gigId)
-        
     }
 }
 </script>
