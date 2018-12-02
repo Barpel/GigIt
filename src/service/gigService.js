@@ -18,7 +18,7 @@ function query(filter = { byTitle: '', byCategory: '' }) {
     queryParams.append('byTitle', filter.byTitle)
     queryParams.set('byCategory', filter.byCategory)
     const REQ_URL = `${BASE_URL}?${queryParams}`
-    console.log('REQ_URL', REQ_URL);
+    // console.log('REQ_URL', REQ_URL);
     
     return axios.get(REQ_URL)
         .then(res => res.data)

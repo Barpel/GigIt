@@ -25,6 +25,8 @@ export default {
       }
     },
     created(){
+      this.filter.byCategory = this.$route.params.type
+       this.$emit('searchGig',  this.filter)
     },
     methods:{
         searchGig(ev){
