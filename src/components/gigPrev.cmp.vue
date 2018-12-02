@@ -23,7 +23,7 @@
         <p>{{gig.details.pos.dist}}</p>
       </div>
       <div class="lower-bar-container">
-        <p>{{gig.details.price}}</p>
+        <p>{{gig.details.price}}₪</p>
         <button>
           Gig<span>It</span>
         </button>
