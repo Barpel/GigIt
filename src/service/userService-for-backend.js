@@ -10,13 +10,13 @@ export default {
     getLoggedUser,
     loginUser,
     logout,
-    update,
     remove,
     update,
     add
 }
 
 function query() {
+    console.log('Hello from Service')
     return axios.get(`${BASE_URL}/user`).then(res => res.data)
 }
 function add(user) {

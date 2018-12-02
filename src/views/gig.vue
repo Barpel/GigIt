@@ -1,54 +1,52 @@
 <template>
   <section class="gig-container">
     <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
-      <h1>Gig<span>It</span></h1>
-      <h2>Looking for something specific? Find your own Gig using the filtering options</h2>
-      <hr>
+    <h1>Gig
+      <span>It</span>
+    </h1>
+    <h2>Looking for something specific? Find your own Gig using the filtering options</h2>
+    <hr>
     <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
   </section>
 </template>
 
 <script>
-import gigToolbar from '../components/gigToolbar'
-import gigList from '../components/gigList'
-
+import gigToolbar from "../components/gigToolbar";
+import gigList from "../components/gigList";
 
 export default {
-
-computed: {
+  computed: {
     gigs() {
-        return this.$store.getters.gigs
+      return this.$store.getters.gigs;
     }
-},
+  },
 
-methods: {
+  methods: {
     gigClicked(gigId) {
-        this.$router.push(`/gig/${gigId}`)
+      this.$router.push(`/gig/${gigId}`);
     },
-    gigsFilterBy(category){
-        this.$store.dispatch({type:'getGigs',category})
-        this.$router.push(`/gig/category/${category}`)
+    gigsFilterBy(category) {
+      this.$store.dispatch({ type: "getGigs", category });
+      this.$router.push(`/gig/category/${category}`);
     },
-    searchGigByKey(key){
-        this.$store.commit({type:'filterByKey',key})
+    searchGigByKey(filter) {
+      console.log('store',filter)
+      this.$store.dispatch({ type: "filterByKey", filter });
     }
-},
-created() {
-    if(this.$route.params.type){
-       var category = this.$route.params.type
-        this.$store.dispatch({type:'getGigs', category })
-    }
-   else this.$store.dispatch({type:'getGigs',})
-
-},
-components: {
+  },
+  created() {
+    if (this.$route.params.type) {
+      var category = this.$route.params.type;
+      this.$store.dispatch({ type: "getGigs", category });
+    } else this.$store.dispatch({ type: "getGigs" });
+  },
+  components: {
     gigList,
-    gigToolbar,
-}
-}
+    gigToolbar
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 

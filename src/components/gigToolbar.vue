@@ -1,32 +1,42 @@
 <template>
   <section class="gig-toolbar-container">
     <div class="gig-toolbar">
-      <button @click="showCategory">Moving</button>
-      <button @click="showCategory">House-Work</button>
-      <button @click="showCategory">Technical</button>
-      <button @click="showCategory">Line-Queue</button>
-      <button @click="showCategory">Pet-Care</button>
-      <button @click="showCategory">Other</button>
+      <button @click="searchGig">Moving</button>
+      <button @click="searchGig">House-Work</button>
+      <button @click="searchGig">Technical</button>
+      <button @click="searchGig">Line-Queue</button>
+      <button @click="searchGig">Pet-Care</button>
+      <button @click="searchGig">Other</button>
     </div>
     <div>
-      <!-- <input type="text" @input="searchGig" > -->
+      <input v-model="filter.byTitle" type="text" @input="searchByTitle" >
     </div>
   </section>
 </template>
 
 <script>
 export default {
+    data(){
+      return{
+        filter:{
+          byCategory: '',
+          byTitle:''
+        }
+      }
+    },
     created(){
+      this.filter.byCategory = this.$route.params.type
+       this.$emit('searchGig',  this.filter)
     },
     methods:{
-        showCategory(ev){
-            var category = ev.target.innerHTML.toLowerCase()
-            this.$emit('showCategory',category)
+        searchGig(ev){
+          var category = ev.target.innerHTML.toLowerCase()
+          this.filter.byCategory = category
+          this.$emit('searchGig',  this.filter)
         },
-        // searchGig(ev){
-        //   var keyForFilter = ev.target.value
-        //   this.$emit('searchGig', keyForFilter)
-        // }
+        searchByTitle(){
+          this.$emit('searchGig', this.filter)
+        }
     }
 
 }

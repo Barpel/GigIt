@@ -16,6 +16,7 @@
     font-weight: bold;
     color: white;
     cursor: pointer;
+    transition: all .3s;
     .profile-info-container{
       i {
         position: relative;
@@ -52,6 +53,9 @@
     &.router-link-exact-active {
       color: #8b0d57;
     }
+  }
+  a:hover:not(.router-link-exact-active) {
+    color: #f12a9ebd;
   }
   .dropdown-btn-cls {
     cursor: pointer;
