@@ -144,7 +144,10 @@ export default {
           var gig = this.gig
           var details = gig.details
           if(!gig.category || !details.title || !details.price || !details.desc) {
-            alert('please fill out all fields')
+            this.$message({
+              message: 'Please fill out all fields!',
+              type: 'warning'
+            });
             return
           }
           gig.createdAt = Date.now()
