@@ -13,20 +13,26 @@ export default {
     update
 }
 
-function query(filter = {}) {
-    return axios.get(BASE_URL)
-        .then(res => {
-            return res.data
-        })
-    // console.log('im herr!')
-    // var queryParams = new URLSearchParams();
-    // for (let key in filter) {
-    //     if (key === 'sort') continue;
-    //     queryParams.set(`${key}`, filter[key]);
-    // }
-    // // console.log('query params', queryParams.toString())
-    // return axios.get(`${BASE_URL}?${queryParams}`)
-    //     .then(res => res.data);
+function query(filter) {
+    if(!filter){
+        return axios.get(BASE_URL)
+            .then(res => {
+                console.log('No filter result', res.data)
+                return res.data
+            })
+    }
+    else{
+        var queryParams = new URLSearchParams();
+        for (let key in filter) {
+            if (key === 'sort') continue;
+            queryParams.set(`${key}`, filter[key]);
+        }
+        // console.log('query params', queryParams.toString())
+        return axios.get(`${BASE_URL}?${filter}`)
+            .then(res =>{
+                // console.log('with filter result',res.data, filter)
+                return res.data});
+    }
 }
 function getById(gigId) {
     return axios.get(`${BASE_URL}/${gigId}`)

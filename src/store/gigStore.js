@@ -32,7 +32,6 @@ export default {
     },
     actions: {
         getGigs(context, { category }) {
-            console.log('go bring my catagory')
             // context.commit({ type: 'toggleLoading' })
             gigService.query(category)
                 .then(gigs => {

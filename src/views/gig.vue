@@ -30,6 +30,7 @@ methods: {
         this.$router.push(`/gig/category/${category}`)
     },
     searchGigByKey(key){
+        console.log(key)
         this.$store.commit({type:'filterByKey',key})
     }
 },
