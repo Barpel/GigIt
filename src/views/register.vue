@@ -2,8 +2,8 @@
   <form class="registration-container" @submit.prevent="register">
     <h1>
       Register to
-      <span>
-        Gig<span>It</span>
+      <span>Gig
+        <span>It</span>
       </span>
     </h1>
     <div class="container1">
@@ -152,13 +152,25 @@ export default {
   },
   methods: {
       register() {
+        var user = this.user
+        if(!user.name.first || !user.username || !user.password ||!user.age ||!user.email ||!user.name.last ||!user.aboutMe) {
+          this.$message({
+              message: 'Please fill out all fields!',
+              type: 'warning'
+          })
+          return
+        }
         this.$store.dispatch({type:'register', user:this.user})
+          .then(() =>this.$router.push('/'))
+          .catch(err => {
+            if(err.response.status === 401) this.$message.error('Username taken!');
+          })
+        
       }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 
