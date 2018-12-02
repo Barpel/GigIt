@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:3001/api';
 
 
 export default {
@@ -9,16 +9,27 @@ export default {
     loginUser,
     logout,
     saveUser,
-    deleteUser
+    deleteUser,
+    getLoggedUser
 }
 
 function query() {
+    console.log('Hello from Service')
     return axios.get(`${BASE_URL}/user`).then(res => res.data)
 }
 
 function getUserById(userId) {
     return axios.get(`${BASE_URL}/user/${userId}`).then(res => res.data)
 }
+
+function getLoggedUser() {
+    // var user = axios.get(`${BASE_URL}/`)
+    //     .then(res => ({
+            
+    //     }))
+    //     if (user) return Promise.resolve(user)
+    //     else return Promise.resolve(null)
+    }
 
 function saveUser(user) {
     if (user._id) {

@@ -20,6 +20,7 @@ export default {
     },
     methods:{
         showCategory(ev){
+           console.log('go bring my catagory')
             var category = ev.target.innerHTML.toLowerCase()
             this.$emit('showCategory',category)
         },
