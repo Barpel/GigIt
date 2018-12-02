@@ -12,11 +12,24 @@
           :header="publishedGig.details.title"></gig-accordion>
       </div>
     </ul>
-    <ul class="pending-gigs">
-      <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
+    <ul class="pending-gigs" v-if="gigs.pendingGigs.length">
+      <h2>Pending Gigs:</h2>
+      <div
+        v-for="pendingGig in gigs.pendingGigs"
+        :key="pendingGig._id"
+        v-if="pendingGig.pendingUsers">
+        <gig-accordion
+          @gigAccepted="pickGiger"
+          :gigsters="pendingGig.pendingUsers"
+          :header="pendingGig.details.title"
+          ></gig-accordion>
+      </div>
+    </ul>
+    <!-- <ul class="pending-gigs"> -->
+      <!-- <pending-gig :gigs="gigs.pendingGigs"></pending-gig> -->
       <!-- <giger-review @reviewSumbitted="sumbitReview"></giger-review> -->
       <!-- <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion> -->
-    </ul>
+    <!-- </ul> -->
     <ul class="completed-gigs">
       <h2>Completed Gigs:</h2>
       <div
