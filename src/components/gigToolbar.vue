@@ -9,7 +9,7 @@
       <button @click="searchGig">Other</button>
     </div>
     <div>
-      <input v-model="filter.byTitle" type="text" @input="searchGig" >
+      <input v-model="filter.byTitle" type="text" @input="searchByTitle" >
     </div>
   </section>
 </template>
@@ -27,15 +27,13 @@ export default {
     created(){
     },
     methods:{
-        showCategory(ev){
-            var category = ev.target.innerHTML.toLowerCase()
-            this.$emit('showCategory',category)
-        },
         searchGig(ev){
           var category = ev.target.innerHTML.toLowerCase()
           this.filter.byCategory = category
-          this.filter.byCategory = category
           this.$emit('searchGig',  this.filter)
+        },
+        searchByTitle(){
+          this.$emit('searchGig', this.filter)
         }
     }
 
