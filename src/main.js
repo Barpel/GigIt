@@ -3,30 +3,32 @@ import App from './app.vue'
 import router from './router'
 import store from './store/store'
 import bus from './eventBus.js'
-import axios from 'axios'
 import VueSocketIO from 'vue-socket.io'
+import axios from 'axios'
 import './registerServiceWorker'
-
 
 import './scss/main.scss'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
-
 axios.defaults.withCredentials = true;
 
-Vue.use(ElementUI, { locale });
+const SOCKET_URL = process.env.NODE_ENV !== 'development'
+  ? ''
+  : '//localhost:3001'
+
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://metinseylan.com:1992',
+  connection: SOCKET_URL,
   vuex: {
-      store,
-      actionPrefix: 'SOCKET_',
-      mutationPrefix: 'SOCKET_'
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
   }
 }))
 
+Vue.use(ElementUI, { locale });
 Vue.config.productionTip = false
 
 

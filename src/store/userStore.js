@@ -31,7 +31,6 @@ export default {
         },
         getAllUsers(context) {
             return userService.query()
-                .then((users) => console.log('those are all the users:',users))
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
@@ -40,6 +39,9 @@ export default {
                 })
         },
         updateUser(context, {user}) {
+            userService.update(user)
+        },
+        updateOwnUser(context, {user}) {
             userService.update(user)
                 .then(context.commit({type:'setLoggedUser', user}))
         },
