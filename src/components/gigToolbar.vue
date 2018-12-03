@@ -1,6 +1,7 @@
 <template>
   <section class="gig-toolbar-container">
     <div class="gig-toolbar">
+      <button @click="searchGig">All Gigs</button>
       <button @click="searchGig">Moving</button>
       <button @click="searchGig">House-Work</button>
       <button @click="searchGig">Technical</button>
@@ -31,6 +32,7 @@ export default {
     methods:{
         searchGig(ev){
           var category = ev.target.innerHTML.toLowerCase()
+          if(category === 'all gigs') category = ''
           this.filter.byCategory = category
           this.$emit('searchGig',  this.filter)
         },
