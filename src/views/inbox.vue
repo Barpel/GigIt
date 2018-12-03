@@ -57,9 +57,9 @@ export default {
           img:
             "https://www.boehringer-ingelheim.com/sites/default/files/prescription_medicine/Immunology/Judit%20Makara.jpg",
           msgs: [
-            { sender: "Judit", txt: "Hey Mike, I chose you to be my Gigster!" },
+            { sender: "Judit", txt: "Hey Bar, I chose you to be my Gigster!" },
             { sender: "Judit", txt: "Nice to meet you" },
-            { sender: "Mike", txt: "Hey Judit, nice to meet you" },
+            { sender: "Bar", txt: "Hey Judit, nice to meet you" },
             { sender: "Judit", txt: "When do you think you can come?" }
           ]
         },
@@ -69,10 +69,10 @@ export default {
           img:
             "https://thoughtcatalog.files.wordpress.com/2014/05/shutterstock_101032591.jpg?w=584&h=389",
           msgs: [
-            { sender: "Jonas", txt: "Hey Mike, I chose you to be my Gigster!" },
-            { sender: "Mike", txt: "Hey" },
-            { sender: "Jonas", txt: "What's up?" },
-            { sender: "Jonas", txt: "Where are you from?" }
+            { sender: "Roy", txt: "Hey Bar, I chose you to be my Gigster!" },
+            { sender: "Bar", txt: "Hey" },
+            { sender: "Roy", txt: "What's up?" },
+            { sender: "Roy", txt: "Where are you from?" }
           ]
         }
       ],
