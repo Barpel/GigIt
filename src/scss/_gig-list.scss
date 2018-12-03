@@ -108,9 +108,18 @@
             min-height: 120px;
             padding: 5px 10px;
             display: grid;
+            h3{
+                max-height: 20px;
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
             .gig-prev-desc {
-                padding: 5px;
-                text-overflow: clip;
+                padding: 10px 0;
+                max-height: 130px;
+                white-space: nowrap; 
+                overflow-x: hidden;
+                text-overflow: ellipsis;
             }
             p{
                 margin: 0;
@@ -123,8 +132,9 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
-            padding: 10px;
+            padding: 5px;
             border-top: 1px solid white;
+            max-height: 55px;
             p {
                 justify-self: start;
             }
