@@ -7,7 +7,7 @@ $inbox-gray: lightgray;
     max-width: 95%;
     margin: 0 auto;
     animation-name: slide-right;
-    animation-duration: .8s;
+    animation-duration: .5s;
     max-height: 85vh;
     h1 {
       grid-row: 1;
@@ -97,7 +97,7 @@ $inbox-gray: lightgray;
         //   }
       }
     }
-    .chat-window {
+    .chat-window { 
       width: 100%;
       border-radius: 5px;
       border-top-left-radius: 0;
