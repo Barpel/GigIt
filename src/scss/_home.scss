@@ -19,7 +19,6 @@
     display: grid;
     grid-template-rows: repeat(5, 1fr);
     border-bottom: 3px solid #52515160;
-    border-top: 3px solid #52515160;
   }
 
   .cover-container h1 {
@@ -81,5 +80,17 @@
    }
   }
   
+  @media(min-width: 1050px) {
+    .home {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      .cover-container {
+        max-width: 76%;
+        margin: 0 auto;
+      }
+    }
+  }
 
  
