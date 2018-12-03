@@ -7,12 +7,13 @@ const BASE_URL = 'http://localhost:3001/api';
 export default {
     query,
     getById,
+    remove,
+    update,
+    add,
     getLoggedUser,
     loginUser,
     logout,
-    remove,
-    update,
-    add
+    setLocalLoggedUser
 }
 
 function query() {
@@ -61,6 +62,10 @@ function logout() {
     storageService._toStorage('loggedUser', null)
     return Promise.resolve()
     //TODO: backend and front end logout
+}
+
+function setLocalLoggedUser(user) {
+    storageService._toStorage('loggedUser', user)
 }
 
 

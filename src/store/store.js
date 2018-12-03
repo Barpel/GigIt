@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import gigModule from '../store/gigStore'
 import userModule from './userStore'
-import socketModule from './socketStore'
+import socketModule from './chatStore'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
