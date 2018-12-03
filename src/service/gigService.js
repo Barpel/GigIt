@@ -14,12 +14,16 @@ export default {
 }
 
 function query(filter = { byTitle: '', byCategory: '' }) {
-    var queryParams = new URLSearchParams()
+    if (filter.byTitle === '' && filter.byCategory === ''){
+        return axios.get(BASE_URL)
+        .then(res=>res.data)
+    }
+        var queryParams = new URLSearchParams()
     queryParams.append('byTitle', filter.byTitle)
     queryParams.set('byCategory', filter.byCategory)
     const REQ_URL = `${BASE_URL}?${queryParams}`
     // console.log('REQ_URL', REQ_URL);
-    
+
     return axios.get(REQ_URL)
         .then(res => res.data)
 
@@ -54,7 +58,7 @@ function remove(gigId) {
 function update(gig) {
     console.log('updating gig:', gig.pendingUsers)
     if (gig._id) {
-        console.log('gigService is updating:',gig)
+        console.log('gigService is updating:', gig)
         return axios.put(`${BASE_URL}/${gig._id}`, gig).then(res => res.data)
     }
     else {

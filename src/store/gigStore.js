@@ -8,7 +8,7 @@ export default {
     },
     getters: {
         gigs(state) {
-            if (!state.gigs) return []
+            // if (!state.gigs) return []
             return state.gigs
         },
         isLoading(state) {

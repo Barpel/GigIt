@@ -17,6 +17,7 @@ import gigList from "../components/gigList";
 export default {
   computed: {
     gigs() {
+      console.log('this.$store.getters.gigs;', this.$store.getters.gigs);
       return this.$store.getters.gigs;
     }
   },
@@ -36,9 +37,11 @@ export default {
   },
   created() {
     if (this.$route.params.type) {
+      console.log('with  PARAMS')
       var category = this.$route.params.type;
       this.$store.dispatch({ type: "getGigs", category });
-    } else this.$store.dispatch({ type: "getGigs" });
+    } 
+    else this.$store.dispatch({ type: "getGigs" }); 
   },
   components: {
     gigList,
