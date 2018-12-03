@@ -1,5 +1,4 @@
-// import userService from '../service/userService.js'
-import userService from '../service/userService-for-backend.js'
+import userService from '../service/userService.js'
 export default {
     state: {
         loggedUser: null,
