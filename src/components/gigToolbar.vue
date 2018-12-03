@@ -30,16 +30,18 @@ export default {
     this.filter.byCategory = this.$route.params.type;
     this.$emit("searchGig", this.filter);
   },
-  methods: {
-    searchGig(ev) {
-      var category = ev.target.innerHTML.toLowerCase();
-      this.filter.byCategory = category;
-      this.$emit("searchGig", this.filter);
-    },
-    searchByTitle() {
-      this.$emit("searchGig", this.filter);
-    },
-    methods:{
+  // methods: {
+  //   searchGig(ev) {
+  //     var category = ev.target.innerHTML.toLowerCase();
+  //     this.filter.byCategory = category;
+  //     this.$emit("searchGig", this.filter);
+  //   },
+  //   searchByTitle() {
+  //     this.$emit("searchGig", this.filter);
+  //   },
+    
+  // },
+  methods:{
         searchGig(ev){
           var category = ev.target.innerHTML.toLowerCase()
           if(category === 'all gigs') category = ''
@@ -49,8 +51,10 @@ export default {
         searchByTitle(){
           this.$emit('searchGig', this.filter)
         }
+    },
+    destroyed(){
+      
     }
-  }
 };
 </script>
 

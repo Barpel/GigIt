@@ -8,7 +8,7 @@ export default {
     },
     getters: {
         gigs(state) {
-            if (!state.gigs) return []
+            // if (!state.gigs) return []
             return state.gigs
         },
         isLoading(state) {
@@ -35,7 +35,7 @@ export default {
             // context.commit({ type: 'toggleLoading' })
             gigService.query(category)
                 .then(gigs => {
-                    console.log('those are all the gigs:', gigs)
+                    console.log('those are all the gigs: from the store', gigs)
                     context.commit({ type: 'setGigs', gigs })
                     // context.commit({ type: 'toggleLoading' })
                 })
