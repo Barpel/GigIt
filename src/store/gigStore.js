@@ -5,6 +5,7 @@ export default {
         gigs: null,
         currGig: null,
         isLoading: false,
+        gigCategoryCounter: null
     },
     getters: {
         gigs(state) {
@@ -16,7 +17,12 @@ export default {
         },
         loggedUser(state, getters) {
             return getters.user
+        },
+        gigCategoryCounter(state){
+            console.log('hey het ')
+            return state.gigCategoryCounter
         }
+        
     },
     mutations: {
         setGigs(state, { gigs }) {
@@ -24,48 +30,49 @@ export default {
         },
         updateGig(state, { gig }) {
             var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
-            state.gigs.splice(gigIdx,1, gig)
+            state.gigs.splice(gigIdx, 1, gig)
         },
         toggleLoading(state, payload) {
             state.isLoading = !state.isLoading
+        },
+        setGigCategoryCount(state, {counter}){
+            state.gigCategoryCounter = counter
         }
     },
     actions: {
         getGigs(context, { category }) {
-            // context.commit({ type: 'toggleLoading' })
             gigService.query(category)
                 .then(gigs => {
-                    console.log('those are all the gigs: from the store', gigs)
                     context.commit({ type: 'setGigs', gigs })
-                    // context.commit({ type: 'toggleLoading' })
+                    var counter = {}
+                    gigs.forEach(gig => {
+                        if (!counter[gig.category]) counter[gig.category] = 1
+                        else counter[gig.category]++
+                    })
+                    context.commit({type:'setGigCategoryCount', counter})
                 })
         },
-        filterByKey(context, { filter }){
+        filterByKey(context, { filter }) {
             gigService.query(filter)
-            .then(gigs => {
-                context.commit({type:'setGigs', gigs})
-            })
+                .then(gigs => {
+                    context.commit({ type: 'setGigs', gigs })
+                })
         },
         getGigById(context, { gigId }) {
-            // context.commit({ type: 'toggleLoading' })
             return gigService.getById(gigId)
                 .then(gig => {
-                    // context.commit({ type: 'toggleLoading' })
                     return gig
                 })
         },
-        removeGig(context, {gigId}) {
+        removeGig(context, { gigId }) {
             return gigService.remove(gigId)
         },
-        updateGig(context, {gig, userGigsListToUpdate}) {
-            // context.commit({ type: 'toggleLoading' })
+        updateGig(context, { gig, userGigsListToUpdate }) {
             return gigService.update(gig)
-            // .then(gig => context.commit({type: 'updateGig'}, gig))
                 .then(gig => {
-                    // context.commit({ type: 'toggleLoading' })
                     userGigsListToUpdate.push(gig._id)
-                    context.dispatch({type: 'updateUser', user: context.getters.loggedUser},)
-                    return context.dispatch({type: 'getGigs'}, gig)
+                    context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
+                    return context.dispatch({ type: 'getGigs' }, gig)
                 })
         }
     },

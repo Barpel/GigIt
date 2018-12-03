@@ -32,7 +32,7 @@ export default {
         },
         getAllUsers(context) {
             return userService.query()
-                .then((users) => console.log('those are all the users:',users))
+                // .then((users) => console.log('those are all the users:',users))
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
