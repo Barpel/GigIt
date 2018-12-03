@@ -19,9 +19,9 @@
         <button>Search</button>
       </div>
     </div>
-    <gig-categories v-if="showCategories"/>
-    <hr v-if="showCategories">
     <gig-list :gigs="gigs" @gigClicked="gigClicked"/>
+    <hr v-if="showCategories">
+    <gig-categories v-if="showCategories"/>
     <home-footer/>
   </div>
 </template>
