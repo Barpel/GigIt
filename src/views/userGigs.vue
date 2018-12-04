@@ -59,15 +59,8 @@ export default {
       return publishedGigs;
     }
   },
-  sockets: {
-        doubleTest: function (data) {
-            console.log('data is:', data)
-        },
-    },
+
   methods: {
-    // gigsterPicked: function(gigster, gig) {
-      // this.$socket.emit('test', 'am testing')
-    // },
     gigsterPicked(gigster, gig) {
       gig.isPickedGigster = true
       gig.holdingUsers = gig.pendingUsers
@@ -76,7 +69,8 @@ export default {
       this.$store.dispatch({type: 'updateGig', gig})
     },
     contactGigster(gigster, gigData) {
-      this.$store.dispatch({type: 'sendMsg', gigster, gigData, maister: this.user })
+      this.$store.dispatch({type: 'contactUser', gigster, gigData, maister: this.user })
+        .then(() => this.$router.push(`/user/${this.user._id}/inbox`))
     },
     getUserGigs() {
       var userGigIds = { ...this.user.gigsIds };

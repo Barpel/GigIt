@@ -14,6 +14,7 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
+            userService
             state.loggedUser = user
             if(user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -43,7 +44,10 @@ export default {
         },
         updateOwnUser(context, {user}) {
             userService.update(user)
-                .then(context.commit({type:'setLoggedUser', user}))
+                .then(user => {
+                    userService.setLocalLoggedUser(user)
+                    context.commit({type:'setLoggedUser', user})
+                })
         },
         onLogin(context, {userCreds}) {
             return userService.loginUser(userCreds)
