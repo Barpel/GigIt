@@ -6,12 +6,10 @@
     <router-view v-else/>
   </div>
 </template>
-
 <script>
 import homeNav from "./components/homeNav.cmp";
 import bus, { USR_MSG_DISPLAY } from "./eventBus.js";
 import userMsg from "./components/user-msgs.vue";
-
 export default {
   components: {
     homeNav,

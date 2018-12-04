@@ -5,32 +5,19 @@
       <div
         v-for="publishedGig in gigs.publishedGigs"
         :key="publishedGig._id"
-        v-if="publishedGig.pendingUsers">
+        v-if="publishedGig.pendingUsers"
+      >
         <gig-accordion
-          @gigAccepted="pickGiger"
+          @gigsterPicked="gigsterPicked($event, publishedGig)"
+          @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
           :gigsters="publishedGig.pendingUsers"
-          :header="publishedGig.details.title"></gig-accordion>
+          :header="publishedGig.details.title"
+          :isPickedGigster="publishedGig.isPickedGigster"
+        ></gig-accordion>
       </div>
     </ul>
-    <ul class="pending-gigs" v-if="gigs.pendingGigs.length">
-      <h2>Pending Gigs:</h2>
-      <div
-        v-for="pendingGig in gigs.pendingGigs"
-        :key="pendingGig._id"
-        v-if="pendingGig.pendingUsers">
-        <gig-accordion
-          @gigAccepted="pickGiger"
-          :gigsters="pendingGig.pendingUsers"
-          :header="pendingGig.details.title"
-          ></gig-accordion>
-      </div>
-    </ul>
-    <!-- <ul class="pending-gigs"> -->
-      <!-- <pending-gig :gigs="gigs.pendingGigs"></pending-gig> -->
-      <!-- <giger-review @reviewSumbitted="sumbitReview"></giger-review> -->
-      <!-- <gig-accordion :gigsters="pendingGig.pendingUsers" :header="pendingGig.details.title"></gig-accordion> -->
-    <!-- </ul> -->
-    <ul class="completed-gigs">
+    <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
+    <!-- <ul class="completed-gigs">
       <h2>Completed Gigs:</h2>
       <div
         v-for="completedGig in gigs.completedGigs"
@@ -39,7 +26,7 @@
       >
         <gig-accordion :gigsters="completedGig.pendingUsers" :header="completedGig.details.title"></gig-accordion>
       </div>
-    </ul>
+    </ul> -->
   </section>
 </template>
 
@@ -72,13 +59,24 @@ export default {
       return publishedGigs;
     }
   },
-
+  sockets: {
+        doubleTest: function (data) {
+            console.log('data is:', data)
+        },
+    },
   methods: {
-    pickGiger(index) {
-      this.isPicked = !this.isPicked;
-      this.pickGigster.gigster.push(gigster);
-      // this.gig.pendingGigs.splice
-      // console.log(index);
+    // gigsterPicked: function(gigster, gig) {
+      // this.$socket.emit('test', 'am testing')
+    // },
+    gigsterPicked(gigster, gig) {
+      gig.isPickedGigster = true
+      gig.holdingUsers = gig.pendingUsers
+      gig.pendingUsers = [gigster]
+      this.$socket.emit('test', 'am testing')
+      this.$store.dispatch({type: 'updateGig', gig})
+    },
+    contactGigster(gigster, gigData) {
+      this.$store.dispatch({type: 'sendMsg', gigster, gigData, maister: this.user })
     },
     getUserGigs() {
       var userGigIds = { ...this.user.gigsIds };
@@ -100,7 +98,6 @@ export default {
             this.gigs.pendingGigs.push(gig);
           });
       });
-
       publishedGigIds.forEach(publishedGigId => {
         this.$store
           .dispatch({ type: "getGigById", gigId: `${publishedGigId}` })

@@ -67,12 +67,23 @@ export default {
         removeGig(context, { gigId }) {
             return gigService.remove(gigId)
         },
+<<<<<<< HEAD
         updateGig(context, { gig, userGigsListToUpdate }) {
             return gigService.update(gig)
                 .then(gig => {
                     userGigsListToUpdate.push(gig._id)
                     context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
                     return context.dispatch({ type: 'getGigs' }, gig)
+=======
+        updateGig(context, {gig, userGigsListToUpdate}) {
+            return gigService.update(gig)
+                .then(gig => {
+                    if(userGigsListToUpdate) {
+                        userGigsListToUpdate.push(gig._id)
+                        context.dispatch({type: 'updateUser', user: context.getters.loggedUser},)
+                    }
+                    return context.dispatch({type: 'getGigs'}, gig)
+>>>>>>> a10dd832011bdf3c15bfa16717c15ff2bbccd12f
                 })
         }
     },

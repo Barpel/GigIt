@@ -11,7 +11,7 @@
         <h1>{{header}}</h1>
         <span @click="removeGig"><i class="fas fa-trash-alt"></i></span>
       </div>
-      <li v-for="(gigster, index) in gigsters" :key="index" class="gigster-container" v-if="isOpen">
+      <li v-for="gigster in gigsters" :key="gigster._id" class="gigster-container" v-if="isOpen">
         <img :src="gigster.img" @click="goToProfile(gigster._id)">
         <h2>{{gigster.name}} wants to be your Gigster!</h2>
         <h3 class="pending-user-rating-container">
@@ -19,18 +19,18 @@
           <i class="fas fa-star"></i>
           <span>{{gigster.completedReviewsAverage}}</span>
         </h3>
-        <div v-if="!isGigIt" class="gigster-btn-container">
-          <button @click="gigAccepted(index)" class="gigit">
+        <div v-if="!isPickedGigsterData" class="gigster-btn-container">
+          <button @click="gigsterPicked(gigster)" class="gigit">
             Gig
             <span>It</span>
           </button>
           <button class="later">Later</button>
         </div>
         <div v-else class="gigster-btn-container-after">
-          <button class="gigit">
+          <button @click="contactGigster(gigster)" class="gigit">
             Contact
           </button>
-          <button @click="gigCancel" class="later">Cancel</button>
+          <button @click="gigCancel(gigster.id)" class="later">Cancel</button>
         </div>
       </li>
     </ul>
@@ -39,10 +39,11 @@
 
 <script>
 export default {
-  props: ["header", "gigsters"],
-  name: "gigAccordion",
+  props: ['header', 'gigsters', 'isPickedGigster'],
+  name: 'gigAccordion',
   data() {
     return {
+      isPickedGigsterData: this.isPickedGigster,
       isOpen: false,
       isGigIt: false
     };
@@ -51,21 +52,23 @@ export default {
     goToProfile(userId) {
       this.$router.push(`/user/${userId}`);
     },
-    gigAccepted(index) {
-        this.isGigIt = !this.isGigIt;
-         this.$emit('gigAccepted',index)
+    gigsterPicked(gigster) {
+      this.isPickedGigsterData = true
+      this.$emit('gigsterPicked',gigster)
     },
-    gigCancel(){
-        this.isGigIt = !this.isGigIt
+    gigCancel(gigsterId){
+      console.log('cancelGig')
+      // this.$emit('gigsterCancel',gigsterId)
+    },
+    contactGigster(gigster) {
+      this.$emit('contactGigster',gigster)
     },
     removeGig() {
-      this.$emit('removeGig')
+      console.log('removeGig')
+      // this.$emit('removeGig')
     }
   },
-  mounted() {
-    // console.log("accordion", this.gigsters);
-  }
-};
+}
 </script>
 
 <style lang="scss" scoped>
