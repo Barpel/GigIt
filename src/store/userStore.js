@@ -31,10 +31,6 @@ export default {
         },
         getAllUsers(context) {
             return userService.query()
-<<<<<<< HEAD
-                // .then((users) => console.log('those are all the users:',users))
-=======
->>>>>>> a10dd832011bdf3c15bfa16717c15ff2bbccd12f
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
