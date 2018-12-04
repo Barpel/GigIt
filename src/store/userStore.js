@@ -1,5 +1,4 @@
-// import userService from '../service/userService.js'
-import userService from '../service/userService-for-backend.js'
+import userService from '../service/userService.js'
 export default {
     state: {
         loggedUser: null,
@@ -15,6 +14,7 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
+            userService
             state.loggedUser = user
             if(user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -32,7 +32,6 @@ export default {
         },
         getAllUsers(context) {
             return userService.query()
-                .then((users) => console.log('those are all the users:',users))
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
@@ -42,7 +41,13 @@ export default {
         },
         updateUser(context, {user}) {
             userService.update(user)
-                .then(context.commit({type:'setLoggedUser', user}))
+        },
+        updateOwnUser(context, {user}) {
+            userService.update(user)
+                .then(user => {
+                    userService.setLocalLoggedUser(user)
+                    context.commit({type:'setLoggedUser', user})
+                })
         },
         onLogin(context, {userCreds}) {
             return userService.loginUser(userCreds)
