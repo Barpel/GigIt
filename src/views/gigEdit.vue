@@ -48,7 +48,7 @@
             class="pro-tip"
             v-if="isShowingTip"
           >PRO-TIP: Set a fair price to get the Gig done quickly!</h4>
-        <google-map v-if="editPage" :gig="gig" @addMarker="getLocation"/>
+        <google-map v-if="editPage" :editPage="editPage" :gig="gig" @addMarker="getLocation"/>
           <h2>Price:</h2>
           <el-input-number
             v-model="gig.details.price"
