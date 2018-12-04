@@ -1,12 +1,15 @@
 <template>
   <section class="gig-container">
-    <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
-    <h1>Gig
+    <h1>
+      Gig
       <span>It</span>
     </h1>
     <h2>Looking for something specific? Find your own Gig using the filtering options</h2>
-    <hr>
-    <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
+    <!-- <hr> -->
+    <div class="gig-list-wrappe">
+      <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar>
+      <gig-list @gigClicked="gigClicked" :gigs="gigs"></gig-list>
+    </div>
   </section>
 </template>
 
@@ -17,7 +20,7 @@ import gigList from "../components/gigList";
 export default {
   computed: {
     gigs() {
-      console.log('this.$store.getters.gigs;', this.$store.getters.gigs);
+      console.log("this.$store.getters.gigs;", this.$store.getters.gigs);
       return this.$store.getters.gigs;
     }
   },
@@ -31,17 +34,16 @@ export default {
       this.$router.push(`/gig/category/${category}`);
     },
     searchGigByKey(filter) {
-      console.log('store',filter)
+      console.log("store", filter);
       this.$store.dispatch({ type: "filterByKey", filter });
     }
   },
   created() {
     if (this.$route.params.type) {
-      console.log('with  PARAMS')
+      console.log("with  PARAMS");
       var category = this.$route.params.type;
       this.$store.dispatch({ type: "getGigs", category });
-    } 
-    else this.$store.dispatch({ type: "getGigs" }); 
+    } else this.$store.dispatch({ type: "getGigs" });
   },
   components: {
     gigList,

@@ -5,7 +5,7 @@
         <img :src="user.img" v-if="user">
         <i class="fas fa-user-circle" v-else></i>
         <h1>Hi {{(user)? user.name.first: 'Guest'}}</h1>
-        <router-link to="/gig/edit" tag="button" v-if="user">
+        <router-link to="/gig/edit" tag="button" v-if="user" class="welcome-add-gig-btn">
           <i class="fas fa-plus"></i>
           <span>Gig</span>
         </router-link>
@@ -65,27 +65,27 @@ export default {
         byTitle: ""
       },
       showCategories: true,
-      user: null,
+      // user: null,
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543855824/GigIt/mechanic.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/mechanic.png",
           txt: "Use your skills to make some easy extra money!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543855819/GigIt/giger.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/giger.png",
           txt: "Helping the community is part of our agenda. Help out today!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543855817/GigIt/cleaning-boy.png",
-          txt: "Sometimes cleaning is too tiring. Get a Gigster to help you out!"
+            "https://res.cloudinary.com/barpel/image/upload/v1543912161/GigIt/lady-chef.png",
+          txt: "Sometimes cooking is too tiring. Get a Gigster to make you a nice meal!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543855818/GigIt/garden-lady.png",
-          txt: "People all around want to help you take care of your garden!"
+            "https://res.cloudinary.com/barpel/image/upload/v1543912160/GigIt/Indian-teacher.png",
+          txt: "How are your teaching skills? Come tutor the community!"
         }
       ]
     };
@@ -97,6 +97,9 @@ export default {
     },
     counter() {
       return this.coverCounter;
+    },
+    user() {
+      return this.$store.getters.user;
     }
   },
   methods: {
@@ -107,7 +110,7 @@ export default {
       this.showCategories = false;
       this.$store.dispatch({ type: "filterByKey", filter: this.filter });
       // .then()
-    }
+    },
   },
   components: {
     gigCategories,
