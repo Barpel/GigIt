@@ -100,6 +100,9 @@ export default {
       console.log(gigCategoryCounter)
       return gigCategoryCounter
       // return this.coverCounter;
+    },
+    user() {
+      return this.$store.getters.user
     }
   },
   methods: {
