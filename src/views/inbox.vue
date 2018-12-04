@@ -17,7 +17,7 @@
           <img :src="chat.members[0].img">
           <h3>
             {{chat.members[0].name}}
-            <!-- <h5>{{chat.msgs[chat.msgs.length-1].txt}}</h5> -->
+            <h5>{{chat.msgs[chat.msgs.length-1].txt}}</h5>
           </h3>
         </div>
       </div>
@@ -81,9 +81,11 @@ export default {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
       this.user.chats.forEach(chat => {
+        console.log(chat)
         this.$store
           .dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
+            if(!chat) return
             var ownMemberIndex = chat.members.findIndex(
               member => member._id === this.user._id
             );

@@ -17,10 +17,11 @@ export default {
             return socketService.getById(chatId)
         },
         sendMsg(context, { gigster, gigData, maister }) {
-            if (maister.chats) {
-                var chat = maister.chats.find(chat => chat.gigsterId === maister._id || chat.maisterId === maister._id)
-                if (chat) return Promise.resolve()
-                else context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
+            var chatIdx = maister.chats.findIndex(chat => chat.gigsterId === maister._id || chat.maisterId === maister._id)
+            if (chatIdx > 0)  {
+                var chat = maister.chats.splice(chatIdx,1)
+                chat = chat[0]
+                maister.chats.unshift(chat)
             }
             else context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
         },
@@ -40,8 +41,7 @@ export default {
                 .then(chat => {
                     var chatItem = { chatId: chat._id, gigsterId: gigster.id, maisterId: maister._id }
                     function setChatAndUpdate(user) {
-                        if (user.chats) user.chats.unshift(chatItem)
-                        else user.chats = [chatItem]
+                        user.chats.unshift(chatItem)
                         return user
                     }
                     context.dispatch({ type: 'getUserById', userId: gigster.id })
