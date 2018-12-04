@@ -1,151 +1,200 @@
 $border-color: #4b052e69;
 $card-bg: #646262;
-.user-profile-container{
-    animation-name: slide-right;
-    animation-duration: .5s;
-    & > * {
-       border-radius: 5px; 
+.user-profile-container {
+  max-width: 70%;
+  margin: 0 auto;
+  animation-name: slide-right;
+  animation-duration: 0.5s;
+  color: white;
+  grid-template-columns: 1fr;
+  padding: 1rem 1rem 100px;
+  grid-gap: 10px;
+  & > * {
+    border-radius: 5px;
+  }
+  .user-avatar-card {
+    grid-column: 1;
+    display: grid;
+    border: 1px solid $border-color;
+    padding: 10px;
+    background-color: $card-bg;
+    // box-shadow: 0px 0px 18px 9px $gray4;
+    .user-wrapper {
+      display: flex;
+      align-items: center;
+      img {
+        $img-size: 130px;
+        width: $img-size;
+        height: $img-size;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      h5 {
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        padding: 10px;
+        font-size: 2rem;
+        justify-self: flex-start;
+      }
     }
-    color: white;
+
+    .user-profile-contact-btn {
+      background-color: #00b22d;
+      background: linear-gradient(#35c350, #03b525);
+      color: #fff;
+      border: none;
+    }
+    .profile-btns-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-gap: 10px;
+      margin: 10px;
+      justify-self: center;
+      max-width: 180px;
+      //   width: 100%;
+      grid-column: 2;
+      button {
+        background-color: $category-base;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: roboto;
+        font-size: 1.5rem;
+        font-weight: bold;
+        // padding: 6px 15px;
+        width: 100%;
+        transition: all 0.3s;
+      }
+      button.profile-chats-btn:hover {
+        background-color: #00b22d;
+      }
+      button.profile-edit-btn:hover {
+        background-color: burlywood;
+      }
+      button.profile-delete-btn:hover {
+        background-color: brown;
+      }
+      .profile-logout-btn {
+        grid-row: 1;
+        grid-column: 1 / span 3;
+        font-size: 1.2rem;
+        right: 1rem;
+        top: 1rem;
+        border-radius: 5px;
+        color: lightgray;
+        font-family: roboto;
+        font-weight: bold;
+        transition: all 0.3s;
+        padding: 6px 15px;
+      }
+      .profile-logout-btn:hover {
+        background-color: brown;
+      }
+    }
+  }
+  .profile-mid-wrapper {
+    width: 100%;
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 1rem 1rem 100px;
+    grid-template-rows: 1fr;
     grid-gap: 10px;
-    .user-avatar-card{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid $border-color;
-        padding:10px;
-        position: relative;
-        background-color: $card-bg;
-        box-shadow:  0px 0px 18px 9px $gray4;
-        img{
-            box-shadow:  0px 0px 18px 4px black;
-            max-width: 150px;
-        }
-        .profile-logout-btn{
-            position: absolute;
-            font-size: 1.2rem;
-            left: 1rem;
-            top:1rem;
-            background-color: rgb(68, 68, 68);
-            margin: 0 10px;
-            border: 1px solid white;
-            border-radius: 5px;
-            cursor: pointer;
-            color: lightgray;
-            font-family: roboto;
-            font-weight: bold;
-            padding: 6px 15px;
-        }
-        .profile-logout-btn:hover {
-            background-color: brown;
-            transform: scale(0.98);
-        }
-        .user-profile-contact-btn {
-            background-color: #00b22d;
-            background: linear-gradient(#35c350,#03b525);
-            color: #fff;
-            border: 1px solid #00b22d;
-            padding: 15px 35px;
-            margin: 0;
-            display: inline-block;
-            border-radius: 3px;
-            text-shadow: 0 -1px 1px rgba(0,0,0,.2);
-            box-sizing: border-box;
-            -webkit-transition: color .2s,background-color .2s,box-shadow .2s,border .2s;
-            transition: color .2s,background-color .2s,box-shadow .2s,border .2s;
-        }
-        .profile-btns-wrapper{
-            margin-top: 10px;
-            button {
-                background-color: $category-base;
-                margin: 0 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                color: #ffffff;
-                font-family: roboto;
-                font-size: 1.5rem;
-                font-weight: bold;
-                padding: 6px 15px;
-                transition: all .3s;
-            }
-            button:hover {
-                color: rgb(165, 164, 164);
-                transform: scale(0.98);
-            }
-        }
+    &>* {
+        border-radius: 5px;
     }
-    .user-profile-desc{
-        padding: 7px;
-        margin-top:10px;
-        border: 1px solid $border-color;
-        font-size: 1.3rem;
-        grid-row: 2;
-        background-color: $card-bg;
-        box-shadow:  0px 0px 18px 9px $gray4;
-        p{
-            padding: 5px;
-        }
-    }
-    .user-profile-skills{
-        margin-top:10px;
-        border: 1px solid $border-color;
-        grid-row: 3;
+    .user-profile-desc {
+      padding: 7px;
+      margin-top: 10px;
+      border: 1px solid $border-color;
+      font-size: 1.3rem;
+      max-width: 350px;
+      background-color: $card-bg;
+      p {
         padding: 5px;
-        background-color: $card-bg;
-        box-shadow:  0px 0px 18px 9px $gray4;
-        h4{
-            border: 1px solid #545454; 
-            border-radius: 3px;
-            padding: 10px;
-            display:inline-block;
-            margin:5px;
-            text-transform: capitalize;
-        }
+      }
     }
-    .profile-review{
+    .user-profile-skills {
+      grid-row: 3;
+      background-color: $card-bg;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      h4 {
+        border: 1px solid #545454;
+        border-radius: 5px;
+        padding: 10px;
         display: flex;
-        padding: 4px;
-        border: 1px solid $border-color; 
-        margin-bottom: 10px;
-        background-color: $card-bg;
-        box-shadow:  0px 0px 18px 9px $gray4;
-        .profile-review-giver {
-            width: 6.25rem;
-            display: flex;
-            flex-direction: column;
-            img{
-                max-width: 50px;
-                max-height: 50px;
-                border-radius: 50%;
-                // align-self: center;
-                margin-left: 10px;
-            }
-        }
-        .profile-review-stars {
-            min-width: 8rem;
-            display: flex;
-            flex-direction: column;
-        }
-        .profile-review-details-container {
-            flex-grow: 1;
-            p{
-                &.profile-review-title {
-                    color: rgba(255, 255, 255, 0.664);
-                    font-size: .9rem;
-                }
-                font-size: 1.3rem;
-                margin: 0;
-            }
-        }
-        
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        text-transform: capitalize;
+        box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.2);
+      }
     }
     .profile-reviews {
-        & > li {
-            border-radius: 5px;
+      .profile-review {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        align-items: center;
+        padding: 4px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        background-color: $card-bg;
+        .profile-review-giver {
+          min-width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          height: 100%;
+          img {
+            max-width: 50px;
+            max-height: 50px;
+            border-radius: 50%;
+            // align-self: center;
+            // margin-left: 10px;
+          }
         }
+        .profile-review-stars {
+          min-width: 8rem;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          span {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            i {
+              color: goldenrod;
+            }
+          }
+        }
+        .profile-review-details-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          p {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 0;
+            &.profile-review-title {
+              color: rgba(255, 255, 255, 0.664);
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+      .profile-reviews {
+        & > li {
+          border-radius: 5px;
+        }
+      }
     }
+  }
 }
