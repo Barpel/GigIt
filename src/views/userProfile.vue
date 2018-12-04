@@ -27,7 +27,6 @@
         </li>
       </ul>-->
       <div class="profile-btns-wrapper" v-if="isOwnProfile">
-        <!-- <router-link tag="button" :to="myGigsLink">My Gigs</router-link> -->
         <router-link :to="'/user/' + user._id + '/inbox'" tag="button" class="profile-chats-btn">
           <i class="far fa-comments"></i>
         </router-link>
@@ -55,8 +54,49 @@
         </div>
       </div>
 
-      <div>
-        <ul class="profile-reviews">
+      <div class="profile-tabs-wrapper">
+        <div class="profile-tabs-container">
+          <div class="stv-radio-tabs-wrapper">
+            <input
+              type="radio"
+              class="stv-radio-tab"
+              name="reviews"
+              value="1"
+              id="tab1"
+              checked
+              v-model="tabContent"
+            >
+            <label for="tab1">Reviews</label>
+            <input
+              type="radio"
+              class="stv-radio-tab"
+              name="published gigs"
+              value="2"
+              id="tab2"
+              v-model="tabContent"
+            >
+            <label for="tab2">Published Gigs</label>
+            <input
+              type="radio"
+              class="stv-radio-tab"
+              name="pending gigs"
+              value="3"
+              id="tab3"
+              v-model="tabContent"
+            >
+            <label for="tab3">Pending Gigs</label>
+            <input
+              type="radio"
+              class="stv-radio-tab"
+              name="completed gigs"
+              value="4"
+              id="tab4"
+              v-model="tabContent"
+            >
+            <label for="tab4">Completed Gigs</label>
+          </div>
+        </div>
+        <ul class="profile-reviews" v-if="+tabContent=== 1">
           <li v-for="review in user.reviews.completed" :key="review.gigId" class="profile-review">
             <div class="profile-review-giver">
               <img :src="review.givenBy.img">
@@ -82,34 +122,49 @@
             </div>
           </li>
         </ul>
+        <ul class="published-gigs" v-if="gigs.publishedGigs.length &&+tabContent === 2">
+          <h2>Published Gigs:</h2>
+          <div
+            v-for="publishedGig in gigs.publishedGigs"
+            :key="publishedGig._id"
+            v-if="publishedGig.pendingUsers"
+          >
+            <gig-accordion
+              @gigsterPicked="gigsterPicked($event, publishedGig)"
+              @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
+              :gigsters="publishedGig.pendingUsers"
+              :header="publishedGig.details.title"
+              :isPickedGigster="publishedGig.isPickedGigster"
+            ></gig-accordion>
+          </div>
+        </ul>
+        <ul class="blahblah" v-if="gigs.pendingGigs.length &&+tabContent === 3">
+          <pending-gig :gigs="gigs.pendingGigs" ></pending-gig>
+        </ul>
       </div>
-      <!-- {{user.reviews.completed}} -->
     </div>
   </section>
 </template>
 <script>
+import gigAccordion from "../components/utils/gigAccordion.cmp";
+import pendingGig from "../components/utils/pendingGig.cmp";
+import gigerReview from "../components/gigerReview.cmp";
 export default {
   data() {
     return {
       user: null,
-      isOwnProfile: false
+      isOwnProfile: false,
+      tabContent: 1,
+      gigs: {
+        completedGigs: [],
+        pendingGigs: [],
+        publishedGigs: []
+      },
+      pickGigster: {
+        isPicked: false,
+        gigster: []
+      }
     };
-  },
-  computed: {
-    totalAverageStars() {
-      var stars = "";
-      var positive = Math.floor(this.user.reviews.totalAverage);
-      for (let i = 0; i < positive; i++) {
-        stars += "⭐";
-      }
-      for (let i = 0; i < 5 - positive; i++) {
-        stars += "✰";
-      }
-      return stars;
-    },
-    myGigsLink() {
-      return `/user/${this.$store.getters.user._id}/gigs`;
-    }
   },
   methods: {
     doLogout() {
@@ -118,24 +173,72 @@ export default {
     },
     loadUser() {
       var userId = this.$route.params.userId;
-      this.$store
-        .dispatch({ type: "getUserById", userId })
-        .then(user => (this.user = user));
+      this.$store.dispatch({ type: "getUserById", userId }).then(user => {
+        this.user = user;
+        this.getUserGigs();
+      });
       this.$store
         .dispatch({ type: "checkIsProfileOwner", userId })
         .then(isOwner => (this.isOwnProfile = isOwner));
+    },
+    gigsterPicked(gigster, gig) {
+      gig.isPickedGigster = true;
+      gig.holdingUsers = gig.pendingUsers;
+      gig.pendingUsers = [gigster];
+      this.$socket.emit("test", "am testing");
+      this.$store.dispatch({ type: "updateGig", gig });
+    },
+    contactGigster(gigster, gigData) {
+      this.$store
+        .dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
+        .then(() => this.$router.push(`/user/${this.user._id}/inbox`));
+    },
+    getUserGigs() {
+      var userGigIds = { ...this.user.gigsIds };
+      var completedGigIds = userGigIds.completed;
+      var pendingGigIds = userGigIds.pending;
+      var publishedGigIds = userGigIds.published;
+      completedGigIds.forEach(completedGigId => {
+        this.$store
+          .dispatch({ type: "getGigById", gigId: `${completedGigId}` })
+          .then(gig => {
+            this.gigs.completedGigs.push(gig);
+          });
+      });
+
+      pendingGigIds.forEach(pendingGigId => {
+        this.$store
+          .dispatch({ type: "getGigById", gigId: `${pendingGigId}` })
+          .then(gig => {
+            this.gigs.pendingGigs.push(gig);
+          });
+      });
+      publishedGigIds.forEach(publishedGigId => {
+        this.$store
+          .dispatch({ type: "getGigById", gigId: `${publishedGigId}` })
+          .then(gig => {
+            this.gigs.publishedGigs.push(gig);
+          });
+      });
+    },
+    sumbitReview(review) {
+      // console.log(review);
     }
   },
   created() {
     this.loadUser();
+    console.log('gigs', this.gigs)
   },
   watch: {
     "$route.params.userId": function() {
       this.loadUser();
-    }
+    },
+  },
+  components: {
+    gigAccordion,
+    pendingGig,
+    gigerReview
   }
 };
 </script>
 
-<style>
-</style>

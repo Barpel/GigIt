@@ -1,5 +1,6 @@
 <template>
   <section class="pending-gigs-container">
+      <!-- {{gigs}} -->
     <div class="pending-gigs-header" @click="isOpen = !isOpen">
         <span v-if="!isOpen">
         <i class="fas fa-angle-right"></i>
@@ -9,7 +10,7 @@
         </span>
       <h1>Pending Gigs:</h1>
     </div>
-    <div class="pending-gigs" v-for="(gig, idx) in gigs" :key="idx" v-if="isOpen">
+    <div class="pending-gigs" v-for="(gig, idx) in gigs" :key="idx" v-if="isOpen && gig">
       <h2 @click="goToGig(gig._id)">{{gig.details.title}}</h2>
       <button>
         Cancel
@@ -32,7 +33,7 @@ export default {
         goToGig(gigId) {
             this.$router.push(`/gig/${gigId}`)
         }
-    }
+    },
 
 }
 </script>
