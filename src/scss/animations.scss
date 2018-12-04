@@ -7,3 +7,8 @@
     from {right: -100vw; opacity: 0;}
     to {right: 0; opacity: 1;}
 }
+
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
