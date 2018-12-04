@@ -107,14 +107,8 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey() {
-<<<<<<< HEAD
       this.showCategories = false
       this.$store.dispatch({ type: "filterByKey", filter: this.filter })
-=======
-      this.showCategories = false;
-      this.$store.dispatch({ type: "filterByKey", filter: this.filter });
-      // .then()
->>>>>>> 5e29bc0b8c6d5c9fb50b547b65b5701c70011d9a
     }
   },
   components: {
