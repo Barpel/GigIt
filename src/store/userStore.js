@@ -30,6 +30,9 @@ export default {
                     if (user) context.commit({type: 'setLoggedUser', user})
                 })    
         },
+        getLoggedUserId(context) {
+            return userService.getLoggedUserId()
+        },
         getAllUsers(context) {
             return userService.query()
         },

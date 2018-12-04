@@ -108,6 +108,7 @@ export default {
         this.$router.push("/gig");
       }, 20);
       bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
+      this.$store.dispatch({type:'emitToUser',eventMsg:{txt:'New Gig Request', type:'success'}, userId:this.gig.publisherId})
       var currUser = this.user;
       this.gig.isRead = false;
       this.gig.pendingUsers.push({

@@ -26,6 +26,7 @@ export default {
       login() {
           this.$store.dispatch({type: 'onLogin', userCreds: this.creds})
             .then(() =>this.$router.push('/'))
+            .then(() => this.$store.dispatch('openUserSocket'))
             .catch((err) => {
               if(err.response.status === 400) this.$message.error('Wrong username or password');
             })

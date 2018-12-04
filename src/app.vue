@@ -11,23 +11,7 @@ import homeNav from "./components/homeNav.cmp";
 import bus, { USR_MSG_DISPLAY } from "./eventBus.js";
 import userMsg from "./components/user-msgs.vue";
 export default {
-  components: {
-    homeNav,
-    userMsg
-  },
-  created() {
-    this.$store.dispatch({ type: "checkLoggedUser" });
-    this.$store.dispatch({type:'getAllUsers'})
-    bus.$on(USR_MSG_DISPLAY, msg => {
-      this.msg = msg;
-      this.showMsg = true;
-      var delay = 3000;
-      setTimeout(() => {
-        this.msg = null;
-        this.showMsg = false;
-      }, delay);
-    });
-  },
+
   data() {
     return {
       msg: "",
@@ -39,6 +23,31 @@ export default {
     isLoading() {
       return this.$store.getters.isLoading
     }
+  },
+  methods:{
+    displayMsg(msg) {
+      this.msg = msg;
+      this.showMsg = true;
+      var delay = 3000;
+      setTimeout(() => {
+        this.msg = null;
+        this.showMsg = false;
+      }, delay);
+    }
+  },
+  sockets: {
+    eventMsgToUser: function (msg) {
+      this.displayMsg(msg)
+    }
+  },
+  created() {
+    this.$store.dispatch('openUserSocket')
+    this.$store.dispatch({ type: "checkLoggedUser" });
+    bus.$on(USR_MSG_DISPLAY, msg => this.displayMsg(msg));
+  },
+  components: {
+    homeNav,
+    userMsg
   },
 };
 </script>

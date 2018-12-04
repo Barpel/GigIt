@@ -91,7 +91,7 @@ export default {
             );
             var chat = JSON.parse(JSON.stringify(chat));
             chat.members.splice(ownMemberIndex, 1);
-            this.chats.unshift(chat);
+            this.chats.push(chat);
           });
       });
       this.user = user;
