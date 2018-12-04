@@ -67,14 +67,15 @@ export default {
         removeGig(context, { gigId }) {
             return gigService.remove(gigId)
         },
-        updateGig(context, {gig, userGigsListToUpdate}) {
-            return gigService.update(gig)
-                .then(gig => {
-                    if(userGigsListToUpdate) {
-                        userGigsListToUpdate.push(gig._id)
+        updateGig(context, payload) {
+            console.log('this store console',payload.gig)
+            return gigService.update(payload.gig)
+                .then(cuurGig => {
+                    if(payload.userGigsListToUpdate) {
+                        payload.userGigsListToUpdate.push(cuurGig._id)
                         context.dispatch({type: 'updateUser', user: context.getters.loggedUser},)
                     }
-                    return context.dispatch({type: 'getGigs'}, gig)
+                    return context.dispatch({type: 'getGigs'}, cuurGig)
                 })
         }
     },
