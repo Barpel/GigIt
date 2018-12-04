@@ -1,5 +1,5 @@
 <template>
-  <li v-if="gig.details && publisher">
+  <li v-if="gig && publisher">
     <div :class="classByCategory" class="gig-image"></div>
     <div>
       <div class="publisher-container">
@@ -18,7 +18,7 @@
         <h3>{{publisher.name.first}} {{publisher.name.last}}</h3>
         <h3>⭐{{publisher.reviews.totalAverage}}</h3>
       </div>-->
-      <div class="gig-details">
+      <div  class="gig-details">
         <h3>{{gig.details.title}}</h3>
         <p class="gig-prev-desc">{{gig.details.desc}}</p>
         <p>{{gig.details.pos.dist}}</p>

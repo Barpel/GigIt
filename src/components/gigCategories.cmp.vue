@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-categories-container">
+  <section v-if="gigCategoryCounter" class="gig-categories-container">
     <div class="category moving">
     <el-badge :value="gigCategoryCounter.moving" class="item badge">
       <router-link to="/gig/category/moving">

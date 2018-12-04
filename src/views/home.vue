@@ -106,9 +106,7 @@ export default {
       var gigCategoryCounter = JSON.parse(
         JSON.stringify(this.$store.getters.gigCategoryCounter)
       );
-      console.log(gigCategoryCounter);
       return gigCategoryCounter;
-      // return this.coverCounter;
     },
     user() {
       return this.$store.getters.user;

@@ -36,7 +36,8 @@ Vue.use(new VueSocketIO({
     mutationPrefix: 'SOCKET_'
   },
   load:{
-    key:'AIzaSyC-_K0v4j7fLyQLdTZksyC8E07zZGIboO4',
+    // key:'AIzaSyC-_K0v4j7fLyQLdTZksyC8E07zZGIboO4',
+    key:'AIzaSyD4xBjgA3NAoLiVoJmSwJCYUel6lc17HOM',
     libraries:'places',
   }
 }))

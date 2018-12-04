@@ -69,7 +69,7 @@
         </ul>
       </div>
       <div class="map-img-container">
-        <google-map :gig="gig"/>
+        <google-map :editPage="editPage" :gig="gig"/>
         <!-- <img src="../assets/mapDemo.jpg" alt> -->
       </div>
     </div>

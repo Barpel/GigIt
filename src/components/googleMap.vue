@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!this.gig">
+    <div v-if="this.editPage">
       <h2>Search and add a pin</h2>
       <label>
         <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
@@ -10,7 +10,7 @@
     </div>
     <br>
     <gmap-map :center="center" :zoom="12" style="width:100%;  height: 400px;">
-      <gmap-marker
+      <gmap-marker class="imBoss"
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
@@ -21,60 +21,72 @@
 </template>
 
 <script>
+// import DirectionsRenderer from '@/component/DirectionsRenderer'
 export default {
-    props:['gig'],
+  props: ["gig","editPage"],
   name: "GoogleMap",
   data() {
     return {
-
-      center: {},
+      center: { lat: 32.0853, lng: 34.781769 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
     };
   },
 
   mounted() {
-      console.log(this.gig)
-      if(this.gig){
-          console.log('here')
-          this.currentPlace = this.gig.details.location
-        this.center = {lat:this.gig.details.location.lat,lng:this.gig.details.location.lng}
-        this.markers.push({ position: {lat:this.gig.details.location.lat,lng:this.gig.details.location.lng}})
-    }else this.geolocate(); 
+    if (this.gig._id) {
+      console.log("here");
+      this.currentPlace = this.gig.details.location;
+      this.center = {
+        lat: this.gig.details.location.lat,
+        lng: this.gig.details.location.lng
+      };
+      this.markers.push({
+        position: {
+          lat: this.gig.details.location.lat,
+          lng: this.gig.details.location.lng
+        }
+      });
+    } else this.geolocate();
   },
 
   methods: {
     // receives a place object via the autocomplete component
-    setPlace(place) {    
+    setPlace(place) {
       this.currentPlace = place;
     },
-    addMarker(){
-        if (this.currentPlace) {
-            var marker = {
-                lat: this.currentPlace.geometry.location.lat(),
-              lng: this.currentPlace.geometry.location.lng()
-            };
-            this.$emit("addMarker", marker);
-            this.markers.splice(0,1)
-            this.places.splice(0,1)
-            this.markers.push({ position: marker });
-            this.places.push(this.currentPlace);
-            this.center = marker;
-            this.currentPlace = null;
+    elTest(){
+        var el = document.querySelectorAll('img')
+      console.log(el)
+    },
+    addMarker() {
+      if (this.currentPlace) {
+        var marker = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng()
+        };
+        this.$emit("addMarker", marker);
+        this.markers.splice(0, 1);
+        this.places.splice(0, 1);
+        this.markers.push({ position: marker });
+        this.places.push(this.currentPlace);
+        this.center = marker;
+        this.currentPlace = null;
       }
-    }, 
+    },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lat: 32.0853,
+          lng:  34.781769 
         };
       });
     }
   },
-  destroyed(){
-
+  destroyed() {},
+  components:{
+    //   DirectionsRenderer
   }
 };
 
@@ -90,3 +102,11 @@ export default {
 //         this.currentPlace = null;
 //       }
 </script>
+<style lang="scss" scoped>
+ .imBoss >img {
+        border: 2px solid blue !important;
+        width: 200px !important;
+        height: 200px !important;
+        border-radius: 5px;
+      }
+</style>
