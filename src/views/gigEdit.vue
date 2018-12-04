@@ -48,7 +48,7 @@
             class="pro-tip"
             v-if="isShowingTip"
           >PRO-TIP: Set a fair price to get the Gig done quickly!</h4>
-        <google-map @addMarker="getLocation"/>
+        <google-map v-if="editPage" :gig="gig" @addMarker="getLocation"/>
           <h2>Price:</h2>
           <el-input-number
             v-model="gig.details.price"
@@ -76,6 +76,7 @@ export default {
 
     data() {
         return {
+          editPage:true,
             gig: {
                 publisherId: '',
                 category: '',
@@ -91,6 +92,9 @@ export default {
                         dist: this.getRandomDist(),
                         lat: null,
                         lng: null,
+                    },
+                    location:{
+
                     },
                     gigTime: '',
                     imgs: []
@@ -145,6 +149,7 @@ export default {
             this.isShowingTip = !this.isShowingTip
         },
         save() {
+          console.log(this.gig.details.location)
           var gig = this.gig
           var details = gig.details
           if(!gig.category || !details.title || !details.price || !details.desc) {
@@ -157,17 +162,20 @@ export default {
           gig.createdAt = Date.now()
           gig.publisherId = this.user._id
           var userGigsListToUpdate = (gig._id)? null : this.user.gigsIds.published 
+          console.log('gig',gig.details.location)
           this.$store.dispatch({type:'updateGig', gig, userGigsListToUpdate})
           this.$router.push('/')
         },
-        getLocation(pos){
-           console.log('blabla',this.gig.details.pos)
-          this.gig.details.pos.lat = pos.lat
-          this.gig.details.pos.lng = pos.lng
-         console.log(this.gig.details.pos)
+        getLocation(location){
+          console.log('this is the location from edit',location)
+          this.gig.details.location = location
+          // this.gig.details.pos.lat = pos.lat
+          // this.gig.details.pos.lng = pos.lng
+        //  console.log(this.gig.details.pos)
         }
     },
     created() {
+      console.log('editing gig')
         var gigId = this.$route.params.gigId
         if(gigId) {
             this.$store.dispatch({type:'getGigById', gigId})
