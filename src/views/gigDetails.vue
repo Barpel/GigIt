@@ -108,8 +108,10 @@ export default {
       setTimeout(() => {
         this.$router.push("/gig");
       }, 20);
-      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
-      this.$store.dispatch({type:'emitToUser',eventMsg:{txt:'New Gig Request', type:'success'}, userId:this.gig.publisherId})
+      let publisherId = this.gig.publisherId
+      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed"});
+      this.$store.dispatch({type:'emitToUser',eventMsg:{txt:'New Gig Request', type:'success', link: `/user/${publisherId}`},
+                                                    action:'toProfile',userId: publisherId})
       var currUser = this.user;
       this.gig.isRead = false;
       this.gig.pendingUsers.push({

@@ -15,6 +15,9 @@ export default {
         },
         emitToUser(context, {eventMsg, userId}) {
             this._vm.$socket.emit('emitToUser', eventMsg, userId)
+        },
+        emitNewChatMsg(context, {eventMsg, userId}) {
+            this._vm.$socket.emit('emitNewChatMsg', eventMsg, userId)
         }
     },
 }

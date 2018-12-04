@@ -72,15 +72,18 @@ export default {
         createdAt: Date.now(),
         isRead: false
       };
+      let otherUser = this.selectedChat.members[0]._id
       this.$store.dispatch({ type: "sendNewMsg", msg: newMsg, chatId });
+      this.$store.dispatch({type:'emitNewChatMsg',
+                            eventMsg:{txt:'You Have A New Message', type:'success',
+                                      link: `/user/${otherUser}/inbox`, action:'toProfile'},
+                            userId: otherUser})
       this.newMsgTxt = "";
     }
   },
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      console.log('on inbox open user is:', user)
-      console.log('on inbox open chats are:', user.chats)
       user.chats.forEach(chat => {
         this.$store
           .dispatch({ type: "getChatById", chatId: chat.chatId })

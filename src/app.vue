@@ -28,7 +28,7 @@ export default {
     displayMsg(msg) {
       this.msg = msg;
       this.showMsg = true;
-      var delay = 3000;
+      var delay = msg.link? 5000 : 3000
       setTimeout(() => {
         this.msg = null;
         this.showMsg = false;
@@ -38,6 +38,13 @@ export default {
   sockets: {
     eventMsgToUser: function (msg) {
       this.displayMsg(msg)
+    },
+    emitChatMsgToUser: function(msg) {
+      var path = this.$route.path
+      if(!path.includes('inbox')) {
+        console.log('does not include')
+        this.displayMsg(msg)
+      }
     }
   },
   created() {
