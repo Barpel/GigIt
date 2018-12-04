@@ -1,37 +1,42 @@
 <template>
   <section>
     <div class="home-nav">
-      <router-link to="/">
+      <router-link to="/" class="home-logo">
         <h1>
-          <i class="fas fa-home"></i>
-          Home
+          Gig
+          <span>It</span>
         </h1>
       </router-link>
-      <router-link to="/gig">
-        <h1>
-          <i class="fas fa-th-large"></i>
-          Gigs
-        </h1>
-      </router-link>
-      <router-link :to="(isLoggedin)?inboxLink: '/user/login'">
-        <h1>
-          <i class="fas fa-envelope"></i>
-          Inbox
-        </h1>
-      </router-link>
-      <router-link :to="(isLoggedin)?myGigsLink: '/user/login'">
-        <h1>
-          <span class="logo-i">Gigs</span>
-          My Gigs
-        </h1>
-      </router-link>
+      <div class="nav-seperator">
+        <router-link to="/gig">
+          <h1>
+            <i class="fas fa-th-large"></i>
+          </h1>
+        </router-link>
+        <router-link :to="(isLoggedin)?inboxLink: '/user/login'">
+          <h1>
+            <i class="fas fa-comment"></i>
+          </h1>
+        </router-link>
+        <router-link :to="(isLoggedin)?myGigsLink: '/user/login'">
+          <h1>
+            <span class="logo-i">Gigs</span>
+          </h1>
+        </router-link>
 
-      <router-link :to="(isLoggedin)?profileLink : '/user/login' ">
-        <h1>
-          <i class="fas fa-user"></i>
-          {{(isLoggedin)? 'Profile': 'Login'}}
+        <h1 v-if="isLoggedin" class="nav-user-container">
+          <router-link :to="profileLink">
+            <img :src="user.img">
+            <span>{{user.name.first}}</span>
+          </router-link>
         </h1>
-      </router-link>
+        <router-link v-else to="/login">
+          <h1>
+            <span>Login</span> &nbsp;
+            <i class="fas fa-user"></i>
+          </h1>
+        </router-link>
+      </div>
     </div>
   </section>
 </template>
@@ -60,10 +65,8 @@ export default {
     },
     inboxLink() {
       return `/user/${this.user._id}/inbox`;
-    },
-    
-  },
-
+    }
+  }
 };
 </script>
 
