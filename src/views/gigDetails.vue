@@ -53,7 +53,7 @@
           <li>
             <span>Reliable</span> &nbsp;
             <span>
-              <el-rate value="4.3" disabled show-score score-template="{value}" text-color="white"></el-rate>
+              <el-rate value="2" disabled show-score score-template="{value}" text-color="white"></el-rate>
             </span>
           </li>
           <li>
@@ -69,8 +69,8 @@
         </ul>
       </div>
       <div class="map-img-container">
-        <google-map @addMarker="getLocation"/>
-        <img src="../assets/mapDemo.jpg" alt>
+        <google-map :gig="gig"/>
+        <!-- <img src="../assets/mapDemo.jpg" alt> -->
       </div>
     </div>
   </section>
@@ -78,12 +78,13 @@
 
 <script>
 import bus, { USR_MSG_DISPLAY } from "../eventBus.js";
-// import GoogleMap from "@/components/googleMap";
+import GoogleMap from "@/components/googleMap";
 
 export default {
   name: "gigDetails",
   data() {
     return {
+      editPage:false,
       gig: null,
       isGigOwner: true,
       isAlreadyPending: false,
@@ -107,7 +108,10 @@ export default {
       setTimeout(() => {
         this.$router.push("/gig");
       }, 20);
-      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
+      let publisherId = this.gig.publisherId
+      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed"});
+      this.$store.dispatch({type:'emitToUser',eventMsg:{txt:'New Gig Request', type:'success', link: `/user/${publisherId}`},
+                                                    action:'toProfile',userId: publisherId})
       var currUser = this.user;
       this.gig.isRead = false;
       this.gig.pendingUsers.push({
@@ -127,7 +131,8 @@ export default {
       });
     },
     editGig() {
-      console.log("edit");
+      console.log(this.gig)
+      this.$router.push(`/gig/edit/${this.gig._id}`)
     },
     goToProfile(publisherId) {
       this.$router.push(`/user/${publisherId}`);
@@ -137,6 +142,7 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
+        console.log('gig location setting',this.gig)
       this.$store
         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
@@ -154,7 +160,7 @@ export default {
   mounted() {
   },
   components:{
-    // GoogleMap
+    GoogleMap
   }
 };
 </script>

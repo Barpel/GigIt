@@ -18,11 +18,16 @@ export default {
             return chatService.getById(chatId)
         },
         contactUser(context, { gigster, gigData, maister }) {
-            var chatIdx = maister.chats.findIndex(chat => chat.gigsterId === maister._id || chat.maisterId === maister._id)
+            
+            var chatIdx = maister.chats.findIndex(chat => {
+                return (chat.maisterId === maister._id && chat.gigsterId === gigster.id)
+                || (chat.gigsterId === maister._id && chat.maisterId === gigster.id)
+            })
             if (chatIdx >= 0)  {
                 var chat = maister.chats.splice(chatIdx,1)
                 chat = chat[0]
                 maister.chats.unshift(chat)
+                return context.dispatch({ type: 'updateOwnUser', user:maister})
             }
             else return context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
         },

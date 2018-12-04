@@ -13,7 +13,8 @@ export default {
     getLoggedUser,
     loginUser,
     logout,
-    setLocalLoggedUser
+    setLocalLoggedUser,
+    getLoggedUserId
 }
 
 function query() {
@@ -45,6 +46,11 @@ function getLoggedUser() {
     if(user) return Promise.resolve(user)
     else return Promise.resolve(null)
 }
+function getLoggedUserId() {
+    var userId = storageService._fromStorage('loggedUserId')
+    if(userId) return Promise.resolve(userId)
+    else return Promise.resolve(null)
+}
 
 function remove(userId) {
     return axios.delete(`${BASE_URL}/user/${userId}`).then(res => res.data)
@@ -53,6 +59,7 @@ function loginUser(userCreds) {
     return axios.post(`${BASE_URL}/user/login`, userCreds)
         .then(res => {
             var user = res.data
+            storageService._toStorage('loggedUserId', user._id)
             storageService._toStorage('loggedUser', user)
             return user
         })
@@ -60,11 +67,13 @@ function loginUser(userCreds) {
 
 function logout() {
     storageService._toStorage('loggedUser', null)
+    storageService._toStorage('loggedUserId', null)
     return Promise.resolve()
     //TODO: backend and front end logout
 }
 
 function setLocalLoggedUser(user) {
+    storageService._toStorage('loggedUserId', user._id)
     storageService._toStorage('loggedUser', user)
 }
 
