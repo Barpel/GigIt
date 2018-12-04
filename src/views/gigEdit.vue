@@ -89,9 +89,11 @@ export default {
                         lng: 34.824783,
                     },
                     gigTime: '',
-                    imgs: []
+                    imgs: [],
 
-                }
+                },
+                holdingUsers: [],
+                isPickedGigster: false
             },
             isShowingTip: false,
             categoryOpts: [{
