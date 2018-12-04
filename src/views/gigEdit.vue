@@ -48,6 +48,7 @@
             class="pro-tip"
             v-if="isShowingTip"
           >PRO-TIP: Set a fair price to get the Gig done quickly!</h4>
+        <google-map @addMarker="getLocation"/>
           <h2>Price:</h2>
           <el-input-number
             v-model="gig.details.price"
@@ -68,8 +69,11 @@
 </template>
 
 <script>
-// import gigSesrvice
+
+import GoogleMap from "@/components/googleMap";
+
 export default {
+
     data() {
         return {
             gig: {
@@ -85,8 +89,8 @@ export default {
                     price: 0,
                     pos: {
                         dist: this.getRandomDist(),
-                        lat: 32.068424,
-                        lng: 34.824783,
+                        lat: null,
+                        lng: null,
                     },
                     gigTime: '',
                     imgs: []
@@ -155,10 +159,15 @@ export default {
           var userGigsListToUpdate = (gig._id)? null : this.user.gigsIds.published 
           this.$store.dispatch({type:'updateGig', gig, userGigsListToUpdate})
           this.$router.push('/')
+        },
+        getLocation(pos){
+           console.log('blabla',this.gig.details.pos)
+          this.gig.details.pos.lat = pos.lat
+          this.gig.details.pos.lng = pos.lng
+         console.log(this.gig.details.pos)
         }
     },
     created() {
-      console.log('herehere!')
         var gigId = this.$route.params.gigId
         if(gigId) {
             this.$store.dispatch({type:'getGigById', gigId})
@@ -166,6 +175,9 @@ export default {
                     if(gig) this.gig = gig
                 })
         }
+    },
+    components:{
+      GoogleMap
     }
 }
 </script>
