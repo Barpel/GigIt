@@ -46,7 +46,7 @@
     
     <gig-list :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
-    <gig-categories v-if="showCategories"/>
+    <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/>
     <home-footer/>
   </div>
 </template>
@@ -95,11 +95,11 @@ export default {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
     },
-    counter() {
-      return this.coverCounter;
-    },
-    user() {
-      return this.$store.getters.user;
+    gigCategoryCounter() {
+      var gigCategoryCounter =JSON.parse(JSON.stringify(this.$store.getters.gigCategoryCounter)) 
+      console.log(gigCategoryCounter)
+      return gigCategoryCounter
+      // return this.coverCounter;
     }
   },
   methods: {
@@ -107,10 +107,9 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey() {
-      this.showCategories = false;
-      this.$store.dispatch({ type: "filterByKey", filter: this.filter });
-      // .then()
-    },
+      this.showCategories = false
+      this.$store.dispatch({ type: "filterByKey", filter: this.filter })
+    }
   },
   components: {
     gigCategories,
@@ -119,12 +118,14 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "getGigs" });
+
   },
   mounted() {
     //   setInterval(() => {
     //     this.coverCounter === 5 ? (this.coverCounter = 0) : this.coverCounter++
     //     // console.log("interval");
     //   }, 5000);
+     
   },
   watch: {
     "filter.byTitle"() {

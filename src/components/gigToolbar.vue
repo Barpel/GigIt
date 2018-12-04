@@ -38,7 +38,7 @@ export default {
         byCategory: "",
         byTitle: ""
       },
-      showFilter: true
+      showFilter: false
     };
   },
   created() {
