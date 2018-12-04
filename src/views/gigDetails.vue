@@ -69,6 +69,7 @@
         </ul>
       </div>
       <div class="map-img-container">
+        <google-map @addMarker="getLocation"/>
         <img src="../assets/mapDemo.jpg" alt>
       </div>
     </div>
@@ -77,6 +78,7 @@
 
 <script>
 import bus, { USR_MSG_DISPLAY } from "../eventBus.js";
+// import GoogleMap from "@/components/googleMap";
 
 export default {
   name: "gigDetails",
@@ -150,7 +152,9 @@ export default {
     });
   },
   mounted() {
-    console.log(this.gig);
+  },
+  components:{
+    // GoogleMap
   }
 };
 </script>
