@@ -19,14 +19,15 @@ export default {
         },
         contactUser(context, { gigster, gigData, maister }) {
             var chatIdx = maister.chats.findIndex(chat => chat.gigsterId === maister._id || chat.maisterId === maister._id)
-            if (chatIdx > 0)  {
+            if (chatIdx >= 0)  {
                 var chat = maister.chats.splice(chatIdx,1)
                 chat = chat[0]
                 maister.chats.unshift(chat)
             }
-            else context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
+            else return context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
         },
         openNewChat(context, { gigster, gigData, maister }) {
+            alert('creating new chat')
             var chat = {
                 members: [{ name: gigster.name, img: gigster.img, _id: gigster.id },
                 { name: maister.name.first, img: maister.img, _id: maister._id }],
@@ -38,7 +39,6 @@ export default {
                 }],
                 gig: gigData
             }
-            debugger
             return chatService.update(chat)
                 .then(chat => {
                     var chatItem = { chatId: chat._id, gigsterId: gigster.id, maisterId: maister._id }
@@ -52,7 +52,7 @@ export default {
                             context.dispatch({ type: 'updateUser', user })
                         })
                     let user = setChatAndUpdate(maister)
-                    context.dispatch({ type: 'updateOwnUser', user })
+                    return context.dispatch({ type: 'updateOwnUser', user })
                 })
                 
             }

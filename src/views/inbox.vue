@@ -1,10 +1,10 @@
 <template>
   <section id="inbox-container" v-if="user">
-    <h1>{{user.name.first}}'s Inbox</h1>
+    <h1>{{user.name.first}}'s Chats</h1>
     <div class="chats-container">
       <div class="top-bar">
         <img :src="user.img">
-        <h3>{{user.name.first}}</h3>
+        <h3>{{user.name.first}}'s Chats</h3>
       </div>
       <div class="chats">
         <div
@@ -57,7 +57,6 @@ export default {
   },
   sockets: {
     sentMsg: function(payload) {
-      console.log(payload.chatId)
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId)
         currNewMsgChat.msgs.push(payload.msg)
     }
@@ -80,8 +79,9 @@ export default {
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      console.log(user)
-      this.user.chats.forEach(chat => {
+      console.log('on inbox open user is:', user)
+      console.log('on inbox open chats are:', user.chats)
+      user.chats.forEach(chat => {
         this.$store
           .dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {

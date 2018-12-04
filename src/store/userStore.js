@@ -40,10 +40,10 @@ export default {
                 })
         },
         updateUser(context, {user}) {
-            userService.update(user)
+            return userService.update(user)
         },
         updateOwnUser(context, {user}) {
-            userService.update(user)
+            return userService.update(user)
                 .then(user => {
                     userService.setLocalLoggedUser(user)
                     context.commit({type:'setLoggedUser', user})
