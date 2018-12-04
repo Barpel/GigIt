@@ -103,7 +103,7 @@ export default {
     goBack() {
       this.$router.push("/gig");
     },
-    requestGig(ev) {
+    requestGig() {
       if (this.isAlreadyPending) return;
       setTimeout(() => {
         this.$router.push("/gig");

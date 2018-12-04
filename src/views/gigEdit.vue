@@ -97,9 +97,11 @@ export default {
 
                     },
                     gigTime: '',
-                    imgs: []
+                    imgs: [],
 
-                }
+                },
+                holdingUsers: [],
+                isPickedGigster: false
             },
             isShowingTip: false,
             categoryOpts: [{

@@ -2,9 +2,11 @@
   <div class="home">
     <div class="banner">
       <div class="welcome-container">
-        <img :src="user.img" v-if="user">
-        <i class="fas fa-user-circle" v-else></i>
-        <h1>Hi {{(user)? user.name.first: 'Guest'}}</h1>
+        <div>
+          <img :src="user.img" v-if="user">
+          <i class="fas fa-user-circle" v-else></i>
+          <h1>Hi {{(user)? user.name.first: 'Guest'}}</h1>
+        </div>
         <router-link to="/gig/edit" tag="button" v-if="user" class="welcome-add-gig-btn">
           <i class="fas fa-plus"></i>
           <span>Gig</span>
@@ -17,7 +19,9 @@
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
             <h3>{{carouselItem.txt}}</h3>
             <img :src="carouselItem.imgUrl">
-            <h4>Gig<span>It</span></h4>
+            <h4>Gig
+              <span>It</span>
+            </h4>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -38,12 +42,14 @@
           placeholder="Find your type of Gig"
           @input="filterByKey"
           v-model="filter.byTitle"
+          ref="searchGig"
         >
-        <button>Search</button>
+        <button @click="focusOnSearch">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
     </div>
 
-    
     <gig-list :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
     <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/>
@@ -80,7 +86,8 @@ export default {
         {
           imgUrl:
             "https://res.cloudinary.com/barpel/image/upload/v1543912161/GigIt/lady-chef.png",
-          txt: "Sometimes cooking is too tiring. Get a Gigster to make you a nice meal!"
+          txt:
+            "Sometimes cooking is too tiring. Get a Gigster to make you a nice meal!"
         },
         {
           imgUrl:
@@ -96,10 +103,15 @@ export default {
       return gigs;
     },
     gigCategoryCounter() {
-      var gigCategoryCounter =JSON.parse(JSON.stringify(this.$store.getters.gigCategoryCounter)) 
-      // console.log(gigCategoryCounter)
-      return gigCategoryCounter
+      var gigCategoryCounter = JSON.parse(
+        JSON.stringify(this.$store.getters.gigCategoryCounter)
+      );
+      console.log(gigCategoryCounter);
+      return gigCategoryCounter;
       // return this.coverCounter;
+    },
+    user() {
+      return this.$store.getters.user;
     }
   },
   methods: {
@@ -107,8 +119,11 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey() {
-      this.showCategories = false
-      this.$store.dispatch({ type: "filterByKey", filter: this.filter })
+      this.showCategories = false;
+      this.$store.dispatch({ type: "filterByKey", filter: this.filter });
+    },
+    focusOnSearch() {
+      this.$refs.searchGig.focus();
     }
   },
   components: {
@@ -118,14 +133,12 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "getGigs" });
-
   },
   mounted() {
     //   setInterval(() => {
     //     this.coverCounter === 5 ? (this.coverCounter = 0) : this.coverCounter++
     //     // console.log("interval");
     //   }, 5000);
-     
   },
   watch: {
     "filter.byTitle"() {
