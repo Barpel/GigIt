@@ -69,7 +69,7 @@ export default {
       this.$store.dispatch({type: 'updateGig', gig})
     },
     contactGigster(gigster, gigData) {
-      this.$store.dispatch({type: 'sendMsg', gigster, gigData, maister: this.user })
+      this.$store.dispatch({type: 'contactUser', gigster, gigData, maister: this.user })
         .then(() => this.$router.push(`/user/${this.user._id}/inbox`))
     },
     getUserGigs() {

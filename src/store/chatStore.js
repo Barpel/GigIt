@@ -1,4 +1,5 @@
-import socketService from '../service/socketService.js'
+import chatService from '../service/chatService.js'
+import { debug } from 'util';
 export default {
     state: {
     },
@@ -14,9 +15,9 @@ export default {
         // }
         },
         getChatById(context, {chatId}) {
-            return socketService.getById(chatId)
+            return chatService.getById(chatId)
         },
-        sendMsg(context, { gigster, gigData, maister }) {
+        contactUser(context, { gigster, gigData, maister }) {
             var chatIdx = maister.chats.findIndex(chat => chat.gigsterId === maister._id || chat.maisterId === maister._id)
             if (chatIdx > 0)  {
                 var chat = maister.chats.splice(chatIdx,1)
@@ -37,7 +38,8 @@ export default {
                 }],
                 gig: gigData
             }
-            return socketService.update(chat)
+            debugger
+            return chatService.update(chat)
                 .then(chat => {
                     var chatItem = { chatId: chat._id, gigsterId: gigster.id, maisterId: maister._id }
                     function setChatAndUpdate(user) {

@@ -1,5 +1,5 @@
 <template>
-  <section class="inbox-container" v-if="user">
+  <section id="inbox-container" v-if="user">
     <h1>{{user.name.first}}'s Inbox</h1>
     <div class="chats-container">
       <div class="top-bar">
@@ -25,7 +25,7 @@
     <div class="chat-window">
       <div class="chat-conversation" v-if="selectedChat">
         <div
-          :class="(msg.sender === user.name.first)? 'member2': 'member1'"
+          :class="(msg.sender === user._id)? 'member2': 'member1'"
           v-for="msg in selectedChat.msgs"
           :key="msg._id"
         >
@@ -80,8 +80,8 @@ export default {
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
+      console.log(user)
       this.user.chats.forEach(chat => {
-        console.log(chat)
         this.$store
           .dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
@@ -94,8 +94,6 @@ export default {
             this.chats.unshift(chat);
           });
       });
-
-      // console.log(user);
       this.user = user;
     });
   }
