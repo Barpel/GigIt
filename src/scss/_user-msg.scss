@@ -1,32 +1,41 @@
-.user-msg {
+.user-msg-container {
+    padding: 1px;
+    
+    border-bottom-left-radius: 5px;
+    position: fixed;
+    top:0;
+    right: -100vw;
     cursor: pointer;
+    z-index: 20;
+    animation-name: slide-right;
+    animation-duration: 0.7s;
+    transition: all .7s;
+
+}
+.user-msg {
     display: grid;
     justify-content: center;
     align-items: center;
     width: 200px;
     height: 70px;
     padding: 10px;;
-    position: fixed;
     font-family: roboto;
     font-size: 1.6rem;
-    top:0;
-    right: -100vw;
-    transition: all .7s;
-    animation-name: slide-right;
-    animation-duration: 0.7s;
     border: 1px solid white;
     color: white;
     border-bottom-left-radius: 5px;
 }
 
-.user-msg.success {
-    right:0;
-    outline: 2px solid #2ca2af;
+.user-msg-container.success {
+    top:0.2rem;
+    right:0.2rem;
     background-color: #2ca2af;
+    border: 2px solid #2ca2af;
 }
 
-.user-msg.error {
-    right:0;
-    outline: 2px solid lightcoral;
+.user-msg-container.error {
+    top:0.2rem;
+    right:0.2rem;
+    border: 2px solid lightcoral;
     background-color: lightcoral;
 }

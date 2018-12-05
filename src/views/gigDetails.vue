@@ -88,7 +88,7 @@ export default {
     requestGig() {
       if (this.isAlreadyPending) return;
       setTimeout(() => {
-        this.$router.push("/gig");
+        this.$router.push("/");
       }, 20);
       let publisherId = this.gig.publisherId;
       bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
