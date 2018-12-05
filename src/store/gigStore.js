@@ -76,8 +76,8 @@ export default {
                     return context.dispatch({type: 'getGigs'}, cuurGig)
                 })
         },
-        reviewAndCompleteGig(context, payload) {
-            return context.dispatch({type: 'updateUsersReviewsAndGigIds', payload})
+        reviewAndCompleteGig(context, {review, reviewStats}) {
+            return context.dispatch({type: 'updateUsersReviewsAndGigIds', review, reviewStats})
                 // .then(() => gigService.removeGig(payload.reviewStats.gigId))
                 
         }

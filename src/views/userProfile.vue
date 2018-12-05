@@ -127,7 +127,7 @@
           <div
             v-for="publishedGig in gigs.publishedGigs"
             :key="publishedGig._id"
-            v-if="publishedGig.pendingUsers"
+            v-if="publishedGig && publishedGig.pendingUsers"
           >
             <gig-accordion
               @gigsterPicked="gigsterPicked($event, publishedGig)"
@@ -140,13 +140,16 @@
             ></gig-accordion>
           </div>
         </ul>
-        <ul class="blahblah" v-if="gigs.pendingGigs.length &&+tabContent === 3">
-          <pending-gig :gigs="gigs.pendingGigs" ></pending-gig>
+        <ul v-if="gigs.pendingGigs.length &&+tabContent === 3">
+          <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
         </ul>
       </div>
     </div>
-    <giger-review :reviewStats="currReviewStats" v-if="showReviewForm"
-                  @reviewSumbitted="submitReview"/>
+    <giger-review
+      :reviewStats="currReviewStats"
+      v-if="showReviewForm"
+      @reviewSumbitted="submitReview"
+    />
   </section>
 </template>
 <script>
@@ -228,24 +231,31 @@ export default {
       });
     },
     openReviewForm(reviewStats) {
-      reviewStats.maisterId = this.user._id
-      this.currReviewStats = reviewStats
-      this.showReviewForm = true
+      reviewStats.maisterId = this.user._id;
+      this.currReviewStats = reviewStats;
+      this.showReviewForm = true;
     },
     submitReview(review = null) {
-      this.$store.dispatch({type:'reviewAndCompleteGig', review, reviewStats:this.currReviewStats})
-      this.showReviewForm = false
-      this.currReviewStats = null
-    },
+      var givenReview = {
+        review,
+        gigId: this.currReviewStats.gigId,
+        createdAt: Date.now(),
+        givenBy: {name: this.user.name.first,img:this.user.img},
+        title: this.currReviewStats.title
+      }
+      this.$store.dispatch({type: "reviewAndCompleteGig",review: givenReview,reviewStats: this.currReviewStats});
+      this.showReviewForm = false;
+      this.currReviewStats = null;
+    }
   },
   created() {
     this.loadUser();
-    console.log('gigs', this.gigs)
+    console.log("gigs", this.gigs);
   },
   watch: {
     "$route.params.userId": function() {
       this.loadUser();
-    },
+    }
   },
   components: {
     gigAccordion,
