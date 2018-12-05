@@ -11,15 +11,23 @@
       </div>
       <div class="nav-seperator">
         <div class="nav-user-container">
-          <a v-if="isLoggedin" class="nav-user-menu-container" @click="dropdownOpen = !dropdownOpen">
+          <a
+            v-if="isLoggedin"
+            class="nav-user-menu-container"
+            @click="dropdownOpen = !dropdownOpen"
+          >
             <img :src="user.img">
             <span>{{user.name.first}}</span>
             <div class="user-dropdown" :class="dropdownStatus">
-              <router-link :to="profileLink"><i class="fas fa-address-card"></i>Profile</router-link>
-              <a><i class="fas fa-power-off"></i>Log Out</a>
+              <router-link :to="profileLink">
+                <i class="fas fa-address-card"></i>Profile
+              </router-link>
+              <a @click="doLogout">
+                <i class="fas fa-power-off"></i>Log Out
+              </a>
             </div>
           </a>
-          <router-link v-else to="/login">
+          <router-link v-else to="/user/login">
             <h1>
               <span>Login</span> &nbsp;
               <i class="fas fa-user"></i>
@@ -48,7 +56,7 @@ export default {
   name: "homeNav",
   data() {
     return {
-      dropdownOpen: false,
+      dropdownOpen: false
     };
   },
   computed: {
@@ -76,7 +84,13 @@ export default {
       return {
         open: this.dropdownOpen,
         closed: !this.dropdownOpen
-      }
+      };
+    }
+  },
+  methods: {
+    doLogout() {
+      this.$store.dispatch({ type: "doLogout" });
+      this.$router.push("/");
     }
   }
 };
