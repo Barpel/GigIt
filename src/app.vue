@@ -29,6 +29,7 @@ export default {
       this.msg = msg;
       this.showMsg = true;
       var delay = msg.link? 5000 : 3000
+      
       setTimeout(() => {
         this.msg = null;
         this.showMsg = false;
@@ -37,12 +38,15 @@ export default {
   },
   sockets: {
     eventMsgToUser: function (msg) {
+      var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
+      audio.play();
       this.displayMsg(msg)
     },
     emitChatMsgToUser: function(msg) {
       var path = this.$route.path
       if(!path.includes('inbox')) {
-        console.log('does not include')
+        var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
+        audio.play();
         this.displayMsg(msg)
       }
     }
