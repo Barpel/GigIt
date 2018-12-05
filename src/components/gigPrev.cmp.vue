@@ -32,7 +32,8 @@
 <script>
 export default {
   props: {
-    gig: Object
+    gig: Object,
+    currUser: Object
     // publisher: Object,
   },
   data() {
@@ -54,6 +55,10 @@ export default {
     },
   },
   created() {
+    var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
+      return gigId === this.gig._id
+    })
+    if(pendingGig) this.isAlreadyPending = true
     this.$store
       .dispatch({ type: "getUserById", userId: this.gig.publisherId })
       .then(publisher => (this.publisher = publisher))

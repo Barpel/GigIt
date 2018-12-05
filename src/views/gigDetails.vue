@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/gig");
+      this.$router.push("/");
     },
     requestGig() {
       if (this.isAlreadyPending) return;

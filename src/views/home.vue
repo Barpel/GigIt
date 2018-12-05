@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <gig-list :gigs="gigs" @gigClicked="gigClicked"/>
+    <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
     <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/>
     <home-footer/>
