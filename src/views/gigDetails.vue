@@ -47,19 +47,19 @@
           <li>
             <span>Payment</span> &nbsp;
             <span>
-              <el-rate value="4" disabled show-score score-template="{value}" text-color="white"></el-rate>
+              <!-- <el-rate value="4" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
             </span>
           </li>
           <li>
             <span>Reliable</span> &nbsp;
             <span>
-              <el-rate value="2" disabled show-score score-template="{value}" text-color="white"></el-rate>
+              <!-- <el-rate value="2" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
             </span>
           </li>
           <li>
             <span>Overall</span> &nbsp;
             <span>
-              <el-rate value="4.6" disabled show-score score-template="{value}" text-color="white"></el-rate>
+              <!-- <el-rate value="4.6" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
             </span>
           </li>
           <h4>
