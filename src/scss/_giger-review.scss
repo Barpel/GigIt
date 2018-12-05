@@ -1,46 +1,49 @@
 .giger-review-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 40px;
-    border-radius: 5px;
-    border: 1px solid #2f2f2f2c;
-    max-width: 70vw;
-    margin: 10px auto;
+    .giger-review-screen {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: #64626267;
+        z-index: 9;
+    }
+    font-family: roboto;
+    display: flex;    
     padding: 10px;
-    grid-gap: 10px;
-    span{
-        display: block;
-    }
-    .giger-review-work{
-        grid-column: 1;
-    }
-    .giger-review-reliable{
-        grid-row: 2;
-    }
-    .giger-review-text{
-        grid-row: 3;
-        grid-column-start: 1; 
-        grid-column-end: 3; 
-    }
-    button{
-        grid-row: 4;
-        grid-column: 3;
-        background-color: #4b052e;
-        margin: 0 10px;
-        border: none;
+    .giger-review-form{
+        min-width: 50vw;
+        padding: 2rem;
+        color: black;
+        position: fixed;
+        left: 30vw;
+        top: 15vh;
+        border: 1px solid #2f2f2f2c;
         border-radius: 5px;
-        cursor: pointer;
-        color: #ffffff;
-        font-family: roboto;
-        font-size: 0.8rem;
-        font-weight: bold;
-        padding: 6px 15px;
-        -webkit-transition: all .3s;
-        transition: all .3s;
-         }
-    button:hover{
-        color: #a5a4a4;
-        -webkit-transform: scale(0.98);
-        transform: scale(0.98);
+        background-color: white; 
+        z-index: 10;
+        .giger-review-field{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 1.4rem;
+        }
+        button{
+            background-color: #4b052e;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: roboto;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 15px;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            }
+        button:hover{
+            background-color: #92165e
+        }
     }
 }
