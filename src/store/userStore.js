@@ -79,6 +79,11 @@ export default {
                 .then(user => {
                     context.commit({type:'setLoggedUser', user})
                 })
-        }
+        },
+        // updateUsersReviewsAndGigIds(context, {review, reviewStats}) {
+            // this.$
+        // }
+        // updateGigsterReviewAndGigIds(context, {})
+        
     },
 }

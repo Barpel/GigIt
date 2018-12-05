@@ -77,10 +77,10 @@
           border-radius: 5px;
           color: white;
         }
-        .later {
+        .accordion-later-btn {
           background-color: red;
         }
-        .gigit {
+        .accordion-gigit-btn {
           background-color: #2ca2af;
           font-family: condiment;
           span {
@@ -106,12 +106,14 @@
           border-radius: 5px;
           color: white;
         }
-         .later {
-          background-color: red;
-        }
-        .gigit {
+        .accordion-completed-btn {
           background-color: #2ca2af;
-          font-family: roboto;
+        }
+        .accordion-gigit-btn {
+          background-color: #2ac515;
+        }
+        .accordion-later-btn {
+          background-color: red;
         }
         
   }

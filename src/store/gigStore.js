@@ -75,6 +75,11 @@ export default {
                     }
                     return context.dispatch({type: 'getGigs'}, cuurGig)
                 })
+        },
+        reviewAndCompleteGig(context, payload) {
+            return context.dispatch({type: 'updateUsersReviewsAndGigIds', payload})
+                // .then(() => gigService.removeGig(payload.reviewStats.gigId))
+                
         }
     },
 }

@@ -11,6 +11,9 @@
     font-family: roboto;
     display: flex;    
     padding: 10px;
+    h2 {
+        margin-bottom: 1.4rem;
+    }
     .giger-review-form{
         min-width: 50vw;
         padding: 2rem;
@@ -23,12 +26,18 @@
         background-color: white; 
         z-index: 10;
         .giger-review-field{
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             justify-content: space-around;
             align-items: center;
             margin-bottom: 1.4rem;
         }
-        button{
+        .giger-review-text{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.4rem;
+        }
+        button {
             background-color: #4b052e;
             margin: 0 10px;
             border: none;
@@ -36,14 +45,23 @@
             cursor: pointer;
             color: #ffffff;
             font-family: roboto;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
             font-weight: bold;
             padding: 6px 15px;
             -webkit-transition: all .3s;
             transition: all .3s;
+        }
+        .giger-review-send{
+            background-color: #4b052e;
             }
-        button:hover{
+        .giger-review-send:hover{
             background-color: #92165e
+        }
+        .giger-review-cancel {
+            background-color: rgb(88, 88, 88);
+        }
+        .giger-review-cancel:hover{
+            background-color: gray;
         }
     }
 }

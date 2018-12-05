@@ -132,7 +132,9 @@
             <gig-accordion
               @gigsterPicked="gigsterPicked($event, publishedGig)"
               @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
+              @openReviewForm="openReviewForm"
               :gigsters="publishedGig.pendingUsers"
+              :gigId="publishedGig._id"
               :header="publishedGig.details.title"
               :isPickedGigster="publishedGig.isPickedGigster"
             ></gig-accordion>
@@ -142,8 +144,9 @@
           <pending-gig :gigs="gigs.pendingGigs" ></pending-gig>
         </ul>
       </div>
-      <giger-review/>
     </div>
+    <giger-review :reviewStats="currReviewStats" v-if="showReviewForm"
+                  @reviewSumbitted="submitReview"/>
   </section>
 </template>
 <script>
@@ -164,7 +167,9 @@ export default {
       pickGigster: {
         isPicked: false,
         gigster: []
-      }
+      },
+      showReviewForm: false,
+      currReviewStats: null
     };
   },
   methods: {
@@ -222,9 +227,16 @@ export default {
           });
       });
     },
-    sumbitReview(review) {
-      // console.log(review);
-    }
+    openReviewForm(reviewStats) {
+      reviewStats.maisterId = this.user._id
+      this.currReviewStats = reviewStats
+      this.showReviewForm = true
+    },
+    submitReview(review = null) {
+      this.$store.dispatch({type:'reviewAndCompleteGig', review, reviewStats:this.currReviewStats})
+      this.showReviewForm = false
+      this.currReviewStats = null
+    },
   },
   created() {
     this.loadUser();
