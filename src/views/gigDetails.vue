@@ -86,7 +86,7 @@ export default {
     return {
       editPage:false,
       gig: null,
-      isGigOwner: true,
+      isGigOwner: null,
       isAlreadyPending: false,
       publisher: null
     };

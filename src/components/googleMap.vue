@@ -3,8 +3,8 @@
     <div v-if="this.editPage">
       <h2>Search and add a pin</h2>
       <label>
-        <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
-        <button @click.prevent="addMarker">Add</button>
+        <gmap-autocomplete @place_changed="setPlace" class="place-input-map"></gmap-autocomplete>
+        <button class="place-btn-map" @click.prevent="addMarker">Add</button>
       </label>
       <br>
     </div>

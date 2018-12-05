@@ -1,23 +1,55 @@
 .home-nav {
-  max-height: 100px;
+  max-height: 80px;
   position: fixed;
-  bottom: 0;
   width: 100%;
-  padding: 20px;
+  padding: 0 15px;
   background-color: #343434;
   color: white;
   border: 1px solid black;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: space-between;
   margin: 20px 0 0;
   z-index: 4;
+  .nav-seperator {
+    display: grid;
+    // flex-grow: 1;
+    width: 60%;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: end;
+    .nav-user-container {
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        transition: all .3s;
+        span {
+          font-size: 1.2rem; 
+        }
+        img {
+          max-width: 35px;
+          max-height: 35px;
+          object-fit: cover;
+          border-radius: 50%;
+          // margin-left: 15px;
+        }
+        
+      }
+      a:hover {
+        transform: scale(1.05);
+        color: white;
+      }
+    }
+  }
   a {
     text-decoration: none;
     font-weight: bold;
     color: white;
     cursor: pointer;
-    transition: all .3s;
-    .profile-info-container{
+    transition: all 0.3s;
+    // max-width: 50%;
+    .profile-info-container {
       i {
         position: relative;
 
@@ -40,18 +72,30 @@
     h1 {
       margin: 0;
       height: 100%;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
       font-size: 1.5rem;
-      span {
-        font-family: condiment;
-        span {
-          color: #97a5a7;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      a {
+        img {
         }
       }
     }
+
     &.router-link-exact-active {
       color: #8b0d57;
+    }
+  }
+  a.home-logo {
+    h1 {
+      text-align: left;
+      font-family: condiment;
+      font-size: 2rem;
+      span {
+        font-family: condiment;
+        color: #97a5a7;
+      }
     }
   }
   a:hover:not(.router-link-exact-active) {
@@ -72,23 +116,22 @@
   transition: 0.5s;
 }
 
-.user-dropdown.open{
+.user-dropdown.open {
   bottom: 0;
 }
 
-@media(min-width: 1050px) {
+@media (min-width: 1050px) {
   .home-nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     margin: 0;
-    max-height: 70px;
+    max-height: 55px;
     background-color: $category-base;
-    a {
-      i, .logo-i{
-        display: none;
-      }
-    }
+    // a {
+    //   i, .logo-i{
+    //     display: none;
+    //   }
+    // }
   }
 }
-
