@@ -127,23 +127,29 @@
           <div
             v-for="publishedGig in gigs.publishedGigs"
             :key="publishedGig._id"
-            v-if="publishedGig.pendingUsers"
+            v-if="publishedGig && publishedGig.pendingUsers"
           >
             <gig-accordion
               @gigsterPicked="gigsterPicked($event, publishedGig)"
               @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
+              @openReviewForm="openReviewForm"
               :gigsters="publishedGig.pendingUsers"
+              :gigId="publishedGig._id"
               :header="publishedGig.details.title"
               :isPickedGigster="publishedGig.isPickedGigster"
             ></gig-accordion>
           </div>
         </ul>
-        <ul class="blahblah" v-if="gigs.pendingGigs.length &&+tabContent === 3">
-          <pending-gig :gigs="gigs.pendingGigs" ></pending-gig>
+        <ul v-if="gigs.pendingGigs.length &&+tabContent === 3">
+          <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
         </ul>
       </div>
-      <giger-review/>
     </div>
+    <giger-review
+      :reviewStats="currReviewStats"
+      v-if="showReviewForm"
+      @reviewSumbitted="submitReview"
+    />
   </section>
 </template>
 <script>
@@ -164,7 +170,9 @@ export default {
       pickGigster: {
         isPicked: false,
         gigster: []
-      }
+      },
+      showReviewForm: false,
+      currReviewStats: null
     };
   },
   methods: {
@@ -222,18 +230,32 @@ export default {
           });
       });
     },
-    sumbitReview(review) {
-      // console.log(review);
+    openReviewForm(reviewStats) {
+      reviewStats.maisterId = this.user._id;
+      this.currReviewStats = reviewStats;
+      this.showReviewForm = true;
+    },
+    submitReview(review = null) {
+      var givenReview = {
+        review,
+        gigId: this.currReviewStats.gigId,
+        createdAt: Date.now(),
+        givenBy: {name: this.user.name.first,img:this.user.img},
+        title: this.currReviewStats.title
+      }
+      this.$store.dispatch({type: "reviewAndCompleteGig",review: givenReview,reviewStats: this.currReviewStats});
+      this.showReviewForm = false;
+      this.currReviewStats = null;
     }
   },
   created() {
     this.loadUser();
-    console.log('gigs', this.gigs)
+    console.log("gigs", this.gigs);
   },
   watch: {
     "$route.params.userId": function() {
       this.loadUser();
-    },
+    }
   },
   components: {
     gigAccordion,

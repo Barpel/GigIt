@@ -20,17 +20,19 @@
           <span>{{gigster.completedReviewsAverage}}</span>
         </h3>
         <div v-if="!isPickedGigsterData" class="gigster-btn-container">
-          <button @click="gigsterPicked(gigster)" class="gigit">
+          <button @click="gigsterPicked(gigster)" class="accordion-gigit-btn">
             Gig
             <span>It</span>
           </button>
-          <button class="later">Later</button>
+          <button class="accordion-later-btn">No Thanks</button>
         </div>
         <div v-else class="gigster-btn-container-after">
-          <button @click="contactGigster(gigster)" class="gigit">
+          <button @click="contactGigster(gigster)" class="accordion-gigit-btn">
             Contact
           </button>
-          <button @click="gigCancel(gigster.id)" class="later">Cancel</button>
+          <button @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
+          isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> Completed </button>
+          <button @click="gigCancel(gigster.id)" class="accordion-later-btn">Cancel</button>
         </div>
       </li>
     </ul>
@@ -39,7 +41,7 @@
 
 <script>
 export default {
-  props: ['header', 'gigsters', 'isPickedGigster'],
+  props: ['header', 'gigsters','gigId','isPickedGigster', 'gigTitle'],
   name: 'gigAccordion',
   data() {
     return {
@@ -66,7 +68,7 @@ export default {
     removeGig() {
       console.log('removeGig')
       // this.$emit('removeGig')
-    }
+    },
   },
 }
 </script>

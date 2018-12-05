@@ -80,6 +80,31 @@ export default {
                     context.commit({ type: 'setLoggedUser', user })
                 })
         },
+<<<<<<< HEAD
        
+=======
+        updateUsersReviewsAndGigIds(context, {review, reviewStats}) {
+            if(reviewStats.isForGigster) {
+                context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
+                    .then(user => {
+                        var gigIdx = user.gigsIds.pending.findIndex(gig => reviewStats.gigId)
+                        user.gigsIds.pending.splice(gigIdx, 1)
+                        user.gigsIds.completed.push(reviewStats.gigId)
+                        if(!user.reviews.completed[0].gigId === '0') user.reviews.completed.unshift(review)
+                        else user.reviews.completed = [review]
+                        context.dispatch({type:'updateUser', user})
+
+                    })
+                context.dispatch({type:'getUserById', userId: reviewStats.maisterId})
+                    .then(user => {
+                        var gigIdx = user.gigsIds.published.findIndex(gig => reviewStats.gigId)
+                        user.gigsIds.published.splice(gigIdx, 1)
+                        user.gigsIds.completed.push(reviewStats.gigId)
+                        context.dispatch({type:'updateOwnUser', user})
+                    })
+            }
+            //TODO: ADD REVIEW FOR PUBLISHER
+        }
+>>>>>>> f682395d9258b9d4da59d1347cc72e6871298749
     },
 }

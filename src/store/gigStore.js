@@ -86,6 +86,7 @@ export default {
                     return context.dispatch({ type: 'getGigs' }, cuurGig)
                 })
         },
+<<<<<<< HEAD
         userLocation(context, payload) {
             var userLocation = {
                 position: {
@@ -95,6 +96,12 @@ export default {
             }
             context.commit({ type: 'setUserLocation', userLocation })
 
+=======
+        reviewAndCompleteGig(context, {review, reviewStats}) {
+            return context.dispatch({type: 'updateUsersReviewsAndGigIds', review, reviewStats})
+                // .then(() => gigService.removeGig(payload.reviewStats.gigId))
+                
+>>>>>>> f682395d9258b9d4da59d1347cc72e6871298749
         }
     },
 }
