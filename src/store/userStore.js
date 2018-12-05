@@ -80,9 +80,6 @@ export default {
                     context.commit({ type: 'setLoggedUser', user })
                 })
         },
-<<<<<<< HEAD
-       
-=======
         updateUsersReviewsAndGigIds(context, {review, reviewStats}) {
             if(reviewStats.isForGigster) {
                 context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
@@ -105,6 +102,5 @@ export default {
             }
             //TODO: ADD REVIEW FOR PUBLISHER
         }
->>>>>>> f682395d9258b9d4da59d1347cc72e6871298749
     },
 }
