@@ -22,7 +22,7 @@
           </div>
         </h5>
         <p>{{gig.details.desc}}</p>
-        <p>location: {{gig.details.pos.dist}}</p>
+        <p>location: {{gig.details.pos.dist}} KM Away</p>
         <div class="gigit-detail-container">
           <p>Earn {{this.gig.details.price}}₪ for this Gig</p>
           <button v-if="!isGigOwner" @click="requestGig" class="gigit-btn">
@@ -131,7 +131,6 @@ export default {
       });
     },
     editGig() {
-      console.log(this.gig)
       this.$router.push(`/gig/edit/${this.gig._id}`)
     },
     goToProfile(publisherId) {
@@ -142,7 +141,6 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
-        console.log('gig location setting',this.gig)
       this.$store
         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS

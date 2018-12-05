@@ -4,11 +4,11 @@ export default {
         gigs: null,
         currGig: null,
         isLoading: false,
-        gigCategoryCounter: null
+        gigCategoryCounter: null,
+        userLocation: null,
     },
     getters: {
         gigs(state) {
-            // if (!state.gigs) return []
             return state.gigs
         },
         isLoading(state) {
@@ -17,14 +17,21 @@ export default {
         loggedUser(state, getters) {
             return getters.user
         },
-        gigCategoryCounter(state){
+        gigCategoryCounter(state) {
             return state.gigCategoryCounter
         }
-        
+
     },
     mutations: {
         setGigs(state, { gigs }) {
+            gigs.map(gig => {
+                return gigService.getDistFromUser(gig, state.userLocation)
+            })
+            gigs.sort((a, b) => {
+                return a.details.pos.dist - b.details.pos.dist
+            })
             state.gigs = gigs
+
         },
         updateGig(state, { gig }) {
             var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
@@ -33,8 +40,12 @@ export default {
         toggleLoading(state, payload) {
             state.isLoading = !state.isLoading
         },
-        setGigCategoryCount(state, {counter}){
+        setGigCategoryCount(state, { counter }) {
             state.gigCategoryCounter = counter
+        },
+        setUserLocation(state, { userLocation }) {
+            state.userLocation = userLocation
+
         }
     },
     actions: {
@@ -47,7 +58,7 @@ export default {
                         if (!counter[gig.category]) counter[gig.category] = 1
                         else counter[gig.category]++
                     })
-                    context.commit({type:'setGigCategoryCount', counter})
+                    context.commit({ type: 'setGigCategoryCount', counter })
                 })
         },
         filterByKey(context, { filter }) {
@@ -59,22 +70,31 @@ export default {
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
                 .then(gig => {
-                    return gig
+                    return gigService.getDistFromUser(gig, context.state.userLocation)
                 })
         },
         removeGig(context, { gigId }) {
             return gigService.remove(gigId)
         },
         updateGig(context, payload) {
-            console.log('this store console',payload.gig)
             return gigService.update(payload.gig)
                 .then(cuurGig => {
-                    if(payload.userGigsListToUpdate) {
+                    if (payload.userGigsListToUpdate) {
                         payload.userGigsListToUpdate.push(cuurGig._id)
-                        context.dispatch({type: 'updateUser', user: context.getters.loggedUser},)
+                        context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
                     }
-                    return context.dispatch({type: 'getGigs'}, cuurGig)
+                    return context.dispatch({ type: 'getGigs' }, cuurGig)
                 })
+        },
+        userLocation(context, payload) {
+            var userLocation = {
+                position: {
+                    lat: payload.position.coords.latitude,
+                    lng: payload.position.coords.longitude,
+                }
+            }
+            context.commit({ type: 'setUserLocation', userLocation })
+
         }
     },
 }

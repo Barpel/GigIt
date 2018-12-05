@@ -16,7 +16,7 @@
       <div class="gig-details">
         <h3>{{gig.details.title}}</h3>
         <p class="gig-prev-desc">{{gig.details.desc}}</p>
-        <p>{{gig.details.pos.dist}}</p>
+        <p>{{gig.details.pos.dist}} KM Away</p>
       </div>
       <div class="lower-bar-container">
         <p>{{gig.details.price}}₪</p>

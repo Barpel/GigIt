@@ -47,8 +47,6 @@ export default {
           lng: this.gig.details.location.lng
         }
       });
-     
-
       navigator.geolocation.getCurrentPosition(position => {
         this.markers.push({
           position: {
@@ -91,7 +89,6 @@ export default {
       });
     },
     getRoute: function () {
-      console.log(this.markers)
       this.directionsService = new google.maps.DirectionsService()
       this.directionsDisplay = new google.maps.DirectionsRenderer()
       this.directionsDisplay.setMap(this.$refs.map.$mapObject)

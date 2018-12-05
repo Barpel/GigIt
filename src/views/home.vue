@@ -13,7 +13,6 @@
         </router-link>
         <router-link to="/user/login" tag="button" v-else>Login</router-link>
       </div>
-
       <div class="block">
         <el-carousel trigger="click" :interval="7000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
@@ -61,6 +60,7 @@
 import gigCategories from "@/components/gigCategories.cmp.vue";
 import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
+import googleMap from "@/components/googleMap.vue";
 export default {
   name: "home",
   data() {
@@ -100,6 +100,7 @@ export default {
   computed: {
     gigs() {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
+
       return gigs;
     },
     gigCategoryCounter() {
@@ -127,12 +128,18 @@ export default {
   components: {
     gigCategories,
     homeFooter,
-    gigList
+    gigList,
+    googleMap
   },
   created() {
     this.$store.dispatch({ type: "getGigs" });
+    navigator.geolocation.getCurrentPosition(position => {
+    this.$store.dispatch({type: "userLocation", position})
+    })
+   
   },
   mounted() {
+ 
     //   setInterval(() => {
     //     this.coverCounter === 5 ? (this.coverCounter = 0) : this.coverCounter++
     //     // console.log("interval");

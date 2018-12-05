@@ -11,39 +11,20 @@ export default {
     getById,
     remove,
     update,
+    getDistFromUser
 }
 
 function query(filter = { byTitle: '', byCategory: '' }) {
-    if (filter.byTitle === '' && filter.byCategory === ''){
+    if (filter.byTitle === '' && filter.byCategory === '') {
         return axios.get(BASE_URL)
-        .then(res=>res.data)
+            .then(res => res.data)
     }
-        var queryParams = new URLSearchParams()
+    var queryParams = new URLSearchParams()
     queryParams.append('byTitle', filter.byTitle)
     queryParams.set('byCategory', filter.byCategory)
     const REQ_URL = `${BASE_URL}?${queryParams}`
-    // console.log('REQ_URL', REQ_URL);
-
     return axios.get(REQ_URL)
         .then(res => res.data)
-
-    // if(!filter){
-    //     return axios.get(BASE_URL)
-    //         .then(res => {
-    //             console.log('No filter result', res.data)
-    //             return res.data
-    //         })
-    // }
-    // else{
-    //     var queryParams = new URLSearchParams();
-    //     for (let key in filter) {
-    //         if (key === 'sort') continue;
-    //         queryParams.set(`${key}`, filter[key]);
-    //     }
-    //     return axios.get(`${BASE_URL}/category/${filter}`)
-    //         .then(res =>{
-    //             return res.data});
-    // }
 }
 
 
@@ -56,12 +37,30 @@ function remove(gigId) {
 }
 
 function update(gig) {
-    console.log('updating gig:', gig.pendingUsers)
     if (gig._id) {
-        console.log('gigService is updating:', gig)
         return axios.put(`${BASE_URL}/${gig._id}`, gig).then(res => res.data)
     }
     else {
         return axios.post(`${BASE_URL}`, gig).then(res => res.data)
+    }
+}
+function getDistFromUser(gig, userLocation) {
+    var lat1 = userLocation.position.lat
+    var lon1 = userLocation.position.lng
+    var lat2 = gig.details.location.lat
+    var lon2 = gig.details.location.lng
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    gig.details.pos.dist = d.toFixed(1)
+    return gig;
+    function deg2rad(deg) {
+        return deg * (Math.PI / 180)
     }
 }
