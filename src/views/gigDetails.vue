@@ -2,28 +2,42 @@
 
 <template>
   <section class="gig-details-container" v-if="gig && publisher">
-    <div class="top-nav">
+    <div class="top-container">
       <h6 @click="goBack">
         <span>
           <i class="fas fa-arrow-left"></i>
-          Back
         </span>
-        <button v-if="isGigOwner" @click.stop="editGig">
-          <h1>Edit</h1>
-        </button>
       </h6>
-    </div>
-    <div class="detail-container">
-      <div class="top-detail-title">
-        <h5>
-          <span>{{gig.details.title}}</span>
-          <div class="category-img-container">
-            <h5>Category: {{this.gig.category}}</h5>
+
+      <div class="top-user-container">
+        <div class="publisher-info">
+          <img :src="publisher.img" alt @click="goToProfile(gig.publisherId)">
+          <div>
+            <h4>{{publisher.name.first + ' ' + publisher.name.last}}</h4>
+            <h4 class="publisher-review">Review:</h4>
           </div>
-        </h5>
-        <p>{{gig.details.desc}}</p>
-        <p>location: {{gig.details.pos.dist}} KM Away</p>
-        <div class="gigit-detail-container">
+        </div>
+        <button v-if="isGigOwner" @click.stop="editGig">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="mid-container">
+      <div class="gig-details-left-container">
+        <h4>{{gig.details.title}}</h4>
+        <h5>Category: {{this.gig.category}}</h5>
+        <h6>Description:
+          <br>
+          <p>“ {{gig.details.desc}} ”</p>
+        </h6>
+        <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
+        <div class="gigit-detail-container"></div>
+        <p>From: {{gig.details.gigTime[0]}} To: {{gig.details.gigTime[1]}}</p>
+      </div>
+
+      <div class="gig-details-right-container">
+        <div class="call-to-action-container">
           <p>Earn {{this.gig.details.price}}₪ for this Gig</p>
           <button v-if="!isGigOwner" @click="requestGig" class="gigit-btn">
             <h1>
@@ -35,42 +49,10 @@
             </h1>
           </button>
         </div>
-        <!-- <p>From: {{gig.details.gigTime.from}} To: {{gig.details.gigTime.to}}</p> -->
-      </div>
-      <div class="avatar-img-container">
-        <img :src="publisher.img" alt @click="goToProfile(gig.publisherId)">
-        <h4>{{publisher.name.first + ' ' + publisher.name.last}}</h4>
-      </div>
 
-      <div class="review-details-container">
-        <ul>User Score
-          <li>
-            <span>Payment</span> &nbsp;
-            <span>
-              <!-- <el-rate value="4" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
-            </span>
-          </li>
-          <li>
-            <span>Reliable</span> &nbsp;
-            <span>
-              <!-- <el-rate value="2" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
-            </span>
-          </li>
-          <li>
-            <span>Overall</span> &nbsp;
-            <span>
-              <!-- <el-rate value="4.6" disabled show-score score-template="{value}" text-color="white"></el-rate> -->
-            </span>
-          </li>
-          <h4>
-            More
-            Reviews...
-          </h4>
-        </ul>
-      </div>
-      <div class="map-img-container">
-        <google-map :editPage="editPage" :gig="gig"/>
-        <!-- <img src="../assets/mapDemo.jpg" alt> -->
+        <div class="map-container">
+          <google-map :editPage="editPage" :gig="gig"/>
+        </div>
       </div>
     </div>
   </section>
@@ -84,7 +66,7 @@ export default {
   name: "gigDetails",
   data() {
     return {
-      editPage:false,
+      editPage: false,
       gig: null,
       isGigOwner: null,
       isAlreadyPending: false,
@@ -108,10 +90,18 @@ export default {
       setTimeout(() => {
         this.$router.push("/gig");
       }, 20);
-      let publisherId = this.gig.publisherId
-      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed"});
-      this.$store.dispatch({type:'emitToUser',eventMsg:{txt:'New Gig Request', type:'success', link: `/user/${publisherId}`},
-                                                    action:'toProfile',userId: publisherId})
+      let publisherId = this.gig.publisherId;
+      bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
+      this.$store.dispatch({
+        type: "emitToUser",
+        eventMsg: {
+          txt: "New Gig Request",
+          type: "success",
+          link: `/user/${publisherId}`
+        },
+        action: "toProfile",
+        userId: publisherId
+      });
       var currUser = this.user;
       this.gig.isRead = false;
       this.gig.pendingUsers.push({
@@ -131,7 +121,12 @@ export default {
       });
     },
     editGig() {
+<<<<<<< HEAD
       this.$router.push(`/gig/edit/${this.gig._id}`)
+=======
+      console.log(this.gig);
+      this.$router.push(`/gig/edit/${this.gig._id}`);
+>>>>>>> 5e5d2498d8431ea09f83aaa97a18773e50131308
     },
     goToProfile(publisherId) {
       this.$router.push(`/user/${publisherId}`);
@@ -141,6 +136,10 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
+<<<<<<< HEAD
+=======
+      console.log("gig location setting", this.gig);
+>>>>>>> 5e5d2498d8431ea09f83aaa97a18773e50131308
       this.$store
         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
@@ -155,9 +154,8 @@ export default {
       }
     });
   },
-  mounted() {
-  },
-  components:{
+  mounted() {},
+  components: {
     GoogleMap
   }
 };

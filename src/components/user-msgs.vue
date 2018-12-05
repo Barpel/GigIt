@@ -7,10 +7,16 @@
 <script>
 export default {
  props: ['msg'],
+ data() {
+     return {
+     }
+ },
  methods: {
      goToLink() {
          var link = this.msg.link
          if(link)this.$router.push(link)
+     },
+     playSound() {
      }
  }
 }
