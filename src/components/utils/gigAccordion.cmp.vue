@@ -30,7 +30,8 @@
           <button @click="contactGigster(gigster)" class="accordion-gigit-btn">
             Contact
           </button>
-          <button @click="$emit('openReviewForm',{gigId , gigsterId:gigster.id, isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> Completed </button>
+          <button @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
+          isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> Completed </button>
           <button @click="gigCancel(gigster.id)" class="accordion-later-btn">Cancel</button>
         </div>
       </li>
@@ -40,7 +41,7 @@
 
 <script>
 export default {
-  props: ['header', 'gigsters','gigId','isPickedGigster'],
+  props: ['header', 'gigsters','gigId','isPickedGigster', 'gigTitle'],
   name: 'gigAccordion',
   data() {
     return {
