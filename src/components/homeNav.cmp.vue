@@ -15,7 +15,8 @@
         </router-link>
         <router-link :to="(isLoggedin)?inboxLink: '/user/login'">
           <h1>
-            <i class="fas fa-comment"></i>
+            <i class="fas fa-envelope-open-text" v-if="unreadMsg"></i>
+            <i class="fas fa-envelope" v-else></i>
           </h1>
         </router-link>
         <router-link :to="(isLoggedin)?myGigsLink: '/user/login'">
@@ -57,6 +58,10 @@ export default {
     isLoggedin() {
       return this.$store.getters.isLoggedin;
     },
+    unreadMsg() {
+      return true
+      // return this.$store.getters.unreadMsg
+    }
     profileLink() {
       return `/user/${this.user._id}`;
     },
