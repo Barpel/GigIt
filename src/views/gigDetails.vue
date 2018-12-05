@@ -121,12 +121,7 @@ export default {
       });
     },
     editGig() {
-<<<<<<< HEAD
       this.$router.push(`/gig/edit/${this.gig._id}`)
-=======
-      console.log(this.gig);
-      this.$router.push(`/gig/edit/${this.gig._id}`);
->>>>>>> 5e5d2498d8431ea09f83aaa97a18773e50131308
     },
     goToProfile(publisherId) {
       this.$router.push(`/user/${publisherId}`);
@@ -136,10 +131,6 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
-<<<<<<< HEAD
-=======
-      console.log("gig location setting", this.gig);
->>>>>>> 5e5d2498d8431ea09f83aaa97a18773e50131308
       this.$store
         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS

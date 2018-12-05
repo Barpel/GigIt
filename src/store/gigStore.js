@@ -4,8 +4,9 @@ export default {
         gigs: null,
         currGig: null,
         isLoading: false,
+        loadingCounter: 0,
         gigCategoryCounter: null,
-        userLocation: null,
+        userLocation: 0,
     },
     getters: {
         gigs(state) {
@@ -24,10 +25,13 @@ export default {
     },
     mutations: {
         setGigs(state, { gigs }) {
+            console.log('```````')
             gigs.map(gig => {
-                return gigService.getDistFromUser(gig, state.userLocation)
+                gigService.getDistFromUser(gig, state.userLocation)
             })
             gigs.sort((a, b) => {
+                // console.log('A.details.pos.dist',a.details.pos.dist)
+                // console.log('B.details.pos.dist',b.details.pos.dist)
                 return a.details.pos.dist - b.details.pos.dist
             })
             state.gigs = gigs
@@ -37,8 +41,15 @@ export default {
             var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
             state.gigs.splice(gigIdx, 1, gig)
         },
-        toggleLoading(state, payload) {
-            state.isLoading = !state.isLoading
+        toggleLoadingOn(state, payload) {
+            if (state.loadingCounter === 0) {
+                state.isLoading = true
+                state.loadingCounter = 1
+            }
+            setTimeout(() => state.loadingCounter = 0, 5000)
+        },
+        toggleLoadingOff(state, payload) {
+            state.isLoading = false
         },
         setGigCategoryCount(state, { counter }) {
             state.gigCategoryCounter = counter
@@ -50,7 +61,7 @@ export default {
     },
     actions: {
         getGigs(context, { category }) {
-            gigService.query(category)
+            return gigService.query(category)
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                     var counter = {}
@@ -62,10 +73,17 @@ export default {
                 })
         },
         filterByKey(context, { filter }) {
+
             gigService.query(filter)
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                 })
+        },
+        toggleLoadingOn(context) {
+            context.commit({ type: 'toggleLoadingOn' })
+        },
+        toggleLoadingOff(context) {
+            context.commit({ type: 'toggleLoadingOff' })
         },
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
@@ -94,11 +112,11 @@ export default {
                 }
             }
             context.commit({ type: 'setUserLocation', userLocation })
+        },
+        reviewAndCompleteGig(context, { review, reviewStats }) {
+            return context.dispatch({ type: 'updateUsersReviewsAndGigIds', review, reviewStats })
+            // .then(() => gigService.removeGig(payload.reviewStats.gigId))
 
-        reviewAndCompleteGig(context, {review, reviewStats}) {
-            return context.dispatch({type: 'updateUsersReviewsAndGigIds', review, reviewStats})
-                // .then(() => gigService.removeGig(payload.reviewStats.gigId))
-                
         }
     },
 }

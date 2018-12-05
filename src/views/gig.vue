@@ -29,6 +29,7 @@ export default {
       this.$router.push(`/gig/${gigId}`);
     },
     gigsFilterBy(category) {
+      console.log(2)
       this.$store.dispatch({ type: "getGigs", category });
       this.$router.push(`/gig/category/${category}`);
     },
@@ -37,10 +38,10 @@ export default {
     }
   },
   created() {
-    if (this.$route.params.type) {
-      var category = this.$route.params.type;
-      this.$store.dispatch({ type: "getGigs", category });
-    } else this.$store.dispatch({ type: "getGigs" });
+    // if (this.$route.params.type) {
+    //   var category = this.$route.params.type;
+    //   this.$store.dispatch({ type: "getGigs", category });
+    // } else this.$store.dispatch({ type: "getGigs" });
   },
   components: {
     gigList,
