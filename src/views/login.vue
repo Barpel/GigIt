@@ -1,11 +1,9 @@
 <template>
-  <section>
+  <section class="login-container">
     <h1>Login</h1>
     <form @submit.prevent="login">
-    <input type="text" v-model="creds.username">
-    <br>
-    <input type="text" v-model="creds.password">
-    <br>
+    <input type="text" v-model="creds.username" placeholder="Username">
+    <input type="text" v-model="creds.password" placeholder="Password">
     <button type="submit" >Login</button>
     </form>
     <h1>Not a Gigster yet? <router-link to="/user/register">Register</router-link></h1>
