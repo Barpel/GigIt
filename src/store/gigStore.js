@@ -94,7 +94,7 @@ export default {
                 }
             }
             context.commit({ type: 'setUserLocation', userLocation })
-
+        },
         reviewAndCompleteGig(context, {review, reviewStats}) {
             return context.dispatch({type: 'updateUsersReviewsAndGigIds', review, reviewStats})
                 // .then(() => gigService.removeGig(payload.reviewStats.gigId))
