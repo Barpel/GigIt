@@ -142,6 +142,7 @@
           <pending-gig :gigs="gigs.pendingGigs" ></pending-gig>
         </ul>
       </div>
+      <giger-review/>
     </div>
   </section>
 </template>

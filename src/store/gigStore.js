@@ -1,5 +1,4 @@
 import gigService from '../service/gigService.js'
-// import gigService from '../service/gigDemoService.js'
 export default {
     state: {
         gigs: null,
@@ -19,7 +18,6 @@ export default {
             return getters.user
         },
         gigCategoryCounter(state){
-            console.log('hey het ')
             return state.gigCategoryCounter
         }
         
