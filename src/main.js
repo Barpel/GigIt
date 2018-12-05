@@ -22,7 +22,7 @@ const SOCKET_URL = process.env.NODE_ENV !== 'development'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "",
+    key: "AIzaSyD4xBjgA3NAoLiVoJmSwJCYUel6lc17HOM",
     libraries: "places" // necessary for places input
   }
 });
@@ -35,10 +35,7 @@ Vue.use(new VueSocketIO({
     actionPrefix: 'SOCKET_',
     mutationPrefix: 'SOCKET_'
   },
-  load:{
-    key:'',
-    libraries:'places',
-  }
+
 }))
 
 Vue.use(ElementUI, { locale });

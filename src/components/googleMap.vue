@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       center: { lat: 32.0853, lng: 34.781769 },
-      markers: [],
+      markers: [{postion: {lat: 32.0853, lng: 34.781769}}, {postion: {lat: 32.1853, lng: 34.781769}}],
       places: [],
       currentPlace: null,
     };
