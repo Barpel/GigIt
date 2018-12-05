@@ -22,7 +22,7 @@ const SOCKET_URL = process.env.NODE_ENV !== 'development'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyC-_K0v4j7fLyQLdTZksyC8E07zZGIboO4",
+    key: "",
     libraries: "places" // necessary for places input
   }
 });
