@@ -129,7 +129,6 @@ export default {
     gigCategories,
     homeFooter,
     gigList,
-    googleMap
   },
   created() {
     this.$store.dispatch({type:'toggleLoadingOn'})
