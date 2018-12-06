@@ -60,7 +60,7 @@
           ></el-input-number>
         </label>
         <button class="gig-submit-btn" type="submit">
-          {{isAdd}}
+          Save
           <span>Gig</span>
         </button>
       </form>

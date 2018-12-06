@@ -43,6 +43,8 @@ export default {
       this.displayMsg(msg)
     },
     emitChatMsgToUser: function(msg) {
+      // alert('new msg')
+      // console.log('new msg!')
       var path = this.$route.path
       if(!path.includes('inbox')) {
         var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
