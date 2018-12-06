@@ -33,7 +33,7 @@
         </h6>
         <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
         <div class="gigit-detail-container"></div>
-        <p>From: {{gig.details.gigTime[0]}} To: {{gig.details.gigTime[1]}}</p>
+        <p>From: {{gig.details.gigTime[0] | localTime}} To: {{gig.details.gigTime[1] | localTime}}</p>
       </div>
 
       <div class="gig-details-right-container">
@@ -81,6 +81,13 @@ export default {
       return this.$store.getters.isLoggedin;
     }
   },
+  filter: {
+    localTime(time) {
+      if (!time) return "";
+
+      return time;
+    }
+  },
   methods: {
     goBack() {
       this.$router.push("/gig");
@@ -121,7 +128,7 @@ export default {
       });
     },
     editGig() {
-      this.$router.push(`/gig/edit/${this.gig._id}`)
+      this.$router.push(`/gig/edit/${this.gig._id}`);
     },
     goToProfile(publisherId) {
       this.$router.push(`/user/${publisherId}`);
