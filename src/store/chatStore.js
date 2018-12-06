@@ -18,7 +18,7 @@ export default {
             return chatService.getById(chatId)
         },
         contactUser(context, { gigster, gigData, maister }) {
-            
+            s
             var chatIdx = maister.chats.findIndex(chat => {
                 return (chat.maisterId === maister._id && chat.gigsterId === gigster.id)
                 || (chat.gigsterId === maister._id && chat.maisterId === gigster.id)
