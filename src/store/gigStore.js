@@ -81,7 +81,8 @@ export default {
                 .then(cuurGig => {
                     if (payload.userGigsListToUpdate) {
                         payload.userGigsListToUpdate.push(cuurGig._id)
-                        context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
+                        context.dispatch({ type: 'updateOwnUser', user: context.getters.loggedUser })
+                        // context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
                     }
                     return context.dispatch({ type: 'getGigs' }, cuurGig)
                 })

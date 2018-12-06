@@ -87,9 +87,7 @@ export default {
     },
     requestGig() {
       if (this.isAlreadyPending) return;
-      setTimeout(() => {
-        this.$router.push("/");
-      }, 20);
+      
       let publisherId = this.gig.publisherId;
       bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
       this.$store.dispatch({
@@ -114,11 +112,8 @@ export default {
 
       // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store.dispatch({
-        type: "updateGig",
-        gig: this.gig,
-        userGigsListToUpdate
-      });
+      this.$store.dispatch({type: "updateGig",gig: this.gig,userGigsListToUpdate})
+        .then(()=>this.$router.push("/"))
     },
     editGig() {
       this.$router.push(`/gig/edit/${this.gig._id}`)
