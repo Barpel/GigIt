@@ -27,10 +27,10 @@
               </a>
             </div>
           </a>
-          <router-link v-else to="/user/login">
+          <router-link v-else to="/user/login" class="nav-guest-container">
             <h1>
-              <span>Login</span> &nbsp;
               <i class="fas fa-user"></i>
+              <span>Guest</span>
             </h1>
           </router-link>
         </div>

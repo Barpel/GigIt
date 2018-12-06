@@ -1,7 +1,9 @@
 import storageService from './storageService.js'
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001/api';
+const BASE_URL = (process.env.NODE_ENV !== 'development')?
+                        '/api' : 'http://localhost:3001/api'
+// const BASE_URL = 'http://localhost:3001/api';
 
 
 export default {

@@ -132,18 +132,15 @@ export default {
     googleMap
   },
   created() {
-    this.$store.dispatch({ type: "getGigs" });
+    this.$store.dispatch({type:'toggleLoadingOn'})
+    this.$store.dispatch({ type: "getGigs" })
+      .then(() =>this.$store.dispatch({type:'toggleLoadingOff'}) )
     navigator.geolocation.getCurrentPosition(position => {
     this.$store.dispatch({type: "userLocation", position})
     })
    
   },
   mounted() {
- 
-    //   setInterval(() => {
-    //     this.coverCounter === 5 ? (this.coverCounter = 0) : this.coverCounter++
-    //     // console.log("interval");
-    //   }, 5000);
   },
   watch: {
     "filter.byTitle"() {

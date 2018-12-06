@@ -1,7 +1,9 @@
 // import storageService from './storageService.js'
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001/api/chat';
+const BASE_URL = (process.env.NODE_ENV !== 'development')?
+                        '/api/chat' : 'http://localhost:3001/api/chat'
+// const BASE_URL = 'http://localhost:3001/api/chat';
 
 
 export default {
