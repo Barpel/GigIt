@@ -14,7 +14,15 @@
           <img :src="publisher.img" alt @click="goToProfile(gig.publisherId)">
           <div>
             <h4>{{publisher.name.first + ' ' + publisher.name.last}}</h4>
-            <h4 class="publisher-review">Review:</h4>
+            <h4 class="publisher-review">
+              <el-rate
+                :value="publisher.reviews.totalAverage"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="({value})"
+              ></el-rate>
+            </h4>
           </div>
         </div>
         <button v-if="isGigOwner" @click.stop="editGig">
@@ -32,8 +40,12 @@
           <p>“ {{gig.details.desc}} ”</p>
         </h6>
         <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
-        <div class="gigit-detail-container"></div>
-        <p>From: {{gig.details.gigTime[0] | localTime}} To: {{gig.details.gigTime[1] | localTime}}</p>
+        <p>
+          From: {{gig.details.gigTime[0] | localTime}}
+          <br>
+          <br>
+          To: {{gig.details.gigTime[1] | localTime}}
+        </p>
       </div>
 
       <div class="gig-details-right-container">
@@ -94,7 +106,7 @@ export default {
     },
     requestGig() {
       if (this.isAlreadyPending) return;
-      
+
       let publisherId = this.gig.publisherId;
       bus.$emit(USR_MSG_DISPLAY, { type: "success", txt: "Gig Signed" });
       this.$store.dispatch({
@@ -116,11 +128,11 @@ export default {
         completedReviewsAverage: currUser.reviews.completedAverage
       });
       var userGigsListToUpdate = this.user.gigsIds.pending;
-
       // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store.dispatch({type: "updateGig",gig: this.gig,userGigsListToUpdate})
-        .then(()=>this.$router.push("/"))
+      this.$store
+        .dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate })
+        .then(() => this.$router.push("/"));
     },
     editGig() {
       this.$router.push(`/gig/edit/${this.gig._id}`);
