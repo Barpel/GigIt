@@ -123,11 +123,7 @@ export default {
         .then(()=>this.$router.push("/"))
     },
     editGig() {
-<<<<<<< HEAD
       this.$router.push(`/gig/edit/${this.gig._id}`)
-=======
-      this.$router.push(`/gig/edit/${this.gig._id}`);
->>>>>>> 0354be4c7f7a9459dc8933ca48128690233941b6
     },
     goToProfile(publisherId) {
       this.$router.push(`/user/${publisherId}`);
