@@ -19,6 +19,7 @@
             {{chat.members[0].name}}
             <h5>{{chat.msgs[chat.msgs.length-1].txt}}</h5>
           </h3>
+          <div class="new-event-point"></div>
         </div>
       </div>
     </div>
