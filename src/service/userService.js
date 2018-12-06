@@ -16,7 +16,8 @@ export default {
     loginUser,
     logout,
     setLocalLoggedUser,
-    getLoggedUserId
+    getLoggedUserId,
+
 }
 
 function query() {

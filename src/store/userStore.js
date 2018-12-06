@@ -80,27 +80,37 @@ export default {
                     context.commit({ type: 'setLoggedUser', user })
                 })
         },
-        updateUsersReviewsAndGigIds(context, {review, reviewStats}) {
-            if(reviewStats.isForGigster) {
-                context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
+        updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
+            if (reviewStats.isForGigster) {
+                context.dispatch({ type: 'getUserById', userId: reviewStats.gigsterId })
                     .then(user => {
                         var gigIdx = user.gigsIds.pending.findIndex(gig => reviewStats.gigId)
                         user.gigsIds.pending.splice(gigIdx, 1)
                         user.gigsIds.completed.push(reviewStats.gigId)
-                        if(!user.reviews.completed[0].gigId === '0') user.reviews.completed.unshift(review)
+                        if (!user.reviews.completed[0].gigId === '0') user.reviews.completed.unshift(review)
                         else user.reviews.completed = [review]
-                        context.dispatch({type:'updateUser', user})
+                        context.dispatch({ type: 'updateUser', user })
 
                     })
-                context.dispatch({type:'getUserById', userId: reviewStats.maisterId})
+                context.dispatch({ type: 'getUserById', userId: reviewStats.maisterId })
                     .then(user => {
                         var gigIdx = user.gigsIds.published.findIndex(gig => reviewStats.gigId)
                         user.gigsIds.published.splice(gigIdx, 1)
                         user.gigsIds.completed.push(reviewStats.gigId)
-                        context.dispatch({type:'updateOwnUser', user})
+                        context.dispatch({ type: 'updateOwnUser', user })
                     })
             }
+
             //TODO: ADD REVIEW FOR PUBLISHER
+        },
+        deletePendingUsers(context, { gigId }) {
+            userService.query(gigId)
+                .then(users => {
+                    users.map(user =>{
+                        return (user.gigsIds.published === gigId)
+                    })
+                    console.log(users)
+                })
         }
     },
 }
