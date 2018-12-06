@@ -43,6 +43,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            transition: all .3s;
         }
         .gig-image.moving {
             background-image: url('../assets/moving.jpg');
@@ -109,7 +110,7 @@
             padding: 5px 10px;
             display: grid;
             h3{
-                max-height: 20px;
+                max-height: 25px;
                 white-space: nowrap; 
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -135,8 +136,14 @@
             padding: 5px;
             border-top: 1px solid white;
             max-height: 55px;
+            background-color: rgba(255, 255, 255, 0.753);
             p {
-                justify-self: start;
+                justify-self: center;
+                align-items: center;
+                font-size: 1.3rem;
+                margin: 0;
+                color: rgba(0, 128, 0, 0.842);
+                font-weight: bold;
             }
             button {
                 cursor: pointer;
@@ -151,16 +158,24 @@
                 background-color: $category-base;
                 border: none;
                 color: white;
+                transition: all .3s;
+                min-height: 100%;
                 span {
                     font-family: condiment;
                     color: #97a5a7;
                 }
             }
+            button:hover {
+                background-color: #7c0d4e;
+            }
         }
     }
     li:hover {
-        opacity: 0.95;
-        transform: scale(0.99);
+        .gig-image {
+            transform: scale(1.05);
+        }
+        // opacity: 0.85;
+        // transform: scale(0.99);
     }
 }
 
