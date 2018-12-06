@@ -128,7 +128,6 @@ export default {
         completedReviewsAverage: currUser.reviews.completedAverage
       });
       var userGigsListToUpdate = this.user.gigsIds.pending;
-
       // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
       this.$store
