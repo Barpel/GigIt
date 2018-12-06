@@ -26,9 +26,11 @@ export default {
     mutations: {
         setGigs(state, { gigs }) {
             console.log('```````')
-            gigs.map(gig => {
-                gigService.getDistFromUser(gig, state.userLocation)
-            })
+            if(state.userLocation) {
+                gigs.map(gig => {
+                    gigService.getDistFromUser(gig, state.userLocation)
+                })
+            }
             gigs.sort((a, b) => {
                 // console.log('A.details.pos.dist',a.details.pos.dist)
                 // console.log('B.details.pos.dist',b.details.pos.dist)
