@@ -88,6 +88,7 @@ export default {
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
                 .then(gig => {
+                    if(!context.state.userLocation) return gig
                     return gigService.getDistFromUser(gig, context.state.userLocation)
                 })
         },
