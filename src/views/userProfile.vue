@@ -123,7 +123,6 @@
           </li>
         </ul>
         <ul class="published-gigs" v-if="gigs.publishedGigs.length &&+tabContent === 2">
-          <h2>Published Gigs:</h2>
           <div
             v-for="publishedGig in gigs.publishedGigs"
             :key="publishedGig._id"

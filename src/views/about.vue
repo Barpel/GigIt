@@ -30,7 +30,7 @@
           <br>No worries, a fellow Gigster will help you!
         </h2>
         <img
-          src="https://res.cloudinary.com/barpel/image/upload/v1544049743/GigIt/gabi.jpg"
+          src="https://res.cloudinary.com/barpel/image/upload/v1544089546/GigIt/gabi.jpg"
           class="gigster"
         >
       </div>
@@ -60,31 +60,40 @@
         <h2>Learn more about us:</h2>
         <br>
         <div class="gabi">
+          <img src="https://res.cloudinary.com/barpel/image/upload/v1544089546/GigIt/gabi.jpg">
           <h3>Gabi Chami</h3>
-          <a>
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a>
-            <i class="fab fa-linkedin"></i>
-          </a>
+          <div>
+            <a>
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a>
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
         </div>
         <div class="jonas">
+          <img src="https://res.cloudinary.com/barpel/image/upload/v1544049258/GigIt/jonas.jpg">
           <h3>Yehonatan Barr</h3>
-          <a>
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a>
-            <i class="fab fa-linkedin"></i>
-          </a>
+          <div>
+            <a>
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a>
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
         </div>
         <div class="bar">
+          <img src="https://res.cloudinary.com/barpel/image/upload/v1544090021/GigIt/bar.jpg">
           <h3>Bar Peled</h3>
-          <a>
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a>
-            <i class="fab fa-linkedin"></i>
-          </a>
+          <div>
+            <a>
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a>
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

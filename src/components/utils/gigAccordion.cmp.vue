@@ -28,11 +28,11 @@
         </div>
         <div v-else class="gigster-btn-container-after">
           <button @click="contactGigster(gigster)" class="accordion-gigit-btn">
-            Contact
+            <i class="fas fa-comments"></i>
           </button>
           <button @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
-          isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> Completed </button>
-          <button @click="gigCancel(gigster.id)" class="accordion-later-btn">Cancel</button>
+          isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> <i class="fas fa-check-circle"></i> </button>
+          <button @click="gigCancel(gigster.id)" class="accordion-later-btn"><i class="fas fa-ban"></i></button>
         </div>
       </li>
     </ul>
