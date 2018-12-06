@@ -27,10 +27,10 @@
       <div class="chat-conversation" v-if="selectedChat">
         <div
           :class="(msg.sender === user._id)? 'member2': 'member1'"
-          v-for="msg in selectedChat.msgs"
+          v-for="(msg, idx) in selectedChat.msgs"
           :key="msg._id"
         >
-          <h3>{{msg.txt}}</h3>
+          <button :ref="'msg' + idx">{{msg.txt}}</button>
         </div>
         <form @submit.prevent="sendMsg(selectedChat._id)">
           <el-input placeholder="Type a message" v-model="newMsgTxt"></el-input>
@@ -58,13 +58,19 @@ export default {
   },
   sockets: {
     sentMsg: function(payload) {
-      var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId)
-        currNewMsgChat.msgs.push(payload.msg)
+      var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
+      currNewMsgChat.msgs.push(payload.msg);
     }
   },
   methods: {
     renderChat(chat) {
+      // var length = (chat.msgs.length -1) +'';
+      // var ref= `msg${length}`
       this.selectedChat = chat;
+      // console.log("refs!", this.$refs, "length:", chat);
+      // this.$refs[length];
+      // console.log(ref)
+      // console.log(this.$refs[ref])
     },
     sendMsg(chatId) {
       var newMsg = {
@@ -73,12 +79,18 @@ export default {
         createdAt: Date.now(),
         isRead: false
       };
-      let otherUser = this.selectedChat.members[0]._id
+      let otherUser = this.selectedChat.members[0]._id;
       this.$store.dispatch({ type: "sendNewMsg", msg: newMsg, chatId });
-      this.$store.dispatch({type:'emitNewChatMsg',
-                            eventMsg:{txt:'You Have A New Message', type:'success',
-                                      link: `/user/${otherUser}/inbox`, action:'toProfile'},
-                            userId: otherUser})
+      this.$store.dispatch({
+        type: "emitNewChatMsg",
+        eventMsg: {
+          txt: "You Have A New Message",
+          type: "success",
+          link: `/user/${otherUser}/inbox`,
+          action: "toProfile"
+        },
+        userId: otherUser
+      });
       this.newMsgTxt = "";
     }
   },
@@ -89,7 +101,7 @@ export default {
         this.$store
           .dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
-            if(!chat) return
+            if (!chat) return;
             var ownMemberIndex = chat.members.findIndex(
               member => member._id === this.user._id
             );
@@ -100,7 +112,8 @@ export default {
       });
       this.user = user;
     });
-  }
+  },
+  mounted() {}
 };
 </script>
 
