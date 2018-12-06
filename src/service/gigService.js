@@ -46,6 +46,8 @@ function update(gig) {
     }
 }
 function getDistFromUser(gig, userLocation) {
+        if(!userLocation)
+        if(!gig) return
         var lat1 = userLocation.position.lat
         var lon1 = userLocation.position.lng
         var lat2 = gig.details.location.lat
