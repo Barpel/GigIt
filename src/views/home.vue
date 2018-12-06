@@ -70,17 +70,17 @@ export default {
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/mechanic.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1544093475/GigIt/giger.png",
           txt: "Use your skills to make some easy extra money!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/giger.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/mechanic.png",
           txt: "Helping the community is part of our agenda. Help out today!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543912161/GigIt/lady-chef.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1544093447/GigIt/lady-chef.png",
           txt:
             "Sometimes cooking is too tiring. Get a Gigster to make you a nice meal!"
         },
