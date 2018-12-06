@@ -40,61 +40,10 @@
     margin: 20px auto 0;
     max-height: $element-height;
     display: none;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr;
 
-    .welcome-container {
-      max-height: 100%;
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      box-shadow: 0px 0px 18px 9px #4e0e3331;
-      border-radius: 5px;
-      background-color: $category-base;
-      i {
-        font-size: 4rem;
-      }
-      img {
-        max-width: 65px;
-        max-height: 65px;
-        object-fit: cover;
-        margin: 0 auto;
-        border-radius: 50%;
-      }
-      h1 {
-        padding: 5px;
-        font-size: 1.9rem;
-        color: white;
-        letter-spacing: 1px;
-      }
-      button {
-        width: 45%;
-        margin: 0 auto;
-        padding: 10px;
-        padding-right: 17px;
-        border-radius: 5px;
-        border: none;
-        color: white;
-        background-color: #94a5a5;
-        border: 1px solid #97a5a7;
-        font-size: 1.4rem;
-        transition: all .3s;
-      }
-      button:hover {
-        cursor: pointer;
-        background-color: #798686;
-        transform: scale(0.98);
-      }
-      button.welcome-add-gig-btn {
-        i {
-          font-size: 1rem;
-        }
-        span {
-          font-family: condiment;
-        }
-      }
-    }
-    .block {
+    
+    .banner-block {
       margin: 0 10px;
      
       max-height: $element-height;

@@ -1,19 +1,7 @@
 <template>
   <div class="home">
     <div class="banner">
-      <div class="welcome-container">
-        <div>
-          <img :src="user.img" v-if="user">
-          <i class="fas fa-user-circle" v-else></i>
-          <h1>Hi {{(user)? user.name.first: 'Guest'}}</h1>
-        </div>
-        <router-link to="/gig/edit" tag="button" v-if="user" class="welcome-add-gig-btn">
-          <i class="fas fa-plus"></i>
-          <span>Gig</span>
-        </router-link>
-        <router-link to="/user/login" tag="button" v-else>Login</router-link>
-      </div>
-      <div class="block">
+      <div class="banner-block">
         <el-carousel trigger="click" :interval="7000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
             <h3>{{carouselItem.txt}}</h3>
@@ -31,32 +19,39 @@
         Gig
         <span>It</span>
       </h1>
-      <div class="search-container">
-        <router-link to="/gig/edit" tag="button">
-          <i class="fas fa-plus"></i>
-          <span>Gig</span>
-        </router-link>
-        <input
-          type="text"
-          placeholder="Find your type of Gig"
-          @input="filterByKey"
-          v-model="filter.byTitle"
-          ref="searchGig"
-        >
-        <button @click="focusOnSearch">
-          <i class="fas fa-search"></i>
-        </button>
+      <div class="search-categories-container">
+        <div class="search-container">
+
+          <router-link to="/gig/edit" tag="button">
+            <i class="fas fa-plus"></i>
+            <span>Gig</span>
+          </router-link>
+          <input
+            type="text"
+            placeholder="Find your type of Gig"
+            @input="filterByKey"
+            v-model="filter.byTitle"
+            ref="searchGig"
+          >
+          <button @click="focusOnSearch">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      <!-- <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/> -->
+      <!-- <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar> -->
+      <gig-toolbar></gig-toolbar>
+
       </div>
     </div>
 
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
-    <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/>
     <home-footer/>
   </div>
 </template>
 
 <script>
+import gigToolbar from "../components/gigToolbar";
 import gigCategories from "@/components/gigCategories.cmp.vue";
 import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
@@ -129,7 +124,8 @@ export default {
     gigCategories,
     homeFooter,
     gigList,
-    googleMap
+    googleMap,
+    gigToolbar
   },
   created() {
     this.$store.dispatch({type:'toggleLoadingOn'})
