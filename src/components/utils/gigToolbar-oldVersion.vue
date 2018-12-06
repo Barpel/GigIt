@@ -1,6 +1,13 @@
 <template>
   <section class="gig-toolbar-container">
     <div class="gig-toolbar tab" :class="filterBarStatus">
+      <!-- <button @click="searchGig" class="tablinks">All Gigs</button>
+      <button @click="searchGig" class="tablinks">Moving</button>
+      <button @click="searchGig" class="tablinks">House Work</button>
+      <button @click="searchGig" class="tablinks">Technical</button>
+      <button @click="searchGig" class="tablinks">Line Queue</button>
+      <button @click="searchGig" class="tablinks">Pet Care</button>
+      <button @click="searchGig" class="tablinks">Other</button>-->
       <input
         type="radio"
         class="tablinks"
@@ -19,9 +26,7 @@
         id="tab2"
         v-model="filter.byCategory"
       >
-      <label for="tab2">
-        <i class="fas fa-people-carry"></i>
-      </label>
+      <label for="tab2">Moving</label>
       <input
         type="radio"
         class="tablinks"
@@ -30,9 +35,7 @@
         id="tab3"
         v-model="filter.byCategory"
       >
-      <label for="tab3">
-        <i class="fas fa-hammer"></i>
-      </label>
+      <label for="tab3">House-Work</label>
       <input
         type="radio"
         class="tablinks"
@@ -41,7 +44,7 @@
         id="tab4"
         v-model="filter.byCategory"
       >
-      <!-- <label for="tab4">Technical</label>
+      <label for="tab4">Technical</label>
       <input
         type="radio"
         class="tablinks"
@@ -49,12 +52,8 @@
         value="line-queue"
         id="tab5"
         v-model="filter.byCategory"
-      > -->
-      <label for="tab5">
-        <i class="fas fa-male"></i>
-        <i class="fas fa-female"></i>
-        <i class="fas fa-male"></i>
-      </label>
+      >
+      <label for="tab5">Line Queue</label>
       <input
         type="radio"
         class="tablinks"
@@ -63,9 +62,7 @@
         id="tab6"
         v-model="filter.byCategory"
       >
-      <label for="tab6">
-        <i class="fas fa-dog"></i>
-      </label>
+      <label for="tab6">Pet Care</label>
       <input
         type="radio"
         class="tablinks"
@@ -74,9 +71,13 @@
         id="tab7"
         v-model="filter.byCategory"
       >
-      <label for="tab7">
-        <i class="fas fa-ellipsis-h"></i>
-      </label>
+      <label for="tab7">Other</label>
+    </div>
+    <div class="toolbar-search-container">
+      <input v-model="filter.byTitle" type="text" @input="searchByTitle" placeholder="Search Gigs">
+      <button>
+        <i class="fas fa-search"></i>
+      </button>
     </div>
     <button @click="toggleFilterStatus" class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
   </section>

@@ -198,6 +198,9 @@ $hover-color: #700845;
         grid-column: 1;
         grid-row: 1;
         .nav-user-menu-container {
+          span {
+            display: none;
+          }
           .user-dropdown {
             right: -15px;
             border-radius: 0;
