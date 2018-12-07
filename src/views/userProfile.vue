@@ -129,6 +129,7 @@
             v-if="publishedGig && publishedGig.pendingUsers"
           >
             <gig-accordion
+              @removeGig="removeGig($event, gigId)"
               @gigsterPicked="gigsterPicked($event, publishedGig)"
               @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
               @openReviewForm="openReviewForm"
@@ -178,6 +179,9 @@ export default {
     doLogout() {
       this.$router.push("/");
       this.$store.dispatch({ type: "doLogout" });
+    },
+    removeGig(gigId) {
+      this.$store.dispatch({ type: "deletePendingUsers", gigId });
     },
     loadUser() {
       var userId = this.$route.params.userId;
@@ -239,10 +243,14 @@ export default {
         review,
         gigId: this.currReviewStats.gigId,
         createdAt: Date.now(),
-        givenBy: {name: this.user.name.first,img:this.user.img},
+        givenBy: { name: this.user.name.first, img: this.user.img },
         title: this.currReviewStats.title
-      }
-      this.$store.dispatch({type: "reviewAndCompleteGig",review: givenReview,reviewStats: this.currReviewStats});
+      };
+      this.$store.dispatch({
+        type: "reviewAndCompleteGig",
+        review: givenReview,
+        reviewStats: this.currReviewStats
+      });
       this.showReviewForm = false;
       this.currReviewStats = null;
     }

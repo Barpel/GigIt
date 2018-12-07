@@ -10,7 +10,6 @@
         <gig-accordion
           @gigsterPicked="gigsterPicked($event, publishedGig)"
           @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
-          @removeGig="removeGigId($event, gigId)"
           :gigsters="publishedGig.pendingUsers"
           :header="publishedGig.details.title"
           :isPickedGigster="publishedGig.isPickedGigster"
@@ -101,8 +100,8 @@ export default {
           });
       });
     },
-    removeGigId($event, gigId){
-      console.log(gigId)
+    removeGigId(gigId){
+      console.log(111111111111)
     },
     sumbitReview(review) {
       // console.log(review);
