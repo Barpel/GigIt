@@ -30,7 +30,7 @@
           v-for="(msg, idx) in selectedChat.msgs"
           :key="msg._id"
         >
-          <button :ref="'msg' + idx">{{msg.txt}}</button>
+          <div :ref="'msg' + idx">{{msg.txt}}</div>
         </div>
         <form @submit.prevent="sendMsg(selectedChat._id)">
           <el-input placeholder="Type a message" v-model="newMsgTxt"></el-input>

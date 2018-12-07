@@ -3,9 +3,9 @@ $inbox-gray: lightgray;
 $window-height: 77vh;
 #inbox-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 8fr;
   grid-template-rows: 1fr 14fr;
-  max-width: 95%;
+  width: 100%;
   margin: 0 auto;
   animation-name: slide-right;
   animation-duration: 0.5s;
@@ -15,6 +15,7 @@ $window-height: 77vh;
     grid-column: 1 / span 2;
     font-size: 2rem;
     padding: 10px;
+    max-width: 100%;
   }
   .chats-container {
     max-height: $window-height;
@@ -25,23 +26,20 @@ $window-height: 77vh;
     background-color: $chat-bg;
     border: 1px solid rgb(187, 186, 186);
     margin-left: 5px;
-    //   min-height: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    //   display: grid;
-    //   align-items: start;
-    //   grid-template-columns: 1fr;
     border-right: none;
     .top-bar {
       display: grid;
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: 1fr;
       align-items: center;
       justify-content: start;
       border-bottom: 1px solid rgba(0, 0, 0, 0.171);
       max-height: 60px;
+      max-width: 100%;
       grid-row: 1;
       background-color: #aaaaaa;
       img {
@@ -52,32 +50,27 @@ $window-height: 77vh;
       }
       h3 {
         text-align: left;
+        height: 100%;
+        display: none;
       }
     }
     .chats {
-      // display: grid;
-      // grid-template-columns: 1fr;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      // height: 100%;
       grid-row: 2;
       align-self: auto;
       .chat {
         align-self: flex-start;
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        // grid-template-columns: 1fr 4fr;
         height: 100px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.336);
         align-items: center;
         background-color: white;
         position: relative;
         h3 {
-          padding: 5px;
-          text-align: left;
-          display: grid;
-          grid-template-rows: 1fr 2fr;
-          grid-gap: 5px;
+          display: none;
           h5 {
             padding-right: 10px;
             color: gray;
@@ -91,8 +84,8 @@ $window-height: 77vh;
         }
         img {
           margin: 0 5px;
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
           object-fit: cover;
         }
@@ -143,7 +136,7 @@ $window-height: 77vh;
         color: rgb(65, 64, 64);
       }
       .member1 {
-        button {
+        div {
           border: none;
           text-align: left;
           background-color: $chat-bg;
@@ -152,12 +145,14 @@ $window-height: 77vh;
           border-bottom-right-radius: 0;
           height: 100%;
           font-size: 1rem;
-          max-width:90%;
+          max-width: 90%;
+          white-space: normal;
+          // display: inline-block;
         }
       }
       .member2 {
         justify-content: flex-end;
-        button {
+        div {
           height: 100%;
           font-size: 1rem;
           border: none;
@@ -166,6 +161,7 @@ $window-height: 77vh;
           padding: 10px;
           border-radius: 5px;
           border-bottom-left-radius: 0;
+          white-space: normal;
         }
       }
       form {
@@ -182,6 +178,127 @@ $window-height: 77vh;
           min-width: 60px;
           border-radius: 5px;
           margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1050px) {
+  #inbox-container {
+    grid-template-columns: 1fr 3fr;
+    h1 {
+    }
+    .chats-container {
+      max-height: $window-height;
+      min-width: 80px;
+      white-space: nowrap;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      background-color: $chat-bg;
+      border: 1px solid rgb(187, 186, 186);
+      margin-left: 5px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: none;
+      .top-bar {
+        grid-template-columns: 1fr 4fr;
+        max-width: none;
+        img {
+        }
+        h3 {
+          display: flex;
+          align-items: center;
+        }
+      }
+      .chats {
+        .chat {
+          align-self: flex-start;
+          display: grid;
+          grid-template-columns: 1fr 4fr;
+          height: 100px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.336);
+          align-items: center;
+          background-color: white;
+          position: relative;
+          h3 {
+            padding: 5px;
+            text-align: left;
+            display: grid;
+            grid-template-rows: 1fr 2fr;
+            grid-gap: 5px;
+            h5 {
+            }
+          }
+          img {
+            margin: 0 5px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    .chat-window {
+      width: 100%;
+      display: flex;
+      position: relative;
+
+      .chat-conversation {
+        max-height: 70vh;
+        width: 100%;
+        .member1,
+        .member2 {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          color: rgb(65, 64, 64);
+        }
+        .member1 {
+          button {
+            border: none;
+            text-align: left;
+            background-color: $chat-bg;
+            padding: 10px;
+            border-radius: 5px;
+            border-bottom-right-radius: 0;
+            height: 100%;
+            font-size: 1rem;
+            max-width: 90%;
+          }
+        }
+        .member2 {
+          justify-content: flex-end;
+          button {
+            height: 100%;
+            font-size: 1rem;
+            border: none;
+            text-align: right;
+            background-color: $inbox-gray;
+            padding: 10px;
+            border-radius: 5px;
+            border-bottom-left-radius: 0;
+          }
+        }
+        form {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: flex;
+          padding: 10px;
+          button {
+            background-color: $chat-bg;
+            border: none;
+            color: #414040;
+            min-width: 60px;
+            border-radius: 5px;
+            margin-left: 5px;
+          }
         }
       }
     }
