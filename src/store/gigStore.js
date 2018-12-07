@@ -25,7 +25,7 @@ export default {
     },
     mutations: {
         setGigs(state, { gigs }) {
-            console.log('```````')
+            // console.log('```````')
             if(state.userLocation) {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
