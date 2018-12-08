@@ -3,6 +3,9 @@
     <div @click="goToLink" class="user-msg" v-if="true">
       <h5>{{msg.txt}}</h5>
     </div>
+    <div class="user-msg-img" v-if="msg.gigsterImg">
+      <img :src="msg.gigsterImg">
+    </div>
   </section>
 </template>
 
