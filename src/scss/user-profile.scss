@@ -182,10 +182,13 @@ $card-bg: #646262;
           padding: 5px;
           p {
             text-align: center;
-            font-size: 1.3rem;
-            margin: 0;
-            max-width: 250px;
-            // overflow
+            font-size: .9rem;
+            margin: 5px 0;
+            max-width: 170px;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            height: 100%;
             &.profile-review-title {
               color: rgba(255, 255, 255, 0.664);
               font-size: 0.9rem;
