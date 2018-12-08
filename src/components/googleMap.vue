@@ -55,15 +55,16 @@ export default {
           }
         });
       });
-       setTimeout(() => {
-      this.getRoute()
-      },500);
+      setTimeout(() => {
+        this.getRoute();
+      }, 500);
     } else this.geolocate();
   },
 
   methods: {
     setPlace(place) {
       this.currentPlace = place;
+      this.$emit("setPlace", place);
     },
     addMarker() {
       if (this.currentPlace) {
@@ -81,39 +82,46 @@ export default {
       }
     },
     geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
+      if (navigator.geolocation.getCurrentPosition) {
         this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lat: 32.0853,
+          lng: 34.781769
         };
-      });
+      } else {
+        navigator.geolocation.getCurrentPosition(position => {
+          console.log()
+          this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+        });
+      }
     },
 
-  
-    getRoute: function () {
-      this.directionsService = new google.maps.DirectionsService()
-      this.directionsDisplay = new google.maps.DirectionsRenderer()
-      this.directionsDisplay.setMap(this.$refs.map.$mapObject)
-      var vm = this
-      vm.directionsService.route({
-        origin: this.markers[0].position,
-        destination: this.markers[1].position,
-        travelMode: 'DRIVING'
-      }, function (response, status) {
-        if (status === 'OK') {
-          vm.directionsDisplay.setDirections(response)
-        } else {
-          console.log('Directions request failed due to ' + status)
+    getRoute: function() {
+      this.directionsService = new google.maps.DirectionsService();
+      this.directionsDisplay = new google.maps.DirectionsRenderer();
+      this.directionsDisplay.setMap(this.$refs.map.$mapObject);
+      var vm = this;
+      vm.directionsService.route(
+        {
+          origin: this.markers[0].position,
+          destination: this.markers[1].position,
+          travelMode: "DRIVING"
+        },
+        function(response, status) {
+          if (status === "OK") {
+            vm.directionsDisplay.setDirections(response);
+          } else {
+            console.log("Directions request failed due to " + status);
+          }
         }
-      })
+      );
     }
   },
   destroyed() {},
-  components: {
-  }
+  components: {}
 };
-
 </script>
 <style lang="scss" scoped>
-
 </style>

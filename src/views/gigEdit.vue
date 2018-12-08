@@ -26,6 +26,22 @@
             </el-select>
           </div>
         </div>
+        <!-- working here!!!!! -->
+        <!-- working here!!!!! -->
+        <div v-if="gig.category" class="photo-gallery grid">
+           <vue-gallery :images="this.imgsCategory" :index="index" @close="index = null"></vue-gallery>
+      <!-- @click="index = imageIndex" -->
+    <div 
+      class="image"
+      v-for="(image, imageIndex) in imgsCategory"
+      :key="imageIndex"
+      @click="pickImg(image)"
+      :style="{ backgroundImage: 'url(' + image + ')' ,objectFit:'cover'}"
+    ></div>
+        </div>
+        <!-- working here!!!!! -->
+        <!-- working here!!!!! -->
+
         <el-input
           type="textarea"
           :autosize="{ minRows: 3, maxRows: 3}"
@@ -48,7 +64,7 @@
             class="pro-tip"
             v-if="isShowingTip"
           >PRO-TIP: Set a fair price to get the Gig done quickly!</h4>
-        <google-map v-if="editPage" :editPage="editPage" :gig="gig" @addMarker="getLocation"/>
+        <google-map v-if="editPage" :editPage="editPage" :gig="gig" @addMarker="getLocation" @setPlace="setPlaceEdit" />
           <h2>Price:</h2>
           <el-input-number
             v-model="gig.details.price"
@@ -71,11 +87,43 @@
 <script>
 
 import GoogleMap from "@/components/googleMap";
+  import VueGallery from 'vue-gallery';
 
 export default {
-
     data() {
         return {
+             'pet-care': [
+          'https://res.cloudinary.com/barpel/image/upload/v1544299638/GigIt/shutterstock_148172258.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544299638/GigIt/shutterstock_556414654.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544299713/GigIt/shutterstock_443728036.jpg',
+        ],
+             'house-work': [
+          'https://res.cloudinary.com/barpel/image/upload/v1543848353/GigIt/plumber.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544301300/GigIt/shutterstock_381636988.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544301308/GigIt/shutterstock_1007119828.jpg',
+        ],
+             'other': [
+          'https://res.cloudinary.com/barpel/image/upload/v1544303327/GigIt/shutterstock_214814605.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544303327/GigIt/shutterstock_788923183.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544303524/GigIt/shutterstock_1164331375.jpg',
+        ],
+             'delivery': [
+          'https://res.cloudinary.com/barpel/image/upload/v1544303774/GigIt/shutterstock_1165732177_1.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544303774/GigIt/shutterstock_794998891.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544303773/GigIt/shutterstock_171790418.jpg',
+        ],
+             'moving': [
+          'https://res.cloudinary.com/barpel/image/upload/v1544304572/GigIt/shutterstock_369919934.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544304573/GigIt/shutterstock_366444461.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544304617/GigIt/shutterstock_516642439.jpg',
+        ],
+             'line-queue': [
+          'https://res.cloudinary.com/barpel/image/upload/v1544304965/GigIt/shutterstock_239818981.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544304965/GigIt/shutterstock_733196824.jpg',
+          'https://res.cloudinary.com/barpel/image/upload/v1544304965/GigIt/shutterstock_467126900.jpg',
+        ],
+        index: null,
+
           editPage:true,
             gig: {
                 publisherId: '',
@@ -88,14 +136,16 @@ export default {
                     title:'',
                     desc: '',
                     price: 0,
+                    img:'',
                     pos: {
-                        dist: this.getRandomDist(),
+                        // dist: this.getRandomDist(),
                         lat: null,
                         lng: null,
                     },
                     location:{
 
                     },
+                    place:'',
                     gigTime: '',
                     imgs: [],
 
@@ -139,14 +189,22 @@ export default {
         currTime() {
             var time = new Date()
             return `${time.getHours()}:${time.getMinutes()}`
+        },
+        imgsCategory() {
+          var x = this.gig.category
+          var imgs = this[x]
+          return imgs
         }
     },
     methods: {
-        getRandomDist() {
-            var randomNum = Math.random() * 3
-            if (randomNum < 0.1) randomNum = randomNum + 0.3;
-            return randomNum.toFixed(1) + 'KM Away'
+        pickImg(image){
+         this.gig.details.img = image
         },
+        // getRandomDist() {
+        //     var randomNum = Math.random() * 3
+        //     if (randomNum < 0.1) randomNum = randomNum + 0.3;
+        //     return randomNum.toFixed(1) + 'KM Away'
+        // },
         toggleTip() {
             this.isShowingTip = !this.isShowingTip
         },
@@ -168,6 +226,12 @@ export default {
           this.$store.dispatch({type:'updateGig', gig, userGigsListToUpdate})
           this.$router.push('/')
         },
+        setPlaceEdit(place){
+          console.log(place.vicinity)
+          this.gig.details.place = place.vicinity
+          console.log( this.gig.details.place)
+          
+        },
         getLocation(location){
           console.log('this is the location from edit',location)
           this.gig.details.location = location
@@ -187,11 +251,19 @@ export default {
         }
     },
     components:{
-      GoogleMap
+      GoogleMap,
+      VueGallery
     }
 }
 </script>
 
 <style>
+.image {
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 5px;
+  }
 
 </style>

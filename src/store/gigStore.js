@@ -25,16 +25,16 @@ export default {
     },
     mutations: {
         setGigs(state, { gigs }) {
-            // console.log('```````')
             if(state.userLocation) {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
                 })
             }
             gigs.sort((a, b) => {
-                // console.log('A.details.pos.dist',a.details.pos.dist)
-                // console.log('B.details.pos.dist',b.details.pos.dist)
                 return a.details.pos.dist - b.details.pos.dist
+            })
+            gigs.filter(gig =>{
+                return gig.isActive
             })
             state.gigs = gigs
 

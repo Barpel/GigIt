@@ -93,4 +93,18 @@
         background-color: rgb(207, 207, 207);
         transform: scale(0.98);
     }
+    .photo-gallery{
+        grid-template-columns: 150px 150px 150px;
+        grid-template-rows: 90px;
+        .image {
+            float: left;
+            background-size: cover;
+            object-fit: fill;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            margin: 5px;
+
+          }
+    }
 }

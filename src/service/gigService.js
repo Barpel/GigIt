@@ -47,7 +47,6 @@ function update(gig) {
 }
 
 function getDistFromUser(gig, userLocation) {
-    console.log('did we got user? userLocation',userLocation)
         if(!userLocation)
         if(!gig) return
         var lat1 = userLocation.position.lat
