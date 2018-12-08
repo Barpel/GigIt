@@ -95,7 +95,6 @@ export default {
   computed: {
     gigs() {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
-
       return gigs;
     },
     gigCategoryCounter() {

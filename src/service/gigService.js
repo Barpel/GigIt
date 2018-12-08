@@ -45,7 +45,9 @@ function update(gig) {
         return axios.post(`${BASE_URL}`, gig).then(res => res.data)
     }
 }
+
 function getDistFromUser(gig, userLocation) {
+    console.log('did we got user? userLocation',userLocation)
         if(!userLocation)
         if(!gig) return
         var lat1 = userLocation.position.lat

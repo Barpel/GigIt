@@ -88,6 +88,8 @@ export default {
         };
       });
     },
+
+  
     getRoute: function () {
       this.directionsService = new google.maps.DirectionsService()
       this.directionsDisplay = new google.maps.DirectionsRenderer()

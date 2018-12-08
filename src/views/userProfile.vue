@@ -157,6 +157,7 @@ import gigAccordion from "../components/utils/gigAccordion.cmp";
 import pendingGig from "../components/utils/pendingGig.cmp";
 import gigerReview from "../components/gigerReview.cmp";
 export default {
+  
   data() {
     return {
       user: null,
