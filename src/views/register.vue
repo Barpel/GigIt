@@ -90,7 +90,7 @@ export default {
                     img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
                 },
                 createdAt: 1543412028131,
-                review: {
+                ratings: {
                     text: 'A newly added Gigster, be the first to review him!',
                     payment: 5,
                     reliable: 5,
@@ -107,7 +107,7 @@ export default {
                     img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
                 },
                 createdAt: 1543412028131,
-                review: {
+                ratings: {
                     text: 'A newly added Gigster, be the first to review him!',
                     work: 5,
                     reliable: 5,
