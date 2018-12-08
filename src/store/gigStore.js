@@ -33,9 +33,6 @@ export default {
             gigs.sort((a, b) => {
                 return a.details.pos.dist - b.details.pos.dist
             })
-            gigs.filter(gig =>{
-                return gig.isActive
-            })
             state.gigs = gigs
 
         },

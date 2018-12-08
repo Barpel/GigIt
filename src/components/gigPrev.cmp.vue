@@ -1,6 +1,6 @@
 <template>
   <li v-if="gig && publisher">
-    <div :class="classByCategory" class="gig-image" :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'cover'}"></div>
+    <div :class="classByCategory" class="gig-image" :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"></div>
     <div>
       <div class="publisher-container">
         <img :src="publisher.img">

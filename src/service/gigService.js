@@ -15,14 +15,21 @@ export default {
     getDistFromUser
 }
 
-function query(filter = { byTitle: '', byCategory: '' }) {
-    if (filter.byTitle === '' && filter.byCategory === '') {
-        return axios.get(BASE_URL)
+function query(filter = { byTitle: '', byCategory: '', isActive:true}) {
+    console.log('qqq')
+    if (filter.byTitle === '' && filter.byCategory === '' ) {
+        var queryParams = new URLSearchParams()
+        queryParams.append('isActive', filter.isActive)
+        
+        const REQ_URL = `${BASE_URL}?${queryParams}`
+        return axios.get(REQ_URL)
             .then(res => res.data)
     }
     var queryParams = new URLSearchParams()
     queryParams.append('byTitle', filter.byTitle)
     queryParams.set('byCategory', filter.byCategory)
+    queryParams.set ('isActive', filter.isActive)
+    console.log('GigService front',queryParams)
     const REQ_URL = `${BASE_URL}?${queryParams}`
     return axios.get(REQ_URL)
         .then(res => res.data)
