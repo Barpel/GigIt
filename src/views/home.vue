@@ -28,7 +28,7 @@
           </router-link>
           <input
             type="text"
-            placeholder="Find your type of Gig"
+            placeholder="Find your next Gig"
             @input="filterByKey"
             v-model="filter.byTitle"
             ref="searchGig"
