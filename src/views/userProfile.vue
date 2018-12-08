@@ -137,6 +137,7 @@
               :gigId="publishedGig._id"
               :header="publishedGig.details.title"
               :isPickedGigster="publishedGig.isPickedGigster"
+              v-if="publishedGig.pendingUsers.length"
             ></gig-accordion>
           </div>
         </ul>
@@ -188,6 +189,7 @@ export default {
       var userId = this.$route.params.userId;
       this.$store.dispatch({ type: "getUserById", userId }).then(user => {
         this.user = user;
+        console.log('set user', user)
         this.getUserGigs();
       });
       this.$store
@@ -239,9 +241,9 @@ export default {
       this.currReviewStats = reviewStats;
       this.showReviewForm = true;
     },
-    submitReview(review = null) {
+    submitReview(ratings = null) {
       var givenReview = {
-        review,
+        ratings,
         gigId: this.currReviewStats.gigId,
         createdAt: Date.now(),
         givenBy: { name: this.user.name.first, img: this.user.img },
