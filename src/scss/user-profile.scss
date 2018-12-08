@@ -135,7 +135,8 @@ $card-bg: #646262;
       .profile-review {
         margin-top: 10px;
         display: grid;
-        grid-template-columns: 1fr 1fr 2fr;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1.4fr 1fr;
         align-items: center;
         padding: 4px;
         border: 1px solid $border-color;
@@ -143,6 +144,7 @@ $card-bg: #646262;
         background-color: $card-bg;
         color: white;
         .profile-review-giver {
+          grid-row: 1 / span 2;
           min-width: 100%;
           display: flex;
           flex-direction: column;
@@ -150,10 +152,13 @@ $card-bg: #646262;
           align-items: center;
           text-align: center;
           height: 100%;
+          white-space: initial;
           img {
-            max-width: 50px;
-            max-height: 50px;
+            max-width: 60%;
+            max-height: 60%;
             border-radius: 50%;
+            min-width: 30px;
+            min-height: 30px;
             // align-self: center;
             // margin-left: 10px;
           }
@@ -201,8 +206,6 @@ $card-bg: #646262;
       }
     }
     .profile-tabs-wrapper {
-      // grid-row: 1 / span 2;
-      // grid-column: 2;
       & > ul {
         white-space: nowrap;
         overflow-y: scroll;
@@ -228,7 +231,7 @@ $card-bg: #646262;
           width: 100%;
           border-bottom: 1px solid $category-base;
           // border-radius: 5px;
-          padding: 0 10px;
+          padding: 0;
           position: relative;
         }
 
@@ -246,11 +249,12 @@ $card-bg: #646262;
             border-bottom: 0;
             background-color: $category-base;
             margin-right: -1px;
-            padding: 10px;
+            padding: 2%;
             position: relative;
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             transition: all 0.3s;
             font-family: roboto;
+            white-space: nowrap;
             &:hover {
               background-color: #810c51;
             }
@@ -323,7 +327,11 @@ $card-bg: #646262;
       }
       .profile-reviews {
         .profile-review {
+          grid-template-rows: 1fr;
+          grid-template-columns: 1fr 1fr 2fr;
+          align-items: center;
           .profile-review-giver {
+            grid-row: unset;
             img {
             }
           }
@@ -359,6 +367,7 @@ $card-bg: #646262;
 
           input.stv-radio-tab {
             & + label {
+              font-size: 0.8rem;
               &:hover {
               }
             }

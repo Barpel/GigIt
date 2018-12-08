@@ -2,7 +2,8 @@
   <form class="registration-container" @submit.prevent="register">
     <h1>
       Register to
-      <span>Gig
+      <span>
+        Gig
         <span>It</span>
       </span>
     </h1>
@@ -13,7 +14,7 @@
     <div class="container2">
       <label>
         <span>Age:</span>
-        <el-input-number v-model="user.age"></el-input-number>
+        <el-input-number v-model="user.age" :min="18"></el-input-number>
       </label>
       <el-input placeholder="Email" type="email" v-model="user.email" clearable></el-input>
     </div>
@@ -48,6 +49,22 @@
       <el-input placeholder="Image URL" v-model="user.img">
         <template slot="prepend">Http://</template>
       </el-input>
+      <!-- <el-upload
+        class="upload-demo"
+        drag
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :file-list="fileList"
+        :limit="1"
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">
+          Drop file here or
+          <em>click to upload</em>
+        </div>
+        <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 3MB</div>
+      </el-upload> -->
     </div>
     <button type="submit">Register</button>
   </form>
@@ -63,7 +80,7 @@ export default {
           first: "",
           last: ""
         },
-        age: 0,
+        age: 18,
         aboutMe: "",
         username: "",
         password: "",
@@ -82,42 +99,49 @@ export default {
         reviews: {
           totalAverage: 5,
           publishedAverage: 5,
-          published: [{
-                gigId: '0',
-                title: 'New User',
-                givenBy: {
-                    name: 'GigIt Team',
-                    img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
-                },
-                createdAt: 1543412028131,
-                ratings: {
-                    text: 'A newly added Gigster, be the first to review him!',
-                    payment: 5,
-                    reliable: 5,
-                    overall: 5,
-                    average: 5
-                }
-            }],
+          published: [
+            {
+              gigId: "0",
+              title: "New User",
+              givenBy: {
+                name: "GigIt Team",
+                img:
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+              },
+              createdAt: 1543412028131,
+              ratings: {
+                text: "A newly added Gigster, be the first to review him!",
+                payment: 5,
+                reliable: 5,
+                overall: 5,
+                average: 5
+              }
+            }
+          ],
           completedAverage: 5,
-          completed:[{
-                gigId: '0',
-                title: 'New User',
-                givenBy: {
-                    name: 'GigIt Team',
-                    img : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'
-                },
-                createdAt: 1543412028131,
-                ratings: {
-                    text: 'A newly added Gigster, be the first to review him!',
-                    work: 5,
-                    reliable: 5,
-                    overall: 5,
-                    average: 5
-                }
-            }]
+          completed: [
+            {
+              gigId: "0",
+              title: "New User",
+              givenBy: {
+                name: "GigIt Team",
+                img:
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+              },
+              createdAt: 1543412028131,
+              ratings: {
+                text: "A newly added Gigster, be the first to review him!",
+                work: 5,
+                reliable: 5,
+                overall: 5,
+                average: 5
+              }
+            }
+          ]
         },
-        chats:[]
+        chats: []
       },
+      fileList: [],
       skillopts: [
         {
           value: "gardening",
@@ -151,22 +175,37 @@ export default {
     };
   },
   methods: {
-      register() {
-        var user = this.user
-        if(!user.name.first || !user.username || !user.password ||!user.age ||!user.email ||!user.name.last ||!user.aboutMe) {
-          this.$message({
-              message: 'Please fill out all fields!',
-              type: 'warning'
-          })
-          return
-        }
-        this.$store.dispatch({type:'register', user:this.user})
-          .then(() =>this.$router.push('/'))
-          .catch(err => {
-            if(err.response.status === 401) this.$message.error('Username taken!');
-          })
-        
+    register() {
+      var user = this.user;
+      if (
+        !user.name.first ||
+        !user.username ||
+        !user.password ||
+        !user.age ||
+        !user.email ||
+        !user.name.last ||
+        !user.aboutMe
+      ) {
+        this.$message({
+          message: "Please fill out all fields!",
+          type: "warning"
+        });
+        return;
       }
+      this.$store
+        .dispatch({ type: "register", user: this.user })
+        .then(() => this.$router.push("/"))
+        .catch(err => {
+          if (err.response.status === 401)
+            this.$message.error("Username taken!");
+        });
+    },
+    handlePreview(ev) {
+      console.log(ev);
+    },
+    handleRemove(ev) {
+      console.log(ev);
+    }
   }
 };
 </script>
