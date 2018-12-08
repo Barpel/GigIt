@@ -81,27 +81,41 @@ export default {
                 })
         },
         updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
-            if (reviewStats.isForGigster) {
-                context.dispatch({ type: 'getUserById', userId: reviewStats.gigsterId })
-                    .then(user => {
-                        var gigIdx = user.gigsIds.pending.findIndex(gig => reviewStats.gigId)
-                        user.gigsIds.pending.splice(gigIdx, 1)
-                        user.gigsIds.completed.push(reviewStats.gigId)
-                        if (!user.reviews.completed[0].gigId === '0') user.reviews.completed.unshift(review)
-                        else user.reviews.completed = [review]
-                        context.dispatch({ type: 'updateUser', user })
-
+            return context.dispatch({type: 'removeGigFromAllUsers', gigId: reviewStats.gigId})
+                    .then(() => {
+                        context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
+                            .then(gigster => {
+                                if(gigster.reviews.completed[0].gigId === '0') {
+                                    gigster.reviews.completed = [review]
+                                }
+                                else gigster.reviews.completed.unshift(review)
+                                context.dispatch({ type: 'updateUser', user:gigster })
+                            })
                     })
-                context.dispatch({ type: 'getUserById', userId: reviewStats.maisterId })
-                    .then(user => {
-                        var gigIdx = user.gigsIds.published.findIndex(gig => reviewStats.gigId)
-                        user.gigsIds.published.splice(gigIdx, 1)
-                        user.gigsIds.completed.push(reviewStats.gigId)
-                        context.dispatch({ type: 'updateOwnUser', user })
+        },
+        removeGigFromAllUsers(context, {gigId}) {
+            context.dispatch({type:'getGigById', gigId})
+                .then(gig => {
+                    context.dispatch({type:'getUserById', userId:gig.publisherId})
+                        .then(publisher => {
+                            publisher.gigsIds.completed.push(gig._id)
+                            var gigIdx = publisher.gigsIds.published.findIndex(gigId => gigId === gig._id)
+                            if(gigIdx > -1) {
+                                publisher.gigsIds.published.splice(gigIdx, 1)
+                            }
+                            context.dispatch({type:'updateOwnUser', user:publisher})
+                        })
+                    return gig.holdingUsers.forEach(pendingUser => {
+                            context.dispatch({type:'getUserById', userId:pendingUser.id})
+                                .then(gigster => {
+                                    var gigIdx = gigster.gigsIds.pending.findIndex(gigId => gigId === gig._id)
+                                    if(gigIdx > -1) {
+                                        gigster.gigsIds.pending.splice(gigIdx, 1)
+                                        context.dispatch({type:'updateUser', user:gigster})
+                                    }
+                                })
                     })
-            }
-
-            //TODO: ADD REVIEW FOR PUBLISHER
+                })
         },
         deletePendingUsers(context, { gigId }) {
             userService.query(gigId)

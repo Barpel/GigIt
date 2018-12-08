@@ -239,9 +239,9 @@ export default {
       this.currReviewStats = reviewStats;
       this.showReviewForm = true;
     },
-    submitReview(review = null) {
+    submitReview(ratings = null) {
       var givenReview = {
-        review,
+        ratings,
         gigId: this.currReviewStats.gigId,
         createdAt: Date.now(),
         givenBy: { name: this.user.name.first, img: this.user.img },

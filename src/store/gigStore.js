@@ -119,7 +119,13 @@ export default {
         },
         reviewAndCompleteGig(context, { review, reviewStats }) {
             return context.dispatch({ type: 'updateUsersReviewsAndGigIds', review, reviewStats })
-            // .then(() => gigService.removeGig(payload.reviewStats.gigId))
+                .then(() => {
+                    context.dispatch({type:'getGigById', gigId: reviewStats.gigId})
+                        .then(gig => {
+                            gig.isActive = false
+                            context.dispatch({type:'updateGig', gig})
+                        })
+                })
 
             }
         },
