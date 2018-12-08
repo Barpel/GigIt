@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="chat-window">
-      <div class="chat-conversation" v-if="selectedChat">
+      <div class="chat-conversation" v-if="selectedChat" ref="conversation">
         <div
           :class="(msg.sender === user._id)? 'member2': 'member1'"
           v-for="(msg, idx) in selectedChat.msgs"
@@ -63,14 +63,16 @@ export default {
     }
   },
   methods: {
+    scrollDown() {
+      setTimeout(() => {
+        var conversation = this.$refs.conversation;
+        // console.log(conversation);
+        conversation.scrollTo(0, conversation.scrollHeight);
+      }, 0);
+    },
     renderChat(chat) {
-      // var length = (chat.msgs.length -1) +'';
-      // var ref= `msg${length}`
       this.selectedChat = chat;
-      // console.log("refs!", this.$refs, "length:", chat);
-      // this.$refs[length];
-      // console.log(ref)
-      // console.log(this.$refs[ref])
+      this.scrollDown()
     },
     sendMsg(chatId) {
       var newMsg = {
@@ -92,6 +94,7 @@ export default {
         userId: otherUser
       });
       this.newMsgTxt = "";
+      // this.scrollDown()
     }
   },
   created() {
