@@ -202,6 +202,8 @@ export default {
       this.$store.dispatch({ type: "updateGig", gig });
     },
     contactGigster(gigster, gigData) {
+      console.log(gigster)
+      console.log(gigData)
       this.$store
         .dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
         .then(() => this.$router.push(`/user/${this.user._id}/inbox`));

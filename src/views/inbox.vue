@@ -60,13 +60,13 @@ export default {
     sentMsg: function(payload) {
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
+      this.scrollDown()
     }
   },
   methods: {
     scrollDown() {
       setTimeout(() => {
         var conversation = this.$refs.conversation;
-        // console.log(conversation);
         conversation.scrollTo(0, conversation.scrollHeight);
       }, 0);
     },
