@@ -112,9 +112,10 @@ export default {
       this.$store.dispatch({
         type: "emitToUser",
         eventMsg: {
-          txt: "New Gig Request",
+          txt: `${this.user.name.first} wants to be your gigster!`,
           type: "success",
-          link: `/user/${publisherId}`
+          link: `/user/${this.user._id}`,
+          gigsterImg: this.user.img,
         },
         action: "toProfile",
         userId: publisherId

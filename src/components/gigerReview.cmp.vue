@@ -50,14 +50,14 @@ export default {
   },
   methods: {
     sumbitReview() {
-      var review = this.review;
-      if (this.reviewStats.isForGigster) review.work = this.workOrPayment;
-      else review.payment = this.workOrPayment;
-      review.average = (
-        (review.reliable + review.overall + this.workOrPayment) /
+      var ratings = this.review;
+      if (this.reviewStats.isForGigster) ratings.work = this.workOrPayment;
+      else ratings.payment = this.workOrPayment;
+      ratings.average = (
+        (ratings.reliable + ratings.overall + this.workOrPayment) /
         3
       ).toFixed(1);
-      this.$emit("reviewSumbitted", review);
+      this.$emit("reviewSumbitted", ratings);
     },
     skipReview() {
       this.$confirm(

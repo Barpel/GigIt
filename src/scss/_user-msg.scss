@@ -4,15 +4,23 @@
     border-bottom-left-radius: 5px;
     position: fixed;
     top:0;
+    display: flex;
+    flex-direction: row-reverse;
     right: -100vw;
     cursor: pointer;
     z-index: 20;
     animation-name: slide-right;
     animation-duration: 0.7s;
     transition: all .7s;
+    border: 1px solid white;
+    .user-msg-img img {
+        max-height: 70px;
+        border-radius: 50%;
+    }
 
 }
 .user-msg {
+    margin-left: 8px;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -21,21 +29,23 @@
     padding: 10px;;
     font-family: roboto;
     font-size: 1.6rem;
-    border: 1px solid white;
     color: white;
     border-bottom-left-radius: 5px;
+    
 }
 
 .user-msg-container.success {
     top:0.2rem;
     right:0.2rem;
-    background-color: #2ca2af;
-    border: 2px solid #2ca2af;
+    background-color: #ae7b98;
+    border: 2px solid #ae7b98;
 }
 
 .user-msg-container.error {
     top:0.2rem;
     right:0.2rem;
-    border: 2px solid lightcoral;
-    background-color: lightcoral;
+    // border: 2px solid red;
+    border: 2px solid #ce1c1c;
+    // background-color: red;
+    background-color: #ce1c1c;
 }

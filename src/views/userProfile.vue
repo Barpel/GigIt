@@ -104,21 +104,21 @@
             </div>
             <div class="profile-review-stars">
               <span>
-                <span>Work: {{review.review.work}}</span>
+                <span>Work: {{review.ratings.work}}</span>
                 <i class="fas fa-star"></i>
               </span>
               <span>
-                <span>Reliable: {{review.review.reliable}}</span>
+                <span>Reliable: {{review.ratings.reliable}}</span>
                 <i class="fas fa-star"></i>
               </span>
               <span>
-                <span>Overall: {{review.review.overall}}</span>
+                <span>Overall: {{review.ratings.overall}}</span>
                 <i class="fas fa-star"></i>
               </span>
             </div>
             <div class="profile-review-details-container">
               <p class="profile-review-title">{{ review.title}}</p>
-              <p>{{review.review.text}}</p>
+              <p>{{review.ratings.text}}</p>
             </div>
           </li>
         </ul>
