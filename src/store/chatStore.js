@@ -31,7 +31,7 @@ export default {
             else return context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
         },
         openNewChat(context, { gigster, gigData, maister }) {
-            alert('creating new chat')
+            // alert('creating new chat')
             var chat = {
                 members: [{ name: gigster.name, img: gigster.img, _id: gigster.id },
                 { name: maister.name.first, img: maister.img, _id: maister._id }],
