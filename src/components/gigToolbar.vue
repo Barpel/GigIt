@@ -11,7 +11,7 @@
         checked
         v-model="filter.byCategory"
       >
-      <label for="tab1">All Gigs</label>
+      <label for="tab1">All</label>
       <input
         @click="searchByTitle"
         type="radio"

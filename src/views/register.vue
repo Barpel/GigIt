@@ -139,7 +139,9 @@ export default {
             }
           ]
         },
-        chats: []
+        chats: [],
+        isInboxRead: true,
+        isMyGigsRead: true
       },
       fileList: [],
       skillopts: [

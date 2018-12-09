@@ -61,6 +61,7 @@ $window-height: 77vh;
       grid-row: 2;
       align-self: auto;
       .chat {
+        width: 100%;
         align-self: flex-start;
         display: grid;
         // grid-template-columns: 1fr 4fr;
@@ -251,6 +252,7 @@ $window-height: 77vh;
       .chat-conversation {
         max-height: 70vh;
         width: 100%;
+        
         .member1,
         .member2 {
           display: flex;

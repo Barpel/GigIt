@@ -30,6 +30,9 @@ export default {
             }
             else return context.dispatch({ type: 'openNewChat', gigster, gigData, maister })
         },
+        updateChat(context, {chat}) {
+            return chatService.update(chat)
+        },
         openNewChat(context, { gigster, gigData, maister }) {
             // alert('creating new chat')
             var chat = {

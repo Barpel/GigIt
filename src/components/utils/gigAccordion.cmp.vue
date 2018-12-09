@@ -32,7 +32,7 @@
           </button>
           <button @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
           isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> <i class="fas fa-check-circle"></i> </button>
-          <button @click="gigCancel(gigster.id)" class="accordion-later-btn"><i class="fas fa-ban"></i></button>
+          <button @click="gigCancel" class="accordion-later-btn"><i class="fas fa-ban"></i></button>
         </div>
       </li>
     </ul>
@@ -58,9 +58,9 @@ export default {
       this.isPickedGigsterData = true
       this.$emit('gigsterPicked',gigster)
     },
-    gigCancel(gigsterId){
-      console.log('cancelGig')
-      // this.$emit('gigsterCancel',gigsterId)
+    gigCancel(){
+      this.isPickedGigsterData = false
+      this.$emit('gigsterPicked',null)      
     },
     contactGigster(gigster) {
       this.$emit('contactGigster',gigster)

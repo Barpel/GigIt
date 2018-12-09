@@ -137,7 +137,7 @@
               :gigId="publishedGig._id"
               :header="publishedGig.details.title"
               :isPickedGigster="publishedGig.isPickedGigster"
-              v-if="publishedGig.pendingUsers.length"
+              v-if="publishedGig.pendingUsers"
             ></gig-accordion>
           </div>
         </ul>
@@ -189,7 +189,7 @@ export default {
       var userId = this.$route.params.userId;
       this.$store.dispatch({ type: "getUserById", userId }).then(user => {
         this.user = user;
-        console.log('set user', user)
+        // console.log('set user', user)
         this.getUserGigs();
       });
       this.$store
@@ -197,11 +197,19 @@ export default {
         .then(isOwner => (this.isOwnProfile = isOwner));
     },
     gigsterPicked(gigster, gig) {
-      gig.isPickedGigster = true;
-      gig.holdingUsers = gig.pendingUsers;
-      gig.pendingUsers = [gigster];
-      this.$socket.emit("test", "am testing");
-      this.$store.dispatch({ type: "updateGig", gig });
+      if(!gigster) {
+        gig.isPickedGigster = false
+        gig.pendingUsers = gig.holdingUsers
+        gig.holdingUsers = null
+        this.$store.dispatch({ type: "updateGig", gig });
+      }
+      else {
+        gig.isPickedGigster = true;
+        gig.holdingUsers = gig.pendingUsers;
+        gig.pendingUsers = [gigster];
+        this.$socket.emit("test", "am testing");
+        this.$store.dispatch({ type: "updateGig", gig });
+      }
     },
     contactGigster(gigster, gigData) {
       this.$store
@@ -213,6 +221,7 @@ export default {
       var completedGigIds = userGigIds.completed;
       var pendingGigIds = userGigIds.pending;
       var publishedGigIds = userGigIds.published;
+      
       completedGigIds.forEach(completedGigId => {
         this.$store
           .dispatch({ type: "getGigById", gigId: `${completedGigId}` })
@@ -233,6 +242,7 @@ export default {
           .dispatch({ type: "getGigById", gigId: `${publishedGigId}` })
           .then(gig => {
             this.gigs.publishedGigs.push(gig);
+            console.log(this.gigs.publishedGigs)
           });
       });
     },
@@ -260,7 +270,7 @@ export default {
   },
   created() {
     this.loadUser();
-    console.log("gigs", this.gigs);
+    // console.log("gigs", this.gigs);
   },
   watch: {
     "$route.params.userId": function() {

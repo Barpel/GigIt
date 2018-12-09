@@ -25,7 +25,7 @@ export default {
     },
     mutations: {
         setGigs(state, { gigs }) {
-            if(state.userLocation) {
+            if (state.userLocation) {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
                 })
@@ -87,7 +87,7 @@ export default {
         getGigById(context, { gigId }) {
             return gigService.getById(gigId)
                 .then(gig => {
-                    if(!context.state.userLocation) return gig
+                    if (!context.state.userLocation) return gig
                     return gigService.getDistFromUser(gig, context.state.userLocation)
                 })
         },
@@ -96,13 +96,14 @@ export default {
         },
         updateGig(context, payload) {
             return gigService.update(payload.gig)
-                .then(cuurGig => {
+                .then(currGig => {
                     if (payload.userGigsListToUpdate) {
-                        payload.userGigsListToUpdate.push(cuurGig._id)
+                        payload.userGigsListToUpdate.push(currGig._id)
                         context.dispatch({ type: 'updateOwnUser', user: context.getters.loggedUser })
                         // context.dispatch({ type: 'updateUser', user: context.getters.loggedUser })
                     }
-                    return context.dispatch({ type: 'getGigs' }, cuurGig)
+                    context.dispatch({ type: 'getGigs' }, currGig)
+                    return currGig
                 })
         },
         userLocation(context, payload) {
@@ -117,13 +118,13 @@ export default {
         reviewAndCompleteGig(context, { review, reviewStats }) {
             return context.dispatch({ type: 'updateUsersReviewsAndGigIds', review, reviewStats })
                 .then(() => {
-                    context.dispatch({type:'getGigById', gigId: reviewStats.gigId})
+                    context.dispatch({ type: 'getGigById', gigId: reviewStats.gigId })
                         .then(gig => {
                             gig.isActive = false
-                            context.dispatch({type:'updateGig', gig})
+                            context.dispatch({ type: 'updateGig', gig })
                         })
                 })
 
-            }
-        },
-    }
+        }
+    },
+}

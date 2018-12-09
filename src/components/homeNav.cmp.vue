@@ -68,8 +68,7 @@ export default {
       return this.$store.getters.isLoggedin;
     },
     unreadMsg() {
-      return true;
-      // return this.$store.getters.unreadMsg
+      return this.user.isInboxRead
     },
     profileLink() {
       return `/user/${this.user._id}`;

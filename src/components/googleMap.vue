@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <div v-if="this.editPage">
+  <div class="map-container">
+    <div v-if="this.editPage" class="add-pin-container">
       <h2>Search and add a pin</h2>
-      <label>
-        <gmap-autocomplete @place_changed="setPlace" class="place-input-map"></gmap-autocomplete>
-        <button class="place-btn-map" @click.prevent="addMarker">Add</button>
-      </label>
-      <br>
+      <div>
+        <gmap-autocomplete @place_changed="setPlace" class="add-pin-input" placeholder="Enter a location"></gmap-autocomplete>
+        <button class="add-pin-btn" @click.prevent="addMarker">Add</button>
+      </div>
     </div>
-    <br>
     <gmap-map ref="map" :center="center" :zoom="12" style="width:100%;  height: 400px;">
       <gmap-marker
         class="imBoss"
