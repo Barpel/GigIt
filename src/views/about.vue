@@ -116,7 +116,7 @@ export default {
         this.counter++;
         interval = setInterval(() => {
           this.counter++;
-        }, 6000);
+        }, 10000);
       } else {
         clearInterval(interval);
       }
