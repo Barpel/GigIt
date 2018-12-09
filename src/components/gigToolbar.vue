@@ -2,6 +2,7 @@
   <section class="gig-toolbar-container">
     <div class="gig-toolbar tab" :class="filterBarStatus">
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="all gigs"
@@ -12,6 +13,7 @@
       >
       <label for="tab1">All Gigs</label>
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="moving"
@@ -23,6 +25,7 @@
         <i class="fas fa-people-carry"></i>
       </label>
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="house-work"
@@ -34,6 +37,7 @@
         <i class="fas fa-hammer"></i>
       </label>
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="technical"
@@ -56,6 +60,7 @@
         <i class="fas fa-male"></i>
       </label>
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="pet-care"
@@ -67,6 +72,7 @@
         <i class="fas fa-dog"></i>
       </label>
       <input
+        @click="searchByTitle"
         type="radio"
         class="tablinks"
         name="other"
@@ -78,7 +84,7 @@
         <i class="fas fa-ellipsis-h"></i>
       </label>
     </div>
-    <button @click="toggleFilterStatus" class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
+    <button @click="toggleFilterStatus"  class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
   </section>
 </template>
 

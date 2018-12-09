@@ -39,7 +39,7 @@
         </div>
       <!-- <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/> -->
       <!-- <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar> -->
-      <gig-toolbar></gig-toolbar>
+      <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
 
       </div>
     </div>

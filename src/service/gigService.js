@@ -16,23 +16,26 @@ export default {
 }
 
 function query(filter = { byTitle: '', byCategory: '', isActive:true}) {
-    console.log('qqq')
+    
+    console.log('qqq',filter)
     if (filter.byTitle === '' && filter.byCategory === '' ) {
         var queryParams = new URLSearchParams()
-        queryParams.append('isActive', filter.isActive)
-        
+        queryParams.append('isActive', true)
+        const REQ_URL = `${BASE_URL}?${queryParams}`
+        console.log('gigService front',REQ_URL)
+        return axios.get(REQ_URL)
+            .then(res => res.data)
+    }else{
+        var queryParams = new URLSearchParams()
+        queryParams.append('byTitle', filter.byTitle)
+        queryParams.set('byCategory', filter.byCategory)
+        queryParams.set ('isActive', true)
+        console.log('GigService front',queryParams)
         const REQ_URL = `${BASE_URL}?${queryParams}`
         return axios.get(REQ_URL)
             .then(res => res.data)
     }
-    var queryParams = new URLSearchParams()
-    queryParams.append('byTitle', filter.byTitle)
-    queryParams.set('byCategory', filter.byCategory)
-    queryParams.set ('isActive', filter.isActive)
-    console.log('GigService front',queryParams)
-    const REQ_URL = `${BASE_URL}?${queryParams}`
-    return axios.get(REQ_URL)
-        .then(res => res.data)
+  
 }
 
 
