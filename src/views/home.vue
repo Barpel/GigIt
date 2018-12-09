@@ -70,24 +70,24 @@ export default {
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544093475/GigIt/giger.png",
-          txt: "Use your skills to make some easy extra money!"
+            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/twoGigers.png",
+          txt: "Find your Gig and use your skills to make some easy extra money!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543912163/GigIt/mechanic.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1544310157/GigIt/adudegiger.png",
           txt: "Helping the community is part of our agenda. Help out today!"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544093447/GigIt/lady-chef.png",
+            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/thorgiger.png",
           txt:
-            "Sometimes cooking is too tiring. Get a Gigster to make you a nice meal!"
+            "New to GigIt? Take a look at our about page to learn more about it"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1543912160/GigIt/Indian-teacher.png",
-          txt: "How are your teaching skills? Come tutor the community!"
+            "https://res.cloudinary.com/barpel/image/upload/v1544309960/GigIt/gigrit.png",
+          txt: "Need to get something done? You can have your Gig online in less than 2 minutes!"
         }
       ]
     };

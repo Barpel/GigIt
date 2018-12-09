@@ -35,6 +35,8 @@
         border-radius: 5px;
         display: grid;
         transition: all .3s;
+        overflow: hidden;
+
         .gig-image{
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -43,7 +45,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            transition: all .3s;
+            transition: all .5s;
         }
         .gig-image.moving {
             background-image: url('../assets/moving.jpg');
@@ -172,7 +174,9 @@
     }
     li:hover {
         .gig-image {
-            transform: scale(1.05);
+            transform: scale(1.15);
+        }
+        .publisher-container {
         }
         // opacity: 0.85;
         // transform: scale(0.99);
