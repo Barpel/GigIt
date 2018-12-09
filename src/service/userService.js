@@ -36,7 +36,7 @@ function getById(userId) {
 }
 
 function update(user) {
-    console.log(user)
+    // console.log(user)
     if (user._id) {
         return axios.put(`${BASE_URL}/user/${user._id}`, user).then(res => res.data)
     }
