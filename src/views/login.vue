@@ -3,7 +3,7 @@
     <h1>Login</h1>
     <form @submit.prevent="login">
       <input type="text" v-model="creds.username" placeholder="Username" ref="elUsername">
-      <input type="text" v-model="creds.password" placeholder="Password">
+      <input type="password" v-model="creds.password" placeholder="Password">
       <button type="submit">Login</button>
     </form>
     <h1>Not a Gigster yet?
