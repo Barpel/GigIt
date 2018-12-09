@@ -58,7 +58,6 @@ export default {
   sockets: {
     sentMsg: function(payload) {
     // emitChatMsgToUser: function(payload) {
-      console.log('sennnt mmsssgggg')
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
       if(this.selectedChat && payload.chatId === this.selectedChat._id) {
