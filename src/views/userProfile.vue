@@ -27,8 +27,8 @@
         </li>
       </ul>-->
       <div class="profile-btns-wrapper" v-if="isOwnProfile">
-        <router-link :to="'/user/' + user._id + '/inbox'" tag="button" class="profile-chats-btn">
-          <i class="far fa-comments"></i>
+        <router-link :to="'/user/' + user._id + '/inbox'" tag="button" class="profile-chats-btn" v-if="!isOwnProfile">
+          <i class="far fa-comments" ></i>
         </router-link>
         <button @click="doLogout" class="profile-logout-btn">
           <i class="fas fa-power-off"></i> Logout
@@ -36,12 +36,9 @@
         <button class="profile-edit-btn">
           <i class="fas fa-pencil-alt"></i>
         </button>
-        <button class="profile-delete-btn">
+        <!-- <button class="profile-delete-btn">
           <i class="fas fa-trash"></i>
-        </button>
-      </div>
-      <div v-else>
-        <button class="user-profile-contact-btn">Contact Me</button>
+        </button> -->
       </div>
     </div>
     <div class="profile-mid-wrapper">
@@ -75,7 +72,7 @@
               id="tab2"
               v-model="tabContent"
             >
-            <label for="tab2">Published Gigs</label>
+            <label for="tab2" v-if="isOwnProfile && gigs.publishedGigs.length">Published Gigs</label>
             <input
               type="radio"
               class="stv-radio-tab"
@@ -84,7 +81,7 @@
               id="tab3"
               v-model="tabContent"
             >
-            <label for="tab3">Pending Gigs</label>
+            <label for="tab3" v-if="isOwnProfile && gigs.pendingGigs.length">Pending Gigs</label>
             <input
               type="radio"
               class="stv-radio-tab"
@@ -93,7 +90,7 @@
               id="tab4"
               v-model="tabContent"
             >
-            <label for="tab4">Completed Gigs</label>
+            <label for="tab4" v-if="isOwnProfile && gigs.completedGigs.length">Completed Gigs</label>
           </div>
         </div>
         <ul class="profile-reviews" v-if="+tabContent=== 1">
@@ -275,7 +272,7 @@ export default {
   watch: {
     "$route.params.userId": function() {
       this.loadUser();
-    }
+    },
   },
   components: {
     gigAccordion,
