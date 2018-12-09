@@ -105,7 +105,8 @@ export default {
                             }
                             context.dispatch({type:'updateOwnUser', user:publisher})
                         })
-                    return gig.holdingUsers.forEach(pendingUser => {
+                    if(gig.holdingUsers) {
+                        return gig.holdingUsers.forEach(pendingUser => {
                             context.dispatch({type:'getUserById', userId:pendingUser.id})
                                 .then(gigster => {
                                     var gigIdx = gigster.gigsIds.pending.findIndex(gigId => gigId === gig._id)
@@ -114,7 +115,20 @@ export default {
                                         context.dispatch({type:'updateUser', user:gigster})
                                     }
                                 })
-                    })
+                            })
+                    }
+                    else {
+                        return gig.pendingUsers.forEach(pendingUser => {
+                            context.dispatch({type:'getUserById', userId:pendingUser.id})
+                                .then(gigster => {
+                                    var gigIdx = gigster.gigsIds.pending.findIndex(gigId => gigId === gig._id)
+                                    if(gigIdx > -1) {
+                                        gigster.gigsIds.pending.splice(gigIdx, 1)
+                                        context.dispatch({type:'updateUser', user:gigster})
+                                    }
+                                })
+                            })
+                    }
                 })
         },
         deletePendingUsers(context, { gigId }) {
