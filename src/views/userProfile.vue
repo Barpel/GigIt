@@ -137,7 +137,7 @@
               :gigId="publishedGig._id"
               :header="publishedGig.details.title"
               :isPickedGigster="publishedGig.isPickedGigster"
-              v-if="publishedGig.pendingUsers.length"
+              v-if="publishedGig.pendingUsers"
             ></gig-accordion>
           </div>
         </ul>
