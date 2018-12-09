@@ -14,7 +14,6 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
-            userService
             state.loggedUser = user
             if (user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -24,6 +23,9 @@ export default {
         },
     },
     actions: {
+        setLoggedUser(context, {user}) {
+            context.commit({type:'setLoggedUser', user})
+        },
         checkLoggedUser(context) {
             return userService.getLoggedUser()
                 .then(user => {

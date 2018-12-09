@@ -22,6 +22,9 @@ export default {
   computed: {
     isLoading() {
       return this.$store.getters.isLoading
+    },
+    user() {
+      return this.$store.getters.user
     }
   },
   methods:{
@@ -49,6 +52,7 @@ export default {
         var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
         audio.play();
         this.displayMsg(msg)
+        this.user.isInboxRead = false
       }
     }
   },

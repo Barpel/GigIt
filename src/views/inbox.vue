@@ -19,7 +19,7 @@
             {{chat.members[0].name}}
             <h5>{{chat.msgs[chat.msgs.length-1].txt}}</h5>
           </h3>
-          <div class="new-event-point"></div>
+          <div v-if="!chat.msgs[chat.msgs.length-1].isRead" class="new-event-point"></div>
         </div>
       </div>
     </div>
@@ -28,9 +28,8 @@
         <div
           :class="(msg.sender === user._id)? 'member2': 'member1'"
           v-for="(msg, idx) in selectedChat.msgs"
-          :key="msg._id"
-        >
-          <div :ref="'msg' + idx">{{msg.txt}}</div>
+          :key="msg._id">
+          <div class="chat-msg-text" :ref="'msg' + idx">{{msg.txt}}</div>
         </div>
         <form @submit.prevent="sendMsg(selectedChat._id)">
           <el-input placeholder="Type a message" v-model="newMsgTxt"></el-input>
@@ -58,9 +57,16 @@ export default {
   },
   sockets: {
     sentMsg: function(payload) {
+    // emitChatMsgToUser: function(payload) {
+      console.log('sennnt mmsssgggg')
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
+      if(this.selectedChat && payload.chatId === this.selectedChat._id) {
+        var msgs = this.selectedChat.msgs
+        msgs[msgs.length - 1].isRead = true
+      }
       this.scrollDown()
+      this.$store.dispatch({type:'updateChat', chat:currNewMsgChat})
     }
   },
   methods: {
@@ -71,6 +77,9 @@ export default {
       }, 0);
     },
     renderChat(chat) {
+      chat.msgs[chat.msgs.length-1].isRead = true
+      if(chat.members.length <= 1) chat.members.push({name: this.user.name.first, img:this.user.img, _id:this.user._id})
+      this.$store.dispatch({type:'updateChat', chat})
       this.selectedChat = chat;
       this.scrollDown()
     },
@@ -95,14 +104,15 @@ export default {
       });
       this.newMsgTxt = "";
       // this.scrollDown()
-    }
+    },
   },
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      user.chats.forEach(chat => {
-        this.$store
-          .dispatch({ type: "getChatById", chatId: chat.chatId })
+      user.isInboxRead = true
+      this.$store.dispatch({type:'setLoggedUser', user})  //TODO: remove when user transfer to NotStorage done
+      return user.chats.forEach(chat => {
+        return this.$store.dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
             if (!chat) return;
             var ownMemberIndex = chat.members.findIndex(
@@ -110,13 +120,14 @@ export default {
             );
             var chat = JSON.parse(JSON.stringify(chat));
             chat.members.splice(ownMemberIndex, 1);
-            this.chats.push(chat);
-          });
-      });
-      this.user = user;
-    });
+            var lastMsg = chat.msgs[chat.msgs.length-1]
+            if(lastMsg.sender === user._id) lastMsg.isRead = true //if sender is logged user the msg is read
+            this.chats.push(chat)
+          })
+      })
+      
+    })
   },
-  mounted() {}
 };
 </script>
 
