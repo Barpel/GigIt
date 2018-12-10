@@ -1,51 +1,64 @@
 <template>
-  <section class="gig-toolbar-container">
-    <div class="gig-toolbar tab" :class="filterBarStatus">
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="all gigs"
-        value
-        id="tab1"
-        checked
-        v-model="filter.byCategory"
-      >
-      <label for="tab1">All</label>
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="moving"
-        value="moving"
-        id="tab2"
-        v-model="filter.byCategory"
-      >
-      <label for="tab2">
-        <i class="fas fa-people-carry"></i>
-      </label>
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="house-work"
-        value="house-work"
-        id="tab3"
-        v-model="filter.byCategory"
-      >
-      <label for="tab3">
-        <i class="fas fa-hammer"></i>
-      </label>
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="technical"
-        value="technical"
-        id="tab4"
-        v-model="filter.byCategory"
-      >
-      <!-- <label for="tab4">Technical</label>
+  <div class="search-categories-container">
+    <section class="gig-toolbar-container">
+      <div class="search-container">
+        <router-link to="/gig/edit" tag="button">
+          <i class="fas fa-plus"></i>
+          <span>Gig</span>
+        </router-link>
+        <input
+          type="text"
+          placeholder="Find your next Gig"
+          @input="searchByTitle"
+          v-model="filter.byTitle"
+          ref="searchGig"
+        >
+        <button @click="focusOnSearch">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="gig-toolbar tab" :class="filterBarStatus">
+        <input
+          type="radio"
+          class="tablinks"
+          name="all gigs"
+          value
+          id="tab1"
+          checked
+          v-model="filter.byCategory"
+        >
+        <label for="tab1">All</label>
+        <input
+          type="radio"
+          class="tablinks"
+          name="moving"
+          value="moving"
+          id="tab2"
+          v-model="filter.byCategory"
+        >
+        <label for="tab2">
+          <i class="fas fa-people-carry"></i>
+        </label>
+        <input
+          type="radio"
+          class="tablinks"
+          name="house-work"
+          value="house-work"
+          id="tab3"
+          v-model="filter.byCategory"
+        >
+        <label for="tab3">
+          <i class="fas fa-hammer"></i>
+        </label>
+        <input
+          type="radio"
+          class="tablinks"
+          name="technical"
+          value="technical"
+          id="tab4"
+          v-model="filter.byCategory"
+        >
+        <!-- <label for="tab4">Technical</label>
       <input
         type="radio"
         class="tablinks"
@@ -53,39 +66,39 @@
         value="line-queue"
         id="tab5"
         v-model="filter.byCategory"
-      > -->
-      <label for="tab5">
-        <i class="fas fa-male"></i>
-        <i class="fas fa-female"></i>
-        <i class="fas fa-male"></i>
-      </label>
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="pet-care"
-        value="pet-care"
-        id="tab6"
-        v-model="filter.byCategory"
-      >
-      <label for="tab6">
-        <i class="fas fa-dog"></i>
-      </label>
-      <input
-        @click="searchByTitle"
-        type="radio"
-        class="tablinks"
-        name="other"
-        value="other"
-        id="tab7"
-        v-model="filter.byCategory"
-      >
-      <label for="tab7">
-        <i class="fas fa-ellipsis-h"></i>
-      </label>
-    </div>
-    <button @click="toggleFilterStatus"  class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
-  </section>
+        >-->
+        <label for="tab5">
+          <i class="fas fa-male"></i>
+          <i class="fas fa-female"></i>
+          <i class="fas fa-male"></i>
+        </label>
+        <input
+          type="radio"
+          class="tablinks"
+          name="pet-care"
+          value="pet-care"
+          id="tab6"
+          v-model="filter.byCategory"
+        >
+        <label for="tab6">
+          <i class="fas fa-dog"></i>
+        </label>
+        <input
+          @click="searchByTitle"
+          type="radio"
+          class="tablinks"
+          name="other"
+          value="other"
+          id="tab7"
+          v-model="filter.byCategory"
+        >
+        <label for="tab7">
+          <i class="fas fa-ellipsis-h"></i>
+        </label>
+      </div>
+      <button @click="toggleFilterStatus" class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -94,7 +107,8 @@ export default {
     return {
       filter: {
         byCategory: "",
-        byTitle: ""
+        byTitle: "",
+        isActive: true
       },
       showFilter: false
     };
@@ -120,19 +134,31 @@ export default {
     //   this.$emit("searchGig", this.filter);
     // },
     searchByTitle() {
-      this.$emit("searchGig", this.filter);
+      return 
+      // console.log(this.filter)
+      this.$emit("searchGig", {...this.filter});
     },
     toggleFilterStatus() {
       this.showFilter = !this.showFilter;
+    },
+    focusOnSearch() {
+      this.$refs.searchGig.focus();
     }
   },
   watch: {
-    "filter.byCategory"() {
-      this.$emit("searchGig", this.filter);
+    "filter":{
+      handler() {
+        this.$emit("searchGig", this.filter);
+      },
+      deep: true
     }
   }
 };
 </script>
 
 <style>
+.search-categories-container{
+  width: 100%;
+  display: flex !important;
+}
 </style>

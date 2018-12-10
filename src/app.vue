@@ -39,6 +39,7 @@ export default {
       }, delay);
     }
   },
+  //Sockets.IO
   sockets: {
     eventMsgToUser: function (msg) { //On Gig Request Event
       var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');

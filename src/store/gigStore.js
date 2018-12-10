@@ -47,7 +47,7 @@ export default {
             }
             setTimeout(() => state.loadingCounter = 0, 5000)
         },
-        toggleLoadingOff(state, payload) {
+        toggleLoadingOff(state) {
             state.isLoading = false
         },
         setGigCategoryCount(state, { counter }) {
@@ -59,8 +59,8 @@ export default {
         }
     },
     actions: {
-        getGigs(context, { category }) {
-            return gigService.query(category)
+        getGigs(context, { filter }) {
+           return gigService.query(filter)
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                     var counter = {}
@@ -69,13 +69,6 @@ export default {
                         else counter[gig.category]++
                     })
                     context.commit({ type: 'setGigCategoryCount', counter })
-                })
-        },
-        filterByKey(context, { filter }) {
-
-            gigService.query(filter)
-                .then(gigs => {
-                    context.commit({ type: 'setGigs', gigs })
                 })
         },
         toggleLoadingOn(context) {
