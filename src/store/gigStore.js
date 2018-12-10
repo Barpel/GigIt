@@ -6,6 +6,7 @@ export default {
         isLoading: false,
         loadingCounter: 0,
         gigCategoryCounter: null,
+        topGigs: null,
         userLocation: 0,
     },
     getters: {
@@ -20,8 +21,10 @@ export default {
         },
         gigCategoryCounter(state) {
             return state.gigCategoryCounter
+        },
+        topGigs(state) {
+            return state.topGigs
         }
-
     },
     mutations: {
         setGigs(state, { gigs }) {
@@ -29,6 +32,15 @@ export default {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
                 })
+            }
+            if (!state.topGigs) {
+                gigs.sort((a, b) => {
+                    return b.details.price - a.details.price
+                })
+
+               state.topGigs = gigs
+               state.topGigs = state.topGigs.splice(0,5)
+               console.log('top gigs!!!',state.topGigs)
             }
             gigs.sort((a, b) => {
                 return a.details.pos.dist - b.details.pos.dist
@@ -60,7 +72,7 @@ export default {
     },
     actions: {
         getGigs(context, { filter }) {
-           return gigService.query(filter)
+            return gigService.query(filter)
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                     var counter = {}
@@ -85,7 +97,7 @@ export default {
                 })
         },
         removeGig(context, { gigId }) {
-            context.dispatch({type:'removeGigFromAllUsersData', gigId})
+            context.dispatch({ type: 'removeGigFromAllUsersData', gigId })
                 .then(() => gigService.remove(gigId))
         },
         updateGig(context, payload) {

@@ -20,11 +20,10 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
+      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
       <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
-
       </div>
     </div>
-
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
     <home-footer/>
@@ -37,6 +36,8 @@ import gigCategories from "@/components/gigCategories.cmp.vue";
 import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
 import googleMap from "@/components/googleMap.vue";
+import topGigs from "@/components/topGigs.cmp.vue";
+
 export default {
   name: "home",
   data() {
@@ -74,6 +75,10 @@ export default {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
     },
+        topGigs(){
+      var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs))
+        return topGigs
+    },
     gigCategoryCounter() {
       var gigCategoryCounter = JSON.parse(
         JSON.stringify(this.$store.getters.gigCategoryCounter)
@@ -99,7 +104,8 @@ export default {
     homeFooter,
     gigList,
     googleMap,
-    gigToolbar
+    gigToolbar,
+    topGigs
   },
   created() {
     // this.$store.dispatch({type:'toggleLoadingOn'})
