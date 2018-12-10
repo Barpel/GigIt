@@ -9,7 +9,7 @@
           <i class="fas fa-angle-down"></i>
         </span>
         <h1>{{header}}</h1>
-        <span @click="removeGig(gigId)"><i class="fas fa-trash-alt"></i></span>
+        <span @click.stop="$emit('removeGig',gigId)"><i class="fas fa-trash-alt"></i></span>
       </div>
       <li v-for="gigster in gigsters" :key="gigster._id" class="gigster-container" v-if="isOpen">
         <img :src="gigster.img" @click="goToProfile(gigster._id)">
@@ -64,10 +64,6 @@ export default {
     },
     contactGigster(gigster) {
       this.$emit('contactGigster',gigster)
-    },
-    removeGig(gigId) {
-      console.log('removeGig',gigId)
-      this.$emit('removeGig', gigId)
     },
   },
 }
