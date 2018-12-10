@@ -92,7 +92,8 @@ export default {
                 })
         },
         removeGig(context, { gigId }) {
-            return gigService.remove(gigId)
+            context.dispatch({type:'removeGigFromAllUsersData', gigId})
+                .then(() => gigService.remove(gigId))
         },
         updateGig(context, payload) {
             return gigService.update(payload.gig)
