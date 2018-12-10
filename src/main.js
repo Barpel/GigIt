@@ -9,10 +9,12 @@ import './registerServiceWorker'
 
 import './scss/main.scss'
 
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import cloudinary from 'cloudinary-core'
 axios.defaults.withCredentials = true;
 
 const SOCKET_URL = process.env.NODE_ENV !== 'development'

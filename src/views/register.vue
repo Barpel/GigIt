@@ -46,31 +46,17 @@
       </el-select>
     </div>
     <div>
-      <el-input placeholder="Image URL" v-model="user.img">
+      <!-- <el-input placeholder="Image URL" v-model="user.img">
         <template slot="prepend">Http://</template>
-      </el-input>
-      <!-- <el-upload
-        class="upload-demo"
-        drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :file-list="fileList"
-        :limit="1"
-      >
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">
-          Drop file here or
-          <em>click to upload</em>
-        </div>
-        <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 3MB</div>
-      </el-upload> -->
+      </el-input> -->
+      <input type="file" name="imgUpload" @change="onFileInputChange" ref="elImgInput">
     </div>
     <button type="submit">Register</button>
   </form>
 </template>
 
 <script>
+import uploadService from "../service/uploadService.js";
 export default {
   name: "register",
   data() {
@@ -143,7 +129,7 @@ export default {
         isInboxRead: true,
         isMyGigsRead: true
       },
-      fileList: [],
+      selectedFile: null,
       skillopts: [
         {
           value: "gardening",
@@ -207,6 +193,13 @@ export default {
     },
     handleRemove(ev) {
       console.log(ev);
+    },
+    onFileInputChange(ev) {
+      this.selectedFile = ev.target.files[0];
+      var elImgInput = this.$refs.elImgInput;
+      uploadService
+        .uploadToCloudinary(this.selectedFile)
+        .then(imgUrl => this.user.img = imgUrl);
     }
   }
 };
