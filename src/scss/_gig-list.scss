@@ -47,25 +47,6 @@
             background-position: center;
             transition: all .5s;
         }
-        .gig-image.moving {
-            background-image: url('../assets/moving.jpg');
-        }
-        .gig-image.other {
-            background-image: url('../assets/other.jpg');
-        }
-        .gig-image.pet-care {
-            background-image: url('../assets/pet-care.jpg');
-        }
-        .gig-image.house-work {
-            background-image: url('../assets/house-work.jpg');
-        }
-        .gig-image.line-queue {
-            background-image: url('../assets/line-queue.jpg');
-            
-        }
-        .gig-image.delivery {
-            background-image: url('../assets/delivery.jpg');
-        }
         .publisher-container{
             display:grid;
             grid-template-columns: 1fr 3fr;

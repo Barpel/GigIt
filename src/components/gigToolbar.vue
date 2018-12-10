@@ -58,7 +58,6 @@
           id="tab4"
           v-model="filter.byCategory"
         >
-        <!-- <label for="tab4">Technical</label>
       <input
         type="radio"
         class="tablinks"
@@ -66,7 +65,7 @@
         value="line-queue"
         id="tab5"
         v-model="filter.byCategory"
-        >-->
+        >
         <label for="tab5">
           <i class="fas fa-male"></i>
           <i class="fas fa-female"></i>
