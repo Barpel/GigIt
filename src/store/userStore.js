@@ -83,7 +83,7 @@ export default {
                 })
         },
         updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
-            return context.dispatch({type: 'removeGigFromAllUsers', gigId: reviewStats.gigId})
+            return context.dispatch({type: 'removeGigFromAllUsersData', gigId: reviewStats.gigId})
                     .then(() => {
                         context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
                             .then(gigster => {
@@ -95,7 +95,7 @@ export default {
                             })
                     })
         },
-        removeGigFromAllUsers(context, {gigId}) {
+        removeGigFromAllUsersData(context, {gigId}) {
             context.dispatch({type:'getGigById', gigId})
                 .then(gig => {
                     context.dispatch({type:'getUserById', userId:gig.publisherId})

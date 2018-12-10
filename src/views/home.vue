@@ -20,25 +20,6 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-        <div class="search-container">
-
-          <router-link to="/gig/edit" tag="button">
-            <i class="fas fa-plus"></i>
-            <span>Gig</span>
-          </router-link>
-          <input
-            type="text"
-            placeholder="Find your next Gig"
-            @input="filterByKey"
-            v-model="filter.byTitle"
-            ref="searchGig"
-          >
-          <button @click="focusOnSearch">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      <!-- <gig-categories :gigCategoryCounter="gigCategoryCounter" v-if="showCategories"/> -->
-      <!-- <gig-toolbar @showCategory="gigsFilterBy" @searchGig="searchGigByKey"></gig-toolbar> -->
       <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
 
       </div>
@@ -61,10 +42,6 @@ export default {
   data() {
     return {
       coverCounter: 0,
-      filter: {
-        byCategory: "",
-        byTitle: ""
-      },
       showCategories: true,
       // user: null,
       carouselObjs: [
@@ -111,13 +88,11 @@ export default {
     gigClicked(gigId) {
       this.$router.push(`gig/${gigId}`);
     },
-    filterByKey() {
+    filterByKey(filter) {
       this.showCategories = false;
-      this.$store.dispatch({ type: "filterByKey", filter: this.filter });
+      this.$store.dispatch( "getGigs",{ filter});
     },
-    focusOnSearch() {
-      this.$refs.searchGig.focus();
-    }
+    
   },
   components: {
     gigCategories,
@@ -127,9 +102,9 @@ export default {
     gigToolbar
   },
   created() {
-    this.$store.dispatch({type:'toggleLoadingOn'})
-    this.$store.dispatch({ type: "getGigs" })
-      .then(() =>this.$store.dispatch({type:'toggleLoadingOff'}) )
+    // this.$store.dispatch({type:'toggleLoadingOn'})
+    this.$store.dispatch({ type: 'getGigs' })
+      .then(() => this.$store.dispatch({type:'toggleLoadingOff'}) )
     navigator.geolocation.getCurrentPosition(position => {
     this.$store.dispatch({type: "userLocation", position})
     })
@@ -138,9 +113,9 @@ export default {
   mounted() {
   },
   watch: {
-    "filter.byTitle"() {
-      if (!this.filter.byTitle) this.showCategories = true;
-    }
+    // "filter.byTitle"() {
+    //   if (!this.filter.byTitle) this.showCategories = true;
+    // }
   }
 };
 </script>

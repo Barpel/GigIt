@@ -126,7 +126,7 @@
             v-if="publishedGig && publishedGig.pendingUsers"
           >
             <gig-accordion
-              @removeGig="removeGig($event, gigId)"
+              @removeGig="removeGig"
               @gigsterPicked="gigsterPicked($event, publishedGig)"
               @contactGigster="contactGigster($event, {title: publishedGig.details.title, _id: publishedGig._id})"
               @openReviewForm="openReviewForm"
@@ -180,7 +180,16 @@ export default {
       this.$store.dispatch({ type: "doLogout" });
     },
     removeGig(gigId) {
-      this.$store.dispatch({ type: "deletePendingUsers", gigId });
+      this.$confirm(
+        "Are you sure you want to delete your gig? ",
+        "Warning",
+        {
+          confirmButtonText: "Yes i'm sure!",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      )
+      .then(() => this.$store.dispatch({ type: "removeGig", gigId }))
     },
     loadUser() {
       var userId = this.$route.params.userId;
