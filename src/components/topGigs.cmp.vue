@@ -1,11 +1,13 @@
 <template>
     <section class="top-gigs-container">  
+        
         <div v-for="gig in topGigs" :key="gig._id">       
             <div><li>
     <div :class="gig.category" class="gig-image" :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"></div>
     <div>
       <div class="publisher-container">
-          {{gig.details.img}}
+          <!-- {{gig.details.img}} -->
+          <!-- {{gig}} -->
         <!-- <img :src="gig.publisher.img"> -->
         <div class="publisher-info">
           <!-- <h3>{{publisher.name.first + ' ' + publisher.name.last}}</h3> -->

@@ -1,50 +1,139 @@
 .registration-container {
+  display: grid;
+  max-width: 60vw;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid $category-base;
+  border-radius: 5px;
+  & > * {
+    display: grid;
+    grid-gap: 10px;
+  }
+  h1 {
+    display: initial;
+    color: $category-base;
+    span {
+      font-family: condiment;
+      font-size: 1.1em;
+      span {
+        margin-left: -5px;
+        color: #97a5a7;
+        font-family: condiment;
+      }
+    }
+  }
+  .container1 {
+    grid-template-rows: 1fr 1fr;
+  }
+  .container2 {
+    grid-template-rows: 1fr 1fr;
+    margin: 10px 0;
+    label{
+      &>span:first-child {
+        margin: 0 10px;
+      }
+      .el-input-number {
+        button {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+    label {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      grid-gap: 5px;
+      font-size: 1.6rem;
+      color: $category-base;
+    }
+  }
+  .container3 {
+    grid-template-rows: 1fr 1fr;
+    margin: 10px 0;
+  }
+  button {
+    background-color: $category-base;
+    color: white;
+    height: 50px;
+    border: none;
+    justify-self: center;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: roboto;
+  }
+  .upload-container {
+    margin: 10px 0;
+    display: flex;
+    background-color: #8a1258;
+    max-width: 70%;
+    justify-self: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 5px;
+    transition: all .3s;
+    &>* {
+      margin: 0 5px;
+    }
+
+    input[type="file"] {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+  .upload-container:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+}
+
+@media (min-width: 850px) {
+  .registration-container {
     display: grid;
     max-width: 60vw;
     margin: 0 auto;
     padding: 10px;
     & > * {
       margin: 10px 0;
-      display: grid;
       grid-gap: 5px;
     }
     h1 {
       display: initial;
       color: $category-base;
       span {
-          font-family: condiment;
-          color: white;
-          span {
-              color: #97a5a7;
-            font-family: condiment;
+        span {
+          margin-left: -5px;
         }
       }
     }
     .container1 {
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
     }
     .container2 {
       grid-template-columns: 1fr 3fr;
+      grid-template-rows: 1fr;
       label {
         grid-template-columns: 1fr 1fr;
         align-items: center;
         grid-gap: 5px;
         font-size: 1.6rem;
-        color: $category-base;
       }
     }
     .container3 {
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
     }
     button {
-        background-color: $category-base;
-        color: white;
-        height: 50px;
-        border: none;
-        justify-self: center;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1.2rem;
-        font-family: roboto;
+      background-color: $category-base;
+      height: 50px;
+      justify-self: center;
+      padding: 10px;
     }
   }
+}
