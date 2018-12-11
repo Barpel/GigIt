@@ -45,12 +45,19 @@
         ></el-option>
       </el-select>
     </div>
-    <div>
+    <label class="upload-container">
       <!-- <el-input placeholder="Image URL" v-model="user.img">
         <template slot="prepend">Http://</template>
-      </el-input> -->
-      <input type="file" name="imgUpload" @change="onFileInputChange" ref="elImgInput">
-    </div>
+      </el-input>-->
+      <i class="fas fa-file-upload"></i>
+      {{fileNameToShow}}
+      <input
+        type="file"
+        name="imgUpload"
+        @change="onFileInputChange"
+        ref="elImgInput"
+      >
+    </label>
     <button type="submit">Register</button>
   </form>
 </template>
@@ -130,6 +137,7 @@ export default {
         isMyGigsRead: true
       },
       selectedFile: null,
+      selectedFileName: null,
       skillopts: [
         {
           value: "gardening",
@@ -180,6 +188,7 @@ export default {
         });
         return;
       }
+      if (!this.user.img) this.user.img = 'https://res.cloudinary.com/barpel/image/upload/v1544540737/gigitUploads/i3eob2vi4keh5pxlpkre.jpg'
       this.$store
         .dispatch({ type: "register", user: this.user })
         .then(() => this.$router.push("/"))
@@ -188,18 +197,20 @@ export default {
             this.$message.error("Username taken!");
         });
     },
-    handlePreview(ev) {
-      console.log(ev);
-    },
-    handleRemove(ev) {
-      console.log(ev);
-    },
     onFileInputChange(ev) {
-      this.selectedFile = ev.target.files[0];
-      var elImgInput = this.$refs.elImgInput;
-      uploadService
-        .uploadToCloudinary(this.selectedFile)
-        .then(imgUrl => this.user.img = imgUrl);
+      if (ev.target.files[0]) {
+        this.selectedFileName = ev.target.files[0].name;
+        this.selectedFile = ev.target.files[0];
+        var elImgInput = this.$refs.elImgInput;
+        uploadService
+          .uploadToCloudinary(this.selectedFile)
+          .then(imgUrl => (this.user.img = imgUrl));
+      } else return
+    } 
+  },
+  computed: {
+    fileNameToShow() {
+      return !this.selectedFileName ? "Upload an image" : this.selectedFileName;
     }
   }
 };
