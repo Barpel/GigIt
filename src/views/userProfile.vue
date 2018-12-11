@@ -33,7 +33,7 @@
         <button @click="doLogout" class="profile-logout-btn">
           <i class="fas fa-power-off"></i> Logout
         </button>
-        <button class="profile-edit-btn">
+        <button class="profile-edit-btn" @click="goToEditProfile">
           <i class="fas fa-pencil-alt"></i>
         </button>
         <!-- <button class="profile-delete-btn">
@@ -175,6 +175,9 @@ export default {
     };
   },
   methods: {
+    goToEditProfile() {
+      this.$router.push(`/user/edit/${this.$route.params.userId}`)
+    },
     doLogout() {
       this.$router.push("/");
       this.$store.dispatch({ type: "doLogout" });

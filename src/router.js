@@ -52,6 +52,11 @@ export default new Router({
       component: register,
     },
     {
+      path: '/user/edit/:userId',
+      name: 'editUser',
+      component: register,
+    },
+    {
       path: '/user/:userId/gigs',
       name: 'publishedGigs',
       component: userGigs,
