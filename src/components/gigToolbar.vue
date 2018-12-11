@@ -58,13 +58,14 @@
           id="tab4"
           v-model="filter.byCategory"
         >
-      <input
-        type="radio"
-        class="tablinks"
-        name="line-queue"
-        value="line-queue"
-        id="tab5"
-        v-model="filter.byCategory"
+        <!-- <label for="tab4">Technical</label> -->
+        <input
+          type="radio"
+          class="tablinks"
+          name="line-queue"
+          value="line-queue"
+          id="tab5"
+          v-model="filter.byCategory"
         >
         <label for="tab5">
           <i class="fas fa-male"></i>
@@ -133,9 +134,9 @@ export default {
     //   this.$emit("searchGig", this.filter);
     // },
     searchByTitle() {
-      return 
+      return;
       // console.log(this.filter)
-      this.$emit("searchGig", {...this.filter});
+      this.$emit("searchGig", { ...this.filter });
     },
     toggleFilterStatus() {
       this.showFilter = !this.showFilter;
@@ -145,7 +146,7 @@ export default {
     }
   },
   watch: {
-    "filter":{
+    filter: {
       handler() {
         this.$emit("searchGig", this.filter);
       },
@@ -156,8 +157,5 @@ export default {
 </script>
 
 <style>
-.search-categories-container{
-  width: 100%;
-  display: flex !important;
-}
+
 </style>
