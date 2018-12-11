@@ -9,7 +9,7 @@
           <h3>
             <i class="fas fa-star"></i>
             &nbsp;
-            <span>4.2</span>
+            <span v-if="publisher">{{publisher.reviews.totalAverage}}</span>
           </h3>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default {
     this.$store
       .dispatch({ type: "getUserById", userId: this.gig.publisherId })
       .then(publisher => (this.publisher = publisher))
-      .then(res => this.isPending());
+      // .then(res => this.isPending());
     this.$store
     .dispatch
   },

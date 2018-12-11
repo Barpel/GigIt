@@ -62,8 +62,6 @@ function loginUser(userCreds) {
     return axios.post(`${BASE_URL}/user/login`, userCreds)
         .then(res => {
             var user = res.data
-            storageService._toStorage('loggedUserId', user._id)
-            storageService._toStorage('loggedUser', user)
             return user
         })
 }
@@ -71,8 +69,7 @@ function loginUser(userCreds) {
 function logout() {
     storageService._toStorage('loggedUser', null)
     storageService._toStorage('loggedUserId', null)
-    return Promise.resolve()
-    //TODO: backend and front end logout
+    return axios.get(`${BASE_URL}/user/logout`).then(res => res.data)
 }
 
 function setLocalLoggedUser(user) {
