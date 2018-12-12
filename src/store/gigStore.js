@@ -39,7 +39,7 @@ export default {
                 })
 
                state.topGigs = gigs
-               state.topGigs = state.topGigs.splice(0,5)
+               state.topGigs = state.topGigs.splice(0,4)
                console.log('top gigs!!!',state.topGigs)
             }
             gigs.sort((a, b) => {
