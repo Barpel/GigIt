@@ -25,7 +25,7 @@
           <span>Gigs Created:</span>
           {{user.reviews.published.length}}
         </li>
-      </ul>-->
+      </ul> -->
       <div class="profile-btns-wrapper" v-if="isOwnProfile">
         <router-link :to="'/user/' + user._id + '/inbox'" tag="button" class="profile-chats-btn" v-if="!isOwnProfile">
           <i class="far fa-comments" ></i>
@@ -36,9 +36,6 @@
         <button class="profile-edit-btn" @click="goToEditProfile">
           <i class="fas fa-pencil-alt"></i>
         </button>
-        <!-- <button class="profile-delete-btn">
-          <i class="fas fa-trash"></i>
-        </button> -->
       </div>
     </div>
     <div class="profile-mid-wrapper">
