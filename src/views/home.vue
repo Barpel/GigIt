@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="banner">
+      <h1>Use your skills to make some easy extra money</h1>
       <div class="banner-block">
         <el-carousel trigger="click" :interval="7000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
@@ -20,17 +21,13 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-<<<<<<< HEAD
-      <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
-=======
-      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
->>>>>>> 7c862049d7e4764fcefe02ab85c75d937dae5ac1
       <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
+      <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <hr v-if="showCategories">
-    <home-footer/>
+    <!-- <home-footer/> -->
   </div>
 </template>
 
