@@ -13,7 +13,7 @@
           <h3>
             <i class="fas fa-star"></i>
             &nbsp;
-            <span v-if="publisher">{{publisher.reviews.totalAverage}}</span>
+            <span v-if="publisher">{{(publisher.reviews.totalAverage).toFixed(1)}}</span>
           </h3>
         </div>
       </div>
