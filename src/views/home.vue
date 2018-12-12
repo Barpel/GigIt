@@ -7,7 +7,8 @@
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
             <h3>{{carouselItem.txt}}</h3>
             <img :src="carouselItem.imgUrl">
-            <h4>Gig
+            <h4>
+              Gig
               <span>It</span>
             </h4>
           </el-carousel-item>
@@ -21,12 +22,12 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
+        <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
-      <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
+    <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
-    <hr v-if="showCategories">
+    <!-- <hr v-if="showCategories"> -->
     <!-- <home-footer/> -->
   </div>
 </template>
@@ -50,7 +51,8 @@ export default {
         {
           imgUrl:
             "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/twoGigers.png",
-          txt: "Find your Gig and use your skills to make some easy extra money!"
+          txt:
+            "Find your Gig and use your skills to make some easy extra money!"
         },
         {
           imgUrl:
@@ -66,7 +68,8 @@ export default {
         {
           imgUrl:
             "https://res.cloudinary.com/barpel/image/upload/v1544309960/GigIt/gigrit.png",
-          txt: "Need to get something done? You can have your Gig online in less than 2 minutes!"
+          txt:
+            "Need to get something done? You can have your Gig online in less than 2 minutes!"
         }
       ]
     };
@@ -76,9 +79,9 @@ export default {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
     },
-        topGigs(){
-      var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs))
-        return topGigs
+    topGigs() {
+      var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs));
+      return topGigs;
     },
     gigCategoryCounter() {
       var gigCategoryCounter = JSON.parse(
@@ -96,9 +99,8 @@ export default {
     },
     filterByKey(filter) {
       this.showCategories = false;
-      this.$store.dispatch( "getGigs",{ filter});
-    },
-    
+      this.$store.dispatch("getGigs", { filter });
+    }
   },
   components: {
     gigCategories,
@@ -110,15 +112,14 @@ export default {
   },
   created() {
     // this.$store.dispatch({type:'toggleLoadingOn'})
-    this.$store.dispatch({ type: 'getGigs' })
-      .then(() => this.$store.dispatch({type:'toggleLoadingOff'}) )
+    this.$store
+      .dispatch({ type: "getGigs" })
+      .then(() => this.$store.dispatch({ type: "toggleLoadingOff" }));
     navigator.geolocation.getCurrentPosition(position => {
-    this.$store.dispatch({type: "userLocation", position})
-    })
-   
+      this.$store.dispatch({ type: "userLocation", position });
+    });
   },
-  mounted() {
-  },
+  mounted() {},
   watch: {
     // "filter.byTitle"() {
     //   if (!this.filter.byTitle) this.showCategories = true;
