@@ -16,7 +16,6 @@ export default {
     loginUser,
     logout,
     setLocalLoggedUser,
-    getLoggedUserId,
 
 }
 
@@ -47,11 +46,6 @@ function update(user) {
 function getLoggedUser() {
     var user = storageService._fromStorage('loggedUser')
     if(user) return Promise.resolve(user)
-    else return Promise.resolve(null)
-}
-function getLoggedUserId() {
-    var userId = storageService._fromStorage('loggedUserId')
-    if(userId) return Promise.resolve(userId)
     else return Promise.resolve(null)
 }
 

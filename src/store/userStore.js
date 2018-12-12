@@ -14,7 +14,6 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
-            console.log('user on mutation is:', user)
             state.loggedUser = user
             if (user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -30,11 +29,11 @@ export default {
         checkLoggedUser(context) {
             return userService.loginUser(null)
                 .then(user => {
-                    if (user) context.commit({ type: 'setLoggedUser', user })
+                    if (user) {
+                        context.commit({ type: 'setLoggedUser', user })
+                        return user
+                    }
                 })
-        },
-        getLoggedUserId(context) {
-            return userService.getLoggedUserId()
         },
         getAllUsers(context) {
             return userService.query()
@@ -73,9 +72,10 @@ export default {
                     else return false
                 })
         },
-        doLogout({ commit }) {
+        doLogout(context) {
+            if(context.state.loggedUser) this._vm.$socket.emit('logoutUser',context.state.loggedUser._id)
             return userService.logout()
-                .then(() => commit({ type: 'setLoggedUser', user: null }))
+                .then(() => context.commit({ type: 'setLoggedUser', user: null }))
         },
         register(context, { user }) {
             return userService.add(user)
