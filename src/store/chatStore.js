@@ -40,7 +40,7 @@ export default {
                 { name: maister.name.first, img: maister.img, _id: maister._id }],
                 msgs: [{
                     sender: 'Team',
-                    txt: `Welcome ${maister.name} and ${gigster.name}, you can now chat and set your gig!`,
+                    txt: `Welcome ${maister.name.first} and ${gigster.name}, you can now chat and set your gig!`,
                     isRead: true,
                     createdAt: Date.now()
                 }],

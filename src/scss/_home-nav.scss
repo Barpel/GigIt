@@ -22,7 +22,7 @@ $hover-color: #8a1258;
     display: flex;
     align-items: center;
   }
-  a.router-link-exact-active.router-link-active {
+  a.router-link-exact-active.router-link-active:first-child {
     color: #8a1258;
   }
   a:not(:last-child) {
