@@ -14,6 +14,7 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
+            console.log('user on mutation is:', user)
             state.loggedUser = user
             if (user) state.isLoggedin = true
             else state.isLoggedin = false

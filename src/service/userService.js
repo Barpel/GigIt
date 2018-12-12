@@ -67,9 +67,10 @@ function loginUser(userCreds) {
 }
 
 function logout() {
-    storageService._toStorage('loggedUser', null)
-    storageService._toStorage('loggedUserId', null)
-    return axios.get(`${BASE_URL}/user/logout`).then(res => res.data)
+    // storageService._toStorage('loggedUser', null)
+    // storageService._toStorage('loggedUserId', null)
+    return axios.post(`${BASE_URL}/user/logout`, {}).then(res => res.data)
+
 }
 
 function setLocalLoggedUser(user) {
