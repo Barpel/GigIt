@@ -27,7 +27,7 @@ export default {
             context.commit({type:'setLoggedUser', user})
         },
         checkLoggedUser(context) {
-            return userService.getLoggedUser()
+            return userService.loginUser(null)
                 .then(user => {
                     if (user) context.commit({ type: 'setLoggedUser', user })
                 })
