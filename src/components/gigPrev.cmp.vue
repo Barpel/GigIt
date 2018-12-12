@@ -104,8 +104,6 @@ export default {
 //         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
 //         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
 //       this.$store
-//         .dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
-//         .then(isOwner => (this.isGigOwner = isOwner));
 //       if (this.isLoggedin) {
 //         var matchingGig = this.user.gigsIds.pending.find(
 //           gigId => gigId === gig._id

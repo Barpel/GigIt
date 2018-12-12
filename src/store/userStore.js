@@ -14,7 +14,6 @@ export default {
     },
     mutations: {
         setLoggedUser(state, { user }) {
-            console.log('user on mutation is:', user)
             state.loggedUser = user
             if (user) state.isLoggedin = true
             else state.isLoggedin = false
@@ -24,74 +23,57 @@ export default {
         },
     },
     actions: {
-        setLoggedUser(context, {user}) {
-            context.commit({type:'setLoggedUser', user})
-        },
         checkLoggedUser(context) {
             return userService.loginUser(null)
                 .then(user => {
-                    if (user) context.commit({ type: 'setLoggedUser', user })
+                    if (user) {
+                        context.commit({ type: 'setLoggedUser', user })
+                        return user
+                    }
                 })
-        },
-        getLoggedUserId(context) {
-            return userService.getLoggedUserId()
         },
         getAllUsers(context) {
             return userService.query()
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
-                .then(user => {
-                    return user
-                })
         },
         updateUser(context, { user }) {
             return userService.update(user)
         },
         updateOwnUser(context, { user }) {
             return userService.update(user)
-                .then(user => {
-                    userService.setLocalLoggedUser(user)
-                    context.commit({ type: 'setLoggedUser', user })
-                })
+                .then(user => context.commit({ type: 'setLoggedUser', user }))
         },
         onLogin(context, { userCreds }) {
             return userService.loginUser(userCreds)
                 .then(user => context.commit({ type: 'setLoggedUser', user }))
         },
-        isGigOwner(context, { publisherId }) {
-            return userService.getLoggedUser()
-                .then(loggedUser => {
-                    if (loggedUser._id === publisherId) return true
-                    else return false
-                })
-        },
-        checkIsProfileOwner(context, { userId }) {
-            return userService.getLoggedUser()
-                .then(loggedUser => {
-                    if (loggedUser._id === userId) return true
-                    else return false
-                })
-        },
-        doLogout({ commit }) {
+        doLogout(context) {
+            if(context.state.loggedUser) this._vm.$socket.emit('logoutUser',context.state.loggedUser._id)
             return userService.logout()
-                .then(() => commit({ type: 'setLoggedUser', user: null }))
+                .then(() => context.commit({ type: 'setLoggedUser', user: null }))
         },
         register(context, { user }) {
             return userService.add(user)
-                .then(user => {
-                    context.commit({ type: 'setLoggedUser', user })
-                })
+                .then(user => context.commit({ type: 'setLoggedUser', user }))
         },
         updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
             return context.dispatch({type: 'removeGigFromAllUsersData', gigId: reviewStats.gigId})
                     .then(() => {
+                        if(!review.ratings) return
                         context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
                             .then(gigster => {
                                 if(gigster.reviews.completed[0].gigId === '0') {
                                     gigster.reviews.completed = [review]
+                                    gigster.reviews.completedAverage = review.ratings.average
+                                    gigster.reviews.totalAverage = (+gigster.reviews.completedAverage + +gigster.reviews.publishedAverage) / 2
                                 }
-                                else gigster.reviews.completed.unshift(review)
+                                else {
+                                    gigster.reviews.completed.unshift(review)
+                                    gigster.reviews.completedAverage = (+gigster.reviews.completedAverage + +review.ratings.average) / (gigster.reviews.completed.length + 1)
+                                    gigster.reviews.totalAverage = (+gigster.reviews.completedAverage + +gigster.reviews.publishedAverage) / 2
+                                }
                                 context.dispatch({ type: 'updateUser', user:gigster })
                             })
                     })
@@ -134,14 +116,5 @@ export default {
                     }
                 })
         },
-        deletePendingUsers(context, { gigId }) {
-            userService.query(gigId)
-                .then(users => {
-                    users.map(user =>{
-                        return (user.gigsIds.published === gigId)
-                    })
-                    console.log(users)
-                })
-        }
     },
 }

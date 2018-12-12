@@ -41,7 +41,8 @@ export default {
   },
   //Sockets.IO
   sockets: {
-    eventMsgToUser: function (msg) { //On Gig Request Event
+    emitEventToUser: function (msg) { //On Gig Request Event
+      console.log(this.user._id, 'im here')
       var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
       audio.play();
       this.displayMsg(msg)
@@ -57,8 +58,11 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('openUserSocket')
-    this.$store.dispatch({ type: "checkLoggedUser" });
+    this.$store.dispatch({ type: "checkLoggedUser" })
+      .then(()=> {
+        console.log(this.user)
+        this.$store.dispatch('openUserSocket')
+      })
     bus.$on(USR_MSG_DISPLAY, msg => this.displayMsg(msg));
   },
   components: {
