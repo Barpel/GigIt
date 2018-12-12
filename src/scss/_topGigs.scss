@@ -1,6 +1,7 @@
 .top-gigs-container{
     display: grid;
-    
+    grid-template-columns: repeat(5,180px)
+
 }
 .gig-container {
     h1, h2{

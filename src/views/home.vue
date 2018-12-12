@@ -20,7 +20,7 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs>
+      <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
       <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
