@@ -23,9 +23,6 @@ export default {
         },
     },
     actions: {
-        setLoggedUser(context, {user}) {
-            context.commit({type:'setLoggedUser', user})
-        },
         checkLoggedUser(context) {
             return userService.loginUser(null)
                 .then(user => {
@@ -40,37 +37,17 @@ export default {
         },
         getUserById({ commit }, { userId }) {
             return userService.getById(userId)
-                .then(user => {
-                    return user
-                })
         },
         updateUser(context, { user }) {
             return userService.update(user)
         },
         updateOwnUser(context, { user }) {
             return userService.update(user)
-                .then(user => {
-                    userService.setLocalLoggedUser(user)
-                    context.commit({ type: 'setLoggedUser', user })
-                })
+                .then(user => context.commit({ type: 'setLoggedUser', user }))
         },
         onLogin(context, { userCreds }) {
             return userService.loginUser(userCreds)
                 .then(user => context.commit({ type: 'setLoggedUser', user }))
-        },
-        isGigOwner(context, { publisherId }) {
-            return userService.getLoggedUser()
-                .then(loggedUser => {
-                    if (loggedUser._id === publisherId) return true
-                    else return false
-                })
-        },
-        checkIsProfileOwner(context, { userId }) {
-            return userService.getLoggedUser()
-                .then(loggedUser => {
-                    if (loggedUser._id === userId) return true
-                    else return false
-                })
         },
         doLogout(context) {
             if(context.state.loggedUser) this._vm.$socket.emit('logoutUser',context.state.loggedUser._id)
@@ -79,9 +56,7 @@ export default {
         },
         register(context, { user }) {
             return userService.add(user)
-                .then(user => {
-                    context.commit({ type: 'setLoggedUser', user })
-                })
+                .then(user => context.commit({ type: 'setLoggedUser', user }))
         },
         updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
             return context.dispatch({type: 'removeGigFromAllUsersData', gigId: reviewStats.gigId})
@@ -134,14 +109,5 @@ export default {
                     }
                 })
         },
-        deletePendingUsers(context, { gigId }) {
-            userService.query(gigId)
-                .then(users => {
-                    users.map(user =>{
-                        return (user.gigsIds.published === gigId)
-                    })
-                    console.log(users)
-                })
-        }
     },
 }

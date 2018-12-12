@@ -34,9 +34,6 @@ export default {
         });
     }
   },
-  created() {
-    // this.$store.dispatch({ type: "checkLoggedUser" });
-  },
   mounted() {
     this.$refs.elUsername.focus();
   }
