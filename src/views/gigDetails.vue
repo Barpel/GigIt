@@ -146,12 +146,9 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
-      this.$store
-        .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
+      if(this.user && gig.publisherId === this.user._id) this.isGigOwner = true
+      this.$store.dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
-      this.$store
-        .dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
-        .then(isOwner => (this.isGigOwner = isOwner));
       if (this.isLoggedin) {
         var matchingGig = this.user.gigsIds.pending.find(
           gigId => gigId === gig._id

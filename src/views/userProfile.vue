@@ -193,14 +193,13 @@ export default {
     },
     loadUser() {
       var userId = this.$route.params.userId;
-      this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-        this.user = user;
-        // console.log('set user', user)
-        this.getUserGigs();
-      });
-      this.$store
-        .dispatch({ type: "checkIsProfileOwner", userId })
-        .then(isOwner => (this.isOwnProfile = isOwner));
+      this.$store.dispatch({ type: "getUserById", userId })
+        .then(user => {
+              this.user = user;
+              this.getUserGigs();
+              var loggedUser = this.$store.getters.user
+              if(loggedUser && loggedUser._id === user._id) this.isOwnProfile = true
+        });
     },
     gigsterPicked(gigster, gig) {
       if(!gigster) {
