@@ -61,12 +61,19 @@ export default {
         updateUsersReviewsAndGigIds(context, { review, reviewStats }) {
             return context.dispatch({type: 'removeGigFromAllUsersData', gigId: reviewStats.gigId})
                     .then(() => {
+                        if(!review.ratings) return
                         context.dispatch({type:'getUserById', userId: reviewStats.gigsterId})
                             .then(gigster => {
                                 if(gigster.reviews.completed[0].gigId === '0') {
                                     gigster.reviews.completed = [review]
+                                    gigster.reviews.completedAverage = review.ratings.average
+                                    gigster.reviews.totalAverage = (+gigster.reviews.completedAverage + +gigster.reviews.publishedAverage) / 2
                                 }
-                                else gigster.reviews.completed.unshift(review)
+                                else {
+                                    gigster.reviews.completed.unshift(review)
+                                    gigster.reviews.completedAverage = (+gigster.reviews.completedAverage + +review.ratings.average) / (gigster.reviews.completed.length + 1)
+                                    gigster.reviews.totalAverage = (+gigster.reviews.completedAverage + +gigster.reviews.publishedAverage) / 2
+                                }
                                 context.dispatch({ type: 'updateUser', user:gigster })
                             })
                     })
