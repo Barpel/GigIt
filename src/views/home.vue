@@ -27,11 +27,10 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
+      <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
       <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
-    <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <!-- <hr v-if="showCategories"> -->
     <!-- <home-footer/> -->

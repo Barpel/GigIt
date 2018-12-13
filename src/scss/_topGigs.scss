@@ -1,11 +1,14 @@
 .top-gigs-container{
-    display: grid;
-    grid-template-rows:1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
+    
+    .top-gigs-list{
+        display: grid;
+        grid-template-rows:1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 5px;
+    
     li{
             box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.66);
-            height: 100%;
+            height: 83%;
             grid-row: 1;
             color: white;
             cursor: pointer;
@@ -65,11 +68,6 @@
         border-top: 3px solid #8F0808;
       }
     
-    // .hot-badge{
-    //     width: 100px;
-    //     height: 50px;
-    //     background: red;
-    // }
     .gig-container {
         h1, h2{
             margin: 15px;
@@ -88,7 +86,14 @@
         }
     }
     .lower-bar-container{
-
+        display: flex;
+        justify-content: space-around;
+        margin: 3px;
+        padding: 5px;
+        min-height: 100px;
+        p{
+            margin: 0;
+        }
         button {
             cursor: pointer;
             height: 70%;
@@ -113,12 +118,13 @@
             background-color: #7c0d4e;
         }
     }
+}
     
 }
 .gig-image{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width: 100%;
+    max-width: 100%;
     height: 110px;
     background-size: cover;
     background-repeat: no-repeat;
