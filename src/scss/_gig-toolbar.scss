@@ -89,6 +89,7 @@
   }
 }
 .search-categories-container {
+ 
   .gig-toolbar-container {
     width: 100%;
     .search-container {
@@ -166,11 +167,15 @@
 
 @media (min-width: 1050px) {
   .search-categories-container {
+    span{
+      top: 1px
+    }
     .gig-toolbar-container {
       display: grid;
       grid-gap: 10px;
       grid-template-columns: 1fr 1fr;
       max-height: 100%;
+     
       .search-container {
         z-index: 1;
         max-height: 55px;
@@ -224,6 +229,25 @@
           & + label {
             font-size: 1.3rem;
             max-height: 100%;
+            span{
+              position: absolute;
+              left: 2px;
+              top: 20%;
+              min-height: -26px;
+              background-color: #f783acb8;
+              border-radius: 10px;
+              color: #fff;
+              display: inline-block;
+              font-size: 12px;
+              height: 18px;
+              line-height: 18px;
+              padding: 0 4px;
+              text-align: center;
+              white-space: nowrap;
+              border: 1px solid #ffffff8f;
+              box-sizing: border-box;
+          
+            }
             &:hover {
             }
           }

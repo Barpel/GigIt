@@ -20,12 +20,8 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-<<<<<<< HEAD
       <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs>
-=======
-      <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
->>>>>>> dda397256869ab03d135ae0cef542c57fa5358ff
-      <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
+      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
@@ -99,7 +95,7 @@ export default {
     },
     filterByKey(filter) {
       this.showCategories = false;
-      this.$store.dispatch( "getGigs",{ filter});
+      this.$store.dispatch( "getGigs",{filter});
     },
     
   },
@@ -113,7 +109,7 @@ export default {
   },
   created() {
     // this.$store.dispatch({type:'toggleLoadingOn'})
-    this.$store.dispatch({ type: 'getGigs' })
+    this.$store.dispatch({ type: 'getGigs'})
       .then(() => this.$store.dispatch({type:'toggleLoadingOff'}) )
     navigator.geolocation.getCurrentPosition(position => {
     this.$store.dispatch({type: "userLocation", position})

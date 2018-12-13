@@ -37,10 +37,8 @@ export default {
                 gigs.sort((a, b) => {
                     return b.details.price - a.details.price
                 })
-
-               state.topGigs = gigs
+               state.topGigs = JSON.parse(JSON.stringify(gigs))
                state.topGigs = state.topGigs.splice(0,4)
-               console.log('top gigs!!!',state.topGigs)
             }
             gigs.sort((a, b) => {
                 return a.details.pos.dist - b.details.pos.dist
@@ -63,6 +61,7 @@ export default {
             state.isLoading = false
         },
         setGigCategoryCount(state, { counter }) {
+            
             state.gigCategoryCounter = counter
         },
         setUserLocation(state, { userLocation }) {
@@ -76,11 +75,14 @@ export default {
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                     var counter = {}
-                    gigs.forEach(gig => {
-                        if (!counter[gig.category]) counter[gig.category] = 1
-                        else counter[gig.category]++
-                    })
-                    context.commit({ type: 'setGigCategoryCount', counter })
+                    console.log('dsaddas',gigs)
+                    if(!filter || filter.byCategory===''){
+                        gigs.forEach(gig => {
+                            if (!counter[gig.category]) counter[gig.category] = 1
+                            else counter[gig.category]++
+                        })
+                        context.commit({ type: 'setGigCategoryCount', counter })
+                    }
                 })
         },
         toggleLoadingOn(context) {
