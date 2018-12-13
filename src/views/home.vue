@@ -17,6 +17,7 @@
     </div>
     <hr class="hr1">
     <div class="cover-container">
+    <img src="../assets/ssss.png" alt=""> 
       <h1>
         Gig
         <span>It</span>
