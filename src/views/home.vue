@@ -1,9 +1,12 @@
 <template>
   <div class="home">
     <div class="banner">
-      <h1>Use your skills to make some easy extra money</h1>
       <div class="banner-block">
-        <el-carousel trigger="click" :interval="7000">
+        <h1>Small Gigs, Big Money</h1>
+        <div class="gig-story-container">
+          <img :src="carouselObjs[0].imgUrl" />
+        </div>
+        <!-- <el-carousel trigger="click" :interval="10000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
             <h3>{{carouselItem.txt}}</h3>
             <img :src="carouselItem.imgUrl">
@@ -12,10 +15,10 @@
               <span>It</span>
             </h4>
           </el-carousel-item>
-        </el-carousel>
+        </el-carousel> -->
       </div>
     </div>
-    <hr class="hr1">
+    <!-- <hr class="hr1"> -->
     <div class="cover-container">
       <h1>
         Gig
@@ -44,7 +47,7 @@ export default {
   name: "home",
   data() {
     return {
-      coverCounter: 0,
+      imgCounter: 0,
       showCategories: true,
       // user: null,
       carouselObjs: [
@@ -111,6 +114,10 @@ export default {
     topGigs
   },
   created() {
+    setInterval(() => {
+      this.imgCounter++
+      if (this.imgCounter === 4) this.imgCounter = 1
+    }, 6000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store
       .dispatch({ type: "getGigs" })

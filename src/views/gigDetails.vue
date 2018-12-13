@@ -41,10 +41,11 @@
         </h6>
         <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
         <p>
-          From: {{gig.details.gigTime[0] | localTime}}
+          <!-- From: {{gig.details.gigTime[0] | localTime}} -->
+          From: {{Date.now() - 60000 * 60 *22 | localTime}}
           <br>
           <br>
-          To: {{gig.details.gigTime[1] | localTime}}
+          To: {{Date.now() + 60000 * 60 * 24 * 3| localTime}}
         </p>
       </div>
 
@@ -73,7 +74,7 @@
 <script>
 import bus, { USR_MSG_DISPLAY } from "../eventBus.js";
 import GoogleMap from "@/components/googleMap";
-
+import moment from 'moment';
 export default {
   name: "gigDetails",
   data() {
@@ -93,11 +94,9 @@ export default {
       return this.$store.getters.isLoggedin;
     }
   },
-  filter: {
+  filters: {
     localTime(time) {
-      if (!time) return "";
-
-      return time;
+      return moment(time).format('HH:mm - DD.MM.YYYY');
     }
   },
   methods: {
