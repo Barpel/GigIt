@@ -35,7 +35,7 @@
   }
 }
 .banner {
- display: none;
+  display: none;
   // $element-height: 280px;
   // $img-height: 178px;
   // width: 100%;
@@ -143,13 +143,45 @@
           background-attachment: fixed;
           img {
             position: absolute;
-            left: -20vw;
+            // left: -20vw;
             top: 0;
+            // left: -30vw;
             max-height: 100%;
             object-fit: cover;
+            // animation-name: fade-in;
             animation-name: fade-in;
-            animation-duration: 4s;
+            animation-duration: 6s;
             background-attachment: fixed;
+            // transition: all 1s ease-in-out;
+          }
+          .fade-enter-active {
+            transition: opacity 3s ease-in-out;
+          }
+          .fade-enter-to {
+            opacity: 1;
+          }
+          .fade-enter{
+            opacity: 0;
+          }
+          img.img0{
+            // animation-name: cf4FadeInOut;
+            left: -20vw;
+          }
+          img.img1{
+            // animation-name: cf4FadeInOut;
+            // animation-delay: -4s;
+            left: 10vw;
+          }
+          img.img2{
+            // animation-name: cf4FadeInOut;
+            // animation-delay: -2s;
+            // animation-duration: 4s;
+            left: 40vw;
+          }
+          img.img3{
+            // animation-name: cf4FadeInOut;
+            // animation-delay: 0s;
+            left: 60vw;
           }
         }
       }
