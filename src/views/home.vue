@@ -4,7 +4,9 @@
       <div class="banner-block">
         <h1>Small Gigs, Big Money</h1>
         <div class="gig-story-container">
-          <img :src="carouselObjs[0].imgUrl" />
+          <transition name="fade">
+            <img @load="onImgLoaded" v-show="imgLoaded" :src="carouselObjs[imgCounterClass].imgUrl" :class="'img' + imgCounterClass"/>
+          </transition>
         </div>
         <!-- <el-carousel trigger="click" :interval="10000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
@@ -25,7 +27,7 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs>
+      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
       <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
@@ -49,6 +51,7 @@ export default {
   data() {
     return {
       imgCounter: 0,
+      imgLoaded: false,
       showCategories: true,
       // user: null,
       carouselObjs: [
@@ -95,9 +98,15 @@ export default {
     },
     user() {
       return this.$store.getters.user;
+    },
+    imgCounterClass() {
+      return this.imgCounter
     }
   },
   methods: {
+    onImgLoaded() {
+      this.imgLoaded = true
+    },
     gigClicked(gigId) {
       this.$router.push(`gig/${gigId}`);
     },
@@ -117,7 +126,7 @@ export default {
   created() {
     setInterval(() => {
       this.imgCounter++
-      if (this.imgCounter === 4) this.imgCounter = 1
+      if (this.imgCounter === 4) this.imgCounter = 0
     }, 6000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store
