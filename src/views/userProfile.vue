@@ -16,6 +16,9 @@
           ></el-rate>
         </h5>
       </div>
+           <router-link class="profile-btns-wrapper user-profile-contact-btn"  :to="'/user/' + user._id + '/inbox'" tag="button"  v-if="!isOwnProfile">
+          <i class="far fa-comments" ></i>
+        </router-link>
       <!-- <ul v-if="user.reviews.completed || user.reviews.published">
         <li>
           <span>Gigs Completed:</span>
@@ -25,20 +28,14 @@
           <span>Gigs Created:</span>
           {{user.reviews.published.length}}
         </li>
-      </ul>-->
+      </ul> -->
       <div class="profile-btns-wrapper" v-if="isOwnProfile">
-        <router-link :to="'/user/' + user._id + '/inbox'" tag="button" class="profile-chats-btn" v-if="!isOwnProfile">
-          <i class="far fa-comments" ></i>
-        </router-link>
         <button @click="doLogout" class="profile-logout-btn">
           <i class="fas fa-power-off"></i> Logout
         </button>
         <button class="profile-edit-btn" @click="goToEditProfile">
           <i class="fas fa-pencil-alt"></i>
         </button>
-        <!-- <button class="profile-delete-btn">
-          <i class="fas fa-trash"></i>
-        </button> -->
       </div>
     </div>
     <div class="profile-mid-wrapper">
@@ -50,11 +47,11 @@
           <h4 v-for="skill in user.skills" :key="skill">{{skill}}</h4>
         </div>
       </div>
-
       <div class="profile-tabs-wrapper">
         <div class="profile-tabs-container">
           <div class="stv-radio-tabs-wrapper">
             <input
+     
               type="radio"
               class="stv-radio-tab"
               name="reviews"
@@ -201,7 +198,11 @@ export default {
               this.user = user;
               this.getUserGigs();
               var loggedUser = this.$store.getters.user
-              if(loggedUser && loggedUser._id === user._id) this.isOwnProfile = true
+                   console.log(this.isOwnProfile)
+              if(loggedUser && loggedUser._id === user._id) {
+                this.isOwnProfile = true
+                     console.log(this.isOwnProfile)
+              }
         });
     },
     gigsterPicked(gigster, gig) {

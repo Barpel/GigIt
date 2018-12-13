@@ -25,7 +25,8 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-        <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
+      <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs>
+      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
     <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
