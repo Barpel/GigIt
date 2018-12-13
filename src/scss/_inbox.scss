@@ -91,13 +91,14 @@ $window-height: 77vh;
           object-fit: cover;
         }
         .new-event-point {
-          height: 1rem;
-          width: 1rem;
-          background-color: aquamarine;
+          height: 1.4rem;
+          width: 1.4rem;
+          background-color: #ab0362c9;
+          // box-shadow: brown;
           border-radius: 50%;
           position: absolute;
-          right: 10px;
-          top: 40%;
+          right: 2px;
+          top: 22%;
         }
       }
       .chat.selected {

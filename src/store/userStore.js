@@ -23,6 +23,9 @@ export default {
         },
     },
     actions: {
+        updateUserState(context, {user}) {
+            return context.commit({type:'setLoggedUser', user})
+        },
         checkLoggedUser(context) {
             return userService.loginUser(null)
                 .then(user => {

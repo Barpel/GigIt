@@ -165,8 +165,8 @@ export default {
           ]
         },
         chats: [],
-        isInboxRead: true,
-        isMyGigsRead: true
+        notficCount: 0,
+        inboxCount: 0,
       },
       selectedFile: null,
       selectedFileName: null,

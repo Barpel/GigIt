@@ -42,10 +42,12 @@ export default {
   //Sockets.IO
   sockets: {
     emitEventToUser: function (msg) { //On Gig Request Event
-      console.log(this.user._id, 'im here')
       var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
       audio.play();
       this.displayMsg(msg)
+      if(!this.user.notficCount) this.user.notficCount = 1
+      else this.user.notficCount++
+      this.$store.dispatch({type:'updateUserState', user:this.user})
     },
     emitChatMsgToUser: function(msg) {
       var path = this.$route.path
@@ -53,7 +55,9 @@ export default {
         var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
         audio.play();
         this.displayMsg(msg)
-        this.user.isInboxRead = false
+        if(!this.user.inboxCount) this.user.inboxCount = 1
+        else this.user.inboxCount++
+        this.$store.dispatch({type:'updateUserState', user:this.user})
       }
     }
   },

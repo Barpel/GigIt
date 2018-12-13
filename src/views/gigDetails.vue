@@ -131,8 +131,9 @@ export default {
       var userGigsListToUpdate = this.user.gigsIds.pending;
       // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.$store
-        .dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate })
+      this.publisher.notficCount++
+      this.$store.dispatch({ type: "updateUser", user:this.publisher})
+      this.$store.dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate })
         .then(() => this.$router.push("/"));
     },
     editGig() {

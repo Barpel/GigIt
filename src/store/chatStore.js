@@ -11,6 +11,9 @@ export default {
         sendNewMsg(context, {msg, chatId}) {
             this._vm.$socket.emit('sendMsg', msg, chatId)
         },
+        connectToChat(context, {chatId}) {
+            this._vm.$socket.emit('connectToChat', chatId)
+        },
         getChatById(context, {chatId}) {
             return chatService.getById(chatId)
         },

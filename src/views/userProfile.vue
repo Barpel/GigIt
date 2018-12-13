@@ -201,7 +201,10 @@ export default {
               this.user = user;
               this.getUserGigs();
               var loggedUser = this.$store.getters.user
-              if(loggedUser && loggedUser._id === user._id) this.isOwnProfile = true
+              if(loggedUser && loggedUser._id === user._id) {
+                this.isOwnProfile = true
+                this.user.notficCount = 0
+              }
         });
     },
     gigsterPicked(gigster, gig) {
