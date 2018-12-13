@@ -3,11 +3,15 @@
     <div v-for="gig in topGigs" :key="gig._id">
       <!-- <div> -->
         <li @click="gigClicked(gig._id)">
+          
           <div
             :class="gig.category"
             class="gig-image"
             :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"
-          ></div>
+          >
+          <div class="ribbon"><span>Top Paid Gigs</span></div>
+          <!-- <div class="hot-badge"> </div> -->
+          </div>
           <!-- <div> -->
             <div class="publisher-container">
               <!-- <img :src="gig.publisher.img"> -->

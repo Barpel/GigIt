@@ -19,14 +19,13 @@
       </div>
     </div>
     <!-- <hr class="hr1"> -->
-    <div class="cover-container">
-    <img src="../assets/ssss.png" alt=""> 
+    <div class="cover-container"> 
       <h1>
         Gig
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs>
+      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
       <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
