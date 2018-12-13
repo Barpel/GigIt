@@ -1,9 +1,14 @@
 <template>
   <div class="home">
     <div class="banner">
-      <h1>Use your skills to make some easy extra money</h1>
       <div class="banner-block">
-        <el-carousel trigger="click" :interval="7000">
+        <h1>Small Gigs, Big Money</h1>
+        <div class="gig-story-container">
+          <transition name="fade">
+            <img @load="onImgLoaded" v-show="imgLoaded" :src="carouselObjs[imgCounterClass].imgUrl" :class="'img' + imgCounterClass"/>
+          </transition>
+        </div>
+        <!-- <el-carousel trigger="click" :interval="10000">
           <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
             <h3>{{carouselItem.txt}}</h3>
             <img :src="carouselItem.imgUrl">
@@ -12,20 +17,20 @@
               <span>It</span>
             </h4>
           </el-carousel-item>
-        </el-carousel>
+        </el-carousel> -->
       </div>
     </div>
-    <hr class="hr1">
-    <div class="cover-container">
+    <!-- <hr class="hr1"> -->
+    <div class="cover-container"> 
       <h1>
         Gig
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-        <gig-toolbar @searchGig="filterByKey"></gig-toolbar>
+      <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
+      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
-    <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
     <!-- <hr v-if="showCategories"> -->
     <!-- <home-footer/> -->
@@ -44,7 +49,8 @@ export default {
   name: "home",
   data() {
     return {
-      coverCounter: 0,
+      imgCounter: 0,
+      imgLoaded: false,
       showCategories: true,
       // user: null,
       carouselObjs: [
@@ -91,9 +97,15 @@ export default {
     },
     user() {
       return this.$store.getters.user;
+    },
+    imgCounterClass() {
+      return this.imgCounter
     }
   },
   methods: {
+    onImgLoaded() {
+      this.imgLoaded = true
+    },
     gigClicked(gigId) {
       this.$router.push(`gig/${gigId}`);
     },
@@ -111,6 +123,10 @@ export default {
     topGigs
   },
   created() {
+    setInterval(() => {
+      this.imgCounter++
+      if (this.imgCounter === 4) this.imgCounter = 0
+    }, 6000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store
       .dispatch({ type: "getGigs" })

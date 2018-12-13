@@ -13,7 +13,7 @@
           <h3>
             <i class="fas fa-star"></i>
             &nbsp;
-            <span v-if="publisher">{{publisher.reviews.totalAverage}}</span>
+            <span v-if="publisher">{{(publisher.reviews.totalAverage)?(publisher.reviews.totalAverage).toFixed(1): 'No Reviews'}}</span>
           </h3>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default {
     iconByCategory() {
       return {
         "fas fa-dog": this.gig.category === "pet-care",
-        "fas fa-ellipsis": this.gig.category === "other",
+        "fas fa-ellipsis-h": this.gig.category === "other",
         "fas fa-hammer": this.gig.category === "house-work",
         "fas fa-male": this.gig.category === "line-queue",
         "fas fa-people-carry": this.gig.category === "moving",

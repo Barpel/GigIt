@@ -37,7 +37,10 @@
           v-model="filter.byCategory"
         >
         <label for="tab2">
-          <i class="fas fa-people-carry"></i>
+          <div class="item badge">
+            <i class="fas fa-people-carry"></i>
+            <span  v-if="gigCategoryCounter.moving">{{gigCategoryCounter.moving}}</span>
+          </div>
         </label>
         <input
           type="radio"
@@ -48,7 +51,10 @@
           v-model="filter.byCategory"
         >
         <label for="tab3">
-          <i class="fas fa-hammer"></i>
+          <div class="item badge">
+            <i class="fas fa-hammer"></i>
+            <span class="badge" v-if="gigCategoryCounter['house-work']">{{gigCategoryCounter['house-work']}}</span>
+          </div>
         </label>
         <input
           type="radio"
@@ -68,9 +74,12 @@
           v-model="filter.byCategory"
         >
         <label for="tab5">
-          <i class="fas fa-male"></i>
-          <i class="fas fa-female"></i>
-          <i class="fas fa-male"></i>
+          <div class="item badge">
+            <i class="fas fa-male"></i>
+            <i class="fas fa-female"></i>
+            <i class="fas fa-male"></i>
+            <span class="badge" v-if="gigCategoryCounter['line-queue']">{{gigCategoryCounter['line-queue']}}</span>
+          </div>
         </label>
         <input
           type="radio"
@@ -81,7 +90,10 @@
           v-model="filter.byCategory"
         >
         <label for="tab6">
-          <i class="fas fa-dog"></i>
+          <div class="item badge">
+            <i class="fas fa-dog"></i>
+            <span class="badge" v-if="gigCategoryCounter['pet-care']">{{gigCategoryCounter['pet-care']}}</span>
+          </div>
         </label>
         <input
           @click="searchByTitle"
@@ -92,8 +104,26 @@
           id="tab7"
           v-model="filter.byCategory"
         >
+        <label for="tab8">
+          <div class="item badge">
+            <i class="fas fa-parachute-box"></i>
+            <span class="badge" v-if="gigCategoryCounter.delivery">{{gigCategoryCounter.delivery}}</span>
+          </div>
+        </label>
+        <input
+          @click="searchByTitle"
+          type="radio"
+          class="tablinks"
+          name="delivery"
+          value="delivery"
+          id="tab8"
+          v-model="filter.byCategory"
+        >
         <label for="tab7">
+            <div class="item badge">
           <i class="fas fa-ellipsis-h"></i>
+            <span class="badge" v-if="gigCategoryCounter.other">{{gigCategoryCounter.other}}</span>
+            </div>
         </label>
       </div>
       <button @click="toggleFilterStatus" class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
@@ -103,6 +133,7 @@
 
 <script>
 export default {
+  props: ["gigCategoryCounter"],
   data() {
     return {
       filter: {
@@ -157,5 +188,4 @@ export default {
 </script>
 
 <style>
-
 </style>

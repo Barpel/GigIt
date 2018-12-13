@@ -51,12 +51,16 @@
             type="datetime"
             placeholder="Select Gig start time"
             default-time="12:00:00"
+            format="HH:mm - dd/MM/yyyy"
+            value-format="timestamp"
           ></el-date-picker>
           <el-date-picker
             v-model="gig.details.gigTime.to"
             type="datetime"
             placeholder="Select Gig end time"
             default-time="12:00:00"
+            format="HH:mm - dd/MM/yyyy"
+            value-format="timestamp"
           ></el-date-picker>
         </div>
         <google-map
