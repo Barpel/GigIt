@@ -9,10 +9,7 @@ export default {
     },
     actions: {
         sendNewMsg(context, {msg, chatId}) {
-        this._vm.$socket.emit('sendMsg', msg, chatId)
-        // this._vm.$socket.on('sendMsg', msg) {
-            // console.log('')
-        // }
+            this._vm.$socket.emit('sendMsg', msg, chatId)
         },
         getChatById(context, {chatId}) {
             return chatService.getById(chatId)

@@ -109,7 +109,6 @@ export default {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
       user.isInboxRead = true
-      // this.$store.dispatch({type:'setLoggedUser', user})  //TODO: remove when user transfer to NotStorage done
       return user.chats.forEach(chat => {
         return this.$store.dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {

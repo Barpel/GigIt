@@ -1,6 +1,10 @@
 <template>
   <li v-if="gig && publisher">
-    <div :class="classByCategory" class="gig-image" :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"></div>
+    <div
+      :class="classByCategory"
+      class="gig-image"
+      :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"
+    ></div>
     <div>
       <div class="publisher-container">
         <img :src="publisher.img">
@@ -16,12 +20,19 @@
       <div class="gig-details">
         <h3>{{gig.details.title}}</h3>
         <p class="gig-prev-desc">{{gig.details.desc}}</p>
-        <p v-if="gig.details.pos.dist">{{gig.details.pos.dist}} KM Away</p>
-        <p v-else> {{gig.details.place}}</p>
+        <p v-if="gig.details.pos.dist">
+          <span>{{gig.details.pos.dist}} KM Away</span>
+          <i :class="iconByCategory"></i>
+        </p>
+        <p v-else>
+          <span>{{gig.details.place}}</span>
+          <i :class="'fas fa-' + iconByCategory"></i>
+        </p>
       </div>
       <div class="lower-bar-container">
         <p>{{gig.details.price}}₪</p>
-        <button v-if="!isAlreadyPending">Gig
+        <button v-if="!isAlreadyPending">
+          Gig
           <span>It</span>
         </button>
         <button v-else>Pending</button>
@@ -54,20 +65,29 @@ export default {
         "pet-care": this.gig.category === "pet-care"
       };
     },
+    iconByCategory() {
+      return {
+        "fas fa-dog": this.gig.category === "pet-care",
+        "fas fa-ellipsis": this.gig.category === "other",
+        "fas fa-hammer": this.gig.category === "house-work",
+        "fas fa-male": this.gig.category === "line-queue",
+        "fas fa-people-carry": this.gig.category === "moving",
+        "fas fa-parachute-box": this.gig.category === "delivery"
+      };
+    }
   },
   created() {
-    if(this.currUser) {
+    if (this.currUser) {
       var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
-        return gigId === this.gig._id
-      })
-      if(pendingGig) this.isAlreadyPending = true
+        return gigId === this.gig._id;
+      });
+      if (pendingGig) this.isAlreadyPending = true;
     }
     this.$store
       .dispatch({ type: "getUserById", userId: this.gig.publisherId })
-      .then(publisher => (this.publisher = publisher))
-      // .then(res => this.isPending());
-    this.$store
-    .dispatch
+      .then(publisher => (this.publisher = publisher));
+    // .then(res => this.isPending());
+    this.$store.dispatch;
   },
   methods: {
     isPending() {
@@ -84,8 +104,6 @@ export default {
 //         .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
 //         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
 //       this.$store
-//         .dispatch({ type: "isGigOwner", publisherId: gig.publisherId })
-//         .then(isOwner => (this.isGigOwner = isOwner));
 //       if (this.isLoggedin) {
 //         var matchingGig = this.user.gigsIds.pending.find(
 //           gigId => gigId === gig._id
