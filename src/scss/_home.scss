@@ -138,21 +138,17 @@
             #be207cc5,
             #a71c6d9f 1px,
             #4b052ee3 1px,
-            #4b052edc 50px
+            #4b052edc 300px
           );
           background-attachment: fixed;
           img {
             position: absolute;
-            // left: -20vw;
-            top: 0;
-            // left: -30vw;
+            bottom: 12%;
             max-height: 100%;
             object-fit: cover;
-            // animation-name: fade-in;
             animation-name: fade-in;
             animation-duration: 6s;
             background-attachment: fixed;
-            // transition: all 1s ease-in-out;
           }
           .fade-enter-active {
             transition: opacity 3s ease-in-out;
@@ -165,11 +161,13 @@
           }
           img.img0{
             // animation-name: cf4FadeInOut;
-            left: -20vw;
+            left: -4vw;
+            max-height: 80%;
           }
           img.img1{
             // animation-name: cf4FadeInOut;
             // animation-delay: -4s;
+            max-height: 80%;
             left: 10vw;
           }
           img.img2{
@@ -178,10 +176,19 @@
             // animation-duration: 4s;
             left: 40vw;
           }
-          img.img3{
-            // animation-name: cf4FadeInOut;
-            // animation-delay: 0s;
-            left: 60vw;
+          h2.img3{
+            position: absolute;
+            bottom: 30%;
+            right: 8%;
+            font-size: 8rem;
+            font-family: condiment;
+            animation-name: fade-in;
+            animation-duration: 6s;
+            span {
+              font-family: condiment;
+              color: #97a5a7;
+              margin-left: -20px;
+            }
           }
         }
       }

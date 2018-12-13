@@ -4,38 +4,48 @@
       <div class="banner-block">
         <h1>Small Gigs, Big Money</h1>
         <div class="gig-story-container">
-          <transition name="fade">
-            <img @load="onImgLoaded" v-show="imgLoaded" :src="carouselObjs[imgCounterClass].imgUrl" :class="'img' + imgCounterClass"/>
-          </transition>
+          <!-- <transition name="fade"> -->
+          <!-- <img @load="onImgLoaded" v-show="imgLoaded" :src="carouselObjs[0].imgUrl" :class="'img' + imgCounterClass"/> -->
+          <img
+            @load="onImgLoaded"
+            v-show="imgCounter===0"
+            :src="carouselObjs[0].imgUrl"
+            :class="'img' + imgCounterClass"
+          >
+          <img
+            @load="onImgLoaded"
+            v-show="imgCounter===1"
+            :src="carouselObjs[1].imgUrl"
+            :class="'img' + imgCounterClass"
+          >
+          <img
+            @load="onImgLoaded"
+            v-show="imgCounter===2"
+            :src="carouselObjs[2].imgUrl"
+            :class="'img' + imgCounterClass"
+          >
+          <h2
+            @load="onImgLoaded"
+            v-show="imgCounter===3"
+            :class="'img' + imgCounterClass"
+          >Gig
+            <span>It</span>
+          </h2>
+          <!-- </transition> -->
         </div>
-        <!-- <el-carousel trigger="click" :interval="10000">
-          <el-carousel-item v-for="(carouselItem, idx) in carouselObjs" :key="idx">
-            <h3>{{carouselItem.txt}}</h3>
-            <img :src="carouselItem.imgUrl">
-            <h4>
-              Gig
-              <span>It</span>
-            </h4>
-          </el-carousel-item>
-        </el-carousel> -->
       </div>
     </div>
-    <!-- <hr class="hr1"> -->
     <div class="cover-container">
-    <img src="../assets/ssss.png" alt=""> 
       <h1>
         Gig
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <!-- <top-gigs :topGigs="topGigs" :currUser="user"></top-gigs> -->
-      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
+        <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
     <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
-    <!-- <hr v-if="showCategories"> -->
-    <!-- <home-footer/> -->
   </div>
 </template>
 
@@ -58,26 +68,19 @@ export default {
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/twoGigers.png",
-          txt:
-            "Find your Gig and use your skills to make some easy extra money!"
+            "https://res.cloudinary.com/barpel/image/upload/v1544720198/GigIt/story1.png"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544310157/GigIt/adudegiger.png",
-          txt: "Helping the community is part of our agenda. Help out today!"
+            "https://res.cloudinary.com/barpel/image/upload/v1544722792/GigIt/happy_bar_on_his_way2.png"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/thorgiger.png",
-          txt:
-            "New to GigIt? Take a look at our about page to learn more about it"
+            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/thorgiger.png"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544309960/GigIt/gigrit.png",
-          txt:
-            "Need to get something done? You can have your Gig online in less than 2 minutes!"
+            "https://res.cloudinary.com/barpel/image/upload/v1544721914/gigitUploads/gigiit.png"
         }
       ]
     };
@@ -101,12 +104,12 @@ export default {
       return this.$store.getters.user;
     },
     imgCounterClass() {
-      return this.imgCounter
+      return this.imgCounter;
     }
   },
   methods: {
     onImgLoaded() {
-      this.imgLoaded = true
+      this.imgLoaded = true;
     },
     gigClicked(gigId) {
       this.$router.push(`gig/${gigId}`);
@@ -127,7 +130,7 @@ export default {
   created() {
     setInterval(() => {
       this.imgCounter++
-      if (this.imgCounter === 4) this.imgCounter = 0
+      if (this.imgCounter === 4) this.imgCounter = 0;
     }, 6000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store

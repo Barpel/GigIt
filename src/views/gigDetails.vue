@@ -33,20 +33,25 @@
 
     <div class="mid-container">
       <div class="gig-details-left-container">
-        <h4>{{gig.details.title}}</h4>
+        <div class="left-top-container">
+          <h4>{{gig.details.title}}</h4>
+          <h6>Description:
+            <p>“{{gig.details.desc}}”</p>
+          </h6>
+            <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
+          <div class="left-top-bottom">
+            <div>
+              <!-- From: {{gig.details.gigTime[0] | localTime}} -->
+              <h6>From:</h6>
+              <span>{{Date.now() - 60000 * 60 *22 | localTime}}</span>
+            </div>
+            <div>
+              <h6>To:</h6>
+              <span>{{Date.now() + 60000 * 60 * 24 * 3| localTime}}</span>
+            </div>
+          </div>
+        </div>
         <h5>Category: {{this.gig.category}}</h5>
-        <h6>Description:
-          <br>
-          <p>“ {{gig.details.desc}} ”</p>
-        </h6>
-        <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
-        <p>
-          <!-- From: {{gig.details.gigTime[0] | localTime}} -->
-          From: {{Date.now() - 60000 * 60 *22 | localTime}}
-          <br>
-          <br>
-          To: {{Date.now() + 60000 * 60 * 24 * 3| localTime}}
-        </p>
       </div>
 
       <div class="gig-details-right-container">
@@ -74,7 +79,7 @@
 <script>
 import bus, { USR_MSG_DISPLAY } from "../eventBus.js";
 import GoogleMap from "@/components/googleMap";
-import moment from 'moment';
+import moment from "moment";
 export default {
   name: "gigDetails",
   data() {
@@ -96,7 +101,7 @@ export default {
   },
   filters: {
     localTime(time) {
-      return moment(time).format('HH:mm - DD.MM.YYYY');
+      return moment(time).format("HH:mm - DD.MM.YYYY");
     }
   },
   methods: {
@@ -114,7 +119,7 @@ export default {
           txt: `${this.user.name.first} wants to be your gigster!`,
           type: "success",
           link: `/user/${this.user._id}`,
-          gigsterImg: this.user.img,
+          gigsterImg: this.user.img
         },
         action: "toProfile",
         userId: publisherId
@@ -145,8 +150,10 @@ export default {
     var gigId = this.$route.params.gigId;
     this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
       this.gig = gig;
-      if(this.user && gig.publisherId === this.user._id) this.isGigOwner = true
-      this.$store.dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
+      if (this.user && gig.publisherId === this.user._id)
+        this.isGigOwner = true;
+      this.$store
+        .dispatch({ type: "getUserById", userId: gig.publisherId }) //DELETE WHEN AGGREGATION WORKS
         .then(publisher => (this.publisher = publisher)); //DELETE WHEN AGGREGATION WORKS
       if (this.isLoggedin) {
         var matchingGig = this.user.gigsIds.pending.find(
