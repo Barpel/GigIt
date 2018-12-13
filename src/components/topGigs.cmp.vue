@@ -55,12 +55,12 @@ export default {
     };
   },
   created() {
-      if (this.currUser) {
-      var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
-        return gigId === this.gig._id;
-      });
-      if (pendingGig) this.isAlreadyPending = true;
-    }
+    //   if (this.currUser) {
+    //   var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
+    //     return gigId === this.gig._id;
+    //   });
+    //   if (pendingGig) this.isAlreadyPending = true;
+    // }
     // this.$store
       // .dispatch({ type: "getUserById", userId: this.gig.publisherId })
       // .then(publisher => (this.publisher = publisher));
