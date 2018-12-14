@@ -10,7 +10,7 @@
   display: none;
 }
 .cover-container {
-  background: url("https://res.cloudinary.com/barpel/image/upload/v1544360150/GigIt/shutterstock_602783837.jpg");
+  background: url("https://res.cloudinary.com/barpel/image/upload/v1544719776/GigIt/gig-it-cover-2.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -130,24 +130,35 @@
           z-index: 10;
         }
         .gig-story-container {
-          min-height: 78vh;
+          min-height: 75vh;
           position: relative;
-          color: white;
-          background: repeating-linear-gradient(
-            135deg,
-            #be207cc5,
-            #a71c6d9f 1px,
-            #4b052ee3 1px,
-            #4b052edc 300px
-          );
+          // background: repeating-linear-gradient(
+          // 45deg,
+          // #be207cc5,
+          // #a71c6d9f 1px,
+          // #4b052ee3 100px,
+          // #4b052ee3 650px
+          // );
+          background-color: $category-base;
           background-attachment: fixed;
+          .gig-story-background {
+            background: url("https://images.unsplash.com/photo-1482977036925-e8fcaa643657?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            opacity: 0.5;
+          }
           img {
             position: absolute;
-            bottom: 12%;
+            bottom: 0%;
             max-height: 100%;
             object-fit: cover;
             animation-name: fade-in;
-            animation-duration: 6s;
+            animation-duration: 4s;
             background-attachment: fixed;
           }
           .fade-enter-active {
@@ -156,27 +167,21 @@
           .fade-enter-to {
             opacity: 1;
           }
-          .fade-enter{
+          .fade-enter {
             opacity: 0;
           }
-          img.img0{
-            // animation-name: cf4FadeInOut;
+          img.img0 {
             left: -4vw;
-            max-height: 80%;
+            max-height: 90%;
           }
-          img.img1{
-            // animation-name: cf4FadeInOut;
-            // animation-delay: -4s;
-            max-height: 80%;
+          img.img1 {
+            max-height: 90%;
             left: 10vw;
           }
-          img.img2{
-            // animation-name: cf4FadeInOut;
-            // animation-delay: -2s;
-            // animation-duration: 4s;
-            left: 40vw;
+          img.img2 {
+            left: 45vw;
           }
-          h2.img3{
+          h2.img3 {
             position: absolute;
             bottom: 30%;
             right: 8%;
@@ -186,7 +191,7 @@
             animation-duration: 6s;
             span {
               font-family: condiment;
-              color: #97a5a7;
+              color: white;
               margin-left: -20px;
             }
           }

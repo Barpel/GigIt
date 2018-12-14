@@ -38,7 +38,7 @@
           <h6>Description:
             <p>“{{gig.details.desc}}”</p>
           </h6>
-            <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
+          <h6>Distance: {{gig.details.pos.dist}} KM Away</h6>
           <div class="left-top-bottom">
             <div>
               <!-- From: {{gig.details.gigTime[0] | localTime}} -->

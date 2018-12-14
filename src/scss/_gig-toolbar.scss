@@ -47,7 +47,7 @@
     border-bottom-right-radius: 0;
     position: fixed;
     top: 1%;
-    max-width: 120px;
+    max-width: 150px;
     min-height: 85vh;
     transition: all 0.3s;
     input.tablinks {
@@ -73,6 +73,25 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s;
+        span{
+          position: absolute;
+          left: 2px;
+          top: 20%;
+          min-height: -26px;
+          background-color: #f783acb8;
+          border-radius: 10px;
+          color: #fff;
+          display: inline-block;
+          font-size: 12px;
+          height: 18px;
+          line-height: 18px;
+          padding: 0 4px;
+          text-align: center;
+          white-space: nowrap;
+          border: 1px solid #ffffff8f;
+          box-sizing: border-box;
+      
+        }
         &:hover {
           background-color: #7c0b4d;
         }

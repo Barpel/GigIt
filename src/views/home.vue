@@ -4,6 +4,7 @@
       <div class="banner-block">
         <h1>Small Gigs, Big Money</h1>
         <div class="gig-story-container">
+          <div class="gig-story-background"></div>
           <!-- <transition name="fade"> -->
           <!-- <img @load="onImgLoaded" v-show="imgLoaded" :src="carouselObjs[0].imgUrl" :class="'img' + imgCounterClass"/> -->
           <img
@@ -35,16 +36,17 @@
         </div>
       </div>
     </div>
-    <div class="cover-container">
+    <!-- <hr class="hr1"> -->
+    <div class="cover-container"> 
       <h1>
         Gig
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-        <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
+      <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
+      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
-    <!-- <top-gigs  :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -68,7 +70,7 @@ export default {
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544720198/GigIt/story1.png"
+            "https://res.cloudinary.com/barpel/image/upload/v1544724278/GigIt/story1.png"
         },
         {
           imgUrl:
@@ -76,7 +78,7 @@ export default {
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544309961/GigIt/thorgiger.png"
+            "https://res.cloudinary.com/barpel/image/upload/v1544728766/GigIt/2_guys_handshake_with_blanket2.png"
         },
         {
           imgUrl:
@@ -131,7 +133,7 @@ export default {
     setInterval(() => {
       this.imgCounter++
       if (this.imgCounter === 4) this.imgCounter = 0;
-    }, 6000);
+    }, 4000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store
       .dispatch({ type: "getGigs" })
