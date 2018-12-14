@@ -57,7 +57,6 @@ export default {
   },
   sockets: {
     sentMsg: function(payload) {
-    // emitChatMsgToUser: function(payload) {
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
       if(this.selectedChat && payload.chatId === this.selectedChat._id) {
@@ -102,14 +101,15 @@ export default {
         userId: otherUser
       });
       this.newMsgTxt = "";
-      // this.scrollDown()
     },
   },
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      user.isInboxRead = true
+      user.inboxCount = 0
+      this.$store.dispatch({type:'updateUserState', user})
       return user.chats.forEach(chat => {
+        this.$store.dispatch({type:'connectToChat', chatId:chat.chatId})
         return this.$store.dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
             if (!chat) return;

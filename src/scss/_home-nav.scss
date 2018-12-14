@@ -1,11 +1,23 @@
 $nav-border-color: rgba(255, 255, 255, 0.11);
 $hover-color: #8a1258;
 .home-nav {
+  .new-event-point {
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: #ab0362c9;
+    // box-shadow: brown;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 15%;  
+    &.envelope-point {
+      left: 1vw;
+    }
+  }
   max-height: 70px;
   min-height: 70px;
   position: fixed;
   width: 100%;
-  // background-color: #555555;
   background-color: black;
   color: white;
   bottom: 0;
@@ -14,6 +26,7 @@ $hover-color: #8a1258;
   display: grid;
   grid-template-columns: 1fr 3fr;
   a {
+    position: relative;
     text-decoration: none;
     color: white;
     font-size: 1.5rem;
@@ -155,16 +168,72 @@ $hover-color: #8a1258;
   }
 }
 
+@media (min-width:280px) {
+  .home-nav {
+    .new-event-point.envelope-point {
+      left: 4vw;
+    }
+  }
+}
+@media (min-width:360px) {
+  .home-nav {
+    .new-event-point {
+      left:1vw;
+      &.envelope-point {
+        left: 6vw;
+      }
+    }
+  }
+}
+@media (min-width:480px) {
+  .home-nav {
+    .new-event-point {
+      left:4vw;
+      &.envelope-point {
+        left: 8vw;
+      }
+    }
+  }
+}
+@media (min-width:720px) {
+  .home-nav {
+    .new-event-point {
+      left:6vw;
+      &.envelope-point {
+        left: 9vw;
+      }
+    }
+  }
+}
+@media (min-width:880px) {
+  .home-nav {
+    .new-event-point {
+      left:7vw;
+      &.envelope-point {
+        left: 10vw;
+      }
+    }
+  }
+}
+
 @media (min-width: 1050px) {
   .home-nav {
-    max-height: 70px;
-    min-height: 70px;
-    position: fixed;
-    width: 100%;
+    .new-event-point {
+      height: .8rem;
+      width: .9rem;
+      left: 5%;
+      top:20%;
+    }
+    // .envelope-point.new-event-point {
+    // }
+    // max-height: 70px;
+    // min-height: 70px;
+    // position: fixed;
+    // width: 100%;
     // background: linear-gradient(45deg, black, $category-base, white, $category-base, black);
     // background-color: #751d51;
-    background-color: black;
-    color: white;
+    // background-color: black;
+    // color: white;
     top: 0;
     display: flex;
     justify-content: space-between;

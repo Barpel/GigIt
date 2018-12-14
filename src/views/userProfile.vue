@@ -198,10 +198,9 @@ export default {
               this.user = user;
               this.getUserGigs();
               var loggedUser = this.$store.getters.user
-                   console.log(this.isOwnProfile)
               if(loggedUser && loggedUser._id === user._id) {
                 this.isOwnProfile = true
-                     console.log(this.isOwnProfile)
+                this.user.notficCount = 0
               }
         });
     },

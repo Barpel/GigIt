@@ -16,6 +16,7 @@
             class="nav-user-menu-container"
             @click="dropdownOpen = !dropdownOpen"
           >
+            <div v-if="notficCount" class="new-event-point"></div>
             <img :src="user.img">
             <span>{{user.name.first}}</span>
             <div class="user-dropdown" :class="dropdownStatus">
@@ -36,8 +37,9 @@
         </div>
 
         <router-link :to="(isLoggedin)?inboxLink: '/user/login'">
+            <div v-if="msgCount" class="new-event-point envelope-point"></div>
           <h1>
-            <i class="fas fa-envelope-open-text" v-if="unreadMsg"></i>
+            <i class="fas fa-envelope-open-text" v-if="!msgCount"></i>
             <i class="fas fa-envelope" v-else></i>
           </h1>
         </router-link>
@@ -67,8 +69,12 @@ export default {
     isLoggedin() {
       return this.$store.getters.isLoggedin;
     },
-    unreadMsg() {
-      return this.user.isInboxRead
+    msgCount() {
+      return this.user.inboxCount
+    },
+    notficCount() {
+      console.log('userNotfic:', this.user)
+      return this.user.notficCount
     },
     profileLink() {
       return `/user/${this.user._id}`;
