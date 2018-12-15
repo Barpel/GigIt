@@ -51,7 +51,11 @@
             </div>
           </div>
         </div>
-        <h5>Category: {{this.gig.category}}</h5>
+        <div class="gig-category-wrapper">
+          <h5>Category: {{gig.category}}</h5>
+          <i :class="iconByCategory"></i>
+          <img :src="gig.details.img" v-if="gig" />
+        </div>
       </div>
 
       <div class="gig-details-right-container">
@@ -97,6 +101,16 @@ export default {
     },
     isLoggedin() {
       return this.$store.getters.isLoggedin;
+    },
+    iconByCategory() {
+      return {
+        "fas fa-dog": this.gig.category === "pet-care",
+        "fas fa-ellipsis-h": this.gig.category === "other",
+        "fas fa-hammer": this.gig.category === "house-work",
+        "fas fa-male": this.gig.category === "line-queue",
+        "fas fa-people-carry": this.gig.category === "moving",
+        "fas fa-parachute-box": this.gig.category === "delivery"
+      };
     }
   },
   filters: {
@@ -135,9 +149,10 @@ export default {
       var userGigsListToUpdate = this.user.gigsIds.pending;
       // this.user.gigsIds.pending.push(this.gig._id);
       // this.$store.dispatch({ type: "updateUser", user: this.user });
-      this.publisher.notficCount++
-      this.$store.dispatch({ type: "updateUser", user:this.publisher})
-      this.$store.dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate })
+      this.publisher.notficCount++;
+      this.$store.dispatch({ type: "updateUser", user: this.publisher });
+      this.$store
+        .dispatch({ type: "updateGig", gig: this.gig, userGigsListToUpdate })
         .then(() => this.$router.push("/"));
     },
     editGig() {

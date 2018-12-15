@@ -87,7 +87,7 @@
         <p class="success">Your Profile was updated!
           <!-- <br>Check it out -->
           <br>
-          <router-link :to="'/user/' + user._id" ref="profileLink">Back to profile</router-link>
+          <router-link :to="'/user/' + user._id">Back to profile</router-link>
         </p>
       </div>
   </div>
@@ -237,6 +237,9 @@ export default {
           .dispatch({ type: "updateUser", user: this.user })
           .then(res => {
             this.isDone = true;
+            setTimeout(()=> {
+              this.$router.push(`/user/${this.user._id}`)
+            }, 3000)
           });
       }
     },

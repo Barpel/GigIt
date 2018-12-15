@@ -25,11 +25,8 @@
             :src="carouselObjs[2].imgUrl"
             :class="'img' + imgCounterClass"
           >
-          <h2
-            @load="onImgLoaded"
-            v-show="imgCounter===3"
-            :class="'img' + imgCounterClass"
-          >Gig
+          <h2 @load="onImgLoaded" v-show="imgCounter===3" :class="'img' + imgCounterClass">
+            Gig
             <span>It</span>
           </h2>
           <!-- </transition> -->
@@ -37,16 +34,18 @@
       </div>
     </div>
     <!-- <hr class="hr1"> -->
-    <div class="cover-container"> 
+    <div class="cover-container">
+      <div class="cover-background1"></div>
+      <div class="cover-background2"></div>
       <h1>
         Gig
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-      <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
-      <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
+        <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
+    <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -131,7 +130,7 @@ export default {
   },
   created() {
     setInterval(() => {
-      this.imgCounter++
+      this.imgCounter++;
       if (this.imgCounter === 4) this.imgCounter = 0;
     }, 4000);
     // this.$store.dispatch({type:'toggleLoadingOn'})
