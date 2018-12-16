@@ -10,7 +10,6 @@ export default {
         },
         openUserSocket(context) {
             var user = context.getters.user
-            console.log('the user to socket is:', user)
             if(user) {
                 var userId = user._id
                 this._vm.$socket.emit('newUserSocket', userId)

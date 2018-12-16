@@ -31,24 +31,29 @@ export default {
         }
     },
     mutations: {
-        setGigs(state, { gigs }) {
+        setGigs(state, { gigs, filter }) {
+            console.log('filter is', filter)
             if (state.userLocation) {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
                 })
             }
+            
             if (!state.topGigs) {
-                gigs.sort((a, b) => {
+                var gigsCopy = JSON.parse(JSON.stringify(gigs))
+                
+                gigsCopy.sort((a, b) => {
                     return b.details.price - a.details.price
                 })
-               state.topGigs = JSON.parse(JSON.stringify(gigs))
-               state.topGigs = state.topGigs.splice(0,4)
+               state.topGigs = gigsCopy.splice(0,4)
             }
             gigs.sort((a, b) => {
                 return a.details.pos.dist - b.details.pos.dist
             })
-            var nearestGigs = gigs.splice(0,4)
-            if (!state.nearestGigs) state.nearestGigs = nearestGigs
+            if (!filter || (!filter.byCategory && !filter.byTitle)) {
+                var nearestGigs = gigs.splice(0,4)
+                if (!state.nearestGigs) state.nearestGigs = nearestGigs
+            }
             state.gigs = gigs
 
         },
@@ -79,7 +84,7 @@ export default {
         getGigs(context, { filter }) {
             return gigService.query(filter)
                 .then(gigs => {
-                    context.commit({ type: 'setGigs', gigs })
+                    context.commit({ type: 'setGigs', gigs, filter })
                     var counter = {}
                     if(!filter || filter.byCategory===''){
                         gigs.forEach(gig => {

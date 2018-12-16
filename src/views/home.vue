@@ -45,10 +45,12 @@
         <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"/>
       </div>
     </div>
-    <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
-    <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
-    <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
-    <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
+    <div v-if="!isFiltered" class="top-gigs-container">
+      <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
+      <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
+      <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+      <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
+    </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -68,6 +70,7 @@ export default {
       imgCounter: 0,
       imgLoaded: false,
       showCategories: true,
+      isFiltered: false,
       // user: null,
       carouselObjs: [
         {
@@ -96,7 +99,6 @@ export default {
     },
     nearestGigs() {
       var nearestGigs = JSON.parse(JSON.stringify(this.$store.getters.nearestGigs));
-      console.log('nearest are:',nearestGigs)
       return nearestGigs;
     },
     topGigs() {
@@ -124,6 +126,8 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey(filter) {
+      if(filter.byCategory || filter.byTitle) this.isFiltered = true
+      else this.isFiltered = false
       this.showCategories = false;
       this.$store.dispatch("getGigs", { filter });
     }
@@ -149,12 +153,6 @@ export default {
       this.$store.dispatch({ type: "userLocation", position });
     });
   },
-  mounted() {},
-  watch: {
-    // "filter.byTitle"() {
-    //   if (!this.filter.byTitle) this.showCategories = true;
-    // }
-  }
 };
 </script>
 

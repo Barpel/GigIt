@@ -87,7 +87,6 @@ export default {
         };
       } else {
         navigator.geolocation.getCurrentPosition(position => {
-          console.log()
           this.center = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
