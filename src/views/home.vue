@@ -45,7 +45,13 @@
         <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
+    <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked">
+      <h2 slot="slot1">Top Gigs</h2>
+    </top-list>
+    <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
     <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
+    <!-- <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+    <top-gigs :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -55,6 +61,7 @@ import gigToolbar from "../components/gigToolbar";
 import gigCategories from "@/components/gigCategories.cmp.vue";
 import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
+import topList from "@/components/topList.cmp.vue";
 import googleMap from "@/components/googleMap.vue";
 import topGigs from "@/components/topGigs.cmp.vue";
 
@@ -91,6 +98,11 @@ export default {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
     },
+    nearestGigs() {
+      var nearestGigs = JSON.parse(JSON.stringify(this.$store.getters.nearestGigs));
+      console.log('nearest are:',nearestGigs)
+      return nearestGigs;
+    },
     topGigs() {
       var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs));
       return topGigs;
@@ -126,7 +138,8 @@ export default {
     gigList,
     googleMap,
     gigToolbar,
-    topGigs
+    topGigs,
+    topList
   },
   created() {
     setInterval(() => {

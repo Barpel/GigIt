@@ -1,19 +1,19 @@
 <template>
   <section class="top-gigs-container">
-    <ul class="top-gigs-list" >
-      <!-- <div> -->
-        <li @click="gigClicked(gig._id)" v-for="gig in topGigs" :key="gig._id">
+    <!-- <ul class="top-gigs-list" > -->
+        <li v-if="gig && publisher">
+          
           <div
             :class="gig.category"
             class="gig-image"
             :style="{ backgroundImage: 'url(' + gig.details.img + ')' ,objectFit:'contain'}"
           >
-          <div class="ribbon"><span>Top Paid Gigs</span></div>
+          <div class="ribbon"><slot></slot></div>
           </div>
             <div class="publisher-container">
-              <!-- <img :src="gig.publisher.img"> -->
+              <img :src="publisher.img">
               <div class="publisher-info">
-                <!-- <h3>{{publisher.name.first + ' ' + publisher.name.last}}</h3> -->
+                <h3>{{publisher.name.first + ' ' + publisher.name.last}}</h3>
                 <h3>
                   <i class="fas fa-star"></i>
                   &nbsp;
@@ -37,15 +37,14 @@
             </div>
           <!-- </div> -->
         </li>
-      <!-- </div> -->
-    </ul>
+    <!-- </ul> -->
   </section>
 </template>
 
 <script>
 export default {
   props: {
-    topGigs: Array,
+    gig: Object,
     currUser: Object
   },
   data() {
@@ -55,17 +54,18 @@ export default {
     };
   },
   created() {
-    //   if (this.currUser) {
-    //   var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
-    //     return gigId === this.gig._id;
-    //   });
-    //   if (pendingGig) this.isAlreadyPending = true;
-    // }
-    // this.$store
-      // .dispatch({ type: "getUserById", userId: this.gig.publisherId })
-      // .then(publisher => (this.publisher = publisher));
+      if (this.currUser) {
+      var pendingGig = this.currUser.gigsIds.pending.find(gigId => {
+        return gigId === this.gig._id;
+      });
+      if (pendingGig) this.isAlreadyPending = true;
+    }
+    this.$store
+      .dispatch({ type: "getUserById", userId: this.gig.publisherId })
+      .then(publisher => (this.publisher = publisher))
+      .then(publish=>console.log(publish.img))
     // .then(res => this.isPending());
-    // this.$store.dispatch;
+    this.$store.dispatch;
   
   },
   methods: {
@@ -74,8 +74,6 @@ export default {
     }
   },
   mounted() {
-    // console.log(topGigs)
-    console.log(this.currUser)
   },
   computed: {}
 };
