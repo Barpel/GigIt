@@ -39,7 +39,7 @@
         <label for="tab2">
           <div class="item badge">
             <i class="fas fa-people-carry"></i>
-            <span  v-if="gigCategoryCounter.moving">{{gigCategoryCounter.moving}}</span>
+            <span v-if="gigCategoryCounter.moving">{{gigCategoryCounter.moving}}</span>
           </div>
         </label>
         <input
@@ -53,7 +53,10 @@
         <label for="tab3">
           <div class="item badge">
             <i class="fas fa-hammer"></i>
-            <span class="badge" v-if="gigCategoryCounter['house-work']">{{gigCategoryCounter['house-work']}}</span>
+            <span
+              class="badge"
+              v-if="gigCategoryCounter['house-work']"
+            >{{gigCategoryCounter['house-work']}}</span>
           </div>
         </label>
         <input
@@ -78,7 +81,10 @@
             <i class="fas fa-male"></i>
             <i class="fas fa-female"></i>
             <i class="fas fa-male"></i>
-            <span class="badge" v-if="gigCategoryCounter['line-queue']">{{gigCategoryCounter['line-queue']}}</span>
+            <span
+              class="badge"
+              v-if="gigCategoryCounter['line-queue']"
+            >{{gigCategoryCounter['line-queue']}}</span>
           </div>
         </label>
         <input
@@ -92,38 +98,45 @@
         <label for="tab6">
           <div class="item badge">
             <i class="fas fa-dog"></i>
-            <span class="badge" v-if="gigCategoryCounter['pet-care']">{{gigCategoryCounter['pet-care']}}</span>
+            <span
+              class="badge"
+              v-if="gigCategoryCounter['pet-care']"
+            >{{gigCategoryCounter['pet-care']}}</span>
           </div>
         </label>
         <input
-          @click="searchByTitle"
-          type="radio"
-          class="tablinks"
-          name="other"
-          value="other"
-          id="tab7"
-          v-model="filter.byCategory"
-        >
-        <label for="tab8">
-          <div class="item badge">
-            <i class="fas fa-parachute-box"></i>
-            <span class="badge" v-if="gigCategoryCounter.delivery">{{gigCategoryCounter.delivery}}</span>
-          </div>
-        </label>
-        <input
-          @click="searchByTitle"
           type="radio"
           class="tablinks"
           name="delivery"
           value="delivery"
-          id="tab8"
+          id="tab7"
           v-model="filter.byCategory"
         >
         <label for="tab7">
-            <div class="item badge">
-          <i class="fas fa-ellipsis-h"></i>
-            <span class="badge" v-if="gigCategoryCounter.other">{{gigCategoryCounter.other}}</span>
-            </div>
+          <div class="item badge">
+            <i class="fas fa-parachute-box"></i>
+            <span
+              class="badge"
+              v-if="gigCategoryCounter['delivery']"
+            >{{gigCategoryCounter['delivery']}}</span>
+          </div>
+        </label>
+        <input
+          type="radio"
+          class="tablinks"
+          name="other"
+          value="other"
+          id="tab8"
+          v-model="filter.byCategory"
+        >
+        <label for="tab8">
+          <div class="item badge">
+            <i class="fas fa-ellipsis-h"></i>
+            <span
+              class="badge"
+              v-if="gigCategoryCounter['other']"
+            >{{gigCategoryCounter['other']}}</span>
+          </div>
         </label>
       </div>
       <button @click="toggleFilterStatus" class="toggle-filter-btn" :class="filterBarStatus">Filter</button>
@@ -166,7 +179,6 @@ export default {
     // },
     searchByTitle() {
       return;
-      // console.log(this.filter)
       this.$emit("searchGig", { ...this.filter });
     },
     toggleFilterStatus() {

@@ -45,7 +45,10 @@
         <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
-    <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
+    <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked">
+      <h2 slot="slot1">Top Gigs</h2>
+    </top-list>
+    <!-- <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -55,6 +58,7 @@ import gigToolbar from "../components/gigToolbar";
 import gigCategories from "@/components/gigCategories.cmp.vue";
 import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
+import topList from "@/components/topList.cmp.vue";
 import googleMap from "@/components/googleMap.vue";
 import topGigs from "@/components/topGigs.cmp.vue";
 
@@ -126,7 +130,8 @@ export default {
     gigList,
     googleMap,
     gigToolbar,
-    topGigs
+    topGigs,
+    topList
   },
   created() {
     setInterval(() => {
