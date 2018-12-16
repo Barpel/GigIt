@@ -5,11 +5,11 @@ $hover-color: #8a1258;
     height: 1.5rem;
     width: 1.5rem;
     background-color: rgba(175, 45, 45, 0.767);
-    // box-shadow: brown;
+    box-shadow: 0px 0px 13px 3px rgba(136, 18, 18, 0.795);
     border-radius: 50%;
     position: absolute;
     left: 0;
-    top: 15%;  
+    top: 15%;
     &.envelope-point {
       left: 1vw;
     }
@@ -77,7 +77,7 @@ $hover-color: #8a1258;
         }
       }
     }
-    
+
     .nav-user-container {
       border-left: 1px solid $nav-border-color;
       grid-column: 3;
@@ -114,7 +114,7 @@ $hover-color: #8a1258;
           border-top-right-radius: 5px;
           border: 1px solid $nav-border-color;
           border-bottom: none;
-          transition: all .3s ease-in-out;
+          transition: all 0.3s ease-in-out;
           // transition: opacity .2s;
           a {
             padding: 10px;
@@ -168,47 +168,47 @@ $hover-color: #8a1258;
   }
 }
 
-@media (min-width:280px) {
+@media (min-width: 280px) {
   .home-nav {
     .new-event-point.envelope-point {
       left: 4vw;
     }
   }
 }
-@media (min-width:360px) {
+@media (min-width: 360px) {
   .home-nav {
     .new-event-point {
-      left:1vw;
+      left: 1vw;
       &.envelope-point {
         left: 6vw;
       }
     }
   }
 }
-@media (min-width:480px) {
+@media (min-width: 480px) {
   .home-nav {
     .new-event-point {
-      left:4vw;
+      left: 4vw;
       &.envelope-point {
         left: 8vw;
       }
     }
   }
 }
-@media (min-width:720px) {
+@media (min-width: 720px) {
   .home-nav {
     .new-event-point {
-      left:6vw;
+      left: 6vw;
       &.envelope-point {
         left: 9vw;
       }
     }
   }
 }
-@media (min-width:880px) {
+@media (min-width: 880px) {
   .home-nav {
     .new-event-point {
-      left:7vw;
+      left: 7vw;
       &.envelope-point {
         left: 10vw;
       }
@@ -221,8 +221,8 @@ $hover-color: #8a1258;
     .new-event-point {
       height: 1.2rem;
       width: 1.2rem;
-      left: -3px;
-      top:16%;
+      left: -6px;
+      top: 10%;
     }
     // .envelope-point.new-event-point {
     // }
