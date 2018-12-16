@@ -61,7 +61,7 @@ export default {
     this.$store
       .dispatch({ type: "getUserById", userId: this.gig.publisherId })
       .then(publisher => (this.publisher = publisher))
-      .then(publish=>console.log(publish.img))
+      // .then(publish=>console.log(publish.img))
     // .then(res => this.isPending());
     this.$store.dispatch;
   

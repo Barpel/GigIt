@@ -73,7 +73,6 @@ export default {
       return this.user.inboxCount
     },
     notficCount() {
-      console.log('userNotfic:', this.user)
       return this.user.notficCount
     },
     profileLink() {

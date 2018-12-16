@@ -17,7 +17,6 @@ export default {
 
 function query({byTitle = '', byCategory = '',isActive = true} = {}) {
     let REQ_URL = `${BASE_URL}?byTitle=${byTitle}&byCategory=${byCategory}&isActive=${isActive}`
-    console.log('req!!!!!!!', REQ_URL)
     return axios.get(REQ_URL)
         .then(res => res.data)
 

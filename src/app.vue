@@ -62,7 +62,6 @@ export default {
   created() {
     this.$store.dispatch({ type: "checkLoggedUser" })
       .then(()=> {
-        console.log(this.user)
         this.$store.dispatch('openUserSocket')
       })
     bus.$on(USR_MSG_DISPLAY, msg => this.displayMsg(msg));
