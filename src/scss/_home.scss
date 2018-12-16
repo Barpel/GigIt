@@ -7,7 +7,7 @@
   }
   .top-gigs-title {
     text-align: left;
-    margin: .4rem 1rem;
+    margin: 0.4rem 1rem;
     span {
       color: $category-base;
       font-size: 2.3rem;
@@ -27,7 +27,8 @@
   height: fit-content;
   border-bottom: 3px solid #52515160;
   z-index: 1;
-  .cover-background1, .cover-background2{
+  .cover-background1,
+  .cover-background2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -44,7 +45,7 @@
   .cover-background2 {
     opacity: 0.5;
     background: url("https://images.unsplash.com/photo-1505410272170-ccbb6934c5c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
-    background-size: cover ;
+    background-size: cover;
     background-position-x: center;
     background-position-y: center;
     background-repeat: no-repeat;
@@ -65,7 +66,6 @@
   .search-categories-container {
     z-index: 2;
     input {
-      
     }
   }
 }
@@ -157,12 +157,15 @@
         position: relative;
         h1 {
           position: absolute;
-          color: $category-base;
+          color: white;
+          // -webkit-text-stroke: 0.2px;
+          // -webkit-text-stroke-color: $category-base;
           font-size: 3.5rem;
           bottom: 1%;
           width: 100%;
           text-align: center;
           z-index: 10;
+          text-shadow: 1px 2px 6px $category-base;
         }
         .gig-story-container {
           min-height: 45vh;
@@ -177,16 +180,17 @@
           background-color: #bd93abb8;
           background-attachment: fixed;
           .gig-story-background {
-            background: url("https://images.unsplash.com/photo-1485920694980-9c5db37b0d44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+            background: url("https://images.unsplash.com/photo-1532554076586-c58b3fc6a199?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80");
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: 0 -48vh;
+            // background-position: 0 -45vh;
+            background-position: 0 225%;
             position: absolute;
             top: 0;
             right: 0;
             min-width: 100%;
             min-height: 100%;
-            opacity: 0.5;
+            opacity: 0.75;
             background-attachment: fixed;
           }
           img {
@@ -198,6 +202,7 @@
             animation-name: fade-in;
             animation-duration: 4s;
             background-attachment: fixed;
+            text-shadow: 1px 2px 6px $category-base;
           }
           img.img0 {
             left: 0;
@@ -205,21 +210,25 @@
             // max-height: 90%;
           }
           img.img1 {
-            max-height: 70%;
-            left: 20vw;
+            max-height: 59%;
+            left: 39vw;
+            bottom: 14%;
           }
           img.img2 {
-            left: 45vw;
+            right: 10vw;
+            bottom: 0;
+            max-height: 90%;
           }
           h2.img3 {
+            text-shadow: 1px 2px 6px $category-base;
             position: absolute;
-            bottom: 30%;
-            right: 8%;
+            bottom: 25%;
+            right: 43%;
             font-size: 8rem;
             font-family: condiment;
             animation-name: fade-in;
             animation-duration: 6s;
-            color: $category-base;
+            color: #be207c;
             span {
               font-family: condiment;
               color: white;
@@ -237,7 +246,8 @@
       grid-template-rows: none;
       margin: 10px auto;
       background-color: unset;
-      .cover-background1, .cover-background2 {
+      .cover-background1,
+      .cover-background2 {
         display: none;
       }
       .search-categories-container {

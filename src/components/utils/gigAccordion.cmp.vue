@@ -19,7 +19,7 @@
         </div>
       </div>
       <li v-for="gigster in gigsters" :key="gigster._id" class="gigster-container" v-if="isOpen">
-        <img :src="gigster.img" @click="goToProfile(gigster._id)">
+        <img :src="gigster.img" @click="goToProfile(gigster.id)">
         <h2>{{gigster.name}} wants to be your Gigster!</h2>
         <h3 class="pending-user-rating-container">
           <span>Rating:</span>

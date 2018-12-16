@@ -2,9 +2,9 @@ $nav-border-color: rgba(255, 255, 255, 0.11);
 $hover-color: #8a1258;
 .home-nav {
   .new-event-point {
-    height: 1.2rem;
-    width: 1.2rem;
-    background-color: #ab0362c9;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: rgba(175, 45, 45, 0.767);
     // box-shadow: brown;
     border-radius: 50%;
     position: absolute;
@@ -219,10 +219,10 @@ $hover-color: #8a1258;
 @media (min-width: 1050px) {
   .home-nav {
     .new-event-point {
-      height: .8rem;
-      width: .9rem;
-      left: 5%;
-      top:20%;
+      height: 1.2rem;
+      width: 1.2rem;
+      left: -3px;
+      top:16%;
     }
     // .envelope-point.new-event-point {
     // }
