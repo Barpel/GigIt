@@ -34,17 +34,17 @@ export default {
             return chatService.update(chat)
         },
         openNewChat(context, { gigster, gigData, maister }) {
-            // alert('creating new chat')
             var chat = {
                 members: [{ name: gigster.name, img: gigster.img, _id: gigster.id },
                 { name: maister.name.first, img: maister.img, _id: maister._id }],
-                msgs: [{
-                    sender: 'Team',
-                    txt: `Welcome ${maister.name.first} and ${gigster.name}, you can now chat and set your gig!`,
-                    isRead: true,
-                    createdAt: Date.now()
-                }],
+                msgs: [],
                 gig: gigData
+            }
+            var teamMsg = {
+                sender: 'Team',
+                txt: `Welcome ${maister.name.first} and ${gigster.name}, you can now chat and set your gig!`,
+                isRead: true,
+                createdAt: Date.now()
             }
             return chatService.update(chat)
                 .then(chat => {
@@ -57,6 +57,10 @@ export default {
                         .then(gigster => {
                             let user = setChatAndUpdate(gigster)
                             context.dispatch({ type: 'updateUser', user })
+                                .then(()=> {
+                                    context.dispatch({type:'sendNewMsg', msg:teamMsg, chatId:chat._id})
+                                    context.dispatch({type:'emitNewChatMsg', userId : gigster._id})
+                                })
                         })
                     let user = setChatAndUpdate(maister)
                     return context.dispatch({ type: 'updateOwnUser', user })

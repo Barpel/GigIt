@@ -94,16 +94,7 @@ export default {
       };
       let otherUser = this.selectedChat.members[0]._id;
       this.$store.dispatch({ type: "sendNewMsg", msg: newMsg, chatId });
-      this.$store.dispatch({
-        type: "emitNewChatMsg",
-        eventMsg: {
-          txt: "You Have A New Message",
-          type: "success",
-          link: `/user/${otherUser}/inbox`,
-          action: "toProfile"
-        },
-        userId: otherUser
-      });
+      this.$store.dispatch({type: 'emitNewChatMsg',userId: otherUser});
       this.newMsgTxt = "";
     },
   },

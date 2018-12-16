@@ -18,7 +18,14 @@ export default {
         emitToUser(context, {eventMsg, userId}) {
             this._vm.$socket.emit('emitToUser', eventMsg, userId)
         },
-        emitNewChatMsg(context, {eventMsg, userId}) {
+        emitNewChatMsg(context, {userId}) {
+            console.log('user id is is isi is isi is!:', userId)
+            var eventMsg = {
+                txt: "You Have A New Message",
+                type: "success",
+                link: `/user/${userId}/inbox`,
+                action: "toProfile"
+              }
             this._vm.$socket.emit('emitNewChatMsg', eventMsg, userId)
         }
     },
