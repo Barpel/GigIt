@@ -231,7 +231,7 @@ $hover-color: #8a1258;
     .new-event-point {
       height: 1.2rem;
       width: 1.2rem;
-      left: -6px;
+      left: 14px;
       top: 10%;
     }
     top: 0;
@@ -268,9 +268,10 @@ $hover-color: #8a1258;
           display: flex;
           border-right: 1px solid rgba(255, 255, 255, 0.11);
           align-content: center;
+          margin: 0 15px;
           span {
             padding: -5px 0;
-            margin-left: 5px;
+            margin-top: 5px;
             font-family: condiment;
           }
         }
@@ -287,6 +288,9 @@ $hover-color: #8a1258;
         .nav-user-menu-container {
           span {
             display: none;
+          }
+          img {
+            margin-left: 15px;
           }
           .user-dropdown {
             right: -15px;
@@ -321,6 +325,7 @@ $hover-color: #8a1258;
         a {
           margin-right: 10px;
           img {
+            margin: 0;
           }
           i {
           }

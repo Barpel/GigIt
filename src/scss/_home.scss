@@ -184,7 +184,9 @@
             background-repeat: no-repeat;
             background-size: cover;
             // background-position: 0 -45vh;
-            background-position: 0 -45vh;
+            // background-position:;
+            background-position-x: center;
+            background-position-y: 160%;
             position: absolute;
             top: 0;
             right: 0;
@@ -210,7 +212,7 @@
             // max-height: 90%;
           }
           img.img1 {
-            max-height: 59%;
+            max-height: 80%;
             left: 39vw;
             bottom: 14%;
           }
