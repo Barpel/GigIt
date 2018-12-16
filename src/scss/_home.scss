@@ -7,8 +7,7 @@
   }
   .top-gigs-title {
     text-align: left;
-    margin-left: 1rem;
-    margin-bottom: .4rem;
+    margin: .4rem 1rem;
     span {
       color: $category-base;
       font-size: 2.3rem;
@@ -37,8 +36,8 @@
     min-width: 100%;
   }
   .cover-background1 {
-    background: url("https://res.cloudinary.com/barpel/image/upload/v1544948510/GigIt/GIGIT_COVER_FINALl.png");
-    background-size: cover;
+    background: url("https://res.cloudinary.com/barpel/image/upload/v1544958416/GigIt/cover_fixed.png");
+    background-size: 100% 100%;
     opacity: 0.8;
     z-index: -1;
   }

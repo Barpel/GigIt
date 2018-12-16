@@ -1,6 +1,5 @@
 <template>
   <section class="top-gigs-container">
-    <!-- <ul class="top-gigs-list" > -->
         <li v-if="gig && publisher">
           
           <div
@@ -37,7 +36,6 @@
             </div>
           <!-- </div> -->
         </li>
-    <!-- </ul> -->
   </section>
 </template>
 

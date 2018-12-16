@@ -42,16 +42,13 @@
         <span>It</span>
       </h1>
       <div class="search-categories-container">
-        <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
+        <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"/>
       </div>
     </div>
-    <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked">
-      <h2 slot="slot1">Top Gigs</h2>
-    </top-list>
     <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
-    <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
-    <!-- <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
-    <top-gigs :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
+    <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
+    <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+    <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -63,7 +60,6 @@ import homeFooter from "@/components/homeFooter.cmp.vue";
 import gigList from "@/components/gigList.vue";
 import topList from "@/components/topList.cmp.vue";
 import googleMap from "@/components/googleMap.vue";
-import topGigs from "@/components/topGigs.cmp.vue";
 
 export default {
   name: "home",
@@ -138,7 +134,6 @@ export default {
     gigList,
     googleMap,
     gigToolbar,
-    topGigs,
     topList
   },
   created() {
