@@ -36,6 +36,10 @@
           <button type="submit">Send</button>
         </form>
       </div>
+      <div class="no-selected-chat-container" v-else>
+        <img src="https://res.cloudinary.com/barpel/image/upload/v1544951982/GigIt/shrugging.png">
+        <h2>{{(this.user.chats.length)? 'No Selected Chats': 'You haven\'t started any chats yet'}}</h2>
+      </div>
     </div>
   </section>
 </template>
