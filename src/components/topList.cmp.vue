@@ -1,32 +1,31 @@
 <template>
   <section class="top-gigs-container">
-    <slot name="slot1"></slot>
     <ul class="top-gigs-list">
-      <top-gigs
+      <top-gig-prev
         @click.native="$emit('gigClicked', gig._id)"
         v-for="gig in topGigs"
         :key="gig._id"
         :gig="gig"
         :currUser="currUser"
       >
-        <span name="ribbon-slot">Most Paid Gig</span>
-      </top-gigs>
+        <slot name="ribbon-slot">
+           <span> {{title}} </span> 
+        </slot>
+      </top-gig-prev>
     </ul>
   </section>
 </template>
 
 <script>
-import topGigs from "./topGigs.cmp";
+import topGigPrev from "./topGigPrev.cmp";
 export default {
   props: {
     topGigs: Array,
     currUser: Object,
-    type: "string"
+    title: String
   },
-  created() {},
-
   components: {
-    topGigs
+    topGigPrev
   }
 };
 </script>
