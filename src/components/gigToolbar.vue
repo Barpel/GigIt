@@ -2,10 +2,7 @@
   <div class="search-categories-container">
     <section class="gig-toolbar-container">
       <div class="search-container">
-        <router-link to="/gig/edit" tag="button">
-          <i class="fas fa-plus"></i>
-          <span>Gig</span>
-        </router-link>
+        SORTER
         <input
           type="text"
           placeholder="Find your next Gig"
@@ -39,7 +36,7 @@
         <label for="tab2">
           <div class="item badge">
             <i class="fas fa-people-carry"></i>
-            <span v-if="gigCategoryCounter.moving">{{gigCategoryCounter.moving}}</span>
+            <!-- <span v-if="gigCategoryCounter.moving">{{gigCategoryCounter.moving}}</span> -->
           </div>
         </label>
         <input
@@ -53,10 +50,7 @@
         <label for="tab3">
           <div class="item badge">
             <i class="fas fa-hammer"></i>
-            <span
-              class="badge"
-              v-if="gigCategoryCounter['house-work']"
-            >{{gigCategoryCounter['house-work']}}</span>
+            <!-- <span class="badge" v-if="gigCategoryCounter['house-work']">{{gigCategoryCounter['house-work']}}</span> -->
           </div>
         </label>
         <input
@@ -81,10 +75,7 @@
             <i class="fas fa-male"></i>
             <i class="fas fa-female"></i>
             <i class="fas fa-male"></i>
-            <span
-              class="badge"
-              v-if="gigCategoryCounter['line-queue']"
-            >{{gigCategoryCounter['line-queue']}}</span>
+            <!-- <span class="badge" v-if="gigCategoryCounter['line-queue']" >{{gigCategoryCounter['line-queue']}}</span> -->
           </div>
         </label>
         <input
@@ -98,10 +89,7 @@
         <label for="tab6">
           <div class="item badge">
             <i class="fas fa-dog"></i>
-            <span
-              class="badge"
-              v-if="gigCategoryCounter['pet-care']"
-            >{{gigCategoryCounter['pet-care']}}</span>
+            <!-- <span class="badge" v-if="gigCategoryCounter['pet-care']" >{{gigCategoryCounter['pet-care']}}</span> -->
           </div>
         </label>
         <input
@@ -115,10 +103,7 @@
         <label for="tab7">
           <div class="item badge">
             <i class="fas fa-parachute-box"></i>
-            <span
-              class="badge"
-              v-if="gigCategoryCounter['delivery']"
-            >{{gigCategoryCounter['delivery']}}</span>
+            <!-- <span class="badge" v-if="gigCategoryCounter['delivery']" >{{gigCategoryCounter['delivery']}}</span> -->
           </div>
         </label>
         <input
@@ -132,10 +117,7 @@
         <label for="tab8">
           <div class="item badge">
             <i class="fas fa-ellipsis-h"></i>
-            <span
-              class="badge"
-              v-if="gigCategoryCounter['other']"
-            >{{gigCategoryCounter['other']}}</span>
+            <!-- <span class="badge" v-if="gigCategoryCounter['other']">{{gigCategoryCounter['other']}}</span> -->
           </div>
         </label>
       </div>

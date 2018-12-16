@@ -10,6 +10,10 @@
         </router-link>
       </div>
       <div class="nav-seperator">
+        <router-link class="navbar-add-gig wide" to="/gig/edit">
+          <i class="fas fa-plus"></i>
+          <span>Gig</span>
+        </router-link>
         <div class="nav-user-container">
           <a
             v-if="isLoggedin"
@@ -20,12 +24,16 @@
             <img :src="user.img">
             <span>{{user.name.first}}</span>
             <div class="user-dropdown" :class="dropdownStatus">
-              <router-link :to="profileLink">
-                <i class="fas fa-address-card"></i>Profile
-              </router-link>
               <a @click="doLogout">
                 <i class="fas fa-power-off"></i>Log Out
               </a>
+              <router-link :to="profileLink">
+                <i class="fas fa-address-card"></i>Profile
+              </router-link>
+              <router-link class="navbar-add-gig" to="/gig/edit">
+                <i class="fas fa-plus"></i>
+                <span>Gig</span>
+              </router-link>
             </div>
           </a>
           <router-link v-else to="/user/login" class="nav-guest-container">
