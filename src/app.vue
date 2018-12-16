@@ -42,8 +42,7 @@ export default {
   //Sockets.IO
   sockets: {
     emitEventToUser: function (msg) { //On Gig Request Event
-      var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
-      audio.play();
+      this.$store.dispatch({type:'playSound', style: 'success'})
       this.displayMsg(msg)
       if(!this.user.notficCount) this.user.notficCount = 1
       else this.user.notficCount++
@@ -52,8 +51,7 @@ export default {
     emitChatMsgToUser: function(msg) {
       var path = this.$route.path
       if(!path.includes('inbox')) { //On New Msg Event
-        var audio = new Audio('https://res.cloudinary.com/barpel/video/upload/v1544023238/GigIt%20Sounds/notification.mp3');
-        audio.play();
+        this.$store.dispatch({type:'playSound', style: 'success'})
         this.displayMsg(msg)
         if(!this.user.inboxCount) this.user.inboxCount = 1
         else this.user.inboxCount++
