@@ -135,9 +135,15 @@
             ></gig-accordion>
           </div>
         </ul>
+
         <ul v-if="gigs.pendingGigs.length &&+tabContent === 3">
           <pending-gig :gigs="gigs.pendingGigs"></pending-gig>
         </ul>
+
+        <ul v-if="gigs.completedGigs.length && +tabContent === 4">
+          <completed-gigs :gigs="gigs.completedGigs"></completed-gigs>
+        </ul>
+      
       </div>
     </div>
     <giger-review
@@ -149,6 +155,7 @@
 </template>
 <script>
 import gigAccordion from "../components/utils/gigAccordion.cmp";
+import completedGigs from "../components/utils/completedGigs.cmp";
 import pendingGig from "../components/utils/pendingGig.cmp";
 import gigerReview from "../components/gigerReview.cmp";
 export default {
@@ -288,7 +295,8 @@ export default {
   components: {
     gigAccordion,
     pendingGig,
-    gigerReview
+    gigerReview,
+    completedGigs
   }
 };
 </script>
