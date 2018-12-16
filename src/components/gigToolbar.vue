@@ -2,10 +2,7 @@
   <div class="search-categories-container">
     <section class="gig-toolbar-container">
       <div class="search-container">
-        <router-link to="/gig/edit" tag="button">
-          <i class="fas fa-plus"></i>
-          <span>Gig</span>
-        </router-link>
+        SORTER
         <input
           type="text"
           placeholder="Find your next Gig"
