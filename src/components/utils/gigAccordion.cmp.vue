@@ -9,10 +9,17 @@
           <i class="fas fa-angle-down"></i>
         </span>
         <h1>{{header}}</h1>
-        <span @click.stop="$emit('removeGig',gigId)"><i class="fas fa-trash-alt"></i></span>
+        <div class="gig-actions-wrapper">
+          <span @click="goToGig">
+            <i class="fas fa-info"></i>
+          </span>
+          <span @click.stop="$emit('removeGig',gigId)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </div>
       </div>
       <li v-for="gigster in gigsters" :key="gigster._id" class="gigster-container" v-if="isOpen">
-        <img :src="gigster.img" @click="goToProfile(gigster._id)">
+        <img :src="gigster.img" @click="goToProfile(gigster.id)">
         <h2>{{gigster.name}} wants to be your Gigster!</h2>
         <h3 class="pending-user-rating-container">
           <span>Rating:</span>
@@ -30,9 +37,16 @@
           <button @click="contactGigster(gigster)" class="accordion-gigit-btn">
             <i class="fas fa-comments"></i>
           </button>
-          <button @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
-          isForGigster:true, nameForReview:gigster.name})" class="accordion-completed-btn"> <i class="fas fa-check-circle"></i> </button>
-          <button @click="gigCancel" class="accordion-later-btn"><i class="fas fa-ban"></i></button>
+          <button
+            @click="$emit('openReviewForm',{gigId , title: header ,gigsterId:gigster.id,
+          isForGigster:true, nameForReview:gigster.name})"
+            class="accordion-completed-btn"
+          >
+            <i class="fas fa-check-circle"></i>
+          </button>
+          <button @click="gigCancel" class="accordion-later-btn">
+            <i class="fas fa-ban"></i>
+          </button>
         </div>
       </li>
     </ul>
@@ -41,8 +55,8 @@
 
 <script>
 export default {
-  props: ['header', 'gigsters','gigId','isPickedGigster', 'gigTitle'],
-  name: 'gigAccordion',
+  props: ["header", "gigsters", "gigId", "isPickedGigster", "gigTitle"],
+  name: "gigAccordion",
   data() {
     return {
       isPickedGigsterData: this.isPickedGigster,
@@ -54,22 +68,24 @@ export default {
     goToProfile(userId) {
       this.$router.push(`/user/${userId}`);
     },
-    gigsterPicked(gigster) {
-      this.isPickedGigsterData = true
-      this.$emit('gigsterPicked',gigster)
+    goToGig() {
+      this.$router.push('/gig/'+this.gigId)
     },
-    gigCancel(){
-      this.isPickedGigsterData = false
-      this.$emit('gigsterPicked',null)      
+    gigsterPicked(gigster) {
+      this.isPickedGigsterData = true;
+      this.$emit("gigsterPicked", gigster);
+    },
+    gigCancel() {
+      this.isPickedGigsterData = false;
+      this.$emit("gigsterPicked", null);
     },
     contactGigster(gigster) {
-      this.$emit('contactGigster',gigster)
-    },
-  },
-}
+      this.$emit("contactGigster", gigster);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 
