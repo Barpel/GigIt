@@ -47,53 +47,57 @@
       background-repeat: no-repeat;
       background-position: center;
       transition: all 0.5s;
+      z-index: 0;
     }
-
-    .publisher-container {
-      display: grid;
-      grid-template-columns: 1fr 100%;
-      grid-template-rows: 1fr;
-      margin: 10px 0;
-      img {
-        border-radius: 5px;
-        height: 100%;
-        max-width: 100%;
-        min-width: 45px;
-        min-height: 45px;
-        border-radius: 50%;
-        object-fit: cover;
-        grid-row: 1 / span 2;
-        align-self: start;
-        justify-self: start;
-      }
-      .publisher-info {
-        text-align: left;
-        padding-left: 15px;
-        height: 100%;
-        width: 100%;
-        grid-row: 1;
-        justify-self: start;
+    div {
+      background-color: #525151;
+      z-index: 0;
+      .publisher-container {
         display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr;
-        justify-content: start;
-        align-items: center;
-        h3 {
-          text-transform: capitalize;
+        grid-template-columns: 1fr 100%;
+        grid-template-rows: 1fr;
+        margin: 10px 0;
+        img {
+          border-radius: 5px;
+          height: 100%;
+          max-width: 100%;
+          min-width: 45px;
+          min-height: 45px;
+          border-radius: 50%;
+          object-fit: cover;
+          grid-row: 1 / span 2;
+          align-self: start;
+          justify-self: start;
+        }
+        .publisher-info {
+          text-align: left;
+          padding-left: 15px;
+          height: 100%;
           width: 100%;
-          text-align: left;
-          font-size: 1.2rem;
-          text-align: left;
-          // display: flex;
-          align-items: inherit;
-          max-height: 25px;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          max-width: 90%;
-          i {
-            color: gold;
-            font-size: 1rem;
+          grid-row: 1;
+          justify-self: start;
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          grid-template-columns: 1fr;
+          justify-content: start;
+          align-items: center;
+          h3 {
+            text-transform: capitalize;
+            width: 100%;
+            text-align: left;
+            font-size: 1.2rem;
+            text-align: left;
+            // display: flex;
+            align-items: inherit;
+            max-height: 25px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 90%;
+            i {
+              color: gold;
+              font-size: 1rem;
+            }
           }
         }
       }
