@@ -7,6 +7,7 @@ export default {
         loadingCounter: 0,
         gigCategoryCounter: null,
         topGigs: null,
+        nearestGigs: null,
         userLocation: 0,
     },
     getters: {
@@ -24,6 +25,9 @@ export default {
         },
         topGigs(state) {
             return state.topGigs
+        },
+        nearestGigs(state) {
+            return state.nearestGigs
         }
     },
     mutations: {
@@ -43,6 +47,8 @@ export default {
             gigs.sort((a, b) => {
                 return a.details.pos.dist - b.details.pos.dist
             })
+            var nearestGigs = gigs.splice(0,4)
+            if (!state.nearestGigs) state.nearestGigs = nearestGigs
             state.gigs = gigs
 
         },
@@ -75,7 +81,6 @@ export default {
                 .then(gigs => {
                     context.commit({ type: 'setGigs', gigs })
                     var counter = {}
-                    console.log('dsaddas',gigs)
                     if(!filter || filter.byCategory===''){
                         gigs.forEach(gig => {
                             if (!counter[gig.category]) counter[gig.category] = 1

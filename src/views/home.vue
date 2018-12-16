@@ -45,7 +45,10 @@
         <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"></gig-toolbar>
       </div>
     </div>
+    <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
     <top-gigs :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs>
+    <!-- <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+    <top-gigs :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked"></top-gigs> -->
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
 </template>
@@ -90,6 +93,11 @@ export default {
     gigs() {
       var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
       return gigs;
+    },
+    nearestGigs() {
+      var nearestGigs = JSON.parse(JSON.stringify(this.$store.getters.nearestGigs));
+      console.log('nearest are:',nearestGigs)
+      return nearestGigs;
     },
     topGigs() {
       var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs));
