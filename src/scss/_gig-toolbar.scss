@@ -119,6 +119,38 @@
       justify-content: center;
       margin: 0 auto;
       max-width: fit-content;
+      .toolbar-sorter {
+        margin: 0 1rem;
+        // border-radius: 5px 0 0 5px;
+        border-radius: 5px;
+        color: white;
+        background-color: #6b0842;
+        padding: .3rem 1.5rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid black;
+        .toolbar-sorter-dropdown {
+          transition: .7s;
+          position: absolute;
+          top: 2.9rem;
+          border-radius: 5px;
+          left: 0;
+          width: 100%;
+          background-color: #6b0842;
+          border: 1px solid black;
+        }
+        .toolbar-sorter-dropdown.closed {
+          opacity:0;
+          z-index: -5;
+        }
+        .toolbar-sorter-dropdown.open {
+          opacity: 1;
+          z-index: 0;
+        }
+      }
       input {
         width: 80%;
         font-size: 1.3rem;

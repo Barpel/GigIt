@@ -2,7 +2,14 @@
   <div class="search-categories-container">
     <section class="gig-toolbar-container">
       <div class="search-container">
-        SORTER
+        <div class="toolbar-sorter" @click="showSort=!showSort">
+          <i class="fas fa-sort-amount-down"></i>
+          <div class="toolbar-sorter-dropdown" 
+          :class="sortDropdownStatus">
+            <button>Money</button>
+            <button>Place</button>
+          </div>
+        </div>
         <input
           type="text"
           placeholder="Find your next Gig"
@@ -136,20 +143,23 @@ export default {
         byTitle: "",
         isActive: true
       },
-      showFilter: false
+      showFilter: false,
+      showSort: false
     };
   },
-  created() {
-    if (!this.$route.params.type) return;
-    this.filter.byCategory = this.$route.params.type;
-    this.$emit("searchGig", this.filter);
-  },
+  
   computed: {
     filterBarStatus() {
       return {
         open: this.showFilter,
         closed: !this.showFilter
-      };
+      }
+    },
+    sortDropdownStatus() {
+      return {
+        open: this.showSort,
+        closed: !this.showSort
+      }
     }
   },
   methods: {
@@ -169,6 +179,11 @@ export default {
     focusOnSearch() {
       this.$refs.searchGig.focus();
     }
+  },
+  created() {
+    if (!this.$route.params.type) return;
+    this.filter.byCategory = this.$route.params.type;
+    this.$emit("searchGig", this.filter);
   },
   watch: {
     filter: {
