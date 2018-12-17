@@ -28,7 +28,8 @@
         <div
           :class="(msg.sender === user._id)? 'member2': 'member1'"
           v-for="(msg, idx) in selectedChat.msgs"
-          :key="msg._id">
+          :key="msg._id"
+        >
           <div class="chat-msg-text" :ref="'msg' + idx">{{msg.txt}}</div>
         </div>
         <form @submit.prevent="sendMsg(selectedChat._id)">
@@ -63,12 +64,12 @@ export default {
     sentMsg: function(payload) {
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
-      if(this.selectedChat && payload.chatId === this.selectedChat._id) {
-        var msgs = this.selectedChat.msgs
-        msgs[msgs.length - 1].isRead = true
+      if (this.selectedChat && payload.chatId === this.selectedChat._id) {
+        var msgs = this.selectedChat.msgs;
+        msgs[msgs.length - 1].isRead = true;
       }
-      this.scrollDown()
-      this.$store.dispatch({type:'updateChat', chat:currNewMsgChat})
+      this.scrollDown();
+      this.$store.dispatch({ type: "updateChat", chat: currNewMsgChat });
     }
   },
   methods: {
@@ -79,11 +80,16 @@ export default {
       }, 0);
     },
     renderChat(chat) {
-      chat.msgs[chat.msgs.length-1].isRead = true
-      if(chat.members.length <= 1) chat.members.push({name: this.user.name.first, img:this.user.img, _id:this.user._id})
-      this.$store.dispatch({type:'updateChat', chat})
+      chat.msgs[chat.msgs.length - 1].isRead = true;
+      if (chat.members.length <= 1)
+        chat.members.push({
+          name: this.user.name.first,
+          img: this.user.img,
+          _id: this.user._id
+        });
+      this.$store.dispatch({ type: "updateChat", chat });
       this.selectedChat = chat;
-      this.scrollDown()
+      this.scrollDown();
     },
     sendMsg(chatId) {
       var newMsg = {
@@ -94,18 +100,19 @@ export default {
       };
       let otherUser = this.selectedChat.members[0]._id;
       this.$store.dispatch({ type: "sendNewMsg", msg: newMsg, chatId });
-      this.$store.dispatch({type: 'emitNewChatMsg',userId: otherUser});
+      this.$store.dispatch({ type: "emitNewChatMsg", userId: otherUser });
       this.newMsgTxt = "";
-    },
+    }
   },
   created() {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      user.inboxCount = 0
-      this.$store.dispatch({type:'updateUserState', user})
+      user.inboxCount = 0;
+      this.$store.dispatch({ type: "updateUserState", user });
       return user.chats.forEach(chat => {
-        this.$store.dispatch({type:'connectToChat', chatId:chat.chatId})
-        return this.$store.dispatch({ type: "getChatById", chatId: chat.chatId })
+        this.$store.dispatch({ type: "connectToChat", chatId: chat.chatId });
+        return this.$store
+          .dispatch({ type: "getChatById", chatId: chat.chatId })
           .then(chat => {
             if (!chat) return;
             var ownMemberIndex = chat.members.findIndex(
@@ -113,14 +120,13 @@ export default {
             );
             var chat = JSON.parse(JSON.stringify(chat));
             chat.members.splice(ownMemberIndex, 1);
-            var lastMsg = chat.msgs[chat.msgs.length-1]
-            if(lastMsg.sender === user._id) lastMsg.isRead = true //if sender is logged user the msg is read
-            this.chats.push(chat)
-          })
-      })
-      
-    })
-  },
+            var lastMsg = chat.msgs[chat.msgs.length - 1];
+            if (lastMsg.sender === user._id) lastMsg.isRead = true; //if sender is logged user the msg is read
+            this.chats.push(chat);
+          });
+      });
+    });
+  }
 };
 </script>
 

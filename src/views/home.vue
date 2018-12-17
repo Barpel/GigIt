@@ -45,11 +45,14 @@
         <gig-toolbar :gigCategoryCounter="gigCategoryCounter" @searchGig="filterByKey"/>
       </div>
     </div>
-    <div v-if="!isFiltered" class="top-gigs-container">
+    <div v-if="!isFiltered" class="home-top-gigs-container">
       <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
       <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
-      <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+      <h1 class="top-gigs-title"><span>Gigs</span> within a mile :</h1>
       <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
+      <br>
+      <hr >
+
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
@@ -106,9 +109,8 @@ export default {
       return topGigs;
     },
     gigCategoryCounter() {
-      var gigCategoryCounter = JSON.parse(
-        JSON.stringify(this.$store.getters.gigCategoryCounter)
-      );
+      var gigCategoryCounter = this.$store.getters.gigCategoryCounter
+
       return gigCategoryCounter;
     },
     user() {
