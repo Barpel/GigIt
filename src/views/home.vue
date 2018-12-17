@@ -35,7 +35,21 @@
     </div>
     <!-- <hr class="hr1"> -->
     <div class="cover-container">
-      <div class="cover-background1"></div>
+      <div class="cover-background1">
+        <img src="https://res.cloudinary.com/barpel/image/upload/v1544710606/GigIt/happy_bar_using_hammer.png" class="img1">
+        <img
+          src="https://res.cloudinary.com/barpel/image/upload/v1545063714/GigIt/happy_guy_bring_bag.png"
+          class="img2"
+        >
+        <img
+          src="https://res.cloudinary.com/barpel/image/upload/v1545063712/GigIt/painting_happy_jonas.png"
+          class="img3"
+        >
+        <img
+          src="https://res.cloudinary.com/barpel/image/upload/v1544710699/GigIt/2_happy_guys_carry_1_couch.png"
+          class="img4"
+        >
+      </div>
       <div class="cover-background2"></div>
       <h1>
         Gig
@@ -46,9 +60,15 @@
       </div>
     </div>
     <div v-if="!isFiltered" class="home-top-gigs-container">
-      <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
+      <h1 class="top-gigs-title">
+        Top paying
+        <span>Gigs</span> :
+      </h1>
       <top-list :topGigs="topPriceGigs" :currUser="user" @gigClicked="gigClicked" title="Price"/>
-      <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+      <h1 class="top-gigs-title">
+        Nearest
+        <span>Gigs</span> :
+      </h1>
       <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Dist"/>
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
@@ -94,16 +114,16 @@ export default {
   },
   computed: {
     gigs() {
-      return this.$store.getters.gigs
+      return this.$store.getters.gigs;
     },
     nearestGigs() {
-      return this.$store.getters.nearestGigs
+      return this.$store.getters.nearestGigs;
     },
     topPriceGigs() {
-      return this.$store.getters.topPriceGigs
+      return this.$store.getters.topPriceGigs;
     },
     gigCategoryCounter() {
-      return this.$store.getters.gigCategoryCounter
+      return this.$store.getters.gigCategoryCounter;
     },
     user() {
       return this.$store.getters.user;
@@ -120,10 +140,10 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey(filter, sorter) {
-      if(filter.byCategory || filter.byTitle) this.isFiltered = true
-      else this.isFiltered = false
+      if (filter.byCategory || filter.byTitle) this.isFiltered = true;
+      else this.isFiltered = false;
       this.showCategories = false;
-      this.$store.dispatch("getGigs", { filter, sorter});
+      this.$store.dispatch("getGigs", { filter, sorter });
     }
   },
   components: {
@@ -146,7 +166,7 @@ export default {
     navigator.geolocation.getCurrentPosition(position => {
       this.$store.dispatch({ type: "userLocation", position });
     });
-  },
+  }
 };
 </script>
 
