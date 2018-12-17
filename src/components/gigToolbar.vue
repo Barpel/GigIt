@@ -2,12 +2,11 @@
   <div class="search-categories-container">
     <section class="gig-toolbar-container">
       <div class="search-container">
-        <div class="toolbar-sorter" @click="showSort=!showSort">
+        <div class="toolbar-sorter" :class="sortDropdownStatus" @click="showSort=!showSort">
           <i class="fas fa-sort-amount-down"></i>
-          <div class="toolbar-sorter-dropdown" 
-          :class="sortDropdownStatus">
-            <button>Money</button>
-            <button>Place</button>
+          <div class="toolbar-sorter-dropdown" >
+            <div @click="sortBy('Price')"><i class="fas fa-hand-holding-usd"></i></div>
+            <div @click="sortBy('Dist')"><i class="fas fa-map-marked-alt"></i></div>
           </div>
         </div>
         <input
@@ -143,6 +142,7 @@ export default {
         byTitle: "",
         isActive: true
       },
+      sorter: 'Dist',
       showFilter: false,
       showSort: false
     };
@@ -170,14 +170,17 @@ export default {
     //   this.$emit("searchGig", this.filter);
     // },
     searchByTitle() {
-      return;
-      this.$emit("searchGig", { ...this.filter });
+      this.$emit("searchGig", this.filter, this.sorter);
     },
     toggleFilterStatus() {
       this.showFilter = !this.showFilter;
     },
     focusOnSearch() {
       this.$refs.searchGig.focus();
+    },
+    sortBy(sorter) {
+      this.sorter = sorter
+      this.searchByTitle()
     }
   },
   created() {

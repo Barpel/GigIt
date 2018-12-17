@@ -6,7 +6,7 @@ export default {
         isLoading: false,
         loadingCounter: 0,
         gigCategoryCounter: null,
-        topGigs: null,
+        topPriceGigs: null,
         nearestGigs: null,
         userLocation: 0,
     },
@@ -23,39 +23,38 @@ export default {
         gigCategoryCounter(state) {
             return state.gigCategoryCounter
         },
-        topGigs(state) {
-            return state.topGigs
+        topPriceGigs(state) {
+            return state.topPriceGigs
         },
         nearestGigs(state) {
             return state.nearestGigs
         }
     },
     mutations: {
-        setGigs(state, { gigs, filter }) {
-            console.log('filter is', filter)
+        setGigs(state, { gigs, filter, sorter}) {
             if (state.userLocation) {
                 gigs.map(gig => {
                     gigService.getDistFromUser(gig, state.userLocation)
                 })
             }
-            
-            if (!state.topGigs) {
-                var gigsCopy = JSON.parse(JSON.stringify(gigs))
-                
-                gigsCopy.sort((a, b) => {
-                    return b.details.price - a.details.price
-                })
-               state.topGigs = gigsCopy.splice(0,4)
+            function sortByPrice (a,b) {
+                return b.details.price - a.details.price
             }
-            gigs.sort((a, b) => {
+            function sortByDist (a,b) {
                 return a.details.pos.dist - b.details.pos.dist
-            })
-            if (!filter || (!filter.byCategory && !filter.byTitle)) {
-                var nearestGigs = gigs.splice(0,4)
-                if (!state.nearestGigs) state.nearestGigs = nearestGigs
             }
+            if(sorter === 'Dist') gigs.sort(sortByDist)
+            else if (sorter === 'Price') gigs.sort(sortByPrice)
             state.gigs = gigs
-
+            if (!state.topPriceGigs) { //if no top price gigs then also no nearest gigs
+                var gigsCopy = JSON.parse(JSON.stringify(gigs))
+                if(sorter !== 'Dist') gigsCopy.sort(sortByDist)
+                state.nearestGigs = gigsCopy.slice(0,4)
+                //state.nearestGigs = gigsCopy //TODO: when there is a sliding gallery of top gigs
+                gigsCopy.sort(sortByPrice)
+                state.topPriceGigs = gigsCopy.slice(0,4)
+                //state.topPriceGigs = gigsCopy //TODO: when there is a sliding gallery of top gigs
+            }
         },
         updateGig(state, { gig }) {
             var gigIdx = state.gigs.findIndex(currGig => currGig._id === gig._id)
@@ -81,10 +80,10 @@ export default {
         }
     },
     actions: {
-        getGigs(context, { filter }) {
+        getGigs(context, { filter, sorter = 'Dist'}) {
             return gigService.query(filter)
                 .then(gigs => {
-                    context.commit({ type: 'setGigs', gigs, filter })
+                    context.commit({ type: 'setGigs', gigs, filter, sorter })
                     var counter = {}
                     if(!filter || filter.byCategory===''){
                         gigs.forEach(gig => {
