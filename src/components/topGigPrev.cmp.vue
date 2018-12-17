@@ -43,7 +43,7 @@
 export default {
   props: {
     gig: Object,
-    currUser: Object
+    currUser: Object,
   },
   data() {
     return {

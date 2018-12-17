@@ -1,5 +1,16 @@
 .top-gigs-container{
-    
+    .see-more-link{
+        float: right;
+        padding: 5px;
+        margin-right: 10px;
+        color: darkcyan;
+        text-decoration:underline;
+        cursor: pointer;
+        transition:  0.5s;
+    }
+    .see-more-link:hover{
+        font-size: 1.1rem;
+    }
     .top-gigs-list{
         display: grid;
         grid-template-rows:1fr;
