@@ -2,7 +2,13 @@
   <div class="search-categories-container">
     <section class="gig-toolbar-container">
       <div class="search-container">
-        SORTER
+        <div class="toolbar-sorter" :class="sortDropdownStatus" @click="showSort=!showSort">
+          <i class="fas fa-sort-amount-down"></i>
+          <div class="toolbar-sorter-dropdown" >
+            <div @click="sortBy('Price')"><i class="fas fa-hand-holding-usd"></i></div>
+            <div @click="sortBy('Dist')"><i class="fas fa-map-marked-alt"></i></div>
+          </div>
+        </div>
         <input
           type="text"
           placeholder="Find your next Gig"
@@ -136,20 +142,24 @@ export default {
         byTitle: "",
         isActive: true
       },
-      showFilter: false
+      sorter: 'Dist',
+      showFilter: false,
+      showSort: false
     };
   },
-  created() {
-    if (!this.$route.params.type) return;
-    this.filter.byCategory = this.$route.params.type;
-    this.$emit("searchGig", this.filter);
-  },
+  
   computed: {
     filterBarStatus() {
       return {
         open: this.showFilter,
         closed: !this.showFilter
-      };
+      }
+    },
+    sortDropdownStatus() {
+      return {
+        open: this.showSort,
+        closed: !this.showSort
+      }
     }
   },
   methods: {
@@ -160,15 +170,23 @@ export default {
     //   this.$emit("searchGig", this.filter);
     // },
     searchByTitle() {
-      return;
-      this.$emit("searchGig", { ...this.filter });
+      this.$emit("searchGig", this.filter, this.sorter);
     },
     toggleFilterStatus() {
       this.showFilter = !this.showFilter;
     },
     focusOnSearch() {
       this.$refs.searchGig.focus();
+    },
+    sortBy(sorter) {
+      this.sorter = sorter
+      this.searchByTitle()
     }
+  },
+  created() {
+    if (!this.$route.params.type) return;
+    this.filter.byCategory = this.$route.params.type;
+    this.$emit("searchGig", this.filter);
   },
   watch: {
     filter: {

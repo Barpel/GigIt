@@ -47,12 +47,9 @@
     </div>
     <div v-if="!isFiltered" class="home-top-gigs-container">
       <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
-      <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
-      <h1 class="top-gigs-title"><span>Gigs</span> within a mile :</h1>
-      <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
-      <br>
-      <hr >
-
+      <top-list :topGigs="topPriceGigs" :currUser="user" @gigClicked="gigClicked" title="Price"/>
+      <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
+      <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Dist"/>
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
@@ -97,21 +94,16 @@ export default {
   },
   computed: {
     gigs() {
-      var gigs = JSON.parse(JSON.stringify(this.$store.getters.gigs));
-      return gigs;
+      return this.$store.getters.gigs
     },
     nearestGigs() {
-      var nearestGigs = JSON.parse(JSON.stringify(this.$store.getters.nearestGigs));
-      return nearestGigs;
+      return this.$store.getters.nearestGigs
     },
-    topGigs() {
-      var topGigs = JSON.parse(JSON.stringify(this.$store.getters.topGigs));
-      return topGigs;
+    topPriceGigs() {
+      return this.$store.getters.topPriceGigs
     },
     gigCategoryCounter() {
-      var gigCategoryCounter = this.$store.getters.gigCategoryCounter
-
-      return gigCategoryCounter;
+      return this.$store.getters.gigCategoryCounter
     },
     user() {
       return this.$store.getters.user;
@@ -127,11 +119,11 @@ export default {
     gigClicked(gigId) {
       this.$router.push(`gig/${gigId}`);
     },
-    filterByKey(filter) {
+    filterByKey(filter, sorter) {
       if(filter.byCategory || filter.byTitle) this.isFiltered = true
       else this.isFiltered = false
       this.showCategories = false;
-      this.$store.dispatch("getGigs", { filter });
+      this.$store.dispatch("getGigs", { filter, sorter});
     }
   },
   components: {

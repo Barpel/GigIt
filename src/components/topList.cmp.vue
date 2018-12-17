@@ -13,6 +13,7 @@
         </slot>
       </top-gig-prev>
     </ul>
+    <i class="see-more-link" @click="seeMore(title)">Discover More...</i>
   </section>
 </template>
 
@@ -23,6 +24,11 @@ export default {
     topGigs: Array,
     currUser: Object,
     title: String
+  },
+  methods:{
+    seeMore(title){
+      console.log(title)
+    }
   },
   components: {
     topGigPrev
