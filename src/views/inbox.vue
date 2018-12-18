@@ -110,7 +110,7 @@ export default {
     const userId = this.$route.params.userId;
     this.$store.dispatch({ type: "getUserById", userId }).then(user => {
       user.inboxCount = 0;
-      this.$store.dispatch({ type: "updateUserState", user });
+      this.$store.dispatch({ type: 'updateUserState', user });
       return user.chats.forEach(chat => {
         this.$store.dispatch({ type: "connectToChat", chatId: chat.chatId });
         return this.$store.dispatch({ type: "getChatById", chatId: chat.chatId })
@@ -127,9 +127,6 @@ export default {
           });
       });
     });
-  },
-  destroyed(){
-
   },
 };
 </script>

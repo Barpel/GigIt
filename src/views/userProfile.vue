@@ -208,6 +208,7 @@ export default {
               if(loggedUser && loggedUser._id === user._id) {
                 this.isOwnProfile = true
                 this.user.notficCount = 0
+                this.$store.dispatch({type:'updateUserState', user:this.user})
               }
         });
     },
@@ -283,6 +284,8 @@ export default {
   },
   created() {
     this.loadUser();
+      
+
     // console.log("gigs", this.gigs);
   },
   watch: {
