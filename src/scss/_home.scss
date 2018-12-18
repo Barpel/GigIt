@@ -37,10 +37,35 @@
     min-width: 100%;
   }
   .cover-background1 {
-    background: url("https://res.cloudinary.com/barpel/image/upload/v1544958416/GigIt/cover_fixed.png");
-    background-size: 100% 100%;
-    opacity: 0.8;
+    // background: url("https://res.cloudinary.com/barpel/image/upload/v1544958416/GigIt/cover_fixed.png");
     z-index: -1;
+    max-height: inherit;
+    img {
+      opacity: 0.8;
+      position: absolute;
+      bottom: 0;
+      object-fit: cover;
+      min-width: 50px;
+      max-width: 100px;
+      // max-height: 50px;
+    }
+    &>.img1 {
+      left: 10vw;
+      max-width: 140px;
+    }
+    &>.img2 {
+      left: 40vw;
+    }
+    &>.img3{
+      right: 12vw;
+      opacity: 0.9;
+    }
+    &>.img4{
+      display: none;
+      opacity: 0.9;
+      right: 0;
+      max-width: 250px;
+    }
   }
   .cover-background2 {
     opacity: 0.5;
@@ -66,6 +91,18 @@
   .search-categories-container {
     z-index: 2;
     input {
+    }
+  }
+}
+@media(min-width:750px) {
+  .cover-container {
+    &>.cover-background1 {
+      &>.img3 {
+        right: 35vw;
+      }
+      &>.img4{
+        display: initial;
+      }
     }
   }
 }
@@ -207,7 +244,7 @@
             text-shadow: 1px 2px 6px $category-base;
           }
           img.img0 {
-            left: 0;
+            left: 0vw;
             bottom: 0;
             // max-height: 90%;
           }
