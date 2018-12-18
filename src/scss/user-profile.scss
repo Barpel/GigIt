@@ -216,7 +216,7 @@ $card-bg: #646262;
       & > ul {
         white-space: nowrap;
         overflow-y: scroll;
-        background-color: #5f063a;
+        background-color: $base;
         border: 1px solid $category-base;
         border-top: 0;
         min-height: 80%;
@@ -258,7 +258,7 @@ $card-bg: #646262;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             border-bottom: 0;
-            background-color: $category-base;
+            background-color: $darker-base;
             margin-right: -1px;
             padding: 2%;
             position: relative;
@@ -267,13 +267,14 @@ $card-bg: #646262;
             font-family: roboto;
             white-space: nowrap;
             &:hover {
-              background-color: #810c51;
+              background-color: $darker-base;
+              opacity: 0.7;
             }
           }
 
           &:checked + label {
             box-shadow: 0 0px 0 -1px #fff, inset 0 5px 0 -1px white;
-            background-color: #5f063a;
+            background-color: $base;
             // min-width: 110px;
             z-index: 10;
             top: 5px;

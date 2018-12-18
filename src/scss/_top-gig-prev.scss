@@ -115,7 +115,7 @@
                 }
               }
               & > button:hover {
-                background-color: #7c0d4e;
+                background-color: $darker-base;
               }
             }
           }
@@ -149,7 +149,7 @@
   .home-top-gigs-container {
     & > .top-gigs-container {
       & > ul {
-        grid-template-columns: repeat(3, 33.3%);
+        // grid-template-columns: repeat(3, 33.3%);
       }
     }
   }

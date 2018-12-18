@@ -1,6 +1,6 @@
 .gig-edit {
   display: grid;
-  background-color: #6b0e44b4;
+  background-color: $base;
   border-radius: 5px;
   max-width: 75vw;
   margin: 0 auto 11%;
@@ -9,11 +9,11 @@
   animation-name: slide-right;
   animation-duration: 0.3s;
   h1 {
-    color: white;
+    color: #525252;
     margin: 0 auto;
     font-size: 3rem;
     width: 100%;
-    background: url("../assets/moving2.jpg");
+    background: white;
     background-position: 0 -35px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -116,7 +116,7 @@
   }
   .gig-submit-btn {
     height: 3rem;
-    background-color: $category-base;
+    background-color: #525252;
     border: none;
     width: 50%;
     margin: 0 auto;
@@ -130,7 +130,7 @@
     span {
       font-family: condiment;
       font-size: 1.8rem;
-      color: #9c1463;
+      // color: $darker-base;
     }
   }
   .gig-submit-btn:hover {
@@ -139,7 +139,8 @@
     animation-timing-function: linear;
     animation-iteration-count: 4;
     animation-direction: alternate;
-    background-color: #680a41;
+    background-color: #727272;
+    // color: $base;
   }
   .photo-gallery {
     grid-template-columns: 150px 150px 150px;
@@ -256,7 +257,7 @@
     h1 {
       font-size: 3rem;
       width: 100%;
-      background: url("../assets/moving2.jpg");
+      background: white;
       background-size: cover;
       border-radius: 5px;
       span {

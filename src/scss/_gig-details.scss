@@ -1,5 +1,5 @@
 .gig-details-container {
-  $card-color: #4b052e;
+  $card-color: #208b99;
   max-width: 70%;
   margin: 10px auto;
   .top-container {
@@ -18,7 +18,7 @@
       }
     }
     h6:hover {
-      color: $category-base;
+      color: $darker-base;
       cursor: pointer;
     }
     .top-user-container {
@@ -61,7 +61,7 @@
         }
       }
       button {
-        background-color: $category-base;
+        background-color: $darker-base;
         border: none;
         border-radius: 10px;
         color: white;
@@ -100,7 +100,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 20px 0;
-        background-color: $card-color;
+        background-color: $base;
         border: 1px solid $category-base;
         padding: 10px;
         border-radius: 5px;
@@ -184,13 +184,15 @@
         p {
           font-family: roboto;
           font-weight: bold;
-          font-size: 1.6rem;
-          color: rgb(21, 168, 21);
+          font-size: 1.8rem;
+          color: white;
+          -webkit-text-stroke-color:  green;
+          -webkit-text-stroke-width: 0.5px;
           letter-spacing: 1px;
           margin: 10px 0;
         }
         button {
-          background-color: rgb(21, 168, 21);
+          background-color: #2ab82a;
           color: white;
           border: none;
           border-radius: 10px;
@@ -209,7 +211,7 @@
             span {
               span {
                 margin-left: -3px;
-                color: #97a5a7;
+                color: #525252;
               }
               font-family: condiment;
             }
@@ -221,7 +223,7 @@
         }
       }
       .map-container {
-        background-color: $category-base;
+        background-color: $card-color;
         border-radius: 5px;
         margin: 10px 0 0;
         padding: 10px;
@@ -231,6 +233,8 @@
 }
 
 @media (min-width: 1050px) {
+  $card-color2: #828282;
+
   .gig-details-container {
     
     .top-container {
@@ -318,6 +322,7 @@
         }
   
         .gig-category-wrapper {
+          background-color: $card-color2;
           grid-gap: 10px;
           h5 {
            font-size: 1.5rem;
@@ -338,7 +343,8 @@
       .gig-details-right-container {
         
         .call-to-action-container {
-         
+          background-color: $card-color2;
+
           p {
            
           }
