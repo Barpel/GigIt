@@ -38,7 +38,6 @@ export default {
     // }
   },
   created() {
-    console.log('gig VUe!!!!');
     
     // if (this.$route.params.type) {
     //   var category = this.$route.params.type;

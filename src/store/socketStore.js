@@ -19,7 +19,6 @@ export default {
             this._vm.$socket.emit('emitToUser', eventMsg, userId)
         },
         emitNewChatMsg(context, {userId}) {
-            console.log('user id is is isi is isi is!:', userId)
             var eventMsg = {
                 txt: "You Have A New Message",
                 type: "success",

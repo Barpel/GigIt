@@ -47,7 +47,6 @@ export default {
         updateOwnUser(context, { user }) {
             return userService.update(user)
                 .then(user => {
-                    // debugger
                     context.commit({ type: 'setLoggedUser', user })
                     return user
                 })

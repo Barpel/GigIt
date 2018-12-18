@@ -101,7 +101,7 @@ export default {
       });
     },
     removeGigId(gigId){
-      console.log(111111111111)
+      console.log('removing gigId')
     },
     sumbitReview(review) {
       // console.log(review);
