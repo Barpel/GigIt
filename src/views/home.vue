@@ -64,12 +64,12 @@
         Top paying
         <span>Gigs</span> :
       </h1>
-      <top-list :topGigs="topPriceGigs" :currUser="user" @gigClicked="gigClicked" title="Price"/>
+      <top-list :topGigs="topPriceGigs" title="Price" :currUser="user" @gigClicked="gigClicked" @sortBy="sortBy"/>
       <h1 class="top-gigs-title">
         Within a mile from you
         <span>Gigs</span> :
       </h1>
-      <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Dist"/>
+      <top-list :topGigs="nearestGigs"  title="Dist" :currUser="user" @gigClicked="gigClicked" @sortBy="sortBy"/>
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
@@ -133,6 +133,10 @@ export default {
     }
   },
   methods: {
+    sortBy(sorter) {
+      this.isFiltered = true
+      this.$store.dispatch({type:'getGigs', filter:{} , sorter });
+    },
     onImgLoaded() {
       this.imgLoaded = true;
     },
