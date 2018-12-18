@@ -60,8 +60,10 @@ export default {
                             let user = setChatAndUpdate(gigster)
                             context.dispatch({ type: 'updateUser', user })
                                 .then(()=> {
-                                    context.dispatch({type:'sendNewMsg', msg:teamMsg, chatId:chat._id})
-                                    context.dispatch({type:'emitNewChatMsg', userId : gigster._id})
+                                    setTimeout(() => {
+                                        context.dispatch({type:'sendNewMsg', msg:teamMsg, chatId:chat._id})
+                                        context.dispatch({type:'emitNewChatMsg', userId : gigster._id})
+                                    }, 1400);
                                 })
                         })
                     let user = setChatAndUpdate(maister)

@@ -82,7 +82,7 @@ export default {
       }, 0);
     },
     renderChat(chat) {
-      chat.msgs[chat.msgs.length - 1].isRead = true;
+      if(chat.msgs.length) chat.msgs[chat.msgs.length - 1].isRead = true;
       if (chat.members.length <= 1)
         chat.members.push({
           name: this.user.name.first,
