@@ -66,7 +66,7 @@
       </h1>
       <top-list :topGigs="topPriceGigs" :currUser="user" @gigClicked="gigClicked" title="Price"/>
       <h1 class="top-gigs-title">
-        Nearest
+        Within a mile from you
         <span>Gigs</span> :
       </h1>
       <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Dist"/>
@@ -95,15 +95,15 @@ export default {
       carouselObjs: [
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544724278/GigIt/story1.png"
+            "https://res.cloudinary.com/barpel/image/upload/v1545131973/GigIt/guy_with_a_phone.png"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544722792/GigIt/happy_bar_on_his_way2.png"
+            "https://res.cloudinary.com/barpel/image/upload/v1545134043/GigIt/sexy_guy_with_a_motocycle_no_wind_shield.png"
         },
         {
           imgUrl:
-            "https://res.cloudinary.com/barpel/image/upload/v1544728766/GigIt/2_guys_handshake_with_blanket2.png"
+            "https://res.cloudinary.com/barpel/image/upload/v1545134543/GigIt/2_guys_sharing_a_box.png"
         },
         {
           imgUrl:
