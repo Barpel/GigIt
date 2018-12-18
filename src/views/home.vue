@@ -159,7 +159,7 @@ export default {
       this.imgCounter++;
       if (this.imgCounter === 4) this.imgCounter = 0;
     }, 4000);
-    // this.$store.dispatch({type:'toggleLoadingOn'})
+    this.$store.dispatch({type:'toggleLoadingOn'})
     this.$store
       .dispatch({ type: "getGigs" })
       .then(() => this.$store.dispatch({ type: "toggleLoadingOff" }));
