@@ -44,13 +44,26 @@ export default {
         updateUser(context, { user }) {
             return userService.update(user)
         },
+
+
+
+        
+
+        //UPDATE THE LOGGED USER
         updateOwnUser(context, { user }) {
             return userService.update(user)
                 .then(user => {
+                    // UPDATE THE LOGGED USER TO THE STORE'S STATE
                     context.commit({ type: 'setLoggedUser', user })
                     return user
                 })
         },
+
+
+
+
+
+
         onLogin(context, { userCreds }) {
             return userService.loginUser(userCreds)
                 .then(user => context.commit({ type: 'setLoggedUser', user }))

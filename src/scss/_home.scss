@@ -261,7 +261,7 @@
             max-height: 90%;
           }
           h2.img3 {
-            text-shadow: 1px 2px 6px $category-base;
+            text-shadow: 1px 1px 10px white;
             position: absolute;
             bottom: 25%;
             right: 43%;
@@ -269,10 +269,10 @@
             font-family: condiment;
             animation-name: fade-in;
             animation-duration: 6s;
-            color: #be207c;
+            color: black;
             span {
+              color: $base;
               font-family: condiment;
-              color: white;
               margin-left: -20px;
             }
           }
