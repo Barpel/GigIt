@@ -46,7 +46,7 @@ export default {
         },
 
 
-
+        //------------------------------------------------
         
 
         //UPDATE THE LOGGED USER
@@ -59,9 +59,9 @@ export default {
                 })
         },
 
-
-
-
+        
+        
+        //------------------------------------------------
 
 
         onLogin(context, { userCreds }) {
