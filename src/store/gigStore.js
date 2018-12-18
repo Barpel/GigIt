@@ -61,6 +61,8 @@ export default {
             state.gigs.splice(gigIdx, 1, gig)
         },
         toggleLoadingOn(state, payload) {
+            
+            console.log('all i wanna do is Loadload',state.isLoading)
             if (state.loadingCounter === 0) {
                 state.isLoading = true
                 state.loadingCounter = 1
@@ -68,6 +70,8 @@ export default {
             setTimeout(() => state.loadingCounter = 0, 5000)
         },
         toggleLoadingOff(state) {
+            
+            console.log('all i wanna do is Loadload',state.isLoading)
             state.isLoading = false
         },
         setGigCategoryCount(state, { counter }) {
