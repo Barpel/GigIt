@@ -9,11 +9,13 @@
         :currUser="currUser"
       >
         <slot name="ribbon-slot">
-           <span> {{title}} </span> 
+          <span>{{title}}</span>
         </slot>
       </top-gig-prev>
     </ul>
-    <i class="see-more-link" @click="seeMore(title)">Discover More...</i>
+    <h2 class="see-more-link" @click="seeMore(title)">Find More &nbsp;
+      <i class="fas fa-chevron-right"></i>
+    </h2>
   </section>
 </template>
 
@@ -25,9 +27,9 @@ export default {
     currUser: Object,
     title: String
   },
-  methods:{
-    seeMore(title){
-      console.log(title)
+  methods: {
+    seeMore(title) {
+      console.log(title);
     }
   },
   components: {

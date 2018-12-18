@@ -6,6 +6,18 @@
   & > .top-gigs-title {
   }
   & > .top-gigs-container {
+    & > h2.see-more-link {
+      text-align: right;
+      margin: 15px 0;
+      color: $base;
+      transition: all .3s;
+      min-height: 30px;
+    }
+    & > h2.see-more-link:hover {
+      color: $darker-base;
+      cursor: pointer;
+      font-size: 1.45em;
+    }
     & > ul {
       display: grid;
       grid-template-columns: 1fr;
