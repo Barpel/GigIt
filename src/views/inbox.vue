@@ -33,7 +33,7 @@
           <div v-if="msg" class="chat-msg-text" :ref="'msg' + idx">{{msg.txt}}</div>
         </div>
         <form @submit.prevent="sendMsg(selectedChat._id)">
-          <el-input placeholder="Type a message" v-model="newMsgTxt"></el-input>
+          <el-input @input="autoChat" placeholder="Type a message" v-model="newMsgTxt"></el-input>
           <button type="submit">Send</button>
         </form>
       </div>
@@ -92,6 +92,15 @@ export default {
       this.$store.dispatch({ type: "updateChat", chat });
       this.selectedChat = chat;
       this.scrollDown();
+    },
+    autoChat(ev){
+      console.log(ev)
+      if(ev==='h'){
+        this.newMsgTxt='hey man can you come as soon as possible ?'
+      }
+      if(ev==='y'){
+        this.newMsgTxt='yeah sure on my way!'
+      }
     },
     sendMsg(chatId) {
       var newMsg = {

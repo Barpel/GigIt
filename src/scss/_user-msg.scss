@@ -37,8 +37,8 @@
 .user-msg-container.success {
     top:0.2rem;
     right:0.2rem;
-    background-color: #ae7b98;
-    border: 2px solid #ae7b98;
+    background-color: $base;
+    border: 2px solid $darker-base;
 }
 
 .user-msg-container.error {
@@ -48,4 +48,10 @@
     border: 2px solid #ce1c1c;
     // background-color: red;
     background-color: #ce1c1c;
+}
+
+@media (min-width:1050px) {
+    .user-msg-container.success {
+        top:73px;
+    }
 }
