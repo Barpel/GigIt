@@ -24,7 +24,7 @@
         <h3 class="pending-user-rating-container">
           <span>Rating:</span>
           <i class="fas fa-star"></i>
-          <span>{{gigster.completedReviewsAverage}}</span>
+          <span>{{(gigster.completedReviewsAverage).toFixed(1)}}</span>
         </h3>
         <div v-if="!isPickedGigsterData" class="gigster-btn-container">
           <button @click="gigsterPicked(gigster)" class="accordion-gigit-btn">
