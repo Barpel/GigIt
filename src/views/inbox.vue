@@ -62,6 +62,9 @@ export default {
   },
   sockets: {
     sentMsg: function(payload) {
+      console.log('paypayload',payload)
+      console.log('this is chat room~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',this.chats)
+      debugger
       var currNewMsgChat = this.chats.find(chat => chat._id === payload.chatId);
       currNewMsgChat.msgs.push(payload.msg);
       if (this.selectedChat && payload.chatId === this.selectedChat._id) {
@@ -105,28 +108,34 @@ export default {
     }
   },
   created() {
-    const userId = this.$route.params.userId;
-    this.$store.dispatch({ type: "getUserById", userId }).then(user => {
-      user.inboxCount = 0;
-      this.$store.dispatch({ type: "updateUserState", user });
-      return user.chats.forEach(chat => {
-        this.$store.dispatch({ type: "connectToChat", chatId: chat.chatId });
-        return this.$store
-          .dispatch({ type: "getChatById", chatId: chat.chatId })
-          .then(chat => {
-            if (!chat) return;
-            var ownMemberIndex = chat.members.findIndex(
-              member => member._id === this.user._id
-            );
+      const userId = this.$route.params.userId;
+      this.$store.dispatch({ type: "getUserById", userId }).then(user => {
+        user.inboxCount = 0;
+        this.$store.dispatch({ type: "updateUserState", user });
+        return user.chats.forEach(chat => {
+          this.$store.dispatch({ type: "connectToChat", chatId: chat.chatId });
+          return this.$store
+            .dispatch({ type: "getChatById", chatId: chat.chatId })
+            .then(chat => {
+              if (!chat) return;
+              var ownMemberIndex = chat.members.findIndex(
+                member => member._id === this.user._id
+              );
             var chat = JSON.parse(JSON.stringify(chat));
             chat.members.splice(ownMemberIndex, 1);
             var lastMsg = chat.msgs[chat.msgs.length - 1];
             if (lastMsg.sender === user._id) lastMsg.isRead = true; //if sender is logged user the msg is read
+            console.log(this.chats,'and chats is here',chat)
             this.chats.push(chat);
+            console.log('this is chats after pushing',this.chats)
+      
           });
       });
     });
-  }
+  },
+  destroyed(){
+
+  },
 };
 </script>
 
