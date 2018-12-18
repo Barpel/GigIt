@@ -39,8 +39,33 @@ export default {
       }, delay);
     }
   },
-  //Sockets.IO
+
+
+
+
+
+  //Vue Sockets
   sockets: {
+    //ON NEW CHAT MSG FROM USER'S SOCKET
+    emitChatMsgToUser: function(msg) {
+      var path = this.$route.path
+      if(!path.includes('inbox')) { // IF USER IS NOT ON THE INBOX PAGE:
+        //PLAY AND DISPLAY NOTIFICATION POP-UP MESSAGE
+        this.$store.dispatch({type:'playSound', style: 'success'})
+        this.displayMsg(msg)
+        //UPDATE USER'S STATE TO SHOW NOTIFICATION DOT
+        if(!this.user.inboxCount) this.user.inboxCount = 1
+        else this.user.inboxCount++
+        this.$store.dispatch({type:'updateUserState', user:this.user})
+      }
+    },
+
+
+
+
+
+
+
     emitEventToUser: function (msg) { //On Gig Request Event
       this.$store.dispatch({type:'playSound', style: 'success'})
       this.displayMsg(msg)
@@ -48,17 +73,12 @@ export default {
       else this.user.notficCount++
       this.$store.dispatch({type:'updateUserState', user:this.user})
     },
-    emitChatMsgToUser: function(msg) {
-      var path = this.$route.path
-      if(!path.includes('inbox')) { //On New Msg Event
-        this.$store.dispatch({type:'playSound', style: 'success'})
-        this.displayMsg(msg)
-        if(!this.user.inboxCount) this.user.inboxCount = 1
-        else this.user.inboxCount++
-        this.$store.dispatch({type:'updateUserState', user:this.user})
-      }
-    }
   },
+
+
+
+
+
   created() {
     this.$store.dispatch({ type: "checkLoggedUser" })
       .then(()=> {
