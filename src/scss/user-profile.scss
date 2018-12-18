@@ -42,18 +42,18 @@ $card-bg: #646262;
     }
 
     .user-profile-contact-btn {
-        background-color: $category-base;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        color: #ffffff;
-        font-family: roboto;
-        font-size: 1.5rem;
-        font-weight: bold;
-        transition: all 0.3s;
-        width: 100%;
-        max-width: 180px;
-        max-height: 45px;
+      background-color: $category-base;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: all 0.3s;
+      width: 100%;
+      max-width: 180px;
+      max-height: 45px;
     }
     .profile-btns-wrapper {
       display: grid;
@@ -245,7 +245,11 @@ $card-bg: #646262;
         input.stv-radio-tab {
           position: absolute;
           left: -99999em;
-          top: -99999em;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          visibility: hidden;
+          // top: -99999em;
           & + label {
             cursor: pointer;
             float: left;
