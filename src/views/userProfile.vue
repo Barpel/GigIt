@@ -229,9 +229,9 @@ export default {
     contactGigster(gigster, gigData) {
       this.$store.dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
           .then((xx) => {
-            // debugger
-            console.log('xxx is:',xx)
-            this.$router.push(`/user/${this.user._id}/inbox`)
+            setTimeout(() => {
+              this.$router.push(`/user/${this.user._id}/inbox`)
+            }, 500);
           });
     },
     getUserGigs() {
