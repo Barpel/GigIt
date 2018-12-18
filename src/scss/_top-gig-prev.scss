@@ -80,10 +80,12 @@
               overflow: hidden;
               white-space: pre-line;
               word-break: normal;
+              min-height: 50px;
             }
             & > .lower-bar-container {
               // min-width: 100%;
               // width: inherit;
+              // max-height: 50px;
               background-color: $card-bottom-color;
               display: flex;
               justify-content: space-between;
