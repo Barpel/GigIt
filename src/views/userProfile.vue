@@ -228,11 +228,7 @@ export default {
     },
     contactGigster(gigster, gigData) {
       this.$store.dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
-          .then((xx) => {
-            setTimeout(() => {
-              this.$router.push(`/user/${this.user._id}/inbox`)
-            }, 500);
-          });
+          .then((_) => {this.$router.push(`/user/${this.user._id}/inbox`)});
     },
     getUserGigs() {
       var userGigIds = { ...this.user.gigsIds };
@@ -260,7 +256,6 @@ export default {
           .dispatch({ type: "getGigById", gigId: `${publishedGigId}` })
           .then(gig => {
             this.gigs.publishedGigs.push(gig);
-            console.log(this.gigs.publishedGigs)
           });
       });
     },

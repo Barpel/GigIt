@@ -256,7 +256,6 @@ export default {
       this.isShowingTip = !this.isShowingTip;
     },
     save() {
-      console.log(this.gig.details.location);
       var gig = this.gig;
       var details = gig.details;
       if (!gig.category || !details.title || !details.price || !details.desc) {
@@ -269,31 +268,24 @@ export default {
       gig.createdAt = Date.now();
       gig.publisherId = this.user._id;
       var userGigsListToUpdate = gig._id ? null : this.user.gigsIds.published;
-      console.log("gig", gig.details.location);
       this.$store
         .dispatch({ type: "updateGig", gig, userGigsListToUpdate })
         .then(gig => {
-          console.log("gig saved!", gig);
           this.editComplete = true;
           this.newGigId = gig._id;
         });
       // this.$router.push("/");
     },
     setPlaceEdit(place) {
-      console.log(place.vicinity);
       this.gig.details.place = place.vicinity;
-      console.log(this.gig.details.place);
     },
     getLocation(location) {
-      console.log("this is the location from edit", location);
       this.gig.details.location = location;
       // this.gig.details.pos.lat = pos.lat
       // this.gig.details.pos.lng = pos.lng
-      //  console.log(this.gig.details.pos)
     }
   },
   created() {
-    console.log("editing gig");
     var gigId = this.$route.params.gigId;
     if (gigId) {
       this.$store.dispatch({ type: "getGigById", gigId }).then(gig => {
