@@ -36,7 +36,10 @@
     <!-- <hr class="hr1"> -->
     <div class="cover-container">
       <div class="cover-background1">
-        <img src="https://res.cloudinary.com/barpel/image/upload/v1544710606/GigIt/happy_bar_using_hammer.png" class="img1">
+        <img
+          src="https://res.cloudinary.com/barpel/image/upload/v1544710606/GigIt/happy_bar_using_hammer.png"
+          class="img1"
+        >
         <img
           src="https://res.cloudinary.com/barpel/image/upload/v1545063714/GigIt/happy_guy_bring_bag.png"
           class="img2"
@@ -64,12 +67,24 @@
         Top paying
         <span>Gigs</span> :
       </h1>
-      <top-list :topGigs="topPriceGigs" title="Price" :currUser="user" @gigClicked="gigClicked" @sortBy="sortBy"/>
+      <top-list
+        :topGigs="topPriceGigs"
+        title="Price"
+        :currUser="user"
+        @gigClicked="gigClicked"
+        @sortBy="sortBy"
+      />
       <h1 class="top-gigs-title">
-        Within a mile from you
-        <span>Gigs</span> :
+        <span>Gigs</span>
+        Within a mile from you:
       </h1>
-      <top-list :topGigs="nearestGigs"  title="Dist" :currUser="user" @gigClicked="gigClicked" @sortBy="sortBy"/>
+      <top-list
+        :topGigs="nearestGigs"
+        title="Dist"
+        :currUser="user"
+        @gigClicked="gigClicked"
+        @sortBy="sortBy"
+      />
     </div>
     <gig-list :currUser="user" :gigs="gigs" @gigClicked="gigClicked"/>
   </div>
@@ -134,8 +149,8 @@ export default {
   },
   methods: {
     sortBy(sorter) {
-      this.isFiltered = true
-      this.$store.dispatch({type:'getGigs', filter:{} , sorter });
+      this.isFiltered = true;
+      this.$store.dispatch({ type: "getGigs", filter: {}, sorter });
     },
     onImgLoaded() {
       this.imgLoaded = true;
@@ -144,8 +159,8 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey(filter, sorter) {
-      if(filter.byCategory || filter.byTitle || sorter) this.isFiltered = true
-      else this.isFiltered = false
+      if (filter.byCategory || filter.byTitle || sorter) this.isFiltered = true;
+      else this.isFiltered = false;
       this.showCategories = false;
       this.$store.dispatch("getGigs", { filter, sorter });
     }
