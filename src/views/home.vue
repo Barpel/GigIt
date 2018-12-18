@@ -47,7 +47,7 @@
     </div>
     <div v-if="!isFiltered" class="top-gigs-container">
       <h1 class="top-gigs-title">Top paying <span>Gigs</span> :</h1>
-      <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Top Price"/>
+      <top-list :topGigs="topGigs" :currUser="user" @gigClicked="gigClicked" title="Price"/>
       <h1 class="top-gigs-title">Nearest <span>Gigs</span> :</h1>
       <top-list :topGigs="nearestGigs" :currUser="user" @gigClicked="gigClicked" title="Nearest"/>
     </div>
