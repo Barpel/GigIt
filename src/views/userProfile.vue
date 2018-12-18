@@ -227,9 +227,12 @@ export default {
       }
     },
     contactGigster(gigster, gigData) {
-      this.$store
-        .dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
-        .then(() => this.$router.push(`/user/${this.user._id}/inbox`));
+      this.$store.dispatch({ type: "contactUser", gigster, gigData, maister: this.user })
+          .then((xx) => {
+            // debugger
+            console.log('xxx is:',xx)
+            this.$router.push(`/user/${this.user._id}/inbox`)
+          });
     },
     getUserGigs() {
       var userGigIds = { ...this.user.gigsIds };

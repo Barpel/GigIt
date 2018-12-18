@@ -120,7 +120,7 @@ export default {
       this.$router.push(`gig/${gigId}`);
     },
     filterByKey(filter, sorter) {
-      if(filter.byCategory || filter.byTitle) this.isFiltered = true
+      if(filter.byCategory || filter.byTitle || sorter) this.isFiltered = true
       else this.isFiltered = false
       this.showCategories = false;
       this.$store.dispatch("getGigs", { filter, sorter});
