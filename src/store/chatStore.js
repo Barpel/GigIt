@@ -34,6 +34,8 @@ export default {
             return chatService.update(chat)
         },
         openNewChat(context, { gigster, gigData, maister }) {
+            console.log('new chat is arravid!!!!'
+            )
             var chat = {
                 members: [{ name: gigster.name, img: gigster.img, _id: gigster.id },
                 { name: maister.name.first, img: maister.img, _id: maister._id }],

@@ -9,7 +9,7 @@
     }
   }
   .gig-header {
-    background-color: $category-base;
+    background-color: $darker-base;
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
     justify-content: flex-start;
@@ -68,6 +68,7 @@
     text-align: center;
     animation-name: slide-right;
     animation-duration: 0.5s;
+    border: 1px solid $darker-base;
     h3 {
       display: flex;
       justify-content: space-evenly;

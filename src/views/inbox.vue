@@ -123,11 +123,14 @@ export default {
             chat.members.splice(ownMemberIndex, 1);
             var lastMsg = chat.msgs[chat.msgs.length - 1];
             if (lastMsg && lastMsg.sender === user._id) lastMsg.isRead = true; //if sender is logged user the msg is read
-            this.chats.push(chat);
+            this.chats.push(chat);      
           });
       });
     });
-  }
+  },
+  destroyed(){
+
+  },
 };
 </script>
 
